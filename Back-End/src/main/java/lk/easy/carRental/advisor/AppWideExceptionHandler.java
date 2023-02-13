@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 public class AppWideExceptionHandler {
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     @ExceptionHandler({RuntimeException.class})
-    public String handleMyExceptions(RuntimeException e){
+    public String handleExceptions(RuntimeException e){
         System.out.println(e.getMessage());
         return e.getMessage();
     }
