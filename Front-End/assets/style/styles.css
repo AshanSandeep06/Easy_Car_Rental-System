@@ -123,22 +123,6 @@ header {
     margin-left: 5px;
 }
 
-/*.header-nav {
-    color: rgba(255, 255, 255, 0.67) !important;
-}
-
-.header-nav:active {
-    color: rgba(255, 255, 255, 0.67) !important;
-}
-
-.header-nav:visited {
-    color: rgba(255, 255, 255, 0.67) !important;
-}
-
-.header-nav:hover {
-    color: #f6f3f3 !important;
-}*/
-
 header > nav {
     padding-bottom: 6px !important;
     padding-top: 6px !important;
@@ -188,10 +172,6 @@ header > nav {
 #navbarTogglerDemo02 > ul > li {
     margin-right: 2px;
 }
-
-/*#dashBoardHeader {
-    height: 69px;
-}*/
 
 #tblCustomer > tbody > tr {
     cursor: pointer;
