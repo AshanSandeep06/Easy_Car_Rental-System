@@ -1,0 +1,192 @@
+/**
+ * @author : Ashan Sandeep
+ * @since : 0.1.0
+ **/
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
+
+/* Apply Poppins font family to all the html elements */
+* {
+    font-family: 'Poppins', sans-serif;
+}
+
+* {
+    padding: 0;
+    outline: none;
+    text-decoration: none;
+    box-sizing: border-box;
+}
+
+/**::selection{
+    color: white;
+    background: #7461E2;
+}*/
+
+/*====================== CSS Variables ======================*/
+:root {
+    --font-regular: 400;
+    --font-semi-bold: 600;
+}
+
+/*====================== Customized Scroll bar ======================*/
+::-webkit-scrollbar {
+    width: 8px;
+    /*background: #A8A8A8;*/
+    background: #2f2b2b;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #7461E2;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    background: transparent;
+}
+
+/*====================== Header Section ======================*/
+header {
+    border: 3px solid black;
+    background-color: #fafaff;
+    color: black;
+}
+
+#optionList > li > a {
+    font-size: 15px;
+    font-weight: 500;
+}
+
+#optionList > li > a:hover {
+    color: #7461E2;
+}
+
+#main-h2 > a:first-child > img:nth-child(1) {
+    width: 70px;
+    margin-right: 1px;
+    height: 70px;
+    position: relative !important;
+    bottom: 7px;
+}
+
+#optionList > li > a::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 5px;
+    background-color: #7461E2;
+    border-radius: 26%;
+    transition: width .3s;
+}
+
+#optionList > li > a:hover::after {
+    width: 43%;
+    transition: width .3s;
+}
+
+#optionList {
+    padding-left: 2px;
+    margin-top: 8px;
+}
+
+#optionList + ul {
+    gap: 15px;
+    padding-right: 3px;
+}
+
+#main-h2 span {
+    position: relative;
+    top: 1px;
+}
+
+/*.header-nav {
+    color: rgba(255, 255, 255, 0.67) !important;
+}
+
+.header-nav:active {
+    color: rgba(255, 255, 255, 0.67) !important;
+}
+
+.header-nav:visited {
+    color: rgba(255, 255, 255, 0.67) !important;
+}
+
+.header-nav:hover {
+    color: #f6f3f3 !important;
+}*/
+
+header > nav {
+    padding-bottom: 6px !important;
+    padding-top: 6px !important;
+}
+
+.modal-header {
+    background: #2626a7;
+    color: white;
+}
+
+.modal-footer > button:nth-child(2) {
+    width: 75px;
+}
+
+#customer-form {
+    margin: 15px;
+}
+
+#item-form {
+    margin: 15px;
+}
+
+#updated-btn1, #updated-btn2 {
+    margin-bottom: 8px;
+}
+
+#clear-btn1, #clear-btn2 {
+    margin-bottom: 8px;
+}
+
+#delete-btn1, #delete-btn2 {
+    margin-bottom: 8px;
+}
+
+#main-h2 {
+    margin: 0;
+}
+
+#navbarTogglerDemo02 {
+    margin-top: 1px;
+}
+
+#navbarTogglerDemo02 > ul > li i {
+    padding-right: 6px;
+}
+
+#navbarTogglerDemo02 > ul > li {
+    margin-right: 2px;
+}
+
+/*#dashBoardHeader {
+    height: 69px;
+}*/
+
+#tblCustomer > tbody > tr {
+    cursor: pointer;
+}
+
+#tblItem > tbody > tr {
+    cursor: pointer;
+}
+
+#btnUpdateCart:hover {
+    background-color: #1a71ef !important;
+}
