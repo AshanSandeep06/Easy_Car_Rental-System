@@ -72,9 +72,15 @@ header {
 }
 
 #main-h2 > a:first-child > img:nth-child(1) {
-    width: 70px;
+    /*width: 70px;
     margin-right: 1px;
     height: 70px;
+    position: relative !important;
+    bottom: 7px;*/
+
+    width: 88px;
+    margin-right: 1px;
+    height: 73px;
     position: relative !important;
     bottom: 7px;
 }
