@@ -212,7 +212,7 @@ header > nav {
 #scroll_up_btn {
     position: fixed;
     opacity: 0.8;
-    right: 17px;
+    right: 23px;
     bottom: 19px;
     z-index: 996;
     background: #7461E2;
