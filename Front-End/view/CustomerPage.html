@@ -1,15 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Customer Page</title>
-  <link rel="icon" href="../assets/img/rent-02.png">
-  <meta content="width=device-width initial-scale=1" name="viewport">
-  <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.min.css">
-  <link rel="stylesheet" href="../assets/fonts/css/all.min.css">
-  <link rel="stylesheet" href="../assets/style/styles.css">
+    <meta charset="UTF-8">
+    <title>Customer Page</title>
+    <link rel="icon" href="../assets/img/rent-02.png">
+    <meta content="width=device-width initial-scale=1" name="viewport">
+    <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/fonts/css/all.min.css">
+    <link rel="stylesheet" href="../assets/style/styles.css">
 </head>
-<body>
+<body class="container-fluid">
+
+<a href="#" id="scroll_up_btn"><i class="fa-solid fa-arrow-up"></i></a>
+
+<!--Header-->
+<header id="customerPageHeader" class="row position-relative text-black">
+    <nav style="border:none!important;"
+         class="navbar navbar-expand-lg bg-transparent border-bottom shadow-lg">
+        <div class="container-fluid">
+            <h2 id="main-h2">
+                <a class="navbar-brand fw-bolder fs-2 position-relative" href="#">
+                    <!--<img class="position-relative" src="../assets/img/rent-03.png">-->
+                    <span id="easy" style="font-size: 36px;" class="text-success">Easy</span>
+                    <span style="font-size: 23px; margin-left: -3px;">Car Rental</span></a></h2>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02"
+                    aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                <ul id="optionList" class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li id="homeBtn" class="nav-item">
+                        <a id="home-nav" class="nav-link header-nav option-nav" aria-current="page"
+                           href="#dashBoardSection"><i
+                                class="fa-solid fa-house-chimney"></i>Home</a>
+                    </li>
+                    <li id="customerBtn" class="nav-item">
+                        <a id="customer-nav" class="nav-link header-nav option-nav" href="#"><i
+                                class="fa-solid fa-user"></i>Services</a>
+                    </li>
+                    <li id="itemBtn" class="nav-item">
+                        <a id="item-nav" class="nav-link header-nav option-nav" href="#"><i
+                                class="fa-solid fa-car-rear"></i>Cars</a>
+                    </li>
+                    <li id="placeOrderBtn" class="nav-item">
+                        <a id="order-nav" class="nav-link header-nav option-nav" href="#"><i
+                                class="fa-solid fa-address-book"></i>Contact</a>
+                    </li>
+                </ul>
+
+                <ul class="navbar-nav me-6 mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <button type="button" class="btn btn-outline-dark text-white border-light">My Profile</button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
 
 <script src="../assets/jquery/jquery-3.6.1.min.js"></script>
 <script src="../assets/bootstrap/js/bootstrap.min.js"></script>

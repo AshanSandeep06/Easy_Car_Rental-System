@@ -63,7 +63,7 @@ header {
 
     background-color: #151414;
     color: black;
-    color: white!important;
+    color: white !important;
 }
 
 #optionList > li > a {
@@ -119,11 +119,11 @@ header {
     top: 1px;
 }
 
-#homeHeader > nav:first-child > div:first-child{
+#homeHeader > nav:first-child > div:first-child {
     padding-left: 15px;
 }
 
-#easy{
+#easy {
     margin-left: 5px;
 }
 
@@ -189,7 +189,7 @@ header > nav {
     background-color: #1a71ef !important;
 }
 
-.carousel-inner > div{
+.carousel-inner > div {
     height: 636px;
 }
 
@@ -220,7 +220,7 @@ header > nav {
     top: 17px;
 }
 
-#colorDiv{
+#colorDiv {
     background-color: rgba(0, 0, 0, 0.5);
     width: 100%;
     height: 100%;
@@ -228,12 +228,29 @@ header > nav {
     z-index: 1;
 }
 
-#easy + span{
+#easy + span {
     color: white;
 }
 
-#optionList > li > a{
+#optionList > li > a {
     color: white;
 }
 
 /* ---------------------------------------------------------------------------------------- */
+
+/* ---------------------------------Customer Page -------------------------------- */
+#customerPageHeader {
+    height: 70px;
+}
+
+#customerPageHeader #optionList {
+    margin-top: 12px;
+}
+
+#customerPageHeader #main-h2 {
+    margin-bottom: 4px;
+}
+
+#customerPageHeader #optionList + ul {
+    padding-right: 12px;
+}
