@@ -57,9 +57,13 @@ a {
 
 /*====================== Header Section ======================*/
 header {
-    /*border: 3px solid black;*/
+    /*border: 3px solid black;
     background-color: #fafaff;
+    color: black;*/
+
+    background-color: #151414;
     color: black;
+    color: white!important;
 }
 
 #optionList > li > a {
@@ -214,6 +218,22 @@ header > nav {
     position: absolute;
     right: 10px;
     top: 17px;
+}
+
+#colorDiv{
+    background-color: rgba(0, 0, 0, 0.5);
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 1;
+}
+
+#easy + span{
+    color: white;
+}
+
+#optionList > li > a{
+    color: white;
 }
 
 /* ---------------------------------------------------------------------------------------- */
