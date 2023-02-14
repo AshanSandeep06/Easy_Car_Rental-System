@@ -204,3 +204,36 @@ header > nav {
 #btnUpdateCart:hover {
     background-color: #1a71ef !important;
 }
+
+.carousel-inner > div{
+    height: 636px;
+}
+
+#scroll_up_btn {
+    position: fixed;
+    opacity: 0.8;
+    right: 17px;
+    bottom: 19px;
+    z-index: 996;
+    background: #7461E2;
+    width: 35px;
+    height: 35px;
+    border-radius: 4px;
+    transition: all 0.4s;
+}
+
+#scroll_up_btn:hover {
+    opacity: 1.0;
+    transform: translateY(-10px);
+}
+
+#scroll_up_btn > i {
+    font-size: 19px;
+    color: #fff;
+    line-height: 0;
+    position: absolute;
+    right: 10px;
+    top: 17px;
+}
+
+/* ---------------------------------------------------------------------------------------- */
