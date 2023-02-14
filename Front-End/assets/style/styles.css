@@ -119,7 +119,7 @@ header {
     top: 1px;
 }
 
-#dashBoardHeader > nav:first-child > div:first-child{
+#homeHeader > nav:first-child > div:first-child{
     padding-left: 15px;
 }
 
