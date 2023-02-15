@@ -106,7 +106,7 @@ header {
 
 #optionList {
     padding-left: 2px;
-    margin-top: 8px;
+    margin-top: 12px;
 }
 
 #optionList + ul {
@@ -247,7 +247,7 @@ header > nav {
     margin-top: 12px;
 }
 
-#customerPageHeader #main-h2 {
+#main-h2 {
     margin-bottom: 4px;
 }
 
@@ -731,4 +731,21 @@ tbody {
 #btnCancelRent {
     padding-left: 13px;
     padding-right: 13px;
+}
+
+#driverAcceptanceField {
+    margin-right: 3px;
+}
+
+#carBookingMain {
+    padding-bottom: 33px;
+}
+
+#carBookingMain > section:nth-child(2) {
+    padding-bottom: 30px;
+    border-radius: 15px;
+}
+
+#carImagesCarousel {
+    top: 52px;
 }
