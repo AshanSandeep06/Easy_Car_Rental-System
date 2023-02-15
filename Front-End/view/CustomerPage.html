@@ -58,18 +58,24 @@
 <!--Customer Home Page Content-->
 <main id="customerPage_home" class="container-fluid">
     <section class="row justify-content-center">
-        <div class="col-xl-3 col-lg-5 col-md-6 col-9 mb-3">
-            <input type="search" class="form-control mb-2" id="txtSearch" placeholder="Search Something">
+        <div class="form-group col-xl-2 col-lg-5 col-md-6 col-9 mb-3">
+            <label id="lblPickUpDate">PickUp Date</label>
+            <input class="form-control" id="txtPickUpDate" type="date">
         </div>
 
-        <div class="col-xl-1 col-lg-2 col-md-3 col-3 position-relative">
-            <button style="width: 96px;" id="btnSearch" type="button" class="btn btn-primary">Search
+        <div class="form-group col-xl-2 col-lg-5 col-md-6 col-9 mb-3">
+            <label id="lblReturnDate">Return Date</label>
+            <input class="form-control" id="txtReturnDate" type="date">
+        </div>
+
+        <div id="searchCarBtnDiv" class="col-xl-2 col-lg-2 col-md-3 col-3 justify-content-center">
+            <button id="btnSearch" type="button" class="btn btn-primary">Search Car now
             </button>
         </div>
     </section>
 
-    <section class="row mt-4">
-        <section id="sortingSection" class="col-xl-3 col-lg-5 col-md-6 col-9 mb-3">
+    <section class="row">
+        <section id="sortingSection" class="row col-xl-3 col-lg-5 col-md-6 col-9 mb-3">
             <aside class="row">
                 <h1>Transmission Type</h1>
 
@@ -171,15 +177,11 @@
             </aside>
 
             <aside class="row">
-                <div class="form-group">
-                    <label>PickUp Date</label>
-                    <input class="form-control" id="txtPickUpDate" type="date">
-                </div>
 
-                <div class="form-group">
-                    <label>Return Date</label>
-                    <input class="form-control" id="txtReturnDate" type="date">
-                </div>
+            </aside>
+
+            <aside class="row">
+
             </aside>
 
 
