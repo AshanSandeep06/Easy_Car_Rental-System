@@ -118,10 +118,10 @@
         </section>
     </section>
 
-    <section class="col-4 bg-white shadow-lg">
+    <section class="row col-4 bg-white shadow-lg">
         <!-- invoice content -->
-        <section id="customerDetailsSection" class="col-10 col-md-5 col-lg-10 p-3 bg-white m-auto shadow-lg">
-            <h3 id="customerDetailsHeader" class="text-center bg-primary p-2 text-light rounded-3 fs-4">Customer Details</h3>
+        <section id="customerDetailsSection" class="col-10 col-md-5 col-lg-10 p-3 bg-white shadow-lg">
+            <h3 id="customerDetailsHeader" class="text-center bg-primary p-2 text-light rounded-3 fs-4">Booking Now</h3>
             <div class="row mt-1">
                 <div class="col-12 col-md-6 col-lg-6">
                     <label for="customerID" class="form-label">Customer ID :</label>
@@ -141,11 +141,55 @@
                 </div>
             </div>
 
-            <div class="container-fluid justify-content-end d-flex" style="padding: 0;">
-                <button id="btnClearCusData"
-                        style="width: max-content; height: max-content; font-weight: bold; padding-right: 28px; padding-left: 28px;"
-                        class="btn btn-secondary"
-                        type="button">Clear
+            <div class="row mt-1">
+                <div class="col-12 col-md-6 col-lg-6">
+                    <label for="rentalID" class="form-label">Rental ID :</label>
+                    <input class="form-control" id="rentalID" disabled type="text">
+                </div>
+
+                <div class="col-12 col-md-6 col-lg-6">
+                    <label for="location" class="form-label">Location :</label>
+                    <input class="form-control" id="location" type="text">
+                </div>
+            </div>
+
+            <div class="row mt-2">
+                <div class="col-12 col-md-6 col-lg-6">
+                    <label for="pickUpTime" class="form-label">Pick Up Time :</label>
+                    <input class="form-control" id="pickUpTime" type="text">
+                </div>
+
+                <div class="col-12 col-md-6 col-lg-6">
+                    <label for="pickUpDate" class="form-label">Pick Up Date :</label>
+                    <input class="form-control" id="pickUpDate" type="text">
+                </div>
+            </div>
+
+            <div class="row mt-2">
+                <div class="col-12 col-md-6 col-lg-6">
+                    <label for="returnTime" class="form-label">Return Time :</label>
+                    <input class="form-control" id="returnTime" type="text">
+                </div>
+
+                <div class="col-12 col-md-6 col-lg-6">
+                    <label for="returnDate" class="form-label">Return Date :</label>
+                    <input class="form-control" id="returnDate" type="text">
+                </div>
+            </div>
+
+            <!--Radio button-->
+            <div class="row mt-2">
+                <div class="col-12 col-md-6 col-lg-6">
+                    <input class="form-check-input" type="checkbox" id="driverAcceptanceField">
+                    <label class="form-check-label" for="driverAcceptanceField">With Driver</label>
+                </div>
+            </div>
+
+            <div style="column-gap: 19px; padding-right: 16px;" class="row mt-2 justify-content-end">
+                <button id="btnSubmitRent" class="btn btn-success" type="button">Confirm Booking
+                </button>
+
+                <button id="btnCancelRent" class="btn btn-danger" type="button">Cancel
                 </button>
             </div>
         </section>

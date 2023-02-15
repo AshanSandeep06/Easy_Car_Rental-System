@@ -692,19 +692,43 @@ tbody {
     gap: 45px;
 }
 
-#customerDetailsHeader{
+#customerDetailsHeader, #rentDetailsHeader {
     font-size: 19px !important;
 }
 
-#customerDetailsSection{
+#customerDetailsSection {
+    margin-bottom: 0 !important;
+    margin-top: 0 !important;
+    height: max-content;
+}
+
+#customerDetailsSection, #rentDetailsSection {
     font-size: 14px;
 }
 
-#customerDetailsSection input{
+#customerDetailsSection input {
     font-size: 14px;
 }
 
-#btnClearCusData{
+#btnClearCusData {
     font-size: 14px;
     margin-top: 16px;
+}
+
+#carBookingMain > section:nth-child(2) {
+    justify-content: space-evenly;
+    align-items: flex-start;
+}
+
+#btnSubmitRent, #btnCancelRent {
+    width: max-content;
+    height: max-content;
+    font-weight: bold;
+    padding: 10px;
+    font-size: 14px;
+}
+
+#btnCancelRent {
+    padding-left: 13px;
+    padding-right: 13px;
 }
