@@ -636,7 +636,5 @@ header > nav {
 }
 
 #carDetailsAside {
-    padding-bottom: 28px;
-    padding-top: 6px;
-    padding-left: 35px;
+    padding: 6px 0 28px 35px;
 }
