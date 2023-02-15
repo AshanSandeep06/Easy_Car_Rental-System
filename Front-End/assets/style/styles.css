@@ -313,3 +313,7 @@ header > nav {
     font-size: 14.5px;
     margin-bottom: 3px;
 }
+
+#btnClearSortings{
+    width: 85px;
+}
