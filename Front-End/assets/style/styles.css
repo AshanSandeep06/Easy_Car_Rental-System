@@ -592,18 +592,18 @@ header > nav {
     height: 310px;
 }
 
-#carImagesCarousel .carousel-inner > .carousel-item > img{
+#carImagesCarousel .carousel-inner > .carousel-item > img {
     margin: auto;
 }
 
 #carImagesCarousel .carousel-inner > .carousel-item:nth-child(2) > img {
     height: 210px;
-    width: 380px!important;
+    width: 380px !important;
 }
 
 #carImagesCarousel .carousel-inner > .carousel-item:nth-child(1) > img {
     height: 280px;
-    width: 500px!important;
+    width: 500px !important;
 }
 
 #carImagesCarousel .carousel-inner > .carousel-item:nth-child(3) > img {
@@ -613,10 +613,30 @@ header > nav {
 }
 
 #carImagesCarousel .carousel-inner > .carousel-item:nth-child(4) > img {
-    width: 379px!important;
+    width: 379px !important;
     height: 266px;
 }
 
-#carImagesAside{
+#carImagesAside {
     background-color: black;
+}
+
+#car_brand {
+    font-size: 22px;
+}
+
+#carDetailsAside > h2 {
+    font-size: 16px;
+}
+
+#car_brand {
+    height: max-content;
+    width: max-content;
+    margin-top: 15px;
+}
+
+#carDetailsAside {
+    padding-bottom: 28px;
+    padding-top: 6px;
+    padding-left: 35px;
 }
