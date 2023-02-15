@@ -275,6 +275,7 @@ header > nav {
 
 #sortingSection {
     gap: 25px;
+    height: 590px;
 }
 
 #sortingSection > aside:nth-child(2) > div:nth-child(2), #sortingSection > aside:nth-child(2) > div:nth-child(3), #sortingSection > aside:nth-child(2) > div:nth-child(4), #sortingSection > aside:nth-child(2) > div:nth-child(5) {
@@ -285,11 +286,11 @@ header > nav {
     padding-bottom: 5px;
 }
 
-#sortingSection > aside:nth-child(4) > div:nth-child(1){
+#sortingSection > aside:nth-child(4) > div:nth-child(1) {
     padding-bottom: 5px;
 }
 
-#sortingSection > aside:nth-child(5){
+#sortingSection > aside:nth-child(5) {
     row-gap: 15px;
 }
 
@@ -297,23 +298,283 @@ header > nav {
     padding-left: 22px;
 }
 
-#searchCarBtnDiv{
+#searchCarBtnDiv {
     position: relative;
     display: flex;
     align-items: center;
-    justify-content: start!important;
+    justify-content: start !important;
     padding-top: 7px;
 }
 
-#btnSearch{
+#btnSearch {
     font-size: 14px;
 }
 
-#lblPickUpDate, #lblReturnDate{
+#lblPickUpDate, #lblReturnDate {
     font-size: 14.5px;
     margin-bottom: 3px;
 }
 
-#btnClearSortings{
+#btnClearSortings {
     width: 95px;
+}
+
+/* ------------------------------------------------------------------------------ */
+
+/*====================== Assignments Section ======================*/
+
+#carDetails_section > div {
+    position: relative;
+    /*display: flex;
+    gap: 24px;
+    align-items: center;
+    flex-direction: column;*/
+    background: #efeffc;
+    /*width: 380px;*/
+    height: 405px;
+    box-shadow: -23px -23px 45px #ffffff, 28px 28px 50px rgba(13, 39, 80, 0.16);
+    border-radius: 25px;
+    transition: all 0.8s ease;
+}
+
+#carDetails_section > div > h2 {
+    margin-top: 43px;
+    font-size: 21px;
+}
+
+#carDetails_section > div > img {
+    border: 1px solid;
+    width: 88%;
+    height: 165px;
+}
+
+#carDetails_section > div:hover {
+    transition: all 0.8s ease;
+    transform: scale(0.97);
+    box-shadow: 1px 1px 54px 1px rgba(0, 0, 0, 0.22);
+    cursor: pointer;
+    /* background: #f1f1fb; */
+    background: #7461E2;
+}
+
+#btnCar-01 > a, #btnCar-01 > a, #btnCar-01 > a {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    margin: auto;
+    border-radius: 0.5rem;
+}
+
+#carDetails_section > div:hover > h2 {
+    transition: all 0.8s ease;
+    color: white;
+}
+
+#carDetails_section > div:hover .svg-wrapper {
+    visibility: visible;
+    transition: all .6s;
+}
+
+#carDetails_section > div:hover .shape1, #carDetails_section > div:hover .shape2 {
+    stroke-dashoffset: 0;
+    stroke-dasharray: 1120;
+}
+
+.assignments_p {
+    text-align: center;
+    font-weight: 400;
+}
+
+#carDetails_section > div > div > p {
+    position: absolute;
+    top: 28px;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    height: max-content;
+    /* margin: auto; */
+    margin-left: 20px;
+    margin-right: 20px;
+    color: white;
+}
+
+#carDetails_section > div:hover .assignments_p {
+    visibility: visible;
+    transition: all .6s;
+}
+
+#carDetails_section > div:hover .cars_btn {
+    visibility: visible;
+    transition: all .6s;
+}
+
+#carDetails_section > div > div > button {
+    position: absolute;
+    top: 156px;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    margin: auto;
+    color: black;
+    text-align: center;
+    font-weight: 500;
+    border-radius: 0.5rem;
+    background-color: gold;
+    height: 44px;
+    transition: all .6s;
+    cursor: pointer;
+    width: 125px;
+    border: 3px solid gold;
+    font-size: 15px;
+}
+
+#carDetails_section > div > div > button:hover::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    transition: all .5s;
+    animation: clippath .8s 1 linear;
+}
+
+@keyframes clippath {
+    0%, 100% {
+        clip-path: inset(0 0 95% 0);
+    }
+
+    25% {
+        clip-path: inset(0 95% 0 0);
+        border: 3px solid #6b57d7;
+    }
+    50% {
+        clip-path: inset(95% 0 0 0);
+        border: 3px solid #6b57d7;
+    }
+    75% {
+        clip-path: inset(0 0 0 95%);
+        border: 3px solid #6b57d7;
+    }
+}
+
+.svg-wrapper {
+    position: absolute;
+    top: 52px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    width: 265px;
+    height: 275px;
+    transition: all 2s;
+    /* background: #00000080; */
+    background: #00000094;
+}
+
+#carDetails_section > div:hover .shape1, #carDetails_section > div:hover .shape2 {
+    stroke-dashoffset: 0;
+    stroke-dasharray: 1120;
+}
+
+.svg-wrapper, .assignments_p, .cars_btn {
+    visibility: hidden;
+    transition: visibility .6s;
+}
+
+.shape1 {
+    stroke-dashoffset: 1120;
+}
+
+.shape1, .shape2 {
+    stroke-dasharray: 1120;
+    stroke-width: 13px;
+    fill: transparent;
+    /* stroke: #19f6e8; */
+    /* stroke: #7461e2; */
+    stroke: #edf1fa;
+    border-bottom: 5px solid black;
+    transition-timing-function: linear;
+    transition: stroke-dashoffset 2.5s, stroke-dasharray 2.5s;
+}
+
+#carDetails_section > div:hover .cars_btn {
+    visibility: visible;
+    transition: all .6s;
+}
+
+.shape1 {
+    stroke-dashoffset: 1120;
+}
+
+#carDetails_section {
+    gap: 55px;
+    padding-top: 25px;
+    padding-bottom: 45px;
+}
+
+#carDetails_section > div {
+    justify-content: center;
+    padding: 0;
+}
+
+#carDetails_section > div > div:nth-child(2) {
+    padding: 0;
+}
+
+#carDetails_section > div > div:nth-child(2) > img {
+    width: 100%;
+    height: 180px;
+    /* background-position: center; */
+    /* background-size: cover; */
+    object-fit: cover;
+    border-top-right-radius: 25px;
+    border-top-left-radius: 25px;
+}
+
+#carDetails_section > div > div:nth-child(3) {
+    text-align: center;
+}
+
+#carDetails_section > div > div:nth-child(3) > h2 {
+    font-size: 18px;
+}
+
+#carDetails_section > div > div:nth-child(4) {
+    text-align: center;
+    justify-content: space-evenly;
+}
+
+#carDetails_section > div > div:nth-child(4) > h2 {
+    font-size: 15px;
+    justify-content: center;
+}
+
+#carDetails_section > div > div:nth-child(5){
+    padding-top: 20px;
+    text-align: center;
+    font-size: 15px;
+    justify-content: center;
+}
+
+#carDetails_section > div > div:nth-child(5) > h2{
+    font-size: 15px;
+    justify-content: center;
+    gap: 0;
+}
+
+#carDetails_section > div > div:nth-child(5) > h2 >span{
+    width: max-content;
+    height: max-content;
+}
+
+#carDetails_section > div > div:nth-child(5) > h2 >span:nth-child(2){
+    position: relative;
+    bottom: 6px;
+}
+
+#sortingSection{
+    padding-left: 18px;
 }
