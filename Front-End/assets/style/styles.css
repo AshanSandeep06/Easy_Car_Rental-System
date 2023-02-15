@@ -732,3 +732,12 @@ tbody {
     padding-left: 13px;
     padding-right: 13px;
 }
+
+#uploadSlip {
+    margin-right: 43px;
+    padding: 0;
+    max-width: 26.85% !important;
+    position: relative;
+    left: 34px;
+    top: 0.7px;
+}
