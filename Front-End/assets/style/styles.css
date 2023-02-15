@@ -262,3 +262,9 @@ header > nav {
 #customerPage_home > section:first-child{
     padding-top: 36px;
 }
+
+#sortingSection > aside > h1{
+    width: max-content;
+    height: max-content;
+    font-size: 16px;
+}
