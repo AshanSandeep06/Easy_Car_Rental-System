@@ -119,7 +119,52 @@
     </section>
 
     <section class="col-4 bg-white shadow-lg">
+        <!-- invoice content -->
+        <section id="customerDetailsSection" class="col-10 col-md-5 col-lg-10 p-3 bg-white m-auto shadow-lg">
+            <h3 id="customerDetailsHeader" class="text-center bg-primary p-2 text-light rounded-3 fs-4">Customer Details</h3>
+            <div class="row mt-1">
+                <div class="col-12 col-md-6 col-lg-6">
+                    <label for="customerID" class="form-label">Customer ID :</label>
+                    <input class="form-control" id="customerID" type="text">
+                </div>
 
+                <div class="col-12 col-md-6 col-lg-6">
+                    <label for="customerNic" class="form-label">Customer NIC :</label>
+                    <input class="form-control" id="customerNic" type="text">
+                </div>
+            </div>
+
+            <div class="row mt-2">
+                <div class="col-12 col-md-6 col-lg-6">
+                    <label for="customerName" class="form-label">Name :</label>
+                    <input class="form-control" id="customerName" type="text">
+                </div>
+
+                <div class="col-12 col-md-6 col-lg-6">
+                    <label for="cusName" class="form-label">Name :</label>
+                    <input class="form-control" disabled id="cusName" type="text">
+                </div>
+            </div>
+
+            <div class="row mt-2 mb-4">
+                <div class="col-12 col-md-6 col-lg-6">
+                    <label for="cusAddress" class="form-label">Address :</label>
+                    <input class="form-control" disabled id="cusAddress" type="text">
+                </div>
+                <div class="col-12 col-md-6 col-lg-6">
+                    <label for="cusSalary" class="form-label">Salary :</label>
+                    <input class="form-control" disabled id="cusSalary" type="text">
+                </div>
+            </div>
+
+            <div class="container-fluid justify-content-end d-flex" style="padding: 0;">
+                <button id="btnClearCusData"
+                        style="width: max-content; height: max-content; font-weight: bold; padding-right: 28px; padding-left: 28px;"
+                        class="btn btn-secondary"
+                        type="button">Clear
+                </button>
+            </div>
+        </section>
     </section>
 </main>
 

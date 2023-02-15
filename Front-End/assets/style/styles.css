@@ -691,3 +691,15 @@ tbody {
 #carBookingMain > section:first-child > section:first-child {
     gap: 45px;
 }
+
+#customerDetailsHeader{
+    font-size: 19px !important;
+}
+
+#customerDetailsSection{
+    font-size: 14px;
+}
+
+#customerDetailsSection input{
+    font-size: 14px;
+}
