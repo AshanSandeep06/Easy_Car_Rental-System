@@ -750,6 +750,18 @@ tbody {
     top: 52px;
 }
 
-#carBookingPageHeader #easy{
+#carBookingPageHeader #easy {
     top: -1px;
+}
+
+/* -----------------------------------------------My Bookings ---------------------------------------------------------*/
+#customerPage_bookings > section:first-child {
+    padding-top: 43px;
+}
+
+#btnSearchBookings{
+    padding: 10px;
+    font-size: 14px;
+    position: relative;
+    bottom: 4px;
 }

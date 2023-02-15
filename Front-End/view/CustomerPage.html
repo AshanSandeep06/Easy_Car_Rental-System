@@ -811,8 +811,36 @@
     </section>
 </main>
 
+<!--Customer Bookings-->
+<main id="customerPage_bookings">
+    <section class="row justify-content-center">
+        <div class="form-group col-xl-2 col-lg-5 col-md-6 col-9 mb-3">
+            <select style="font-size: 15px;" class="form-select" aria-label="Default select example">
+                <option selected value="1">Customer ID</option>
+                <option value="2">Customer NIC</option>
+            </select>
+        </div>
+
+        <div class="form-group col-xl-3 col-lg-5 col-md-6 col-9 mb-3">
+            <input class="form-control" id="txtSearchCustomerBookings" type="text">
+        </div>
+
+        <div class="col-xl-2 col-lg-2 col-md-3 col-3 justify-content-center">
+            <button id="btnSearchBookings" type="button" class="btn btn-primary">Search Bookings
+            </button>
+        </div>
+    </section>
+
+    <section>
+
+    </section>
+</main>
+
 <script src="../assets/jquery/jquery-3.6.1.min.js"></script>
 <script src="../assets/bootstrap/js/bootstrap.min.js"></script>
 <script src="../controller/HomeController.js"></script>
+<script>
+    $("#customerPage_home").css('display', 'none');
+</script>
 </body>
 </html>
