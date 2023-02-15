@@ -768,4 +768,10 @@ tbody {
 
 #tblBookingDetails {
     text-align: center;
+    font-size: 15px;
+}
+
+#customerPage_bookings > section:nth-child(2) > section:first-child {
+    padding-right: 25px;
+    padding-left: 25px;
 }
