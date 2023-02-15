@@ -116,7 +116,7 @@ header {
 
 #main-h2 span {
     position: relative;
-    top: 1px;
+    /*top: 1px;*/
 }
 
 #homeHeader > nav:first-child > div:first-child {
@@ -248,7 +248,7 @@ header > nav {
 }
 
 #main-h2 {
-    margin-bottom: 4px;
+    /*margin-bottom: 4px;*/
 }
 
 #customerPageHeader #optionList + ul {
@@ -748,4 +748,8 @@ tbody {
 
 #carImagesCarousel {
     top: 52px;
+}
+
+#carBookingPageHeader #easy{
+    top: -1px;
 }
