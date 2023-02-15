@@ -552,29 +552,29 @@ header > nav {
     justify-content: center;
 }
 
-#carDetails_section > div > div:nth-child(5){
+#carDetails_section > div > div:nth-child(5) {
     padding-top: 20px;
     text-align: center;
     font-size: 15px;
     justify-content: center;
 }
 
-#carDetails_section > div > div:nth-child(5) > h2{
+#carDetails_section > div > div:nth-child(5) > h2 {
     font-size: 15px;
     justify-content: center;
     gap: 0;
 }
 
-#carDetails_section > div > div:nth-child(5) > h2 >span{
+#carDetails_section > div > div:nth-child(5) > h2 > span {
     width: max-content;
     height: max-content;
 }
 
-#carDetails_section > div > div:nth-child(5) > h2 >span:nth-child(2){
+#carDetails_section > div > div:nth-child(5) > h2 > span:nth-child(2) {
     position: relative;
     bottom: 6px;
 }
 
-#sortingSection{
+#sortingSection {
     padding-left: 18px;
 }
