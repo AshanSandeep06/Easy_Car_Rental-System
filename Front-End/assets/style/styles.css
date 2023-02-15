@@ -668,10 +668,15 @@ header > nav {
     height: 55px;
 }
 
-#regNo{
+#regNo {
     width: 90px;
 }
 
-tbody{
+tbody {
     text-align: center;
+}
+
+#carBookingMain > section:first-child {
+    padding-top: 16px;
+    gap: 15px;
 }
