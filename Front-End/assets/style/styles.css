@@ -638,3 +638,40 @@ header > nav {
 #carDetailsAside {
     padding: 6px 0 28px 35px;
 }
+
+#carBookingMain > section:first-child > section:nth-child(2) > section:first-child {
+    height: 300px !important;
+}
+
+#carBookingMain > section:first-child > section:nth-child(2) > section:first-child > h3 {
+    font-size: 19px !important;
+}
+
+#tblCarDetails {
+    font-size: 14px;
+}
+
+#tblCarDetails > thead > tr:first-child {
+    font-size: 13px;
+}
+
+#tblCarDetails > thead > tr:first-child > th {
+    text-align: center;
+    padding: 0 0 16px;
+}
+
+#tblCarDetails > thead > tr:first-child > th:nth-child(5), #tblCarDetails > thead > tr:first-child > th:nth-child(6), #tblCarDetails > thead > tr:first-child > th:nth-child(7), #tblCarDetails > thead > tr:first-child > th:nth-child(8), #tblCarDetails > thead > tr:first-child > th:nth-child(9), #tblCarDetails > thead > tr:first-child > th:nth-child(10) {
+    padding: 0 0 8px;
+}
+
+#tblCarDetails > thead {
+    height: 55px;
+}
+
+#regNo{
+    width: 90px;
+}
+
+tbody{
+    text-align: center;
+}

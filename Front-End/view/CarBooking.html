@@ -12,16 +12,20 @@
 <body class="container-fluid">
 
 <!--All Content Container-->
-<main class="row">
+<main id="carBookingMain" class="row container-fluid">
     <section class="row col-8">
         <section class="row col-12">
             <aside id="carImagesAside" class="col-7">
-                <div id="carImagesCarousel" class="carousel slide" data-bs-ride="false">
+                <div id="carImagesCarousel" class="carousel slide" data-bs-ride="carousel">
                     <div class="carousel-indicators">
-                        <button type="button" data-bs-target="#carImagesCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                        <button type="button" data-bs-target="#carImagesCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                        <button type="button" data-bs-target="#carImagesCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
-                        <button type="button" data-bs-target="#carImagesCarousel" data-bs-slide-to="3" aria-label="Slide 4"></button>
+                        <button type="button" data-bs-target="#carImagesCarousel" data-bs-slide-to="0" class="active"
+                                aria-current="true" aria-label="Slide 1"></button>
+                        <button type="button" data-bs-target="#carImagesCarousel" data-bs-slide-to="1"
+                                aria-label="Slide 2"></button>
+                        <button type="button" data-bs-target="#carImagesCarousel" data-bs-slide-to="2"
+                                aria-label="Slide 3"></button>
+                        <button type="button" data-bs-target="#carImagesCarousel" data-bs-slide-to="3"
+                                aria-label="Slide 4"></button>
                     </div>
 
                     <div class="carousel-inner">
@@ -49,11 +53,13 @@
                             </div>
                         </div>
                     </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#carImagesCarousel" data-bs-slide="prev">
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carImagesCarousel"
+                            data-bs-slide="prev">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                         <span class="visually-hidden">Previous</span>
                     </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#carImagesCarousel" data-bs-slide="next">
+                    <button class="carousel-control-next" type="button" data-bs-target="#carImagesCarousel"
+                            data-bs-slide="next">
                         <span class="carousel-control-next-icon" aria-hidden="true"></span>
                         <span class="visually-hidden">Next</span>
                     </button>
@@ -71,6 +77,43 @@
         </section>
 
         <section class="col-12">
+            <!--Car Details Table-->
+            <section class="d-flex flex-column h-50 col-10 col-xl-11 bg-white shadow-lg align-items-center
+        pt-3 mt-4 table-bordered table-hover table-responsive">
+                <h3 class="text-center bg-primary p-2 text-light rounded-3 col-12 fs-4">Chosen Car Details</h3>
+                <div class="row overflow-auto h-60 col-12 col-lg-12 rounded-2 justify-content-around table-responsive">
+                    <table id="tblCarDetails" class="table table-striped table-hover rounded-5 mb-4">
+                        <thead class="text-white green-hd" style="background: #17377f;">
+                        <tr>
+                            <th>Car ID</th>
+                            <th>Reg No</th>
+                            <th>Brand</th>
+                            <th>Color</th>
+                            <th>No Of Passengers</th>
+                            <th>Fuel Type</th>
+                            <th>Transmission Type</th>
+                            <th>Free KM Per Day</th>
+                            <th>Free KM Per Month</th>
+                            <th>Price Per Extra KM (LKR)</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>C001</td>
+                            <td id="regNo">AAB-4569</td>
+                            <td>Suzuki</td>
+                            <td>Red</td>
+                            <td>4</td>
+                            <td>Diesel</td>
+                            <td>Manual</td>
+                            <td>100</td>
+                            <td>2400</td>
+                            <td>30.00</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
 
         </section>
     </section>
