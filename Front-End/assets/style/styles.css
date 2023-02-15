@@ -580,6 +580,39 @@ header > nav {
 }
 
 /* ------------------------------------ Booking --------------------------------------*/
-#carImagesCarousel .carousel-inner>div{
+#carImagesCarousel .carousel-inner > div {
     height: max-content;
+}
+
+#carImagesCarousel .carousel-inner img {
+    height: 310px;
+}
+
+#carImagesCarousel .carousel-inner .carousel-item {
+    height: 310px;
+}
+
+#carImagesCarousel .carousel-inner > .carousel-item > img{
+    margin: auto;
+}
+
+#carImagesCarousel .carousel-inner > .carousel-item:nth-child(2) > img {
+    height: 210px;
+    width: 380px!important;
+}
+
+#carImagesCarousel .carousel-inner > .carousel-item:nth-child(1) > img {
+    height: 280px;
+    width: 500px!important;
+}
+
+#carImagesCarousel .carousel-inner > .carousel-item:nth-child(3) > img {
+    height: 238px;
+    width: 370px !important;
+    object-fit: cover;
+}
+
+#carImagesCarousel .carousel-inner > .carousel-item:nth-child(4) > img {
+    width: 379px!important;
+    height: 266px;
 }
