@@ -684,8 +684,8 @@ tbody {
 }
 
 #carBookingMain > section:nth-child(2) {
-    padding-top: 16px;
-    margin-top: 22px;
+    /*padding-top: 16px;
+    margin-top: 22px;*/
 }
 
 #carBookingMain > section:first-child > section:first-child {
@@ -731,13 +731,4 @@ tbody {
 #btnCancelRent {
     padding-left: 13px;
     padding-right: 13px;
-}
-
-#uploadSlip {
-    margin-right: 43px;
-    padding: 0;
-    max-width: 26.85% !important;
-    position: relative;
-    left: 34px;
-    top: 0.7px;
 }
