@@ -616,3 +616,7 @@ header > nav {
     width: 379px!important;
     height: 266px;
 }
+
+#carImagesAside{
+    background-color: black;
+}
