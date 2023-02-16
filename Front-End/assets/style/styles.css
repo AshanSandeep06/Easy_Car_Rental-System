@@ -788,7 +788,15 @@ tbody {
     padding-left: 23px;
 }
 
-#customerPage_myProfile form{
+#customerPage_myProfile form {
     border-radius: 16px;
-    padding: 16px 20px 75px;
+    padding: 16px 20px 45px;
+}
+
+#customerNicImage, #customerLicenseImage {
+    height: 319px;
+}
+
+#customerPage_myProfile > section:nth-child(2) {
+    padding-bottom: 42px;
 }
