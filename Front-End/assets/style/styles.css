@@ -816,3 +816,29 @@ tbody {
     padding: 4px 6px;
     font-size: 14px;
 }
+
+/* ------------------------------------------Driver Page ---------------------------------------------*/
+#driverSchedule_section > section:first-child {
+    padding-top: 20px;
+}
+
+#myProfileHeader {
+    font-size: 30px;
+}
+
+#driverSchedule_section > section:first-child > div:first-child {
+    padding-left: 23px;
+}
+
+#driverSchedule_section form {
+    border-radius: 16px;
+    padding: 16px 20px 45px;
+}
+
+#customerNicImage, #customerLicenseImage {
+    height: 319px;
+}
+
+#driverSchedule_section > section:nth-child(2) {
+    padding-bottom: 42px;
+}
