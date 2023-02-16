@@ -755,23 +755,23 @@ tbody {
 }
 
 /* -----------------------------------------------My Bookings ---------------------------------------------------------*/
-#customerPage_bookings > section:first-child {
+#customerPage_bookings > section:first-child, #customerPage_rentStatus > section:first-child {
     padding-top: 43px;
 }
 
-#btnSearchBookings {
+#btnSearchBookings, #btnSearchRentStatus {
     padding: 10px;
     font-size: 14px;
     position: relative;
     bottom: 4px;
 }
 
-#tblBookingDetails {
+#tblBookingDetails, #tblRentDetailsStatus {
     text-align: center;
     font-size: 15px;
 }
 
-#customerPage_bookings > section:nth-child(2) > section:first-child {
+#customerPage_bookings > section:nth-child(2) > section:first-child, #customerPage_rentStatus > section:nth-child(2) > section:first-child {
     padding-right: 25px;
     padding-left: 25px;
 }

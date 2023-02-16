@@ -887,11 +887,51 @@
     </section>
 </main>
 
+<!--Bookings Status-->
+<main id="customerPage_rentStatus">
+    <section class="row justify-content-center">
+        <div class="form-group col-xl-2 col-lg-3 col-md-6 col-9 mb-3">
+            <select style="font-size: 15px;" class="form-select" aria-label="Default select example">
+                <option selected value="2">Customer NIC</option>
+            </select>
+        </div>
+
+        <div class="form-group col-xl-3 col-lg-3 col-md-6 col-9 mb-3">
+            <input class="form-control" id="txtSearchCustomerRentStatus" type="search">
+        </div>
+
+        <div class="col-xl-2 col-lg-2 col-md-3 col-8 text-center justify-content-center">
+            <button id="btnSearchRentStatus" type="button" class="btn btn-primary">Search Bookings</button>
+        </div>
+    </section>
+
+    <section class="row justify-content-center">
+        <!--Rent Status Table-->
+        <section class="d-flex flex-column h-50 col-11 col-xl-12 bg-white shadow-lg align-items-center
+        pt-3 mt-4">
+            <h3 class="text-center bg-primary p-2 text-light rounded-3 col-12 fs-4">View Rent Statuses</h3>
+            <div class="row h-60 col-12 col-lg-12 rounded-2 table-responsive">
+                <table id="tblRentDetailsStatus" class="table table-striped table-hover rounded-5 mb-4">
+                    <thead class="text-white green-hd" style="background: #17377f;">
+                    <tr>
+
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </section>
+</main>
+
 <script src="../assets/jquery/jquery-3.6.1.min.js"></script>
 <script src="../assets/bootstrap/js/bootstrap.min.js"></script>
 <script src="../controller/HomeController.js"></script>
 <script>
     $("#customerPage_home").css('display', 'none');
+    $("#customerPage_bookings").css('display', 'none');
 </script>
 </body>
 </html>
