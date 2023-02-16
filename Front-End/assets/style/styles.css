@@ -846,3 +846,8 @@ tbody {
 #driverSchedule_section > section:nth-child(2) {
     margin-top: 15px;
 }
+
+#tblDriverSchedule {
+    font-size: 15px;
+    text-align: center;
+}
