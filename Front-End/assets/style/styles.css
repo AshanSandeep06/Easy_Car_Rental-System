@@ -842,3 +842,7 @@ tbody {
 #driverSchedule_section > section:nth-child(2) {
     padding-bottom: 42px;
 }
+
+#driverSchedule_section > section:nth-child(2) {
+    margin-top: 15px;
+}
