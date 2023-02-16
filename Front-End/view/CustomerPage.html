@@ -946,13 +946,18 @@
 
 <!--My Profile Section-->
 <main id="customerPage_myProfile">
-
+    <section class="row justify-content-start">
+        <div class="col-xl-2 col-lg-2 col-md-3 col-8 justify-content-center">
+            <h1 id="myProfileHeader">My Profile</h1>
+        </div>
+    </section>
 </main>
 
 <script src="../assets/jquery/jquery-3.6.1.min.js"></script>
 <script src="../assets/bootstrap/js/bootstrap.min.js"></script>
 <script src="../controller/HomeController.js"></script>
 <script>
+    $("#customerPage_home").css('display', 'none');
     $("#customerPage_bookings").css('display', 'none');
     $("#customerPage_rentStatus").css('display', 'none');
 </script>

@@ -775,3 +775,15 @@ tbody {
     padding-right: 25px;
     padding-left: 25px;
 }
+
+#customerPage_myProfile > section:first-child {
+    padding-top: 20px;
+}
+
+#myProfileHeader {
+    font-size: 30px;
+}
+
+#customerPage_myProfile > section:first-child > div:first-child {
+    padding-left: 23px;
+}
