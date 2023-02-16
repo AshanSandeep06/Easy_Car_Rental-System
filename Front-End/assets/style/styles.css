@@ -868,7 +868,7 @@ tbody {
 
 #driverInformation_section form {
     border-radius: 16px;
-    padding: 16px 20px 45px;
+    padding: 6px 20px 45px;
 }
 
 #customerNicImage, #driverLicenseImage {
@@ -881,7 +881,7 @@ tbody {
 
 #driverInformationHeader > i {
     position: relative;
-    top: -1px;
+    top: 0;
     margin-left: 5px;
     font-size: 20px;
 }
