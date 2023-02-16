@@ -754,7 +754,7 @@ tbody {
     /*top: -1px;*/
 }
 
-/* -----------------------------------------------My Bookings ---------------------------------------------------------*/
+/* -----------------------------------------------My Bookings AND Booking Status ---------------------------------------------------------*/
 #customerPage_bookings > section:first-child, #customerPage_rentStatus > section:first-child {
     padding-top: 43px;
 }
