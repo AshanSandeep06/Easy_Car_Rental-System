@@ -954,47 +954,53 @@
 
     <section class="row justify-content-center px-3">
         <form class="row g-3 shadow bg-white">
-            <div class="col-md-6">
-                <label for="inputEmail4" class="form-label">Email</label>
-                <input type="email" class="form-control" id="inputEmail4">
-            </div>
-            <div class="col-md-6">
-                <label for="inputPassword4" class="form-label">Password</label>
-                <input type="password" class="form-control" id="inputPassword4">
-            </div>
-            <div class="col-12">
-                <label for="inputAddress" class="form-label">Address</label>
-                <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
-            </div>
-            <div class="col-12">
-                <label for="inputAddress2" class="form-label">Address 2</label>
-                <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
-            </div>
-            <div class="col-md-6">
-                <label for="inputCity" class="form-label">City</label>
-                <input type="text" class="form-control" id="inputCity">
-            </div>
             <div class="col-md-4">
-                <label for="inputState" class="form-label">State</label>
-                <select id="inputState" class="form-select">
-                    <option selected>Choose...</option>
-                    <option>...</option>
-                </select>
+                <label for="txtCustomerID" class="form-label">Customer ID</label>
+                <input type="text" class="form-control" id="txtCustomerID">
             </div>
-            <div class="col-md-2">
-                <label for="inputZip" class="form-label">Zip</label>
-                <input type="text" class="form-control" id="inputZip">
+
+            <div class="col-md-4">
+                <label for="txtCusUsername" class="form-label">Username</label>
+                <input type="text" class="form-control" id="txtCusUsername" placeholder="mario123">
             </div>
+
+            <div class="col-md-4">
+                <label for="txtCusPassword" class="form-label">Password</label>
+                <input type="text" class="form-control" id="txtCusPassword">
+            </div>
+
+            <div class="col-md-3">
+                <label for="txtCustomerName" class="form-label">Name</label>
+                <input type="text" class="form-control" id="txtCustomerName">
+            </div>
+
+            <div class="col-md-6">
+                <label for="txtCustomerAddress" class="form-label">Address</label>
+                <input type="text" class="form-control" id="txtCustomerAddress" placeholder="Apartment, studio, or floor">
+            </div>
+
+            <div class="col-md-3">
+                <label for="txtCustomerContact" class="form-label">Contact Number</label>
+                <input type="text" class="form-control" id="txtCustomerContact">
+            </div>
+
+            <div class="col-md-4">
+                <label for="txtCustomerEmail" class="form-label">Email</label>
+                <input type="text" class="form-control" id="txtCustomerEmail">
+            </div>
+
+            <div class="col-md-4">
+                <label for="txtCustomerNic" class="form-label">Customer NIC</label>
+                <input type="text" class="form-control" id="txtCustomerNic">
+            </div>
+
+            <div class="col-md-4">
+                <label for="txtCustomerLicenseNo" class="form-label">Driving License No</label>
+                <input type="text" class="form-control" id="txtCustomerLicenseNo">
+            </div>
+
             <div class="col-12">
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="gridCheck">
-                    <label class="form-check-label" for="gridCheck">
-                        Check me out
-                    </label>
-                </div>
-            </div>
-            <div class="col-12">
-                <button type="submit" class="btn btn-primary">Sign in</button>
+                <button type="submit" class="btn btn-primary">Update Profile</button>
             </div>
         </form>
     </section>
@@ -1005,6 +1011,7 @@
 <script src="../controller/HomeController.js"></script>
 <script>
     $("#customerPage_home").css('display', 'none');
+    $("#scroll_up_btn").css('display', 'none');
     $("#customerPage_bookings").css('display', 'none');
     $("#customerPage_rentStatus").css('display', 'none');
 </script>
