@@ -851,3 +851,37 @@ tbody {
     font-size: 15px;
     text-align: center;
 }
+
+/* ================================================ */
+
+#driverInformation_section > section:first-child {
+    padding-top: 20px;
+}
+
+#driverInformationHeader {
+    font-size: 25px;
+}
+
+#driverInformation_section > section:first-child > div:first-child {
+    padding-left: 23px;
+}
+
+#driverInformation_section form {
+    border-radius: 16px;
+    padding: 16px 20px 45px;
+}
+
+#customerNicImage, #driverLicenseImage {
+    height: 319px;
+}
+
+#driverInformation_section > section:nth-child(2) {
+    padding-bottom: 42px;
+}
+
+#driverInformationHeader > i {
+    position: relative;
+    top: -1px;
+    margin-left: 5px;
+    font-size: 20px;
+}
