@@ -787,3 +787,8 @@ tbody {
 #customerPage_myProfile > section:first-child > div:first-child {
     padding-left: 23px;
 }
+
+#customerPage_myProfile form{
+    border-radius: 16px;
+    padding: 16px 20px 36px;
+}
