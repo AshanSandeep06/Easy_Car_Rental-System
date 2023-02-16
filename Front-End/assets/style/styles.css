@@ -106,7 +106,7 @@ header {
 
 #optionList {
     padding-left: 2px;
-    margin-top: 12px;
+    margin-top: 13px;
 }
 
 #optionList + ul {
@@ -170,7 +170,7 @@ header > nav {
 }
 
 #navbarTogglerDemo02 > ul > li i {
-    padding-right: 6px;
+    padding-right: 7px;
 }
 
 #navbarTogglerDemo02 > ul > li {
@@ -244,7 +244,7 @@ header > nav {
 }
 
 #customerPageHeader #optionList {
-    margin-top: 12px;
+    /*margin-top: 12px;*/
 }
 
 #main-h2 {
@@ -806,4 +806,13 @@ tbody {
     top: -1px;
     margin-left: 5px;
     font-size: 20px;
+}
+
+#tblBookingDetails tbody {
+    font-size: 14px;
+}
+
+#btnOptionCancelRent {
+    padding: 4px 6px;
+    font-size: 14px;
 }
