@@ -1055,14 +1055,14 @@ tbody {
     padding-bottom: 8px;
 }
 
-#txtAdminPanel > i{
+#txtAdminPanel > i {
     position: relative;
     /* padding-right: 0px; */
     top: 4px;
     font-size: 23px;
 }
 
-.profile > hr{
+.profile > hr {
     margin-bottom: 0;
     margin-top: 11px;
 }
