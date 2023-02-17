@@ -1075,13 +1075,14 @@ tbody {
     border: 2px solid red;
     padding-top: 35px;
     padding-left: 35px;
+    gap: 33px;
 }
 
 #adminDashboard > div {
     position: relative;
     background: #efeffc;
-    width: 340px;
-    height: 405px;
+    width: 280px;
+    height: 170px;
     box-shadow: -23px -23px 45px #ffffff, 28px 28px 50px rgb(13 39 80 / 16%);
     border-radius: 25px;
     transition: all 0.8s ease;
