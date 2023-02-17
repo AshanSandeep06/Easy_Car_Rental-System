@@ -1055,3 +1055,10 @@ tbody {
     padding-bottom: 8px;
 }
 
+#txtAdminPanel > i{
+    position: relative;
+    /* padding-right: 0px; */
+    top: 4px;
+    font-size: 23px;
+}
+
