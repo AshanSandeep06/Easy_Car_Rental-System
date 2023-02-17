@@ -445,6 +445,10 @@
     </section>
 </main>
 
+<main id="manageBookings_section">
+
+</main>
+
 <script src="../assets/jquery/jquery-3.6.1.min.js"></script>
 <script src="../assets/bootstrap/js/bootstrap.min.js"></script>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
@@ -453,6 +457,7 @@
 <script>
     $("#adminDashboard").css('display', 'none');
     $("#manageRentalRequests_section").css('display', 'none');
+    $("#manageVehicle_section").css('display', 'none');
 
     $(".btnDeny").on('click', function () {
         const {value: email} = Swal.fire({
