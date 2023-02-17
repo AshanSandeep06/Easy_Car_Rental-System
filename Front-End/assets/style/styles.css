@@ -1077,7 +1077,7 @@ tbody {
     justify-content: space-evenly;
 }
 
-#manageRentalRequests_section{
+#manageRentalRequests_section {
     margin-left: 268px;
     padding: 35px;
 }
@@ -1127,10 +1127,23 @@ tbody {
     }
 }
 
-#manageRentalRequests_section > section:first-child > div:first-child > h1{
+#manageRentalRequests_section > section:first-child > div:first-child > h1 {
     font-size: 23px;
 }
 
-#manageRentalRequests_section > section:first-child > div:first-child > h1 > i{
+#manageRentalRequests_section > section:first-child > div:first-child > h1 > i {
     top: 0;
+}
+
+.statusBadge {
+    padding: 6px 10px;
+    font-size: 13px;
+}
+
+.btnGroups {
+    gap: 10px;
+}
+
+.btnGroups > button {
+    border-radius: inherit !important;
 }
