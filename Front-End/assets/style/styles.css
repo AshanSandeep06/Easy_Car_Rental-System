@@ -1236,6 +1236,10 @@ tbody {
 }
 
 #btnGroupVehicleAddUpdateDelete > button:nth-child(3) {
+    border-radius: inherit;
+}
+
+#btnGroupVehicleAddUpdateDelete > button:nth-child(4) {
     border-top-left-radius: inherit;
     border-bottom-left-radius: inherit;
 }
