@@ -1247,3 +1247,8 @@ tbody {
 #manageVehicle_section > section:nth-child(3) {
     margin-top: 10px;
 }
+
+#tblManageVehicle {
+    text-align: center;
+    font-size: 15px;
+}
