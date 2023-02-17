@@ -1077,7 +1077,7 @@ tbody {
     justify-content: space-evenly;
 }
 
-#manageRentalRequests_section {
+.admin-sections {
     margin-left: 268px;
     padding: 35px;
 }
@@ -1122,16 +1122,16 @@ tbody {
 }
 
 @media (max-width: 930px) {
-    #manageRentalRequests_section {
+    .admin-sections {
         margin-left: 0;
     }
 }
 
-#manageRentalRequests_section > section:first-child > div:first-child > h1 {
+.admin-sections > section:first-child > div:first-child > h1 {
     font-size: 23px;
 }
 
-#manageRentalRequests_section > section:first-child > div:first-child > h1 > i {
+.admin-sections > section:first-child > div:first-child > h1 > i {
     top: 0;
 }
 
@@ -1157,6 +1157,40 @@ tbody {
     color: white;
 }
 
-#manageRentalRequests_section > section:first-child {
+.admin-sections > section:first-child {
+    border-radius: 15px;
+}
+
+#manageVehicleHeader {
+    font-size: 30px;
+}
+
+#manageVehicleHeader > i {
+    position: relative;
+    top: -1px;
+    margin-left: 5px;
+    font-size: 20px;
+}
+
+#manageVehicle_section {
+    margin-left: 268px;
+    padding: 35px;
+}
+
+@media (max-width: 930px) {
+    #manageVehicle_section {
+        margin-left: 0;
+    }
+}
+
+#manageVehicle_section > section:first-child > div:first-child > h1 {
+    font-size: 23px;
+}
+
+#manageVehicle_section > section:first-child > div:first-child > h1 > i {
+    top: 0;
+}
+
+#manageVehicle_section > section:first-child {
     border-radius: 15px;
 }
