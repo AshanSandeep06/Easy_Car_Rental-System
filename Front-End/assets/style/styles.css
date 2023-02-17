@@ -1076,6 +1076,7 @@ tbody {
     padding-top: 35px;
     padding-left: 35px;
     gap: 33px;
+    justify-content: space-evenly;
 }
 
 #adminDashboard > div {
@@ -1087,7 +1088,8 @@ tbody {
     border-radius: 25px;
     transition: all 0.8s ease;
     flex-direction: column;
-    padding-top: 18px;
+    padding-top: 25px;
+    gap: 8px;
 }
 
 #adminDashboard > div > h1 {
