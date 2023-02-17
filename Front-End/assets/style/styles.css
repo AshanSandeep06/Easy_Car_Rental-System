@@ -1086,5 +1086,16 @@ tbody {
     box-shadow: -23px -23px 45px #ffffff, 28px 28px 50px rgb(13 39 80 / 16%);
     border-radius: 25px;
     transition: all 0.8s ease;
+    flex-direction: column;
+    padding-top: 18px;
 }
 
+#adminDashboard > div > h1 {
+    text-align: center;
+    font-size: 22px;
+}
+
+#adminDashboard > div > span {
+    text-align: center;
+    font-size: 40px;
+}
