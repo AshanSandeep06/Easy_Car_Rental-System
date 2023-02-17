@@ -1072,8 +1072,7 @@ tbody {
 /* ----------------------------------Admin Panel ------------------------------------*/
 #adminDashboard {
     margin-left: 288px;
-    padding-top: 35px;
-    padding-left: 35px;
+    padding: 35px;
     gap: 33px;
     justify-content: space-evenly;
 }
