@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="../assets/bootstrap/bootstrap-icons/bootstrap-icons.css">
     <link rel="stylesheet" href="../assets/boxicons/css/boxicons.min.css">
     <link rel="stylesheet" href="../assets/fonts/css/all.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" id="theme-styles">
     <link rel="stylesheet" href="../assets/style/styles.css">
 
 </head>
@@ -138,7 +138,7 @@
     </section>
 
     <section class="row justify-content-center">
-        <!--Rent Status Table-->
+        <!--Manage Rental Requests Table-->
         <section class="d-flex flex-column h-50 col-11 col-xl-12 bg-white shadow-lg align-items-center
         pt-3 mt-4">
             <h3 class="text-center bg-primary p-2 text-light rounded-3 col-12 fs-4">Manage Rental Requests</h3>
@@ -176,8 +176,8 @@
                         <td><span class="badge rounded-pill text-bg-warning statusBadge">Pending</span></td>
                         <td>
                             <div class="btn-group btnGroups" role="group" aria-label="Basic mixed styles example">
-                                <button type="button" class="btn btn-success">Accept</button>
-                                <button type="button" class="btn btn-danger">Deny</button>
+                                <button type="button" class="btn btn-success btnAccept">Accept</button>
+                                <button type="button" class="btn btn-danger btnDeny">Deny</button>
                             </div>
                         </td>
                     </tr>
@@ -196,8 +196,8 @@
                         <td><span class="badge rounded-pill text-bg-warning statusBadge">Pending</span></td>
                         <td>
                             <div class="btn-group btnGroups" role="group" aria-label="Basic mixed styles example">
-                                <button type="button" class="btn btn-success">Accept</button>
-                                <button type="button" class="btn btn-danger">Deny</button>
+                                <button type="button" class="btn btn-success btnAccept">Accept</button>
+                                <button type="button" class="btn btn-danger btnDeny">Deny</button>
                             </div>
                         </td>
                     </tr>
@@ -205,16 +205,63 @@
                 </table>
             </div>
         </section>
+
+
+        <!-- Modal -->
+        <!-- Button trigger modal -->
+        <!--<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+            Launch static backdrop modal
+        </button>
+
+        &lt;!&ndash; Modal &ndash;&gt;
+        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        ...
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Understood</button>
+                    </div>
+                </div>
+            </div>
+        </div>-->
+
+
     </section>
 </main>
 
 
 <script src="../assets/jquery/jquery-3.6.1.min.js"></script>
 <script src="../assets/bootstrap/js/bootstrap.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
 <script src="../controller/HomeController.js"></script>
 
 <script>
     $("#adminDashboard").css('display', 'none');
+
+    $(".btnDeny").on('click', function () {
+        const {value: email} = Swal.fire({
+            title: 'Enter Your Denied Reason',
+            input: 'textarea',
+            inputLabel: 'Your Message',
+            inputPlaceholder: 'Enter your message here',
+            showCancelButton: true,
+            confirmButtonText: "Send Message",
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire('Saved!', '', 'success')
+            } else if (result.isCancelled) {
+                Swal.fire('Changes are not saved', '', 'info')
+            }
+        })
+    });
+
 </script>
 
 </body>

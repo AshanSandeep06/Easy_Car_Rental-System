@@ -1156,3 +1156,7 @@ tbody {
 #tblManageRentalRequests > thead > tr > th {
     color: white;
 }
+
+#manageRentalRequests_section > section:first-child {
+    border-radius: 15px;
+}
