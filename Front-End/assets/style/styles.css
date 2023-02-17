@@ -1067,3 +1067,9 @@ tbody {
     margin-top: 12px;
 }
 
+/* ----------------------------------Admin Panel ------------------------------------*/
+#adminDashboard{
+    margin-left: 288px;
+    border: 2px solid red;
+}
+
