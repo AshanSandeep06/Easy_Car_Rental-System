@@ -280,9 +280,19 @@
                     <input type="text" class="form-control" id="txtCarBrand">
                 </div>
 
-                <div class="col-md-4">
+                <!--<div class="col-md-4">
                     <label for="txtCarType" class="form-label">Type</label>
                     <input type="text" class="form-control" id="txtCarType">
+                </div>-->
+
+                <div class="col-md-4">
+                    <label for="txtCarType" class="form-label">Vehicle Type</label>
+                    <select id="txtCarType" class="form-select" aria-label="Default select example">
+                        <option selected></option>
+                        <option value="1">General</option>
+                        <option value="2">Premium</option>
+                        <option value="3">Luxury</option>
+                    </select>
                 </div>
 
                 <!--======================================-->
@@ -316,7 +326,11 @@
 
                 <div class="col-md-4">
                     <label for="txtTransmissionType" class="form-label">Transmission Type</label>
-                    <input type="text" class="form-control" id="txtTransmissionType">
+                    <select id="txtTransmissionType" class="form-select" aria-label="Default select example">
+                        <option selected></option>
+                        <option value="1">Manual</option>
+                        <option value="2">Auto</option>
+                    </select>
                 </div>
 
                 <div class="col-md-4">
@@ -326,7 +340,11 @@
 
                 <div class="col-md-4">
                     <label for="txtFuelType" class="form-label">Fuel Type</label>
-                    <input type="text" class="form-control" id="txtFuelType">
+                    <select id="txtFuelType" class="form-select" aria-label="Default select example">
+                        <option selected></option>
+                        <option value="1">Diesel</option>
+                        <option value="2">Petrol</option>
+                    </select>
                 </div>
 
                 <!--==============================================-->
@@ -346,9 +364,15 @@
                     <input type="text" class="form-control" id="txtLastServiceMileage">
                 </div>
 
-                <div class="col-md-6">
+                <div class="col-md-5">
                     <label for="txtAvailabilityType" class="form-label">Availability Type</label>
-                    <input type="text" class="form-control" id="txtAvailabilityType">
+                    <select id="txtAvailabilityType" class="form-select" aria-label="Default select example">
+                        <option selected></option>
+                        <option value="1">Available</option>
+                        <option value="2">Unavailable</option>
+                        <option value="3">Under Maintenance</option>
+                        <option value="4">Need Maintenance</option>
+                    </select>
                 </div>
 
                 <!--==============================================-->
