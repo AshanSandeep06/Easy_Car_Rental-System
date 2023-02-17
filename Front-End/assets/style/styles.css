@@ -1147,3 +1147,12 @@ tbody {
 .btnGroups > button {
     border-radius: inherit !important;
 }
+
+#tblManageRentalRequests {
+    text-align: center;
+    font-size: 15px;
+}
+
+#tblManageRentalRequests > thead > tr > th {
+    color: white;
+}
