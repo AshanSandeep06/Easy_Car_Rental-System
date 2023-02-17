@@ -897,7 +897,7 @@ tbody {
     top: 0;
     left: 0;
     bottom: 0;
-    width: 300px;
+    width: 280px;
     transition: all ease-in-out 0.5s;
     z-index: 9997;
     transition: all 0.5s;
@@ -1078,7 +1078,7 @@ tbody {
 }
 
 #manageRentalRequests_section{
-    margin-left: 288px;
+    margin-left: 268px;
     padding: 35px;
 }
 
