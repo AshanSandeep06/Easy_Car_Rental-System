@@ -1194,3 +1194,29 @@ tbody {
 #manageVehicle_section > section:first-child {
     border-radius: 15px;
 }
+
+#manageVehicle_section > section:nth-child(2) {
+    margin-top: 20px;
+    gap: 28px;
+}
+
+#manageVehicleCarousel img {
+    height: 372px;
+    object-fit: cover;
+}
+
+#manageVehicleCarousel .carousel-inner {
+    height: 372px;
+}
+
+.carousel-control-prev > span:first-child, .carousel-control-next > span:first-child {
+    background-color: black;
+}
+
+.carousel-indicators > button {
+    background-color: black !important;
+}
+
+#manageVehicleForm {
+    font-size: 15px;
+}

@@ -217,12 +217,145 @@
     </section>
 
     <section class="row">
-        <section class="col-xl-5">
+        <section class="col-xl-4" style="height: 372px;">
+            <div id="manageVehicleCarousel" class="carousel slide" data-bs-ride="true">
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#manageVehicleCarousel" data-bs-slide-to="0" class="active"
+                            aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#manageVehicleCarousel" data-bs-slide-to="1"
+                            aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#manageVehicleCarousel" data-bs-slide-to="2"
+                            aria-label="Slide 3"></button>
+                    <button type="button" data-bs-target="#manageVehicleCarousel" data-bs-slide-to="3"
+                            aria-label="Slide 4"></button>
+                </div>
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="/assets/img/alto_K10-front.png" class="d-block img-fluid" alt="...">
+                    </div>
 
+                    <div class="carousel-item">
+                        <img src="/assets/img/alto_K10-back.png" class="d-block img-fluid" alt="...">
+                    </div>
+
+                    <div class="carousel-item">
+                        <img src="/assets/img/alto_K10-interior.jpg" class="d-block img-fluid" alt="...">
+                    </div>
+
+                    <div class="carousel-item">
+                        <img style="height: 320px; object-fit: contain;" src="/assets/img/alto_K10-side.png"
+                             class="d-block img-fluid" alt="...">
+                    </div>
+                </div>
+
+                <button class="carousel-control-prev" type="button" data-bs-target="#manageVehicleCarousel"
+                        data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+
+                <button class="carousel-control-next" type="button" data-bs-target="#manageVehicleCarousel"
+                        data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
         </section>
 
-        <section class="col-xl-7">
+        <section class="col-xl-7 justify-content-center">
+            <form id="manageVehicleForm" class="row g-3">
+                <div class="col-md-3">
+                    <label for="txtCarID" class="form-label">Car ID</label>
+                    <input type="text" class="form-control" id="txtCarID">
+                </div>
 
+                <div class="col-md-3">
+                    <label for="txtRegNo" class="form-label">Register Number</label>
+                    <input type="text" class="form-control" id="txtRegNo">
+                </div>
+
+                <div class="col-md-3">
+                    <label for="txtCarBrand" class="form-label">Brand</label>
+                    <input type="text" class="form-control" id="txtCarBrand">
+                </div>
+
+                <div class="col-md-3">
+                    <label for="txtCarType" class="form-label">Type</label>
+                    <input type="text" class="form-control" id="txtCarType">
+                </div>
+
+                <!--======================================-->
+
+                <div class="col-md-3">
+                    <label for="txtDailyRate" class="form-label">Daily Rate</label>
+                    <input type="text" class="form-control" id="txtDailyRate">
+                </div>
+
+                <div class="col-md-3">
+                    <label for="txtMonthlyRate" class="form-label">Monthly Rate</label>
+                    <input type="text" class="form-control" id="txtMonthlyRate">
+                </div>
+
+                <div class="col-md-3">
+                    <label for="txtDailyMileage" class="form-label">Free Km for a Day</label>
+                    <input type="text" class="form-control" id="txtDailyMileage">
+                </div>
+
+                <div class="col-md-3">
+                    <label for="txtMonthlyMileage" class="form-label">Free Km for a Month</label>
+                    <input type="text" class="form-control" id="txtMonthlyMileage">
+                </div>
+
+                <!--========================================-->
+
+                <div class="col-md-3">
+                    <label for="txtCarColor" class="form-label">Color</label>
+                    <input type="text" class="form-control" id="txtCarColor">
+                </div>
+
+                <div class="col-md-3">
+                    <label for="txtTransmissionType" class="form-label">Transmission Type</label>
+                    <input type="text" class="form-control" id="txtTransmissionType">
+                </div>
+
+                <div class="col-md-3">
+                    <label for="txtNoOfPassengers" class="form-label">No of Passengers</label>
+                    <input type="text" class="form-control" id="txtNoOfPassengers">
+                </div>
+
+                <div class="col-md-3">
+                    <label for="txtFuelType" class="form-label">Fuel Type</label>
+                    <input type="text" class="form-control" id="txtFuelType">
+                </div>
+
+                <!--==============================================-->
+
+                <div class="col-md-3">
+                    <label for="txtPricePerExtraKm" class="form-label">Price Per Extra Km</label>
+                    <input type="text" class="form-control" id="txtPricePerExtraKm">
+                </div>
+
+                <div class="col-md-3">
+                    <label for="txtLDWPayment" class="form-label">Loss Damage Waiver</label>
+                    <input type="text" class="form-control" id="txtLDWPayment">
+                </div>
+
+                <div class="col-md-3">
+                    <label for="txtLastServiceMileage" class="form-label">Last Service Mileage</label>
+                    <input type="text" class="form-control" id="txtLastServiceMileage">
+                </div>
+
+                <div class="col-md-3">
+                    <label for="txtAvailabilityType" class="form-label">Availability Type</label>
+                    <input type="text" class="form-control" id="txtAvailabilityType">
+                </div>
+
+                <!--==============================================-->
+
+                <div style="margin-top: 32px;" class="col-12">
+                    <button type="submit" class="btn btn-primary">Update Profile</button>
+                </div>
+            </form>
         </section>
     </section>
 </main>
