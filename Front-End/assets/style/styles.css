@@ -1220,3 +1220,22 @@ tbody {
 #manageVehicleForm {
     font-size: 15px;
 }
+
+#btnGroupVehicleAddUpdateDelete {
+    margin-top: 28px;
+    gap: 20px;
+}
+
+#btnGroupVehicleAddUpdateDelete > button:first-child {
+    border-top-right-radius: inherit;
+    border-bottom-right-radius: inherit;
+}
+
+#btnGroupVehicleAddUpdateDelete > button:nth-child(2) {
+    border-radius: inherit;
+}
+
+#btnGroupVehicleAddUpdateDelete > button:nth-child(3) {
+    border-top-left-radius: inherit;
+    border-bottom-left-radius: inherit;
+}
