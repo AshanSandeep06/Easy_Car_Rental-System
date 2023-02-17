@@ -330,7 +330,9 @@ header > nav {
     align-items: center;
     flex-direction: column;*/
     background: #efeffc;
-    /*width: 380px;*/
+
+    /*2022-02-17 Added*/
+    width: 340px;
     height: 405px;
     box-shadow: -23px -23px 45px #ffffff, 28px 28px 50px rgba(13, 39, 80, 0.16);
     border-radius: 25px;
