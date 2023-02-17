@@ -1252,3 +1252,11 @@ tbody {
     text-align: center;
     font-size: 15px;
 }
+
+#txtUploadCarImages {
+    margin-top: 15px;
+}
+
+#manageVehicleCarousel .carousel-inner, #manageVehicleCarousel img {
+    height: 304px;
+}
