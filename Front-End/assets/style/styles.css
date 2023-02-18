@@ -1388,3 +1388,20 @@ tbody {
         padding: 0;
     }
 }
+
+#viewCarScheduleHeader {
+    font-size: 23px;
+}
+
+#viewCarScheduleHeader > i {
+    position: relative;
+    top: -1px;
+    margin-left: 5px;
+    font-size: 20px;
+}
+
+@media (max-width: 350px) {
+    #viewCarSchedule_section {
+        padding: 15px;
+    }
+}
