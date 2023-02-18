@@ -359,7 +359,7 @@ header > nav {
     background: #7461E2;
 }
 
-#btnCar-01 > a, #btnCar-01 > a, #btnCar-01 > a {
+.cars_btn > a {
     position: absolute;
     top: 0;
     right: 0;
