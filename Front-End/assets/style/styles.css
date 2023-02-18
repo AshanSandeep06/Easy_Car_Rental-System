@@ -1460,3 +1460,7 @@ tbody {
     text-align: center;
     font-size: 15px;
 }
+
+#managePaymentsHeader {
+    font-size: 19px !important;
+}
