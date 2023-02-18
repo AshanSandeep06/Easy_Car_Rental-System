@@ -445,7 +445,7 @@
     </section>
 </main>
 
-<main id="manageBookings_section" class="admin-sections">
+<main id="manageBookings_section" class="admin-sections p-sm-4">
     <section class="row justify-content-start">
         <div class="col-xl-7 col-lg-9 col-md-11 col-12 justify-content-center">
             <h1 id="manageBookingsHeader">Manage Bookings <i class="fa-solid fa-list-check"></i></h1>
@@ -454,20 +454,20 @@
 
     <section class="row justify-content-lg-center mt-4">
         <section class="col-xl-11 justify-content-center">
-            <form id="manageBookingsForm" class="row g-3 justify-content-end">
-                <div class="col-md-3">
+            <form id="manageBookingsForm" class="row g-3 justify-content-sm-end justify-content-center">
+                <div class="col-md-4 col-lg-4 col-xl-3">
                     <label for="txtRentID" class="form-label">Rent ID</label>
                     <input type="text" class="form-control" id="txtRentID">
                 </div>
 
-                <div class="col-md-3">
+                <div class="col-md-4 col-lg-4 col-xl-3">
                     <label for="txtRentCarID" class="form-label">Car ID</label>
                     <select id="txtRentCarID" class="form-select" aria-label="Default select example">
                         <option selected disabled>Select Car</option>
                     </select>
                 </div>
 
-                <div class="col-md-3">
+                <div class="col-md-4 col-lg-4 col-xl-3">
                     <label for="txtRentCarType" class="form-label">Car Type</label>
                     <select id="txtRentCarType" class="form-select" aria-label="Default select example">
                         <option selected disabled>Select Car Type</option>
@@ -477,60 +477,60 @@
                     </select>
                 </div>
 
-                <div class="col-md-3">
+                <div class="col-md-4 col-lg-4 col-xl-3">
                     <label for="txtRentDriverReqType" class="form-label">Driver Requesting Type</label>
                     <input type="text" class="form-control" id="txtRentDriverReqType">
                 </div>
 
                 <!--======================================-->
 
-                <div class="col-md-3">
+                <div class="col-md-4 col-lg-4 col-xl-3">
                     <label for="txtRentDriverId" class="form-label">Driver ID</label>
                     <select id="txtRentDriverId" class="form-select" aria-label="Default select example">
                         <option selected disabled>Select Driver</option>
                     </select>
                 </div>
 
-                <div class="col-md-3">
+                <div class="col-md-4 col-lg-4 col-xl-3">
                     <label for="txtRentDriverName" class="form-label">Driver Name</label>
                     <input type="text" class="form-control" id="txtRentDriverName">
                 </div>
 
-                <div class="col-md-3">
+                <div class="col-md-4 col-lg-4 col-xl-3">
                     <label for="txtRentPickUpTime" class="form-label">Pick Up Time</label>
                     <input type="time" class="form-control" id="txtRentPickUpTime">
                 </div>
 
-                <div class="col-md-3">
+                <div class="col-md-4 col-lg-4 col-xl-3">
                     <label for="txtRentPickUpDate" class="form-label">Pick Up Date</label>
                     <input type="date" class="form-control" id="txtRentPickUpDate">
                 </div>
 
                 <!--========================================-->
 
-                <div class="col-md-3">
+                <div class="col-md-4 col-lg-4 col-xl-3">
                     <label for="txtRentReturnTime" class="form-label">Return Time</label>
                     <input type="time" class="form-control" id="txtRentReturnTime">
                 </div>
 
-                <div class="col-md-3">
+                <div class="col-md-4 col-lg-4 col-xl-3">
                     <label for="txtRentReturnDate" class="form-label">Return Date</label>
                     <input type="date" class="form-control" id="txtRentReturnDate">
                 </div>
 
-                <div class="col-md-3">
+                <div class="col-md-4 col-lg-4 col-xl-3">
                     <label for="txtRentStatus" class="form-label">Rent Status</label>
                     <input type="text" class="form-control" id="txtRentStatus">
                 </div>
 
-                <div class="col-md-3">
+                <div class="col-md-4 col-lg-4 col-xl-3">
                     <label for="txtRentLocation" class="form-label">Location</label>
                     <input type="text" class="form-control" id="txtRentLocation">
                 </div>
 
                 <!--==============================================-->
 
-                <div id="btnGroupManageBookings" class="btn-group col-md-4 col-12 btnGroup" role="group"
+                <div id="btnGroupManageBookings" class="btn-group col-xl-4 col-md-6 col-12 btnGroup" role="group"
                      aria-label="Basic mixed styles example">
                     <button type="button" class="btn btn-primary">Update</button>
                     <button type="button" class="btn btn-danger">Delete</button>
@@ -544,7 +544,7 @@
         <!--Manage Bookings Table-->
         <section class="d-flex flex-column h-50 col-11 col-xl-12 bg-white shadow-lg align-items-center
         pt-3 mt-4">
-            <h3 class="text-center bg-primary p-2 text-light rounded-3 col-12 fs-4">Manage Vehicle</h3>
+            <h3 class="text-center bg-primary p-2 text-light rounded-3 col-12 fs-4">Manage Bookings</h3>
             <div class="row h-60 col-12 col-lg-12 rounded-2 table-responsive">
                 <table id="tblManageBookings" class="table table-striped table-hover rounded-5 mb-5 table-bordered">
                     <thead class="text-white green-hd" style="background: #17377f;">

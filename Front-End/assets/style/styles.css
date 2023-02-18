@@ -1279,3 +1279,9 @@ tbody {
 #btnGroupManageBookings {
     margin-top: 28px;
 }
+
+@media (max-width: 320px) {
+    #manageBookings_section {
+        padding: 10px;
+    }
+}
