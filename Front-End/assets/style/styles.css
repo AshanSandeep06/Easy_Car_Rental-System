@@ -1405,3 +1405,8 @@ tbody {
         padding: 15px;
     }
 }
+
+#tblViewRentedCarSchedule, #tblViewAvailableCarSchedule {
+    text-align: center;
+    font-size: 15px;
+}
