@@ -1455,3 +1455,8 @@ tbody {
         padding: 0;
     }
 }
+
+#tblManageRentDetails {
+    text-align: center;
+    font-size: 15px;
+}
