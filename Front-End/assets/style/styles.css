@@ -1366,3 +1366,19 @@ tbody {
         flex-direction: column;
     }
 }
+
+#viewDriverScheduleHeader {
+    font-size: 23px;
+}
+
+#viewDriverScheduleHeader > i {
+    position: relative;
+    top: -1px;
+    margin-left: 5px;
+    font-size: 20px;
+}
+
+#tblViewDriverSchedule {
+    text-align: center;
+    font-size: 15px;
+}
