@@ -1350,3 +1350,19 @@ tbody {
     text-align: center;
     font-size: 15px;
 }
+
+@media (max-width: 430px) {
+    #txtDriverLicenseImageUploader {
+        width: 258px !important;
+    }
+
+    #btnGroupManageDriver {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 530px) {
+    #btnGroupManageDriver {
+        flex-direction: column;
+    }
+}

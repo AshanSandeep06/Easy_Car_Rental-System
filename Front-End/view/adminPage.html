@@ -809,11 +809,15 @@
             <div class="col-md-6 text-sm-center text-center text-xl-start">
                 <label for="driverLicenseImage" class="form-label d-block">Driver's License Image</label>
                 <img id="driverLicenseImage" src="/assets/img/license_image-02.png" class="img-fluid" alt="...">
+                <input class="form-control mt-3 w-75" type="file" id="txtDriverLicenseImageUploader">
             </div>
 
-            <div style="margin-top: 32px;"
-                 class="col-md-3 d-flex align-items-center justify-content-center justify-content-md-start">
-                <button type="submit" class="btn btn-primary">Update Profile</button>
+            <div id="btnGroupManageDriver" style="margin-top: 32px;"
+                 class="col-md-6 col-12 d-flex align-items-center justify-content-center justify-content-md-start gap-3">
+                <button type="submit" class="btn btn-success">Add Driver</button>
+                <button type="submit" class="btn btn-primary">Update</button>
+                <button type="submit" class="btn btn-danger">Delete</button>
+                <button type="submit" class="btn btn-secondary">Clear</button>
             </div>
         </form>
     </section>
