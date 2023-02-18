@@ -1410,3 +1410,14 @@ tbody {
     text-align: center;
     font-size: 15px;
 }
+
+#adminProfileHeader {
+    font-size: 23px;
+}
+
+#adminProfileHeader > i {
+    position: relative;
+    top: -1px;
+    margin-left: 5px;
+    font-size: 20px;
+}
