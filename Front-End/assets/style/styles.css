@@ -1290,3 +1290,23 @@ tbody {
     text-align: center;
     font-size: 15px;
 }
+
+#manageCustomerHeader {
+    font-size: 23px;
+}
+
+#manageCustomerHeader > i {
+    position: relative;
+    top: -1px;
+    margin-left: 5px;
+    font-size: 20px;
+}
+
+#manageCustomerForm {
+    font-size: 15px;
+}
+
+#tblManageCustomer {
+    text-align: center;
+    font-size: 15px;
+}
