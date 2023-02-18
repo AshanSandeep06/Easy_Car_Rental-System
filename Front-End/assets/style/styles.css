@@ -1221,27 +1221,27 @@ tbody {
     font-size: 15px;
 }
 
-#btnGroupVehicleAddUpdateDelete {
+.btnGroup {
     margin-top: 28px;
     gap: 20px;
 }
 
-#btnGroupVehicleAddUpdateDelete > button:first-child {
-    border-top-right-radius: inherit;
-    border-bottom-right-radius: inherit;
+.btnGroup > button:first-child {
+    border-top-right-radius: inherit !important;
+    border-bottom-right-radius: inherit !important;
 }
 
-#btnGroupVehicleAddUpdateDelete > button:nth-child(2) {
-    border-radius: inherit;
+.btnGroup > button:nth-child(2) {
+    border-radius: inherit !important;
 }
 
-#btnGroupVehicleAddUpdateDelete > button:nth-child(3) {
-    border-radius: inherit;
+.btnGroup > button:nth-child(3) {
+    border-radius: inherit !important;
 }
 
-#btnGroupVehicleAddUpdateDelete > button:nth-child(4) {
-    border-top-left-radius: inherit;
-    border-bottom-left-radius: inherit;
+.btnGroup > button:nth-child(4) {
+    border-top-left-radius: inherit !important;
+    border-bottom-left-radius: inherit !important;
 }
 
 #manageVehicle_section > section:nth-child(3) {
@@ -1270,4 +1270,12 @@ tbody {
     top: -1px;
     margin-left: 5px;
     font-size: 20px;
+}
+
+#manageBookingsForm {
+    font-size: 15px;
+}
+
+#btnGroupManageBookings {
+    margin-top: 28px;
 }
