@@ -799,7 +799,11 @@
 
             <div class="col-md-4">
                 <label for="txtDriverAvailabilityType" class="form-label">Availability Type</label>
-                <input type="text" class="form-control" id="txtDriverAvailabilityType">
+                <select id="txtDriverAvailabilityType" class="form-select" aria-label="Default select example">
+                    <option selected disabled>Select Availability Type</option>
+                    <option value="1">Available</option>
+                    <option value="2">Unavailable</option>
+                </select>
             </div>
 
             <div class="col-md-6 text-sm-center text-center text-xl-start">
@@ -807,7 +811,8 @@
                 <img id="driverLicenseImage" src="/assets/img/license_image-02.png" class="img-fluid" alt="...">
             </div>
 
-            <div style="margin-top: 32px;" class="col-md-3 d-flex align-items-center justify-content-center justify-content-md-start">
+            <div style="margin-top: 32px;"
+                 class="col-md-3 d-flex align-items-center justify-content-center justify-content-md-start">
                 <button type="submit" class="btn btn-primary">Update Profile</button>
             </div>
         </form>
