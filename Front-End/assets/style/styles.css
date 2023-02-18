@@ -1382,3 +1382,9 @@ tbody {
     text-align: center;
     font-size: 15px;
 }
+
+@media (max-width: 900px) {
+    #viewDriverSchedule_section {
+        padding: 0;
+    }
+}
