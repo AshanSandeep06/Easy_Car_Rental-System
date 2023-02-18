@@ -1310,3 +1310,21 @@ tbody {
     text-align: center;
     font-size: 15px;
 }
+
+@media (max-width: 426px) {
+    #manageCustomer_section {
+        padding: 10px;
+    }
+}
+
+@media (max-width: 352px) {
+    #btnGroupManageCustomer > button:first-child {
+        padding-left: 3px;
+        padding-right: 3px;
+    }
+
+    #btnGroupManageCustomer > button:nth-child(2) {
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+}
