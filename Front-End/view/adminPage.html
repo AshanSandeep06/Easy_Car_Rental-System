@@ -1149,6 +1149,122 @@
             <button id="btnSearchRentDetails" type="button" class="btn btn-primary">Search Details</button>
         </div>
     </section>
+
+    <section class="row justify-content-center px-3">
+        <form class="row g-3">
+            <div class="col-md-3 col-lg-4 col-xl-3 col-md-4">
+                <label for="txtRentID_rentDetails" class="form-label">Rent ID</label>
+                <input type="text" class="form-control" id="txtRentID_rentDetails">
+            </div>
+
+            <div class="col-md-3 col-lg-4 col-xl-3 col-md-4">
+                <label for="txtCarID_rentDetails" class="form-label">Car ID</label>
+                <input type="text" class="form-control" id="txtCarID_rentDetails">
+            </div>
+
+            <div class="col-md-3 col-lg-4 col-xl-3 col-md-4">
+                <label for="txtDriverID_rentDetails" class="form-label">Driver ID</label>
+                <input type="text" class="form-control" id="txtDriverID_rentDetails">
+            </div>
+
+            <div class="col-md-3 col-lg-4 col-xl-3 col-md-4">
+                <label for="txtCustomerID_rentDetails" class="form-label">Customer ID</label>
+                <input type="text" class="form-control" id="txtCustomerID_rentDetails">
+            </div>
+
+            <!--====================================-->
+
+            <div class="col-md-3 col-lg-4 col-xl-3 col-md-4">
+                <label for="txtCustomerName_rentDetails" class="form-label">Customer Name</label>
+                <input type="text" class="form-control" id="txtCustomerName_rentDetails">
+            </div>
+
+            <div class="col-md-3 col-lg-4 col-xl-3 col-md-4">
+                <label for="txtLDWPayment_rentDetails" class="form-label">Lost Damage Waiver</label>
+                <input type="text" class="form-control" id="txtLDWPayment_rentDetails">
+            </div>
+
+            <div class="col-md-3 col-lg-4 col-xl-3 col-md-4">
+                <label for="txtCarCost_rentDetails" class="form-label">Car Cost</label>
+                <input type="text" class="form-control" id="txtCarCost_rentDetails">
+            </div>
+
+            <div class="col-md-3 col-lg-4 col-xl-3 col-md-4">
+                <label for="txtDriverCost_rentDetails" class="form-label">Driver Cost</label>
+                <input type="text" class="form-control" id="txtDriverCost_rentDetails">
+            </div>
+
+            <!--====================================-->
+
+            <div class="col-md-3 col-lg-4 col-xl-3 col-md-4">
+                <label for="txtDamageFee_rentDetails" class="form-label">Damage Fee</label>
+                <input type="text" class="form-control" id="txtDamageFee_rentDetails">
+            </div>
+
+            <div class="col-md-3 col-lg-4 col-xl-3 col-md-4">
+                <label for="txtLastServiceMileage_rentDetails" class="form-label">Last Service Mileage</label>
+                <input type="text" class="form-control" id="txtLastServiceMileage_rentDetails">
+            </div>
+
+            <div class="col-md-3 col-lg-4 col-xl-3 col-md-4">
+                <label for="txtDistanceMileage_rentDetails" class="form-label">Distance Mileage</label>
+                <input type="text" class="form-control" id="txtDistanceMileage_rentDetails">
+            </div>
+
+            <div class="col-md-3 col-lg-4 col-xl-3 col-md-4">
+                <label for="txtProcess_rentDetails" class="form-label">Process</label>
+                <select id="txtProcess_rentDetails" class="form-select" aria-label="Default select example">
+                    <option selected disabled>Select Rent Process Type</option>
+                    <option value="1">Completed</option>
+                    <option value="2">Ongoing</option>
+                </select>
+            </div>
+
+            <!--====================================-->
+
+            <div id="btnGroupManageRentDetails" style="margin-top: 32px; gap: 15px;"
+                 class="col-12 d-inline-flex justify-content-md-end justify-content-center">
+                <button type="submit" class="btn btn-primary">Update Details</button>
+                <button type="submit" class="btn btn-danger">Delete</button>
+                <button type="submit" class="btn btn-secondary">Clear</button>
+            </div>
+        </form>
+    </section>
+
+    <section class="row justify-content-center">
+        <!--View Driver Schedule Table-->
+        <section class="d-flex flex-column h-50 col-11 col-xl-12 bg-white shadow-lg align-items-center
+        pt-3 mt-4" style="border-radius: 15px;">
+            <h3 class="text-center bg-primary p-2 text-light rounded-3 col-12 fs-4">Available Cars Schedule</h3>
+            <div class="row h-60 col-12 col-lg-12 rounded-2 table-responsive">
+                <table id="tblViewAvailableCarSchedule"
+                       class="table table-striped table-hover mb-5 table-bordered shadow bg-white">
+                    <thead class="text-white green-hd" style="background: #17377f;">
+                    <tr>
+                        <th>Car ID</th>
+                        <th>Car Reg No</th>
+                        <th>Brand</th>
+                        <th>Car Type</th>
+                        <th>No Of Passengers</th>
+                        <th>Transmission Type</th>
+                        <th>Fuel Type</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>V001</td>
+                        <td>AAD-5499</td>
+                        <td>Suzuki</td>
+                        <td>General</td>
+                        <td>4</td>
+                        <td>Auto</td>
+                        <td>Petrol</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </section>
 </main>
 
 <!--<main id="managePayment_section" class="admin-sections"></main>-->
