@@ -1493,3 +1493,17 @@ tbody {
     text-align: center;
     font-size: 15px;
 }
+
+#btnProfile{
+    position: relative;
+}
+
+#btnProfile > a {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    margin: auto;
+    border-radius: 0.5rem;
+}

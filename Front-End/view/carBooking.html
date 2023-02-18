@@ -28,15 +28,9 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
                 <ul id="optionList" class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li id="homeBtn" class="nav-item">
+                    <li id="btnHome" class="nav-item">
                         <a id="home-nav" class="nav-link header-nav option-nav" aria-current="page"
-                           href="#dashBoardSection"><i class="fa-solid fa-house-chimney"></i>Home</a>
-                    </li>
-                </ul>
-
-                <ul class="navbar-nav me-6 mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <button type="button" class="btn btn-outline-dark text-white border-light">My Profile</button>
+                           href="#Home"><i class="fa-solid fa-house-chimney"></i>Home</a>
                     </li>
                 </ul>
             </div>
@@ -261,5 +255,16 @@
 <script src="../assets/jquery/jquery-3.6.1.min.js"></script>
 <script src="../assets/bootstrap/js/bootstrap.min.js"></script>
 <script src="../controller/HomeController.js"></script>
+
+<script>
+    $("#btnHome").on('click', function () {
+        $("#btnHome > a").attr({
+            "target": "_self",
+            "href": "customerPage.html"
+        });
+    });
+
+</script>
+
 </body>
 </html>
