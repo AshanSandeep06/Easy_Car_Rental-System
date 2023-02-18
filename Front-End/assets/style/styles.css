@@ -1285,3 +1285,8 @@ tbody {
         padding: 10px;
     }
 }
+
+#tblManageBookings {
+    text-align: center;
+    font-size: 15px;
+}
