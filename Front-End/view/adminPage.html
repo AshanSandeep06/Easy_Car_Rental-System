@@ -1089,6 +1089,44 @@
             <h1 id="adminProfileHeader">Admin Profile <i class="fa-solid fa-list-check"></i></h1>
         </div>
     </section>
+
+    <section class="row justify-content-center px-3">
+        <form class="row g-3 shadow bg-white" style="background-color: #fafaff; border-radius: 10px;">
+            <div class="col-md-3">
+                <label for="txtAdminNic" class="form-label">Admin NIC</label>
+                <input type="text" class="form-control" id="txtAdminNic">
+            </div>
+
+            <div class="col-md-3">
+                <label for="txtAdminName" class="form-label">Name</label>
+                <input type="text" class="form-control" id="txtAdminName">
+            </div>
+
+            <div class="col-md-3">
+                <label for="txtAdminUsername" class="form-label">Username</label>
+                <input type="text" class="form-control" id="txtAdminUsername">
+            </div>
+
+            <div class="col-md-3">
+                <label for="txtAdminPassword" class="form-label">Password</label>
+                <input type="text" class="form-control" id="txtAdminPassword">
+            </div>
+
+            <div class="col-md-4">
+                <label for="txtAdminEmail" class="form-label">Email</label>
+                <input type="text" class="form-control" id="txtAdminEmail">
+            </div>
+
+            <div class="col-md-4">
+                <label for="txtAdminContactNumber" class="form-label">Contact Number</label>
+                <input type="text" class="form-control" id="txtAdminContactNumber">
+            </div>
+
+            <div style="margin-top: 33px; margin-bottom: 33px;" class="col-12">
+                <button type="submit" class="btn btn-primary">Update Profile</button>
+            </div>
+        </form>
+    </section>
 </main>
 
 <script src="../assets/jquery/jquery-3.6.1.min.js"></script>
@@ -1105,6 +1143,7 @@
     $("#manageDriver_section").css('display', 'none');
     $("#viewDriverSchedule_section").css('display', 'none');
     $("#viewCarSchedule_section").css('display', 'none');
+    $("#adminProfile_section").css('display', 'none');
 
     $(".btnDeny").on('click', function () {
         const {value: email} = Swal.fire({
