@@ -1345,3 +1345,8 @@ tbody {
         padding: 0;
     }
 }
+
+#tblManageDriver {
+    text-align: center;
+    font-size: 15px;
+}
