@@ -30,15 +30,17 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
                 <ul id="optionList" class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li id="homeBtn" class="nav-item">
+                    <li id="btnHome" class="nav-item">
                         <a id="home-nav" class="nav-link header-nav option-nav" aria-current="page"
-                           href="#dashBoardSection"><i class="fa-solid fa-house-chimney"></i>Home</a>
+                           href="#"><i class="fa-solid fa-house-chimney"></i>Home</a>
                     </li>
-                    <li id="customerBtn" class="nav-item">
+
+                    <li id="btnMyBookings" class="nav-item">
                         <a id="customer-nav" class="nav-link header-nav option-nav" href="#"><i
                                 class="fa-solid fa-book"></i>My Bookings</a>
                     </li>
-                    <li id="itemBtn" class="nav-item">
+
+                    <li id="btnBookingsStatus" class="nav-item">
                         <a id="item-nav" class="nav-link header-nav option-nav" href="#"><i
                                 class="fa-solid fa-circle-info"></i>Booking Status</a>
                     </li>
@@ -46,7 +48,7 @@
 
                 <ul class="navbar-nav me-6 mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <button type="button" class="btn btn-outline-dark text-white border-light">My Profile</button>
+                        <button id="btnCustomerProfile" type="button" class="btn btn-outline-dark text-white border-light">My Profile</button>
                     </li>
                 </ul>
             </div>
@@ -1022,9 +1024,41 @@
 <script src="../assets/bootstrap/js/bootstrap.min.js"></script>
 <script src="../controller/HomeController.js"></script>
 <script>
-    $("#customerPage_bookings").css('display', 'none');
-    $("#customerPage_rentStatus").css('display', 'none');
-    $("#customerPage_myProfile").css('display', 'none');
+
+    $(function () {
+        $('#customerPage_home').css("display", "block");
+        $('#customerPage_bookings').css("display", "none");
+        $('#customerPage_rentStatus').css("display", "none");
+        $('#customerPage_myProfile').css("display", "none");
+    });
+
+    $("#btnHome").on('click', function (){
+        $('#customerPage_home').css("display", "block");
+        $('#customerPage_bookings').css("display", "none");
+        $('#customerPage_rentStatus').css("display", "none");
+        $('#customerPage_myProfile').css("display", "none");
+    });
+
+    $("#btnMyBookings").on('click', function (){
+        $('#customerPage_home').css("display", "none");
+        $('#customerPage_bookings').css("display", "block");
+        $('#customerPage_rentStatus').css("display", "none");
+        $('#customerPage_myProfile').css("display", "none");
+    });
+
+    $("#btnBookingsStatus").on('click', function (){
+        $('#customerPage_home').css("display", "none");
+        $('#customerPage_bookings').css("display", "none");
+        $('#customerPage_rentStatus').css("display", "block");
+        $('#customerPage_myProfile').css("display", "none");
+    });
+
+    $("#btnCustomerProfile").on('click', function (){
+        $('#customerPage_home').css("display", "none");
+        $('#customerPage_bookings').css("display", "none");
+        $('#customerPage_rentStatus').css("display", "none");
+        $('#customerPage_myProfile').css("display", "block");
+    });
 </script>
 </body>
 </html>
