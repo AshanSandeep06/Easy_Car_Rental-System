@@ -1328,3 +1328,20 @@ tbody {
         padding-right: 5px;
     }
 }
+
+#manageDriverHeader {
+    font-size: 23px;
+}
+
+#manageDriverHeader > i {
+    position: relative;
+    top: -1px;
+    margin-left: 5px;
+    font-size: 20px;
+}
+
+@media (max-width: 426px) {
+    #manageDriver_section {
+        padding: 0;
+    }
+}
