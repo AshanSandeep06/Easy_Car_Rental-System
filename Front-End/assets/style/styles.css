@@ -112,6 +112,7 @@ header {
 #optionList + ul {
     gap: 15px;
     padding-right: 3px;
+    margin-right: 15px;
 }
 
 #main-h2 span {
