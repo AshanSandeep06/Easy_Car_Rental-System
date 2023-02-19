@@ -1559,11 +1559,11 @@ tbody {
     content: "";
     position: absolute;
     display: block;
-    width: 245px;
+    width: 300px;
     height: 1px;
     background: #ddd;
     bottom: 1px;
-    left: calc(50% - 123px);
+    left: calc(50% - 149px);
 }
 
 #homePage > section:nth-child(3) > div > h1::after {
