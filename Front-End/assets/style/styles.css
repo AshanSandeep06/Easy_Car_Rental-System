@@ -1585,3 +1585,7 @@ tbody {
 #homeSection > section:nth-child(4) {
     margin-top: 30px;
 }
+
+#homeSection > section{
+    margin-left: 0;
+}
