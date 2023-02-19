@@ -1535,3 +1535,8 @@ tbody {
     top: 148px !important;
     margin-bottom: 5px;
 }
+
+#homeSection > section:nth-child(3) {
+    justify-content: center;
+    padding-top: 20px;
+}
