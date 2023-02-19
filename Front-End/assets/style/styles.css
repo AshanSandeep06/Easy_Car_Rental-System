@@ -1672,12 +1672,16 @@ footer > div {
 }
 
 @media (max-width: 350px) {
-    #rentCarImage{
+    #rentCarImage {
         display: none;
     }
 
-    #s{
+    #s {
         justify-content: center;
         gap: 10px;
     }
+}
+
+#homePage {
+    margin-top: 85px;
 }
