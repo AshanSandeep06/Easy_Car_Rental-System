@@ -1541,11 +1541,11 @@ tbody {
     padding-top: 20px;
 }
 
-#homeSection > section:nth-child(3) {
+#homePage > section:nth-child(3) {
     margin-top: 38px;
 }
 
-#homeSection > section:nth-child(3) > div > h1 {
+#homePage > section:nth-child(3) > div > h1 {
     font-size: 36px;
     font-weight: 600;
     text-transform: uppercase;
@@ -1554,7 +1554,7 @@ tbody {
     padding-bottom: 15px;
 }
 
-#homeSection > section:nth-child(3) > div > h1::before {
+#homePage > section:nth-child(3) > div > h1::before {
     content: "";
     position: absolute;
     display: block;
@@ -1565,7 +1565,7 @@ tbody {
     left: calc(50% - 123px);
 }
 
-#homeSection > section:nth-child(3) > div > h1::after {
+#homePage > section:nth-child(3) > div > h1::after {
     content: "";
     position: absolute;
     display: block;
@@ -1586,7 +1586,7 @@ tbody {
     margin-top: 30px;
 }
 
-#homeSection > section {
+#homePage > section {
     margin-left: 0;
 }
 
