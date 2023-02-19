@@ -223,7 +223,7 @@ header > nav {
 #colorDiv {
     background-color: rgba(0, 0, 0, 0.5);
     width: 100%;
-    height: 100%;
+    height: 636px;
     position: absolute;
     z-index: 1;
 }
@@ -469,7 +469,7 @@ header > nav {
     right: 0;
     bottom: 0;
     margin: auto;
-    width: 265px;
+    width: 273px;
     height: 275px;
     transition: all 2s;
     /* background: #00000080; */
@@ -1494,7 +1494,7 @@ tbody {
     font-size: 15px;
 }
 
-#btnProfile{
+#btnProfile {
     position: relative;
 }
 
@@ -1506,4 +1506,32 @@ tbody {
     bottom: 0;
     margin: auto;
     border-radius: 0.5rem;
+}
+
+.svg-wrapper {
+    padding: 0;
+}
+
+.brand {
+
+}
+
+.color {
+    top: 58px !important;
+    margin-bottom: 5px;
+}
+
+.freeKmForDay {
+    top: 88px !important;
+    margin-bottom: 5px;
+}
+
+.freeKmForMonth {
+    top: 118px !important;
+    margin-bottom: 5px;
+}
+
+.pricePerExtraKm {
+    top: 148px !important;
+    margin-bottom: 5px;
 }
