@@ -323,7 +323,7 @@ header > nav {
 
 /*====================== Assignments Section ======================*/
 
-#carDetails_section > div {
+.carDetails_section > div {
     position: relative;
     /*display: flex;
     gap: 24px;
@@ -339,18 +339,18 @@ header > nav {
     transition: all 0.8s ease;
 }
 
-#carDetails_section > div > h2 {
+.carDetails_section > div > h2 {
     margin-top: 43px;
     font-size: 21px;
 }
 
-#carDetails_section > div > img {
+.carDetails_section > div > img {
     border: 1px solid;
     width: 88%;
     height: 165px;
 }
 
-#carDetails_section > div:hover {
+.carDetails_section > div:hover {
     transition: all 0.8s ease;
     transform: scale(0.97);
     box-shadow: 1px 1px 54px 1px rgba(0, 0, 0, 0.22);
@@ -369,17 +369,17 @@ header > nav {
     border-radius: 0.5rem;
 }
 
-#carDetails_section > div:hover > h2 {
+.carDetails_section > div:hover > h2 {
     transition: all 0.8s ease;
     color: white;
 }
 
-#carDetails_section > div:hover .svg-wrapper {
+.carDetails_section > div:hover .svg-wrapper {
     visibility: visible;
     transition: all .6s;
 }
 
-#carDetails_section > div:hover .shape1, #carDetails_section > div:hover .shape2 {
+.carDetails_section > div:hover .shape1, .carDetails_section > div:hover .shape2 {
     stroke-dashoffset: 0;
     stroke-dasharray: 1120;
 }
@@ -389,7 +389,7 @@ header > nav {
     font-weight: 400;
 }
 
-#carDetails_section > div > div > p {
+.carDetails_section > div > div > p {
     position: absolute;
     top: 28px;
     right: 0;
@@ -402,17 +402,17 @@ header > nav {
     color: white;
 }
 
-#carDetails_section > div:hover .assignments_p {
+.carDetails_section > div:hover .assignments_p {
     visibility: visible;
     transition: all .6s;
 }
 
-#carDetails_section > div:hover .cars_btn {
+.carDetails_section > div:hover .cars_btn {
     visibility: visible;
     transition: all .6s;
 }
 
-#carDetails_section > div > div > button {
+.carDetails_section > div > div > button {
     position: absolute;
     top: 156px;
     right: 0;
@@ -432,7 +432,7 @@ header > nav {
     font-size: 15px;
 }
 
-#carDetails_section > div > div > button:hover::before {
+.carDetails_section > div > div > button:hover::before {
     content: "";
     position: absolute;
     top: 0;
@@ -476,7 +476,7 @@ header > nav {
     background: #00000094;
 }
 
-#carDetails_section > div:hover .shape1, #carDetails_section > div:hover .shape2 {
+.carDetails_section > div:hover .shape1, .carDetails_section > div:hover .shape2 {
     stroke-dashoffset: 0;
     stroke-dasharray: 1120;
 }
@@ -502,7 +502,7 @@ header > nav {
     transition: stroke-dashoffset 2.5s, stroke-dasharray 2.5s;
 }
 
-#carDetails_section > div:hover .cars_btn {
+.carDetails_section > div:hover .cars_btn {
     visibility: visible;
     transition: all .6s;
 }
@@ -511,22 +511,22 @@ header > nav {
     stroke-dashoffset: 1120;
 }
 
-#carDetails_section {
+.carDetails_section {
     gap: 55px;
-    padding-top: 25px;
+    padding-top: 30px;
     padding-bottom: 45px;
 }
 
-#carDetails_section > div {
+.carDetails_section > div {
     justify-content: center;
     padding: 0;
 }
 
-#carDetails_section > div > div:nth-child(2) {
+.carDetails_section > div > div:nth-child(2) {
     padding: 0;
 }
 
-#carDetails_section > div > div:nth-child(2) > img {
+.carDetails_section > div > div:nth-child(2) > img {
     width: 100%;
     height: 180px;
     /* background-position: center; */
@@ -536,43 +536,43 @@ header > nav {
     border-top-left-radius: 25px;
 }
 
-#carDetails_section > div > div:nth-child(3) {
+.carDetails_section > div > div:nth-child(3) {
     text-align: center;
 }
 
-#carDetails_section > div > div:nth-child(3) > h2 {
+.carDetails_section > div > div:nth-child(3) > h2 {
     font-size: 18px;
 }
 
-#carDetails_section > div > div:nth-child(4) {
+.carDetails_section > div > div:nth-child(4) {
     text-align: center;
     justify-content: space-evenly;
 }
 
-#carDetails_section > div > div:nth-child(4) > h2 {
+.carDetails_section > div > div:nth-child(4) > h2 {
     font-size: 15px;
     justify-content: center;
 }
 
-#carDetails_section > div > div:nth-child(5) {
+.carDetails_section > div > div:nth-child(5) {
     padding-top: 20px;
     text-align: center;
     font-size: 15px;
     justify-content: center;
 }
 
-#carDetails_section > div > div:nth-child(5) > h2 {
+.carDetails_section > div > div:nth-child(5) > h2 {
     font-size: 15px;
     justify-content: center;
     gap: 0;
 }
 
-#carDetails_section > div > div:nth-child(5) > h2 > span {
+.carDetails_section > div > div:nth-child(5) > h2 > span {
     width: max-content;
     height: max-content;
 }
 
-#carDetails_section > div > div:nth-child(5) > h2 > span:nth-child(2) {
+.carDetails_section > div > div:nth-child(5) > h2 > span:nth-child(2) {
     position: relative;
     bottom: 6px;
 }
@@ -1536,7 +1536,7 @@ tbody {
     margin-bottom: 5px;
 }
 
-#homeSection > section:nth-child(5) {
+#carsCollection {
     justify-content: center;
     padding-top: 20px;
 }
@@ -1576,16 +1576,16 @@ tbody {
     left: calc(50% - 35px);
 }
 
-#homeSection > section:nth-child(4) > div > h2 {
+#carsCollection > section:nth-child(1) > div > h2, #carsCollection > section:nth-child(3) > div > h2, #carsCollection > section:nth-child(5) > div > h2 {
     font-weight: 500;
     font-size: 25px;
     color: hsl(250, 8%, 45%);
 }
 
-#homeSection > section:nth-child(4) {
+#carsCollection > section:nth-child(1), #carsCollection > section:nth-child(3), #carsCollection > section:nth-child(5) {
     margin-top: 30px;
 }
 
-#homeSection > section{
+#homeSection > section {
     margin-left: 0;
 }
