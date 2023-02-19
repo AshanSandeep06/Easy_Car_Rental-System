@@ -1615,12 +1615,12 @@ footer > aside > h1:first-child {
 }
 
 footer > aside > h1:last-of-type {
-    font-size: 36px;
+    font-size: 23px;
     font-weight: 600;
 }
 
 footer > aside > h5 {
-    font-size: 16px;
+    font-size: 15px;
     font-weight: 400;
 }
 
@@ -1650,8 +1650,8 @@ footer > nav {
 
 footer > aside {
     padding-left: 58px !important;
-    margin-bottom: 33px;
-    margin-top: 13px !important;
+    margin-bottom: 38px;
+    margin-top: 25px !important;
 }
 
 footer > div {
