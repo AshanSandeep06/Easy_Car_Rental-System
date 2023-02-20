@@ -271,17 +271,17 @@
             <form id="manageVehicleForm" class="row g-3">
                 <div class="col-md-4">
                     <label for="txtCarID" class="form-label">Car ID</label>
-                    <input type="text" class="form-control" id="txtCarID">
+                    <input type="text" class="form-control" id="txtCarID" name="carId">
                 </div>
 
                 <div class="col-md-4">
                     <label for="txtRegNo" class="form-label">Register Number</label>
-                    <input type="text" class="form-control" id="txtRegNo">
+                    <input type="text" class="form-control" id="txtRegNo" name="registerNum">
                 </div>
 
                 <div class="col-md-4">
                     <label for="txtCarBrand" class="form-label">Brand</label>
-                    <input type="text" class="form-control" id="txtCarBrand">
+                    <input type="text" class="form-control" id="txtCarBrand" name="brand">
                 </div>
 
                 <!--<div class="col-md-4">
@@ -291,7 +291,7 @@
 
                 <div class="col-md-4">
                     <label for="txtCarType" class="form-label">Vehicle Type</label>
-                    <select id="txtCarType" class="form-select" aria-label="Default select example">
+                    <select id="txtCarType" class="form-select" aria-label="Default select example" name="type">
                         <option selected disabled>Select Vehicle Type</option>
                         <option value="1">General</option>
                         <option value="2">Premium</option>
@@ -303,34 +303,34 @@
 
                 <div class="col-md-4">
                     <label for="txtDailyRate" class="form-label">Daily Rate</label>
-                    <input type="text" class="form-control" id="txtDailyRate">
+                    <input type="text" class="form-control" id="txtDailyRate" name="dailyRate">
                 </div>
 
                 <div class="col-md-4">
                     <label for="txtMonthlyRate" class="form-label">Monthly Rate</label>
-                    <input type="text" class="form-control" id="txtMonthlyRate">
+                    <input type="text" class="form-control" id="txtMonthlyRate" name="monthlyRate">
                 </div>
 
                 <div class="col-md-4">
                     <label for="txtDailyMileage" class="form-label">Free Km for a Day</label>
-                    <input type="text" class="form-control" id="txtDailyMileage">
+                    <input type="text" class="form-control" id="txtDailyMileage" name="dailyMileage">
                 </div>
 
                 <div class="col-md-4">
                     <label for="txtMonthlyMileage" class="form-label">Free Km for a Month</label>
-                    <input type="text" class="form-control" id="txtMonthlyMileage">
+                    <input type="text" class="form-control" id="txtMonthlyMileage" name="monthlyMileage">
                 </div>
 
                 <!--========================================-->
 
                 <div class="col-md-4">
                     <label for="txtCarColor" class="form-label">Color</label>
-                    <input type="text" class="form-control" id="txtCarColor">
+                    <input type="text" class="form-control" id="txtCarColor" name="color">
                 </div>
 
                 <div class="col-md-4">
                     <label for="txtTransmissionType" class="form-label">Transmission Type</label>
-                    <select id="txtTransmissionType" class="form-select" aria-label="Default select example">
+                    <select id="txtTransmissionType" class="form-select" aria-label="Default select example" name="transmissionType">
                         <option selected disabled>Select Transmission Type</option>
                         <option value="1">Manual</option>
                         <option value="2">Auto</option>
@@ -339,12 +339,12 @@
 
                 <div class="col-md-4">
                     <label for="txtNoOfPassengers" class="form-label">No of Passengers</label>
-                    <input type="text" class="form-control" id="txtNoOfPassengers">
+                    <input type="text" class="form-control" id="txtNoOfPassengers" name="numOfPassengers">
                 </div>
 
                 <div class="col-md-4">
                     <label for="txtFuelType" class="form-label">Fuel Type</label>
-                    <select id="txtFuelType" class="form-select" aria-label="Default select example">
+                    <select id="txtFuelType" class="form-select" aria-label="Default select example" name="fuelType">
                         <option selected disabled>Select Fuel Type</option>
                         <option value="1">Diesel</option>
                         <option value="2">Petrol</option>
@@ -355,22 +355,22 @@
 
                 <div class="col-md-4">
                     <label for="txtPricePerExtraKm" class="form-label">Price Per Extra Km</label>
-                    <input type="text" class="form-control" id="txtPricePerExtraKm">
+                    <input type="text" class="form-control" id="txtPricePerExtraKm" name="pricePerExtraKM">
                 </div>
 
                 <div class="col-md-4">
                     <label for="txtLDWPayment" class="form-label">LDW Payment</label>
-                    <input type="text" class="form-control" id="txtLDWPayment">
+                    <input type="text" class="form-control" id="txtLDWPayment" name="lossDamageWaiver">
                 </div>
 
                 <div class="col-md-4">
                     <label for="txtLastServiceMileage" class="form-label">Last Service Mileage</label>
-                    <input type="text" class="form-control" id="txtLastServiceMileage">
+                    <input type="text" class="form-control" id="txtLastServiceMileage" name="lastServiceMileage">
                 </div>
 
                 <div class="col-md-5">
                     <label for="txtAvailabilityType" class="form-label">Availability Type</label>
-                    <select id="txtAvailabilityType" class="form-select" aria-label="Default select example">
+                    <select id="txtAvailabilityType" class="form-select" aria-label="Default select example" name="availabilityType">
                         <option selected disabled>Select Availability Type</option>
                         <option value="1">Available</option>
                         <option value="2">Unavailable</option>
