@@ -14,5 +14,6 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class CustomerImage {
     private String nicImage;
+
     private String licenseImage;
 }

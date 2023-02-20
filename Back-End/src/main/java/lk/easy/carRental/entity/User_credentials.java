@@ -19,7 +19,9 @@ import javax.persistence.Id;
 public class User_credentials {
     @Id
     private String username;
+
     private String password;
+
     @Enumerated(EnumType.STRING)
     private Role role;
 }

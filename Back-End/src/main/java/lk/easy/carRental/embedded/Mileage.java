@@ -14,5 +14,6 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class Mileage {
     private int dailyMileage;
+
     private int monthlyMileage;
 }

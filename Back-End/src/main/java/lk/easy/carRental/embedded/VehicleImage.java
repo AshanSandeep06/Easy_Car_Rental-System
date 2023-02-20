@@ -14,7 +14,10 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class VehicleImage {
     private String front;
+
     private String back;
+
     private String side;
+
     private String interior;
 }

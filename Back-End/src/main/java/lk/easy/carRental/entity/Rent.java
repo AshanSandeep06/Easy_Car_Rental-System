@@ -20,19 +20,29 @@ import java.util.List;
 public class Rent {
     @Id
     private String rentId;
+
     private LocalTime pickUpTime;
+
     private LocalDate pickUpDate;
+
     private LocalTime returnTime;
+
     private LocalDate returnDate;
+
     @Enumerated(EnumType.STRING)
     private RequestType requestTypeOfDriver;
+
     private String location;
+
     @Enumerated(EnumType.STRING)
     private RentStatusType rentStatus;
+
     private String deniedReason;
+
     @ManyToOne(cascade = {CascadeType.REFRESH,CascadeType.DETACH})
     @JoinColumn(name = "customerId",referencedColumnName = "customerId",nullable = false)
     private Customer customer;
+
     @OneToMany(mappedBy = "rent",cascade = CascadeType.ALL)
     private List<Rent_detail> rentDetail;
 }

@@ -16,14 +16,22 @@ import javax.persistence.*;
 public class Customer {
     @Id
     private String customerId;
+
     private String nic;
+
     private String name;
+
     private String email;
+
     private String address;
+
     private String contactNumber;
+
     private String licenseNo;
+
     @Embedded
     private CustomerImage uploadedImages;
+
     @OneToOne(cascade = CascadeType.ALL)
     private User_credentials user_credentials;
 }

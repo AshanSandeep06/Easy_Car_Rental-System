@@ -18,13 +18,20 @@ import java.time.LocalTime;
 public class Payment {
     @Id
     private String paymentId;
+
     @Enumerated(EnumType.STRING)
     private PaymentType paymentType;
+
     private LocalDate paymentDate;
+
     private LocalTime paymentTime;
+
     private double amount;
+
     private double cash;
+
     private double balance;
+
     @ManyToOne(cascade = {CascadeType.REFRESH, CascadeType.DETACH})
     @JoinColumn(name = "rentId", referencedColumnName = "rentId", nullable = false)
     private Rent rent;

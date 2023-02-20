@@ -11,5 +11,6 @@ import java.io.Serializable;
 @Data
 public class Rent_detail_PK implements Serializable {
     private String rentId;
+
     private String carId;
 }

@@ -18,9 +18,13 @@ import javax.persistence.OneToOne;
 public class Admin {
     @Id
     private String adminNic;
+
     private String adminName;
+
     private String contactNumber;
+
     private String email;
+
     @OneToOne(cascade = CascadeType.ALL)
     private User_credentials user_credentials;
 }

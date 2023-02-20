@@ -16,18 +16,26 @@ import javax.persistence.*;
 public class Rent_detail {
     @Id
     private String rentId;
+
     @Id
     private String carId;
+
     private double distanceMileage;
+
     private double carCost;
+
     private double driverCost;
+
     private double damageFee;
+
     @ManyToOne
     @JoinColumn(name = "rentId", referencedColumnName = "rentId", insertable = false, updatable = false)
     private Rent rent;
+
     @ManyToOne
     @JoinColumn(name = "carId", referencedColumnName = "carId", insertable = false, updatable = false)
     private Car car;
+
     @ManyToOne
     @JoinColumn(name = "driverId", referencedColumnName = "driverId", insertable = false, updatable = false, nullable = true)
     private Driver driver;
