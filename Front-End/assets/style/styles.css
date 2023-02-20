@@ -1687,24 +1687,24 @@ footer > div {
     margin-top: 85px;
 }
 
-@media (max-width: 376px){
-    #homePage{
+@media (max-width: 376px) {
+    #homePage {
         margin-top: 125px;
     }
 }
 
-@media (max-width: 321px){
-    #homePage{
+@media (max-width: 321px) {
+    #homePage {
         margin-top: 55px;
     }
 }
 
-#staticBackdropLabel{
+#staticBackdropLabel {
     font-size: 33px;
 }
 
-@media (max-width: 321px){
-    #rdbRememberMe{
+@media (max-width: 321px) {
+    #rdbRememberMe {
         margin-bottom: 17px;
     }
 }
