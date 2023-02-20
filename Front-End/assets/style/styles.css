@@ -1699,7 +1699,7 @@ footer > div {
     }
 }
 
-#staticBackdropLabel {
+#loginFormHeader, #registerFormHeader {
     font-size: 33px;
 }
 
