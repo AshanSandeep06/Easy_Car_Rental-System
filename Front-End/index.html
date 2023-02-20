@@ -170,8 +170,36 @@
                     </div>
                 </div>
 
-                <div class="row justify-content-center">
+                <div id="resetPasswordForm" class="row justify-content-center"
+                     style="padding-left: 30px;padding-right: 30px;">
+                    <form class="row p-0 m-0">
+                        <div class="mb-3">
+                            <label for="txtResetUsername" class="form-label">Username</label>
+                            <input type="text" class="form-control" id="txtResetUsername">
+                        </div>
 
+                        <div class="mb-3">
+                            <label for="txtResetNewPassword" class="form-label">New Password</label>
+                            <input type="text" class="form-control" id="txtResetNewPassword">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="txtResetConfirmPassword" class="form-label">Confirm Password</label>
+                            <input type="text" class="form-control" id="txtResetConfirmPassword">
+                        </div>
+
+                        <div class="col-md-6 text-center" style="margin-bottom: 25px!important;">
+                            <button style="padding-left: 30px;padding-right: 30px;" type="submit"
+                                    class="btn btn-primary">Reset
+                            </button>
+                        </div>
+
+                        <div class="col-md-6 text-center">
+                            <button style="padding-left: 20px;padding-right: 20px;" type="submit"
+                                    class="btn btn-danger">Cancel
+                            </button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -911,5 +939,11 @@
 <script src="assets/jquery/jquery-3.6.1.min.js"></script>
 <script src="assets/bootstrap/js/bootstrap.min.js"></script>
 <script src="controller/HomeController.js"></script>
+
+<script>
+    $("#loginFormBody").css('display', 'none');
+    $("#staticBackdropLabel").text("Reset Password");
+</script>
+
 </body>
 </html>
