@@ -1724,3 +1724,10 @@ footer > div {
     padding: 8px 25px;
     font-size: 17px;
 }
+
+#btnRegisterNow {
+    background: none;
+    color: #0d6efd;
+    border: navajowhite;
+    padding: 0;
+}
