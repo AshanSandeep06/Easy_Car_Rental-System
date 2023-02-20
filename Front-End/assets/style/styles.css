@@ -1708,3 +1708,9 @@ footer > div {
         margin-bottom: 17px;
     }
 }
+
+@media (max-width: 426px) {
+    #btnResetPassword {
+        margin-bottom: 18px;
+    }
+}
