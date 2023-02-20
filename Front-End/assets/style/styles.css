@@ -1731,3 +1731,35 @@ footer > div {
     border: navajowhite;
     padding: 0;
 }
+
+@media (max-width: 1025px) {
+    #sortingSection {
+        margin-top: 40px;
+    }
+}
+
+@media (max-width: 321px) {
+    .svg-wrapper {
+        width: 92%;
+    }
+
+    .svg-wrapper > p:nth-child(2) {
+        top: 12px !important;
+    }
+
+    .svg-wrapper > p:nth-child(3) {
+        top: 37px !important;
+    }
+
+    .svg-wrapper > p:nth-child(4) {
+        top: 61px !important;
+    }
+
+    .svg-wrapper > p:nth-child(5) {
+        top: 102px !important;
+    }
+
+    .svg-wrapper > button {
+        top: 175px !important;
+    }
+}
