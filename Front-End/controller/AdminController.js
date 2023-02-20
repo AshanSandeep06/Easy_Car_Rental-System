@@ -26,3 +26,14 @@ $(".btnDeny").on('click', function () {
         }
     })
 });
+
+/* =============================================================================== */
+
+/* ---------------------------------------- Manage Vehicle ----------------------------------------------- */
+
+$("#txtUploadCarImages")
+
+$("#btnAddCar").on('click', function () {
+    let formData = $("#manageVehicleForm").serialize();
+    formData.append("", "");
+});

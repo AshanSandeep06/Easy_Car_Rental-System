@@ -232,20 +232,20 @@
                 </div>
                 <div class="carousel-inner">
                     <div class="carousel-item active text-center">
-                        <img src="/assets/img/alto_K10-front.png" class="d-inline-block img-fluid" alt="...">
+                        <img id="carFront_image" src="" class="d-inline-block img-fluid">
                     </div>
 
                     <div class="carousel-item text-center">
-                        <img src="/assets/img/alto_K10-back.png" class="d-inline-block img-fluid" alt="...">
+                        <img id="carBack_image" src="" class="d-inline-block img-fluid">
                     </div>
 
                     <div class="carousel-item text-center">
-                        <img src="/assets/img/alto_K10-interior.jpg" class="d-inline-block img-fluid" alt="...">
+                        <img id="carSide_image" src="" class="d-inline-block img-fluid">
                     </div>
 
                     <div class="carousel-item text-center">
-                        <img style="height: 320px; object-fit: contain;" src="/assets/img/alto_K10-side.png"
-                             class="d-inline-block img-fluid" alt="...">
+                        <img id="carInterior_image" style="height: 320px; object-fit: contain;" src=""
+                             class="d-inline-block img-fluid">
                     </div>
                 </div>
 
@@ -293,9 +293,9 @@
                     <label for="txtCarType" class="form-label">Vehicle Type</label>
                     <select id="txtCarType" class="form-select" aria-label="Default select example" name="type">
                         <option selected disabled>Select Vehicle Type</option>
-                        <option value="1">General</option>
-                        <option value="2">Premium</option>
-                        <option value="3">Luxury</option>
+                        <option>General</option>
+                        <option>Premium</option>
+                        <option>Luxury</option>
                     </select>
                 </div>
 
@@ -330,10 +330,11 @@
 
                 <div class="col-md-4">
                     <label for="txtTransmissionType" class="form-label">Transmission Type</label>
-                    <select id="txtTransmissionType" class="form-select" aria-label="Default select example" name="transmissionType">
+                    <select id="txtTransmissionType" class="form-select" aria-label="Default select example"
+                            name="transmissionType">
                         <option selected disabled>Select Transmission Type</option>
-                        <option value="1">Manual</option>
-                        <option value="2">Auto</option>
+                        <option>Manual</option>
+                        <option>Auto</option>
                     </select>
                 </div>
 
@@ -346,8 +347,8 @@
                     <label for="txtFuelType" class="form-label">Fuel Type</label>
                     <select id="txtFuelType" class="form-select" aria-label="Default select example" name="fuelType">
                         <option selected disabled>Select Fuel Type</option>
-                        <option value="1">Diesel</option>
-                        <option value="2">Petrol</option>
+                        <option>Diesel</option>
+                        <option>Petrol</option>
                     </select>
                 </div>
 
@@ -370,12 +371,13 @@
 
                 <div class="col-md-5">
                     <label for="txtAvailabilityType" class="form-label">Availability Type</label>
-                    <select id="txtAvailabilityType" class="form-select" aria-label="Default select example" name="availabilityType">
+                    <select id="txtAvailabilityType" class="form-select" aria-label="Default select example"
+                            name="availabilityType">
                         <option selected disabled>Select Availability Type</option>
-                        <option value="1">Available</option>
-                        <option value="2">Unavailable</option>
-                        <option value="3">Under Maintenance</option>
-                        <option value="4">Need Maintenance</option>
+                        <option>Available</option>
+                        <option>Unavailable</option>
+                        <option>Under Maintenance</option>
+                        <option>Need Maintenance</option>
                     </select>
                 </div>
 
@@ -383,10 +385,10 @@
 
                 <div class="btn-group col-md-9 col-12 btnGroup" role="group"
                      aria-label="Basic mixed styles example">
-                    <button type="button" class="btn btn-success">+ Add Car</button>
-                    <button type="button" class="btn btn-primary">Update</button>
-                    <button type="button" class="btn btn-danger">Delete</button>
-                    <button type="button" class="btn btn-secondary">Clear</button>
+                    <button id="btnAddCar" type="button" class="btn btn-success">+ Add Car</button>
+                    <button id="btnUpdateCar" type="button" class="btn btn-primary">Update</button>
+                    <button id="btnDeleteCar" type="button" class="btn btn-danger">Delete</button>
+                    <button id="btnClearCarData" type="button" class="btn btn-secondary">Clear</button>
                 </div>
             </form>
         </section>
