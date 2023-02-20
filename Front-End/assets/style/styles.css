@@ -1714,3 +1714,13 @@ footer > div {
         margin-bottom: 18px;
     }
 }
+
+#btnRegister_registerForm {
+    padding: 8px 43px;
+    font-size: 17px;
+}
+
+#btnCancel_registerForm {
+    padding: 8px 25px;
+    font-size: 17px;
+}
