@@ -83,7 +83,7 @@ $("#interiorCarImageUploader").on('change', function (e) {
 
 // Add Car
 $("#btnAddCar").on('click', function () {
-    let formData = $("#manageVehicleForm").serialize();
+    let formData = $("#manageCarForm").serialize();
 
     $.ajax({
         url: baseUrl + "car",
