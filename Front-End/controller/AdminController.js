@@ -170,7 +170,6 @@ function uploadCarImages(carId) {
         processData: false,
         data: imagesData,
         success: function (res) {
-            // $("#carInterior_image").attr('src', `data:image/png;base64,${res}`);
             alert("Images Uploaded..!");
         }
     })
