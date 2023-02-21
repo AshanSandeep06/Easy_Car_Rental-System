@@ -1,4 +1,4 @@
-let baseUrl = "http://localhost:8080/Back-End";
+let baseUrl = "http://localhost:8080/Back-End/";
 
 $("#adminDashboard").css('display', 'none');
 $("#manageRentalRequests_section").css('display', 'none');
@@ -84,5 +84,18 @@ $("#interiorCarImageUploader").on('change', function (e) {
 // Add Car
 $("#btnAddCar").on('click', function () {
     let formData = $("#manageVehicleForm").serialize();
-    console.log(formData)
+
+    $.ajax({
+        url: baseUrl + "car",
+        method: "post",
+        data: formData,
+        dataType: "json",
+        success: function (res) {
+            alert(res.message);
+        },
+
+        error: function (error) {
+            alert(JSON.parse(error.responseText).message);
+        }
+    });
 });
