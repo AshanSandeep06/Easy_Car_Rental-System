@@ -83,19 +83,21 @@ $("#interiorCarImageUploader").on('change', function (e) {
 
 // Add Car
 $("#btnAddCar").on('click', function () {
-    let formData = $("#manageCarForm").serialize();
+    let formData = new FormData($("#manageCarForm")[0]);
 
     $.ajax({
         url: baseUrl + "car",
         method: "post",
         data: formData,
-        dataType: "json",
+        processData: false,
+        contentType: false,
         success: function (res) {
-            alert(res.message);
+            alert("Success Invoked..!");
         },
 
         error: function (error) {
-            alert(JSON.parse(error.responseText).message);
+            // alert(JSON.parse(error.responseText).message);
+            alert("Error Invoking..!");
         }
     });
 });

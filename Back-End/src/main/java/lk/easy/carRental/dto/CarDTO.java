@@ -11,6 +11,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.multipart.MultipartFile;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -20,16 +22,21 @@ public class CarDTO {
     private String carId;
     private String registerNum;
     private String brand;
-    private CarType type;
-    private PriceRate priceRate;
-    private Mileage freeMileage;
+    private String type;
+    private double dailyRate;
+    private double monthlyRate;
+    private double dailyMileage;
+    private double monthlyMileage;
     private String color;
-    private TransmissionType transmissionType;
+    private String transmissionType;
     private int numOfPassengers;
-    private FuelType fuelType;
+    private String fuelType;
     private double pricePerExtraKM;
     private double lossDamageWaiver;
     private double lastServiceMileage;
-    private VehicleImage vehicleImages;
-    private CarAvailabilityType availabilityType;
+    private MultipartFile front;
+    private MultipartFile back;
+    private MultipartFile side;
+    private MultipartFile interior;
+    private String availabilityType;
 }

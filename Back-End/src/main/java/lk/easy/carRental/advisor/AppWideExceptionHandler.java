@@ -11,7 +11,7 @@ public class AppWideExceptionHandler {
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     @ExceptionHandler({RuntimeException.class})
     public String handleExceptions(RuntimeException e){
-        System.out.println(e.getMessage());
+        System.out.println("Exception Occurred : "+e.getMessage());
         return e.getMessage();
     }
 }
