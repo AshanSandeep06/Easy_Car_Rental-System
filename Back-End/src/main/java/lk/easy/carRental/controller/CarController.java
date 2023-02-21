@@ -32,14 +32,11 @@ public class CarController {
 
         try {
             String pathDirectory = new File("F:\\Ijse\\GDSE 60\\Easy_Car_Rental-System\\Front-End\\assets\\img\\uploads\\carImages\\").getAbsolutePath();
-            System.out.println(pathDirectory);
 
             Path frontImageLocation = Paths.get(pathDirectory + "/" + front.getOriginalFilename());
             Path backImageLocation = Paths.get(pathDirectory + "/" + back.getOriginalFilename());
             Path sideImageLocation = Paths.get(pathDirectory + "/" + side.getOriginalFilename());
             Path interiorImageLocation = Paths.get(pathDirectory + "/" + interior.getOriginalFilename());
-
-            System.out.println(frontImageLocation + " " + backImageLocation + " " + sideImageLocation + " " + interiorImageLocation);
 
             byte[] frontImageBytes = front.getBytes();
             byte[] backImageBytes = back.getBytes();
