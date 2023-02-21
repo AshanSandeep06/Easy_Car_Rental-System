@@ -32,32 +32,18 @@ $(".btnDeny").on('click', function () {
 /* =============================================================================== */
 
 /* ---------------------------------------- Manage Vehicle ----------------------------------------------- */
-$("#imagesUploader").on('change', function () {
-    if ($("#all_Car_carousel_images").children().hasClass("active")) {
-        var formData = new FormData($('#imageUploaderForm')[0]);
-
-        $.ajax({
-            url: baseUrl + "/imageController",
-            type: "post",
-            data: formData,
-            contentType: false,
-            processData: false,
-            success: function (response) {
-                if ($("#all_Car_carousel_images").children(":eq(0)").hasClass("active")) {
-                    $("#all_Car_carousel_images").children(":eq(0)").children().attr('src', `data:image/png;base64,${response}`);
-                } else if ($("#all_Car_carousel_images").children(":eq(1)").hasClass("active")) {
-                    $("#all_Car_carousel_images").children(":eq(1)").children().attr('src', `data:image/png;base64,${response}`);
-                } else if ($("#all_Car_carousel_images").children(":eq(2)").hasClass("active")) {
-                    $("#all_Car_carousel_images").children(":eq(2)").children().attr('src', `data:image/png;base64,${response}`);
-                } else {
-                    $("#all_Car_carousel_images").children(":eq(3)").children().attr('src', `data:image/png;base64,${response}`);
-                }
-            }
-        });
+$("#frontCarImageUploader").on('change', function (e) {
+    let file = e.target.files;
+    if (FileReader && file && file.length) {
+        let reader = new FileReader();
+        reader.onload = function () {
+            $("#carFront_image").attr('src', reader.result);
+        }
+        reader.readAsDataURL(file[0]);
     }
 });
 
-/*$("#btnAddCar").on('click', function () {
-    let formData = $("#manageVehicleForm").serialize();
-    formData.append("", "");
-});*/
+// Add Car
+$("#btnAddCar").on('click', function () {
+
+});

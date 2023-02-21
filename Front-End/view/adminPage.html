@@ -217,58 +217,76 @@
     </section>
 
     <section class="row justify-content-lg-center">
-        <form id="imageUploaderForm" class="row col-xl-4 d-lg-flex d-md-flex justify-content-md-center justify-content-lg-center"
-                 style="height: 372px; margin-bottom: 45px;">
-            <div id="manageVehicleCarousel" class="carousel slide col-12 justify-content-center" data-bs-ride="false">
-                <div class="carousel-indicators">
-                    <button type="button" data-bs-target="#manageVehicleCarousel" data-bs-slide-to="0" class="active"
-                            aria-current="true" aria-label="Slide 1"></button>
-                    <button type="button" data-bs-target="#manageVehicleCarousel" data-bs-slide-to="1"
-                            aria-label="Slide 2"></button>
-                    <button type="button" data-bs-target="#manageVehicleCarousel" data-bs-slide-to="2"
-                            aria-label="Slide 3"></button>
-                    <button type="button" data-bs-target="#manageVehicleCarousel" data-bs-slide-to="3"
-                            aria-label="Slide 4"></button>
-                </div>
-                <div id="all_Car_carousel_images" class="carousel-inner">
-                    <div id="carFront_image_carousel" class="carousel-item active text-center">
-                        <img id="carFront_image" class="d-inline-block img-fluid">
-                    </div>
-
-                    <div id="carBack_image_carousel" class="carousel-item text-center">
-                        <img id="carBack_image" class="d-inline-block img-fluid">
-                    </div>
-
-                    <div id="carSide_image_carousel" class="carousel-item text-center">
-                        <img id="carSide_image" class="d-inline-block img-fluid">
-                    </div>
-
-                    <div id="carInterior_image_carousel" class="carousel-item text-center">
-                        <img id="carInterior_image" style="height: 320px; object-fit: contain;"
-                             class="d-inline-block img-fluid">
-                    </div>
-                </div>
-
-                <button class="carousel-control-prev" type="button" data-bs-target="#manageVehicleCarousel"
-                        data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-
-                <button class="carousel-control-next" type="button" data-bs-target="#manageVehicleCarousel"
-                        data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </button>
-            </div>
-
-            <div>
-                <input class="form-control col-6" type="file" id="imagesUploader" name="imagesUploader">
-            </div>
-        </form>
-
+        <!--<form id="imageUploaderForm"
+              class="row col-xl-4 d-lg-flex d-md-flex justify-content-md-center justify-content-lg-center">
+        </form>-->
         <section class="col-xl-7 justify-content-center">
             <form id="manageVehicleForm" class="row g-3">
+                <div id="manageVehicleCarousel" class="carousel slide col-12 justify-content-center" data-bs-ride="false">
+                    <div class="carousel-indicators">
+                        <button type="button" data-bs-target="#manageVehicleCarousel" data-bs-slide-to="0" class="active"
+                                aria-current="true" aria-label="Slide 1"></button>
+                        <button type="button" data-bs-target="#manageVehicleCarousel" data-bs-slide-to="1"
+                                aria-label="Slide 2"></button>
+                        <button type="button" data-bs-target="#manageVehicleCarousel" data-bs-slide-to="2"
+                                aria-label="Slide 3"></button>
+                        <button type="button" data-bs-target="#manageVehicleCarousel" data-bs-slide-to="3"
+                                aria-label="Slide 4"></button>
+                    </div>
+                    <div id="all_Car_carousel_images" class="carousel-inner">
+                        <div id="carFront_image_carousel" class="carousel-item active text-center">
+                            <img id="carFront_image" class="d-inline-block img-fluid">
+                        </div>
+
+                        <div id="carBack_image_carousel" class="carousel-item text-center">
+                            <img style="height: 320px; object-fit: contain;" id="carBack_image"
+                                 class="d-inline-block img-fluid">
+                        </div>
+
+                        <div id="carSide_image_carousel" class="carousel-item text-center">
+                            <img style="height: 320px; object-fit: contain;" id="carSide_image"
+                                 class="d-inline-block img-fluid">
+                        </div>
+
+                        <div id="carInterior_image_carousel" class="carousel-item text-center">
+                            <img id="carInterior_image" style="height: 320px; object-fit: contain;"
+                                 class="d-inline-block img-fluid">
+                        </div>
+                    </div>
+
+                    <button class="carousel-control-prev" type="button" data-bs-target="#manageVehicleCarousel"
+                            data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+
+                    <button class="carousel-control-next" type="button" data-bs-target="#manageVehicleCarousel"
+                            data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+
+                <div>
+                    <label for="frontCarImageUploader" class="form-label">Upload Front Image</label>
+                    <input class="form-control col-6 mb-3" type="file" id="frontCarImageUploader" name="front">
+                </div>
+
+                <div>
+                    <label for="backCarImageUploader" class="form-label">Upload Back Image</label>
+                    <input class="form-control col-6 mb-3" type="file" id="backCarImageUploader" name="back">
+                </div>
+
+                <div>
+                    <label for="sideCarImageUploader" class="form-label">Upload Side Image</label>
+                    <input class="form-control col-6 mb-3" type="file" id="sideCarImageUploader" name="side">
+                </div>
+
+                <div>
+                    <label for="interiorCarImageUploader" class="form-label">Upload Interior Image</label>
+                    <input class="form-control col-6 mb-3" type="file" id="interiorCarImageUploader" name="interior">
+                </div>
+
                 <div class="col-md-4">
                     <label for="txtCarID" class="form-label">Car ID</label>
                     <input type="text" class="form-control" id="txtCarID" name="carId">

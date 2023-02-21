@@ -10,14 +10,10 @@ import java.util.Base64;
 @RequestMapping("/imageController")
 @CrossOrigin
 public class ImageController {
-    @GetMapping
-    public void save(){
-        System.out.println("GetMapping Invoked..!");
-    }
     @PostMapping
     public String uploadFile(@RequestParam("imagesUploader") MultipartFile file) {
         try {
-            System.out.println("Hiii im here");
+            System.out.println("Image Received -------------------");
             byte[] bytes = file.getBytes();
             return Base64.getEncoder().encodeToString(bytes);
         } catch (IOException e) {
