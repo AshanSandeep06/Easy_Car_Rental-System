@@ -34,9 +34,5 @@ public class CarDTO {
     private double pricePerExtraKM;
     private double lossDamageWaiver;
     private double lastServiceMileage;
-    private MultipartFile front;
-    private MultipartFile back;
-    private MultipartFile side;
-    private MultipartFile interior;
     private String availabilityType;
 }

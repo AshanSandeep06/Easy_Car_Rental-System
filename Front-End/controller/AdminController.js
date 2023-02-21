@@ -83,15 +83,14 @@ $("#interiorCarImageUploader").on('change', function (e) {
 
 // Add Car
 $("#btnAddCar").on('click', function () {
-    let formData = new FormData($("#manageCarForm")[0]);
+    let formData = $("#manageCarForm").serialize();
 
     $.ajax({
         url: baseUrl + "car",
         method: "post",
         data: formData,
-        processData: false,
-        contentType: false,
         success: function (res) {
+            uploadCarImages($("#txtCarID").val());
             alert("Success Invoked..!");
         },
 
@@ -101,3 +100,37 @@ $("#btnAddCar").on('click', function () {
         }
     });
 });
+
+
+// ----------------------------------------------------------
+function uploadCarImages(carId) {
+    var frontImage = $('#frontCarImageUploader')[0].files[0];
+    var frontImageName = carId + "-front-" + $('#frontCarImageUploader')[0].files[0].name;
+
+    var backImage = $('#backCarImageUploader')[0].files[0];
+    var backImageName = carId + "-back-" + $('#backCarImageUploader')[0].files[0].name;
+
+    var sideImage = $('#sideCarImageUploader')[0].files[0];
+    var sideImageName = carId + "-side-" + $('#sideCarImageUploader')[0].files[0].name;
+
+    var interiorImage = $('#interiorCarImageUploader')[0].files[0];
+    var interiorImageName = carId + "-interior-" + $('#interiorCarImageUploader')[0].files[0].name;
+
+    var imagesData = new FormData();
+    imagesData.append("front", frontImage, frontImageName);
+    imagesData.append("back", backImage, backImageName);
+    imagesData.append("side", sideImage, sideImageName);
+    imagesData.append("interior", interiorImage, interiorImageName);
+
+    $.ajax({
+        url: baseUrl + "car/uploadCarImages",
+        method: "PUT",
+        contentType: false,
+        processData: false,
+        data: imagesData,
+        success: function (res) {
+            // $("#carInterior_image").attr('src', `data:image/png;base64,${res}`);
+            alert("Images Uploaded..!");
+        }
+    })
+}
