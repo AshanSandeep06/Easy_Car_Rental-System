@@ -29,6 +29,47 @@ $(".btnDeny").on('click', function () {
     })
 });
 
+bindRowClickEvents();
+
+function bindRowClickEvents() {
+    $("#tblManageVehicle>tbody>tr").on('click', function () {
+        let carId = $(this).children(":eq(0)").text();
+        let regNo = $(this).children(":eq(1)").text();
+        let brand = $(this).children(":eq(2)").text();
+        let type = $(this).children(":eq(3)").text();
+        let dailyRate = $(this).children(":eq(4)").text();
+        let monthlyRate = $(this).children(":eq(5)").text();
+        let dailyMileage = $(this).children(":eq(6)").text();
+        let monthlyMileage = $(this).children(":eq(7)").text();
+        let color = $(this).children(":eq(8)").text();
+        let transmissionType = $(this).children(":eq(9)").text();
+        let noOfPassengers = $(this).children(":eq(10)").text();
+        let fuelType = $(this).children(":eq(11)").text();
+        let pricePerExtraKm = $(this).children(":eq(12)").text();
+        let LDW = $(this).children(":eq(13)").text();
+        let lastServiceMileage = $(this).children(":eq(14)").text();
+        let availabilityType = $(this).children(":eq(15)").text();
+
+        $('#txtCarID').val(carId);
+        $('#txtRegNo').val(regNo);
+        $('#txtCarBrand').val(brand);
+        $('#txtCarType').val(type);
+        $('#txtDailyRate').val(dailyRate);
+        $('#txtMonthlyRate').val(monthlyRate);
+        $('#txtDailyMileage').val(dailyMileage);
+        $('#txtMonthlyMileage').val(monthlyMileage);
+        $('#txtCarColor').val(color);
+        $('#txtTransmissionType').val(transmissionType);
+        $('#txtNoOfPassengers').val(noOfPassengers);
+        $('#txtFuelType').val(fuelType);
+        $('#txtPricePerExtraKm').val(pricePerExtraKm);
+        $('#txtLDWPayment').val(LDW);
+        $('#txtLastServiceMileage').val(lastServiceMileage);
+        $('#txtAvailabilityType').val(availabilityType);
+
+    });
+}
+
 /* =============================================================================== */
 
 /* ---------------------------------------- Manage Vehicle Section ----------------------------------------------- */
