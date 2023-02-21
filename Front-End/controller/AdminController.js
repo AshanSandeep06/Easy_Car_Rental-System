@@ -105,16 +105,16 @@ $("#btnAddCar").on('click', function () {
 // ----------------------------------------------------------
 function uploadCarImages(carId) {
     var frontImage = $('#frontCarImageUploader')[0].files[0];
-    var frontImageName = carId + "-front-" + $('#frontCarImageUploader')[0].files[0].name;
+    var frontImageName = carId + "_front-image." + $('#frontCarImageUploader')[0].files[0].name.split(".")[1];
 
     var backImage = $('#backCarImageUploader')[0].files[0];
-    var backImageName = carId + "-back-" + $('#backCarImageUploader')[0].files[0].name;
+    var backImageName = carId + "_back-image." + $('#backCarImageUploader')[0].files[0].name.split(".")[1]
 
     var sideImage = $('#sideCarImageUploader')[0].files[0];
-    var sideImageName = carId + "-side-" + $('#sideCarImageUploader')[0].files[0].name;
+    var sideImageName = carId + "_side-image." + $('#sideCarImageUploader')[0].files[0].name.split(".")[1];
 
     var interiorImage = $('#interiorCarImageUploader')[0].files[0];
-    var interiorImageName = carId + "-interior-" + $('#interiorCarImageUploader')[0].files[0].name;
+    var interiorImageName = carId + "_interior-image." + $('#interiorCarImageUploader')[0].files[0].name.split(".")[1];
 
     var imagesData = new FormData();
     imagesData.append("front", frontImage, frontImageName);
