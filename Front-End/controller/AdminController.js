@@ -31,7 +31,7 @@ $(".btnDeny").on('click', function () {
 
 /* =============================================================================== */
 
-/* ---------------------------------------- Manage Vehicle Scetion ----------------------------------------------- */
+/* ---------------------------------------- Manage Vehicle Section ----------------------------------------------- */
 
 // Set Front Image
 $("#frontCarImageUploader").on('change', function (e) {
@@ -83,5 +83,6 @@ $("#interiorCarImageUploader").on('change', function (e) {
 
 // Add Car
 $("#btnAddCar").on('click', function () {
-
+    let formData = $("#manageVehicleForm").serialize();
+    console.log(formData)
 });
