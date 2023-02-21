@@ -31,13 +31,51 @@ $(".btnDeny").on('click', function () {
 
 /* =============================================================================== */
 
-/* ---------------------------------------- Manage Vehicle ----------------------------------------------- */
+/* ---------------------------------------- Manage Vehicle Scetion ----------------------------------------------- */
+
+// Set Front Image
 $("#frontCarImageUploader").on('change', function (e) {
     let file = e.target.files;
     if (FileReader && file && file.length) {
         let reader = new FileReader();
         reader.onload = function () {
             $("#carFront_image").attr('src', reader.result);
+        }
+        reader.readAsDataURL(file[0]);
+    }
+});
+
+// Set Back Image
+$("#backCarImageUploader").on('change', function (e) {
+    let file = e.target.files;
+    if (FileReader && file && file.length) {
+        let reader = new FileReader();
+        reader.onload = function () {
+            $("#carBack_image").attr('src', reader.result);
+        }
+        reader.readAsDataURL(file[0]);
+    }
+});
+
+// Set Side Image
+$("#sideCarImageUploader").on('change', function (e) {
+    let file = e.target.files;
+    if (FileReader && file && file.length) {
+        let reader = new FileReader();
+        reader.onload = function () {
+            $("#carSide_image").attr('src', reader.result);
+        }
+        reader.readAsDataURL(file[0]);
+    }
+});
+
+// Set Interior Image
+$("#interiorCarImageUploader").on('change', function (e) {
+    let file = e.target.files;
+    if (FileReader && file && file.length) {
+        let reader = new FileReader();
+        reader.onload = function () {
+            $("#carInterior_image").attr('src', reader.result);
         }
         reader.readAsDataURL(file[0]);
     }
