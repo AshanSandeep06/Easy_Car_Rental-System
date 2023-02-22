@@ -185,7 +185,7 @@ function uploadCarImages(carId) {
     imagesData.append("interior", interiorImage, interiorImageName);
 
     $.ajax({
-        url: baseUrl + "car/uploadCarImages",
+        url: baseUrl + "car/uploadCarImages/"+carId,
         method: "PUT",
         contentType: false,
         processData: false,

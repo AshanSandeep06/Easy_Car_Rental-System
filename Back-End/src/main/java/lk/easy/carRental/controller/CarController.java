@@ -36,8 +36,8 @@ public class CarController {
         }
     }
 
-    @PutMapping(path = "/uploadCarImages")
-    public ResponseUtil uploadImages(@ModelAttribute VehicleImageDTO imageDTO) {
+    @PutMapping(path = "/uploadCarImages/{carId}")
+    public ResponseUtil uploadImages(@ModelAttribute VehicleImageDTO imageDTO, @PathVariable("carId") String carId) {
         try {
             String pathDirectory = new File("F:\\Ijse\\GDSE 60\\Easy_Car_Rental-System\\Front-End\\assets\\img\\uploads\\carImages\\").getAbsolutePath();
 
@@ -60,6 +60,8 @@ public class CarController {
             imageDTO.getBack().transferTo(backImageLocation);
             imageDTO.getSide().transferTo(sideImageLocation);
             imageDTO.getInterior().transferTo(interiorImageLocation);
+
+            carService.uploadCarImages(carId, imageDTO.getFront().getOriginalFilename(), imageDTO.getBack().getOriginalFilename(), imageDTO.getSide().getOriginalFilename(), imageDTO.getInterior().getOriginalFilename());
 
             return new ResponseUtil("Ok", "Successfully Uploaded Car Images", null);
         } catch (IOException e) {

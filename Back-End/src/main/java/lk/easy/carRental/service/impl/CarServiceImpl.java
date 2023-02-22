@@ -21,10 +21,10 @@ public class CarServiceImpl implements CarService {
 
     @Override
     public void saveCar(CarDTO carDTO) {
-        if(!carRepo.existsById(carDTO.getCarId())){
+        if (!carRepo.existsById(carDTO.getCarId())) {
             Car entity = mapper.map(carDTO, Car.class);
             carRepo.save(entity);
-        }else{
+        } else {
             throw new RuntimeException("This Vehicle Already Exists, Therefore Can't be Saved..!");
         }
     }
@@ -42,5 +42,14 @@ public class CarServiceImpl implements CarService {
     @Override
     public ArrayList<CarDTO> getAllCars() {
         return null;
+    }
+
+    @Override
+    public void uploadCarImages(String carId, String frontImage, String backImage, String sideImage, String interiorImage) {
+        if (carRepo.existsById(carId)) {
+            carRepo.uploadCarImages(carId, frontImage, backImage, sideImage, interiorImage);
+        } else {
+            throw new RuntimeException("There is No Such a Car to Upload Car Images");
+        }
     }
 }

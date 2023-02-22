@@ -9,6 +9,10 @@ import lk.easy.carRental.enums.FuelType;
 import lk.easy.carRental.enums.TransmissionType;
 import org.modelmapper.ModelMapper;
 
+import java.io.File;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
 public class Test {
     public static void main(String[] args) {
         Test t1 = new Test();
@@ -37,6 +41,17 @@ public class Test {
         Car entity = mapper.map(dto, Car.class);
 
         System.out.println(entity);*/
+
+
+        String pathDirectory = new File("F:\\Ijse\\GDSE 60\\Easy_Car_Rental-System\\Front-End\\assets\\img\\uploads\\carImages\\").getAbsolutePath();
+
+        String[] split = pathDirectory.split("Front-End");
+        System.out.println(Paths.get(split[1]));
+
+        /*Path frontImageLocation = Paths.get(pathDirectory);
+        System.out.println(frontImageLocation);*/
+
+
 
     }
 }
