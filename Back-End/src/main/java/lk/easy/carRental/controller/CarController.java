@@ -5,6 +5,7 @@ import lk.easy.carRental.dto.VehicleImageDTO;
 import lk.easy.carRental.service.CarService;
 import lk.easy.carRental.util.ResponseUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -88,4 +89,11 @@ public class CarController {
             return new ResponseUtil("Ok", e.getMessage(), null);
         }
     }
+
+    @DeleteMapping(params = {"carId"})
+    public ResponseUtil deleteCar(@RequestParam String carId) {
+        carService.deleteCar(carId);
+        return new ResponseUtil("OK", "Successfully Deleted Car..!", null);
+    }
+
 }

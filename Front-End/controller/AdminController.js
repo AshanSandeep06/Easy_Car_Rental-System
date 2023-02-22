@@ -369,7 +369,7 @@ $("#btnUpdateCar").on('click', function () {
 $("#btnDeleteCar").on('click', function () {
     let carId = $("#txtCarID").val();
     $.ajax({
-        url: baseUrl + "car?carID=" + carId,
+        url: baseUrl + "car?carId=" + carId,
         method: "delete",
         dataType: "json",
         success: function (resp) {

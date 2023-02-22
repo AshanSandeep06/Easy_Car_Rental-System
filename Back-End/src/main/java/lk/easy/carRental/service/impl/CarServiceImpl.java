@@ -42,7 +42,11 @@ public class CarServiceImpl implements CarService {
 
     @Override
     public void deleteCar(String carId) {
-
+        if (carRepo.existsById(carId)) {
+            carRepo.deleteById(carId);
+        } else {
+            throw new RuntimeException("There is No Such a Car, Therefore Can't be Deleted..!");
+        }
     }
 
     @Override
@@ -66,7 +70,7 @@ public class CarServiceImpl implements CarService {
         VehicleImage images = entity.getVehicleImages();
         if (images != null) {
             return new ImageDTO(images.getFront(), images.getBack(), images.getSide(), images.getInterior());
-        }else{
+        } else {
             throw new RuntimeException("This Car has no images yet..!");
         }
     }
