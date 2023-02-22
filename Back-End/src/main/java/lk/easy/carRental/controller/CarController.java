@@ -25,6 +25,11 @@ public class CarController {
     @Autowired
     private CarService carService;
 
+    @GetMapping
+    public ResponseUtil getAllCars(){
+        return new ResponseUtil("OK", "Successfully Loaded All Cars", carService.getAllCars());
+    }
+
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseUtil saveCar(@RequestBody CarDTO carDTO) {
