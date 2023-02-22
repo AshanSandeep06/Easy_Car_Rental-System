@@ -232,6 +232,18 @@ function clearManageCarSectionTextFields() {
     $("#txtLDWPayment").val("");
     $("#txtLastServiceMileage").val("");
     $("#txtAvailabilityType").val("Select Availability Type");
+
+    // Clear file choosers
+    $("#frontCarImageUploader").val("");
+    $("#backCarImageUploader").val("");
+    $("#sideCarImageUploader").val("");
+    $("#interiorCarImageUploader").val("");
+
+    // Clear images
+    $("#carFront_image").attr('src', "");
+    $("#carBack_image").attr('src', "");
+    $("#carSide_image").attr('src', "");
+    $("#carInterior_image").attr('src', "");
 }
 
 $("#btnClearCarData").on('click', function () {
