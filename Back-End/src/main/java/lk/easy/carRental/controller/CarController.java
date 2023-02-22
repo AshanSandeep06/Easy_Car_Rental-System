@@ -60,10 +60,10 @@ public class CarController {
             imageDTO.getBack().transferTo(backImageLocation);
             imageDTO.getSide().transferTo(sideImageLocation);
             imageDTO.getInterior().transferTo(interiorImageLocation);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
 
-        return new ResponseUtil("Ok", "Successfully Uploaded", null);
+            return new ResponseUtil("Ok", "Successfully Uploaded Car Images", null);
+        } catch (IOException e) {
+            return new ResponseUtil("Ok", e.getMessage(), null);
+        }
     }
 }
