@@ -1,6 +1,7 @@
 package lk.easy.carRental.controller;
 
 import lk.easy.carRental.dto.CarDTO;
+import lk.easy.carRental.dto.VehicleImageDTO;
 import lk.easy.carRental.service.CarService;
 import lk.easy.carRental.util.ResponseUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,35 +31,35 @@ public class CarController {
         if (carDTO != null) {
             carService.saveCar(carDTO);
             return new ResponseUtil("OK", "Successfully Saved..!", null);
-        }else{
+        } else {
             throw new RuntimeException("Received data is Empty");
         }
     }
 
     @PutMapping(path = "/uploadCarImages")
-    public ResponseUtil uploadImages(@RequestPart("front") MultipartFile front, @RequestPart("back") MultipartFile back, @RequestPart("side") MultipartFile side, @RequestPart("interior") MultipartFile interior) {
+    public ResponseUtil uploadImages(@ModelAttribute VehicleImageDTO imageDTO) {
         try {
             String pathDirectory = new File("F:\\Ijse\\GDSE 60\\Easy_Car_Rental-System\\Front-End\\assets\\img\\uploads\\carImages\\").getAbsolutePath();
 
-            Path frontImageLocation = Paths.get(pathDirectory + "/" + front.getOriginalFilename());
-            Path backImageLocation = Paths.get(pathDirectory + "/" + back.getOriginalFilename());
-            Path sideImageLocation = Paths.get(pathDirectory + "/" + side.getOriginalFilename());
-            Path interiorImageLocation = Paths.get(pathDirectory + "/" + interior.getOriginalFilename());
+            Path frontImageLocation = Paths.get(pathDirectory + "/" + imageDTO.getFront().getOriginalFilename());
+            Path backImageLocation = Paths.get(pathDirectory + "/" + imageDTO.getBack().getOriginalFilename());
+            Path sideImageLocation = Paths.get(pathDirectory + "/" + imageDTO.getSide().getOriginalFilename());
+            Path interiorImageLocation = Paths.get(pathDirectory + "/" + imageDTO.getInterior().getOriginalFilename());
 
-            byte[] frontImageBytes = front.getBytes();
-            byte[] backImageBytes = back.getBytes();
-            byte[] sideImageBytes = side.getBytes();
-            byte[] interiorImageBytes = interior.getBytes();
+            byte[] frontImageBytes = imageDTO.getFront().getBytes();
+            byte[] backImageBytes = imageDTO.getBack().getBytes();
+            byte[] sideImageBytes = imageDTO.getSide().getBytes();
+            byte[] interiorImageBytes = imageDTO.getInterior().getBytes();
 
             Files.write(frontImageLocation, frontImageBytes);
             Files.write(backImageLocation, backImageBytes);
             Files.write(sideImageLocation, sideImageBytes);
             Files.write(interiorImageLocation, interiorImageBytes);
 
-            front.transferTo(frontImageLocation);
-            back.transferTo(backImageLocation);
-            side.transferTo(sideImageLocation);
-            interior.transferTo(interiorImageLocation);
+            imageDTO.getFront().transferTo(frontImageLocation);
+            imageDTO.getBack().transferTo(backImageLocation);
+            imageDTO.getSide().transferTo(sideImageLocation);
+            imageDTO.getInterior().transferTo(interiorImageLocation);
         } catch (IOException e) {
             e.printStackTrace();
         }
