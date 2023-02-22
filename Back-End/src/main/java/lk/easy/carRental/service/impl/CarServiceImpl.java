@@ -32,9 +32,27 @@ public class CarServiceImpl implements CarService {
     }
 
     @Override
-    public void updateCar(CarDTO carDTO) {
-        if (carRepo.existsById(carDTO.getCarId())) {
-            carRepo.save(mapper.map(carDTO, Car.class));
+    public void updateCar(CarDTO dto) {
+        if (carRepo.existsById(dto.getCarId())) {
+//            carRepo.save(mapper.map(carDTO, Car.class));
+            carRepo.updateCar(
+                    dto.getCarId(),
+                    dto.getRegisterNum(),
+                    dto.getBrand(),
+                    dto.getType(),
+                    dto.getPriceRate().getDailyRate(),
+                    dto.getPriceRate().getMonthlyRate(),
+                    dto.getFreeMileage().getDailyMileage(),
+                    dto.getFreeMileage().getMonthlyMileage(),
+                    dto.getColor(),
+                    dto.getTransmissionType(),
+                    dto.getNumOfPassengers(),
+                    dto.getFuelType(),
+                    dto.getPricePerExtraKM(),
+                    dto.getLossDamageWaiver(),
+                    dto.getLastServiceMileage(),
+                    dto.getAvailabilityType()
+            );
         } else {
             throw new RuntimeException("There is No Such a Car, Therefore Can't be Updated..!");
         }
