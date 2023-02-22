@@ -65,6 +65,17 @@ function bindRowClickEventsOfTblManageVehicle() {
         $('#txtLastServiceMileage').val(lastServiceMileage);
         $('#txtAvailabilityType').val(availabilityType);
 
+        $.ajax({
+            url: baseUrl + "car/" + carId,
+            method: "get",
+            dataType: "json",
+            success: function (resp) {
+                $("#carFront_image").attr('src', "../assets/img/uploads/carImages/" + resp.data.front);
+                $("#carBack_image").attr('src', "../assets/img/uploads/carImages/" + resp.data.back);
+                $("#carSide_image").attr('src', "../assets/img/uploads/carImages/" + resp.data.side);
+                $("#carInterior_image").attr('src', "../assets/img/uploads/carImages/" + resp.data.interior);
+            }
+        });
     });
 }
 

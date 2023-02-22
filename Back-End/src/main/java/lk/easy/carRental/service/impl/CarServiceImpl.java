@@ -1,6 +1,8 @@
 package lk.easy.carRental.service.impl;
 
 import lk.easy.carRental.dto.CarDTO;
+import lk.easy.carRental.dto.ImageDTO;
+import lk.easy.carRental.embedded.VehicleImage;
 import lk.easy.carRental.entity.Car;
 import lk.easy.carRental.repo.CarRepo;
 import lk.easy.carRental.service.CarService;
@@ -42,7 +44,8 @@ public class CarServiceImpl implements CarService {
 
     @Override
     public ArrayList<CarDTO> getAllCars() {
-        return mapper.map(carRepo.findAll(), new TypeToken<ArrayList<CarDTO>>(){}.getType());
+        return mapper.map(carRepo.findAll(), new TypeToken<ArrayList<CarDTO>>() {
+        }.getType());
     }
 
     @Override
@@ -52,5 +55,12 @@ public class CarServiceImpl implements CarService {
         } else {
             throw new RuntimeException("There is No Such a Car to Upload Car Images");
         }
+    }
+
+    @Override
+    public ImageDTO getCarImages(String carId) {
+        Car entity = carRepo.getCarImages(carId);
+        VehicleImage images = entity.getVehicleImages();
+        return new ImageDTO(images.getFront(), images.getBack(), images.getSide(), images.getInterior());
     }
 }

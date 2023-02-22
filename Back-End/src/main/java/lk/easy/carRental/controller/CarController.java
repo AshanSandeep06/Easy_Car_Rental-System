@@ -26,8 +26,13 @@ public class CarController {
     private CarService carService;
 
     @GetMapping
-    public ResponseUtil getAllCars(){
+    public ResponseUtil getAllCars() {
         return new ResponseUtil("OK", "Successfully Loaded All Cars", carService.getAllCars());
+    }
+
+    @GetMapping("/{carId}")
+    public ResponseUtil getCarImages(@PathVariable String carId) {
+        return new ResponseUtil("OK", "Successfully Loaded Images of " + carId, carService.getCarImages(carId));
     }
 
     @ResponseStatus(HttpStatus.CREATED)
