@@ -29,13 +29,11 @@ public class Rent {
 
     private LocalDate returnDate;
 
-    @Enumerated(EnumType.STRING)
-    private RequestType requestTypeOfDriver;
+    private String requestTypeOfDriver;
 
     private String location;
 
-    @Enumerated(EnumType.STRING)
-    private RentStatusType rentStatus;
+    private String rentStatus;
 
     private String deniedReason;
 

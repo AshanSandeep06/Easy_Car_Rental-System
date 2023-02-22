@@ -14,6 +14,10 @@ import lombok.ToString;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.persistence.Embedded;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
@@ -23,10 +27,8 @@ public class CarDTO {
     private String registerNum;
     private String brand;
     private String type;
-    private double dailyRate;
-    private double monthlyRate;
-    private double dailyMileage;
-    private double monthlyMileage;
+    private PriceRate priceRate;
+    private Mileage freeMileage;
     private String color;
     private String transmissionType;
     private int numOfPassengers;

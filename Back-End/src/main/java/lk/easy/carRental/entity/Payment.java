@@ -19,8 +19,7 @@ public class Payment {
     @Id
     private String paymentId;
 
-    @Enumerated(EnumType.STRING)
-    private PaymentType paymentType;
+    private String paymentType;
 
     private LocalDate paymentDate;
 

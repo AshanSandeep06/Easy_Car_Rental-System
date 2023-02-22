@@ -1,7 +1,9 @@
 package lk.easy.carRental.controller;
 
 import lk.easy.carRental.dto.CarDTO;
+import lk.easy.carRental.service.CarService;
 import lk.easy.carRental.util.ResponseUtil;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,9 +20,17 @@ import java.nio.file.Paths;
 @CrossOrigin
 @RequestMapping("/car")
 public class CarController {
+    @Autowired
+    private CarService carService;
+
     @PostMapping
-    public void saveCar(@ModelAttribute CarDTO carDTO) {
-        System.out.println(carDTO);
+    public ResponseUtil saveCar(@RequestBody CarDTO carDTO) {
+        if (carDTO != null) {
+            carService.saveCar(carDTO);
+            return new ResponseUtil("OK", "Successfully Saved..!", null);
+        }else{
+            throw new RuntimeException("Received data is null");
+        }
     }
 
     @PutMapping(path = "/uploadCarImages")

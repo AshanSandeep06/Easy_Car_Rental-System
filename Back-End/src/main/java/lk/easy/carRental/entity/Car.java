@@ -26,9 +26,7 @@ public class Car {
     private String registerNum;
 
     private String brand;
-
-    @Enumerated(EnumType.STRING)
-    private CarType type;
+    private String type;
 
     @Embedded
     private PriceRate priceRate;
@@ -38,13 +36,11 @@ public class Car {
 
     private String color;
 
-    @Enumerated(EnumType.STRING)
-    private TransmissionType transmissionType;
+    private String transmissionType;
 
     private int numOfPassengers;
 
-    @Enumerated(EnumType.STRING)
-    private FuelType fuelType;
+    private String fuelType;
 
     private double pricePerExtraKM;
 
@@ -55,6 +51,5 @@ public class Car {
     @Embedded
     private VehicleImage vehicleImages;
 
-    @Enumerated(EnumType.STRING)
-    private CarAvailabilityType availabilityType;
+    private String availabilityType;
 }

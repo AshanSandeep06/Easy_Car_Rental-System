@@ -126,10 +126,35 @@ $("#interiorCarImageUploader").on('change', function (e) {
 $("#btnAddCar").on('click', function () {
     let formData = $("#manageCarForm").serialize();
 
+    let type = $("#txtCarType").val();
+    let dailyRate = $("#txtDailyRate").val();
+    let monthlyRate = $("#txtMonthlyRate").val();
+    let dailyMileage = $("#txtDailyMileage").val();
+    let monthlyMileage = $("#txtMonthlyMileage").val();
+    let transmissionType = $("#txtTransmissionType").val();
+
+    let carObject = {
+        carId: $("#txtCarID").val(),
+        registerNum: $("#txtRegNo").val(),
+        brand: $("#txtCarBrand").val(),
+        type: $("#txtCarType").val(),
+        priceRate: {dailyRate:dailyRate, monthlyRate:monthlyRate},
+        freeMileage: {dailyMileage:dailyMileage, monthlyMileage:monthlyMileage},
+        color: $("#txtCarColor").val(),
+        transmissionType: $("#txtTransmissionType").val(),
+        numOfPassengers: $("#txtNoOfPassengers").val(),
+        fuelType: $("#txtFuelType").val(),
+        pricePerExtraKM: $("#txtPricePerExtraKm").val(),
+        lossDamageWaiver: $("#txtLDWPayment").val(),
+        lastServiceMileage: $("#txtLastServiceMileage").val(),
+        availabilityType: $("#txtAvailabilityType").val(),
+    };
+
     $.ajax({
         url: baseUrl + "car",
         method: "post",
-        data: formData,
+        data: JSON.stringify(carObject),
+        contentType: "application/json",
         success: function (res) {
             uploadCarImages($("#txtCarID").val());
             alert("Success Invoked..!");

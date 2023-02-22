@@ -1,11 +1,13 @@
 package lk.easy.carRental.dto;
 
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-
-import java.io.File;
-import java.io.IOException;
-import java.net.URISyntaxException;
+import lk.easy.carRental.embedded.Mileage;
+import lk.easy.carRental.embedded.PriceRate;
+import lk.easy.carRental.entity.Car;
+import lk.easy.carRental.enums.CarAvailabilityType;
+import lk.easy.carRental.enums.CarType;
+import lk.easy.carRental.enums.FuelType;
+import lk.easy.carRental.enums.TransmissionType;
+import org.modelmapper.ModelMapper;
 
 public class Test {
     public static void main(String[] args) {
@@ -14,21 +16,27 @@ public class Test {
     }
 
     public void call(){
-        try {
-            String projectPath = new File(this.getClass().getProtectionDomain().getCodeSource().getLocation().toURI()).getParentFile().getParentFile().getAbsolutePath();
-            File uploadsDir = new File(projectPath + "/uploads");
-            System.out.println(projectPath);
-            System.out.println(uploadsDir);
+        /*CarDTO dto = new CarDTO();
+        dto.setCarId("V001");
+        dto.setRegisterNum("AAB-5680");
+        dto.setBrand("Suzuki");
+        dto.setType("General");
+        dto.setDailyRate(2500.00);
+        dto.setMonthlyRate(2500.00);
+        dto.setDailyMileage(100);
+        dto.setMonthlyMileage(100);
+        dto.setTransmissionType("Auto");
+        dto.setNumOfPassengers(4);
+        dto.setFuelType("Diesel");
+        dto.setPricePerExtraKM(30.00);
+        dto.setLossDamageWaiver(10000.00);
+        dto.setLastServiceMileage(400);
+        dto.setAvailabilityType("Available");
 
-            System.out.println(uploadsDir.getAbsolutePath());
-//            uploadsDir.mkdir();
-//            myFile.transferTo(new File(uploadsDir.getAbsolutePath() + "/" + myFile.getOriginalFilename()));
+        ModelMapper mapper = new ModelMapper();
+        Car entity = mapper.map(dto, Car.class);
 
-            //save the path of the uploaded image in the temporary database
-//            allImages.add("uploads/" + myFile.getOriginalFilename());
+        System.out.println(entity);*/
 
-        } catch (URISyntaxException e) {
-            e.printStackTrace();
-        }
     }
 }
