@@ -84,9 +84,9 @@ public class CarController {
 
             carService.uploadCarImages(carId, imageDTO.getFront().getOriginalFilename(), imageDTO.getBack().getOriginalFilename(), imageDTO.getSide().getOriginalFilename(), imageDTO.getInterior().getOriginalFilename());
 
-            return new ResponseUtil("Ok", "Successfully Uploaded Car Images", null);
+            return new ResponseUtil("OK", "Successfully Uploaded Car Images", null);
         } catch (IOException e) {
-            return new ResponseUtil("Ok", e.getMessage(), null);
+            return new ResponseUtil("Error", e.getMessage(), null);
         }
     }
 
@@ -96,4 +96,24 @@ public class CarController {
         return new ResponseUtil("OK", "Successfully Deleted Car..!", null);
     }
 
+    @DeleteMapping(path = "/deleteCarImages/{carId}")
+    public ResponseUtil deleteCarImages(@PathVariable String carId) {
+        try {
+            String pathDirectory = new File("F:\\Ijse\\GDSE 60\\Easy_Car_Rental-System\\Front-End\\assets\\img\\uploads\\carImages\\").getAbsolutePath();
+
+            Path frontImageLocation = Paths.get(pathDirectory + "/" + carId + "_front-image.png");
+            Path backImageLocation = Paths.get(pathDirectory + "/" + carId + "_back-image.png");
+            Path sideImageLocation = Paths.get(pathDirectory + "/" + carId + "_side-image.png");
+            Path interiorImageLocation = Paths.get(pathDirectory + "/" + carId + "_interior-image.png");
+
+            Files.delete(frontImageLocation);
+            Files.delete(backImageLocation);
+            Files.delete(sideImageLocation);
+            Files.delete(interiorImageLocation);
+
+            return new ResponseUtil("OK", "Successfully Deleted Car Images", null);
+        } catch (IOException e) {
+            return new ResponseUtil("Error", e.getMessage(), null);
+        }
+    }
 }

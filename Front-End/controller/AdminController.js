@@ -373,7 +373,7 @@ $("#btnDeleteCar").on('click', function () {
         method: "delete",
         dataType: "json",
         success: function (resp) {
-            alert(resp.message);
+            deleteCarImages(carId);
             loadAllCars();
         },
         error: function (error) {
@@ -381,3 +381,17 @@ $("#btnDeleteCar").on('click', function () {
         }
     });
 });
+
+function deleteCarImages(carId) {
+    $.ajax({
+        url: baseUrl + "car/deleteCarImages/" + carId,
+        method: "delete",
+        dataType: "json",
+        success: function (res) {
+            alert(res.message);
+        },
+        error: function (error) {
+            alert(JSON.parse(error.responseText).message);
+        }
+    })
+}
