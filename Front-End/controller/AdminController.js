@@ -364,3 +364,20 @@ $("#btnUpdateCar").on('click', function () {
         }
     })
 });
+
+// Delete Car
+$("#btnDeleteCar").on('click', function () {
+    let carId = $("#txtCarID").val();
+    $.ajax({
+        url: baseUrl + "car?carID=" + carId,
+        method: "delete",
+        dataType: "json",
+        success: function (resp) {
+            alert(resp.message);
+            loadAllCars();
+        },
+        error: function (error) {
+            alert(JSON.parse(error.responseText).message);
+        }
+    });
+});

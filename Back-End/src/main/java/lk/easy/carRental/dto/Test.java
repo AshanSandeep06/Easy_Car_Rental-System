@@ -10,6 +10,8 @@ import lk.easy.carRental.enums.TransmissionType;
 import org.modelmapper.ModelMapper;
 
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
@@ -20,36 +22,21 @@ public class Test {
     }
 
     public void call(){
-        /*CarDTO dto = new CarDTO();
-        dto.setCarId("V001");
-        dto.setRegisterNum("AAB-5680");
-        dto.setBrand("Suzuki");
-        dto.setType("General");
-        dto.setDailyRate(2500.00);
-        dto.setMonthlyRate(2500.00);
-        dto.setDailyMileage(100);
-        dto.setMonthlyMileage(100);
-        dto.setTransmissionType("Auto");
-        dto.setNumOfPassengers(4);
-        dto.setFuelType("Diesel");
-        dto.setPricePerExtraKM(30.00);
-        dto.setLossDamageWaiver(10000.00);
-        dto.setLastServiceMileage(400);
-        dto.setAvailabilityType("Available");
 
-        ModelMapper mapper = new ModelMapper();
-        Car entity = mapper.map(dto, Car.class);
+        try {
+            String pathDirectory = new File("F:\\Ijse\\GDSE 60\\Easy_Car_Rental-System\\Front-End\\assets\\img\\uploads\\carImages\\").getAbsolutePath();
 
-        System.out.println(entity);*/
+            Path frontImageLocation = Paths.get(pathDirectory + "/" + "V001_ashan-image.png");
+
+            Files.delete(frontImageLocation);
 
 
-        String pathDirectory = new File("F:\\Ijse\\GDSE 60\\Easy_Car_Rental-System\\Front-End\\assets\\img\\uploads\\carImages\\").getAbsolutePath();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
 
-        String[] split = pathDirectory.split("Front-End");
-        System.out.println(Paths.get(split[1]));
 
-        /*Path frontImageLocation = Paths.get(pathDirectory);
-        System.out.println(frontImageLocation);*/
+
 
 
 

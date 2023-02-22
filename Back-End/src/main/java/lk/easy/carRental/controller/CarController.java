@@ -57,7 +57,7 @@ public class CarController {
     }
 
     @PutMapping(path = "/uploadCarImages/{carId}")
-    public ResponseUtil uploadImages(@ModelAttribute VehicleImageDTO imageDTO, @PathVariable("carId") String carId) {
+    public ResponseUtil uploadAndUpdateImages(@ModelAttribute VehicleImageDTO imageDTO, @PathVariable("carId") String carId) {
         try {
             String pathDirectory = new File("F:\\Ijse\\GDSE 60\\Easy_Car_Rental-System\\Front-End\\assets\\img\\uploads\\carImages\\").getAbsolutePath();
 
