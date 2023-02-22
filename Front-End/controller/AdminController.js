@@ -368,12 +368,19 @@ $("#btnUpdateCar").on('click', function () {
 // Delete Car
 $("#btnDeleteCar").on('click', function () {
     let carId = $("#txtCarID").val();
+    deleteCarImages(carId);
     $.ajax({
         url: baseUrl + "car?carId=" + carId,
         method: "delete",
         dataType: "json",
         success: function (resp) {
-            deleteCarImages(carId);
+            Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: resp.message,
+                showConfirmButton: false,
+                timer: 1500
+            })
             loadAllCars();
         },
         error: function (error) {

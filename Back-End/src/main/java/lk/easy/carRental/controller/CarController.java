@@ -1,6 +1,7 @@
 package lk.easy.carRental.controller;
 
 import lk.easy.carRental.dto.CarDTO;
+import lk.easy.carRental.dto.ImageDTO;
 import lk.easy.carRental.dto.VehicleImageDTO;
 import lk.easy.carRental.service.CarService;
 import lk.easy.carRental.util.ResponseUtil;
@@ -101,10 +102,12 @@ public class CarController {
         try {
             String pathDirectory = new File("F:\\Ijse\\GDSE 60\\Easy_Car_Rental-System\\Front-End\\assets\\img\\uploads\\carImages\\").getAbsolutePath();
 
-            Path frontImageLocation = Paths.get(pathDirectory + "/" + carId + "_front-image.png");
-            Path backImageLocation = Paths.get(pathDirectory + "/" + carId + "_back-image.png");
-            Path sideImageLocation = Paths.get(pathDirectory + "/" + carId + "_side-image.png");
-            Path interiorImageLocation = Paths.get(pathDirectory + "/" + carId + "_interior-image.png");
+            ImageDTO imageDTO = carService.getCarImages(carId);
+
+            Path frontImageLocation = Paths.get(pathDirectory + "/"  + imageDTO.getFront());
+            Path backImageLocation = Paths.get(pathDirectory + "/" + imageDTO.getBack());
+            Path sideImageLocation = Paths.get(pathDirectory + "/" + imageDTO.getSide());
+            Path interiorImageLocation = Paths.get(pathDirectory + "/" + imageDTO.getInterior());
 
             Files.delete(frontImageLocation);
             Files.delete(backImageLocation);
