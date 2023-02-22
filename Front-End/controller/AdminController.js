@@ -157,21 +157,35 @@ $("#btnAddCar").on('click', function () {
         availabilityType: $("#txtAvailabilityType").val(),
     };
 
-    $.ajax({
-        url: baseUrl + "car",
-        method: "post",
-        data: JSON.stringify(carObject),
-        contentType: "application/json",
-        success: function (res) {
-            uploadCarImages($("#txtCarID").val());
-            alert("Success Invoked..!");
-        },
+    if ($('#frontCarImageUploader')[0].files[0] != null && $('#backCarImageUploader')[0].files[0] != null && $('#sideCarImageUploader')[0].files[0] != null && $('#interiorCarImageUploader')[0].files[0] != null) {
+        $.ajax({
+            url: baseUrl + "car",
+            method: "post",
+            data: JSON.stringify(carObject),
+            contentType: "application/json",
+            success: function (res) {
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'Car has been Successfully Saved',
+                    showConfirmButton: false,
+                    timer: 1500
+                })
 
-        error: function (error) {
-            // alert(JSON.parse(error.responseText).message);
-            alert("Error Invoking..!");
-        }
-    });
+                uploadCarImages($("#txtCarID").val());
+                loadAllCars();
+            },
+            error: function (error) {
+                alert(JSON.parse(error.responseText).message);
+            }
+        });
+    } else {
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'You Should Provide Car Images, Therefore, Can\'t be Save the Car'
+        })
+    }
 });
 
 
@@ -259,4 +273,94 @@ function clearManageCarSectionTextFields() {
 
 $("#btnClearCarData").on('click', function () {
     clearManageCarSectionTextFields();
+});
+
+// Update Car
+$("#btnUpdateCar").on('click', function () {
+    let dailyRate = $("#txtDailyRate").val();
+    let monthlyRate = $("#txtMonthlyRate").val();
+    let dailyMileage = $("#txtDailyMileage").val();
+    let monthlyMileage = $("#txtMonthlyMileage").val();
+
+    let carObject = {
+        carId: $("#txtCarID").val(),
+        registerNum: $("#txtRegNo").val(),
+        brand: $("#txtCarBrand").val(),
+        type: $("#txtCarType").val(),
+        priceRate: {dailyRate: dailyRate, monthlyRate: monthlyRate},
+        freeMileage: {dailyMileage: dailyMileage, monthlyMileage: monthlyMileage},
+        color: $("#txtCarColor").val(),
+        transmissionType: $("#txtTransmissionType").val(),
+        numOfPassengers: $("#txtNoOfPassengers").val(),
+        fuelType: $("#txtFuelType").val(),
+        pricePerExtraKM: $("#txtPricePerExtraKm").val(),
+        lossDamageWaiver: $("#txtLDWPayment").val(),
+        lastServiceMileage: $("#txtLastServiceMileage").val(),
+        availabilityType: $("#txtAvailabilityType").val(),
+    };
+
+
+    Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'question',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+        if (!result.isConfirmed) {
+            $.ajax({
+                url: baseUrl + "car",
+                method: "put",
+                data: JSON.stringify(carObject),
+                contentType: "application/json",
+                success: function (res) {
+                    Swal.fire({
+                        position: 'top-end',
+                        icon: 'success',
+                        title: 'Car has been Successfully Updated',
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
+                    loadAllCars();
+                },
+
+                error: function (error) {
+                    alert(JSON.parse(error.responseText).message);
+                }
+            });
+
+        } else {
+            if ($('#frontCarImageUploader')[0].files[0] != null && $('#backCarImageUploader')[0].files[0] != null && $('#sideCarImageUploader')[0].files[0] != null && $('#interiorCarImageUploader')[0].files[0] != null) {
+                $.ajax({
+                    url: baseUrl + "car",
+                    method: "put",
+                    data: JSON.stringify(carObject),
+                    contentType: "application/json",
+                    success: function (res) {
+                        uploadCarImages($("#txtCarID").val());
+                        loadAllCars();
+                        Swal.fire({
+                            position: 'top-end',
+                            icon: 'success',
+                            title: 'Car has been Successfully Updated',
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
+                    },
+
+                    error: function (error) {
+                        alert(JSON.parse(error.responseText).message);
+                    }
+                });
+            } else {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Car hasn\'t been Updated, Something Went Wrong..!',
+                })
+            }
+        }
+    })
 });

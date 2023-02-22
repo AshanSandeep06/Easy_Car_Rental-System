@@ -40,9 +40,19 @@ public class CarController {
     public ResponseUtil saveCar(@RequestBody CarDTO carDTO) {
         if (carDTO != null) {
             carService.saveCar(carDTO);
-            return new ResponseUtil("OK", "Successfully Saved..!", null);
+            return new ResponseUtil("OK", "Successfully Saved Car..!", null);
         } else {
-            throw new RuntimeException("Received data is Empty");
+            throw new RuntimeException("Cant' be Save the Car, Cause of Received data is Empty");
+        }
+    }
+
+    @PutMapping
+    public ResponseUtil updateCar(@RequestBody CarDTO carDTO) {
+        if (carDTO != null) {
+            carService.updateCar(carDTO);
+            return new ResponseUtil("OK", "Successfully Updated Car : " + carDTO.getCarId(), null);
+        } else {
+            throw new RuntimeException("Cant' be Update the Car, Cause of Received data is Empty");
         }
     }
 
