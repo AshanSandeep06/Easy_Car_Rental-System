@@ -21,16 +21,11 @@ public class CarServiceImpl implements CarService {
 
     @Override
     public void saveCar(CarDTO carDTO) {
-        try{
-            if(!carRepo.existsById(carDTO.getCarId())){
-                Car entity = mapper.map(carDTO, Car.class);
-                carRepo.save(entity);
-            }else{
-                throw new RuntimeException("Vehicle is Already Exist..!");
-            }
-        }catch (RuntimeException e){
-            System.out.println("Service Impl");
-            e.printStackTrace();
+        if(!carRepo.existsById(carDTO.getCarId())){
+            Car entity = mapper.map(carDTO, Car.class);
+            carRepo.save(entity);
+        }else{
+            throw new RuntimeException("This Vehicle Already Exists, Therefore Can't be Saved..!");
         }
     }
 

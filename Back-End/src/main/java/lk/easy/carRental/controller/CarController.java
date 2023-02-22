@@ -5,6 +5,7 @@ import lk.easy.carRental.service.CarService;
 import lk.easy.carRental.util.ResponseUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -23,23 +24,19 @@ public class CarController {
     @Autowired
     private CarService carService;
 
-    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseUtil saveCar(@RequestBody CarDTO carDTO) {
         if (carDTO != null) {
             carService.saveCar(carDTO);
             return new ResponseUtil("OK", "Successfully Saved..!", null);
         }else{
-            throw new RuntimeException("Received data is null");
+            throw new RuntimeException("Received data is Empty");
         }
     }
 
     @PutMapping(path = "/uploadCarImages")
     public ResponseUtil uploadImages(@RequestPart("front") MultipartFile front, @RequestPart("back") MultipartFile back, @RequestPart("side") MultipartFile side, @RequestPart("interior") MultipartFile interior) {
-        /*System.out.println(front.getOriginalFilename());
-        System.out.println(back.getOriginalFilename());
-        System.out.println(side.getOriginalFilename());
-        System.out.println(interior.getOriginalFilename());*/
-
         try {
             String pathDirectory = new File("F:\\Ijse\\GDSE 60\\Easy_Car_Rental-System\\Front-End\\assets\\img\\uploads\\carImages\\").getAbsolutePath();
 
