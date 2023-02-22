@@ -124,14 +124,10 @@ $("#interiorCarImageUploader").on('change', function (e) {
 
 // Add Car
 $("#btnAddCar").on('click', function () {
-    let formData = $("#manageCarForm").serialize();
-
-    let type = $("#txtCarType").val();
     let dailyRate = $("#txtDailyRate").val();
     let monthlyRate = $("#txtMonthlyRate").val();
     let dailyMileage = $("#txtDailyMileage").val();
     let monthlyMileage = $("#txtMonthlyMileage").val();
-    let transmissionType = $("#txtTransmissionType").val();
 
     let carObject = {
         carId: $("#txtCarID").val(),
