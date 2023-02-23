@@ -62,3 +62,53 @@ $("#btnCancel_registerForm").on('click', function () {
     $("#customerNicImage").attr('src', "");
     $("#customerLicenseImage").attr('src', "");
 });
+
+// Customer Registration
+$("#btnRegister_registerForm").on('click', function () {
+    let cusObject = {
+        carId: $("#txtCarID").val(),
+        registerNum: $("#txtRegNo").val(),
+        brand: $("#txtCarBrand").val(),
+        type: $("#txtCarType").val(),
+        priceRate: {dailyRate: dailyRate, monthlyRate: monthlyRate},
+        freeMileage: {dailyMileage: dailyMileage, monthlyMileage: monthlyMileage},
+        color: $("#txtCarColor").val(),
+        transmissionType: $("#txtTransmissionType").val(),
+        numOfPassengers: $("#txtNoOfPassengers").val(),
+        fuelType: $("#txtFuelType").val(),
+        pricePerExtraKM: $("#txtPricePerExtraKm").val(),
+        lossDamageWaiver: $("#txtLDWPayment").val(),
+        lastServiceMileage: $("#txtLastServiceMileage").val(),
+        availabilityType: $("#txtAvailabilityType").val(),
+    };
+
+    if ($('#frontCarImageUploader')[0].files[0] != null && $('#backCarImageUploader')[0].files[0] != null && $('#sideCarImageUploader')[0].files[0] != null && $('#interiorCarImageUploader')[0].files[0] != null) {
+        $.ajax({
+            url: baseUrl + "car",
+            method: "post",
+            data: JSON.stringify(carObject),
+            contentType: "application/json",
+            success: function (res) {
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'Car has been Successfully Saved',
+                    showConfirmButton: false,
+                    timer: 1500
+                })
+
+                uploadCarImages($("#txtCarID").val());
+                loadAllCars();
+            },
+            error: function (error) {
+                alert(JSON.parse(error.responseText).message);
+            }
+        });
+    } else {
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'You Should Provide Car Images, Therefore, Can\'t be Save the Car'
+        })
+    }
+});
