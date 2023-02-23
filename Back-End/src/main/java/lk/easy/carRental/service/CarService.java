@@ -10,6 +10,7 @@ public interface CarService {
     void updateCar(CarDTO carDTO);
     void deleteCar(String carId);
     ArrayList<CarDTO> getAllCars();
+    ArrayList<CarDTO> getAllCarsSortFromBrand();
     void uploadCarImages(String carId, String frontImage, String backImage, String sideImage, String interiorImage);
     ImageDTO getCarImages(String carId);
 }

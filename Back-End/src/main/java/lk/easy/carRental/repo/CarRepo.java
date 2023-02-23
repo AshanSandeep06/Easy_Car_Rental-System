@@ -24,4 +24,8 @@ public interface CarRepo extends JpaRepository<Car,String> {
     @Transactional
     @Query(nativeQuery = true, value = "UPDATE Car SET registerNum=?2, brand=?3, type=?4, dailyRate=?5, monthlyRate=?6, dailyMileage=?7, monthlyMileage=?8, color=?9, transmissionType=?10, numOfPassengers=?11, fuelType=?12, pricePerExtraKM=?13, lossDamageWaiver=?14, lastServiceMileage=?15, availabilityType=?16 WHERE carId=?1")
     void updateCar(String carId, String registerNo, String brand, String type, double dailyRate, double monthlyRate, int dailyMileage, int monthlyMileage, String color, String transmissionType, int noOfPassengers, String fuelType, double pricePerExtraKm, double lossDamageWaiver, double lastServiceMileage, String availabilityType);
+
+    @Query(nativeQuery = true, value = "SELECT * FROM Car GROUP BY brand")
+    ArrayList<Car> getAllCarsSortFromBrand();
+
 }

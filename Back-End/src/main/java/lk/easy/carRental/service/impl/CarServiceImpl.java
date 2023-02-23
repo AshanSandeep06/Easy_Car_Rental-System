@@ -74,6 +74,16 @@ public class CarServiceImpl implements CarService {
     }
 
     @Override
+    public ArrayList<CarDTO> getAllCarsSortFromBrand() {
+        ArrayList<Car> carArrayList = carRepo.getAllCarsSortFromBrand();
+        if (!carArrayList.isEmpty()) {
+            return mapper.map(carArrayList, new TypeToken<ArrayList<CarDTO>>() {
+            }.getType());
+        }
+        return null;
+    }
+
+    @Override
     public void uploadCarImages(String carId, String frontImage, String backImage, String sideImage, String interiorImage) {
         if (carRepo.existsById(carId)) {
             carRepo.uploadCarImages(carId, frontImage, backImage, sideImage, interiorImage);
