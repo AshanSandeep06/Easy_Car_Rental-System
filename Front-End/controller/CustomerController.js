@@ -108,6 +108,10 @@ function loadAllCarsDetails() {
                     $("#carsCollection > section:first-child").children(`:eq(${i})`).children(":eq(4)").children(":eq(1)").children(":eq(0)").text("Rs." + resp.data[i].priceRate.monthlyRate);
                 }
 
+                for (let i = 0; i < $("#carsCollection > section:first-child").children().length; i++) {
+                    $("#carsCollection > section:first-child").children(`:eq(${i})`).css('display', 'flex');
+                }
+
                 for (let i = resp.data.length; i < $("#carsCollection > section:first-child").children().length; i++) {
                     $("#carsCollection > section:first-child").children(`:eq(${i})`).css('display', 'none');
                 }
