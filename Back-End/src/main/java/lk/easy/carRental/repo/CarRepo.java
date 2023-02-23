@@ -28,7 +28,7 @@ public interface CarRepo extends JpaRepository<Car,String> {
     @Query(nativeQuery = true, value = "SELECT * FROM Car GROUP BY brand")
     ArrayList<Car> getAllCarsSortFromBrand();
 
-    @Query(nativeQuery = true, value = "SELECT * FROM Car WHERE type=:type")
+    @Query(nativeQuery = true, value = "SELECT * FROM Car WHERE type=:type GROUP BY brand")
     ArrayList<Car> getAllCarsFromCarType(@Param("type") String carType);
 
 }
