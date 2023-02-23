@@ -267,15 +267,14 @@
 
                         <div class="col-md-6">
                             <label for="customerNicImage" class="form-label d-block">Upload Your NIC Image</label>
-                            <img id="customerNicImage" src="/assets/img/id_image-01.png" class="img-fluid" alt="...">
+                            <img id="customerNicImage" class="img-fluid">
                             <input class="form-control mt-3 w-75" type="file" id="uploadNicImage">
                         </div>
 
                         <div class="col-md-6">
                             <label for="customerLicenseImage" class="form-label d-block">Upload Your License
                                 Image</label>
-                            <img id="customerLicenseImage" src="/assets/img/license_image-02.png" class="img-fluid"
-                                 alt="...">
+                            <img id="customerLicenseImage" class="img-fluid">
                             <input class="form-control mt-3 w-75" type="file" id="uploadLicenseImage">
                         </div>
 
@@ -283,7 +282,7 @@
                              class="d-flex col-md-6 justify-content-sm-start justify-content-center">
                             <button id="btnRegister_registerForm" type="submit" class="btn btn-success">Register
                             </button>
-                            <button id="btnCancel_registerForm" type="submit" class="btn btn-danger">Cancel</button>
+                            <button id="btnCancel_registerForm" type="button" class="btn btn-danger">Cancel</button>
                         </div>
                     </form>
                 </div>
@@ -1025,30 +1024,6 @@
 <script src="assets/jquery/jquery-3.6.1.min.js"></script>
 <script src="assets/bootstrap/js/bootstrap.min.js"></script>
 <script src="controller/HomeController.js"></script>
-
-<script>
-    $(function () {
-        $("#resetPasswordForm").css('display', 'none');
-    });
-
-    $("#btnForgotPassword").click(function () {
-        $("#loginFormHeader").text("Reset Password Form");
-        $("#loginFormBody").css('display', 'none');
-        $("#resetPasswordForm").css('display', 'block');
-    });
-
-    $("#btnCloseLoginForm").click(function () {
-        $("#loginFormHeader").text("Login Form");
-        $("#loginFormBody").css('display', 'flex');
-        $("#resetPasswordForm").css('display', 'none');
-    });
-
-    $("#btnCancelResetPassword").click(function () {
-        $("#loginFormHeader").text("Login Form");
-        $("#loginFormBody").css('display', 'flex');
-        $("#resetPasswordForm").css('display', 'none');
-    });
-</script>
 
 </body>
 </html>
