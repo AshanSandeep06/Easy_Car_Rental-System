@@ -18,5 +18,5 @@ public class CustomerDTO {
     private String address;
     private String contactNumber;
     private String licenseNo;
-    private User_credentialsDTO user_credentials;
+    private String user_credentials;
 }

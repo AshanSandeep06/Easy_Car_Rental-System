@@ -40,13 +40,15 @@ public class Test {
 
 
         User_credentials user = new User_credentials();
-        user.setUsername("Pakaya");
+        user.setUsername("Nima03333");
         Customer c1 = new Customer("C001", "2001", "Nimal Perera", "nimal@gmail.com", "Galle", "0779851784", "B4567034", new CustomerImage("nic.png", "license.png"),user);
 
         ModelMapper mapper = new ModelMapper();
         CustomerDTO dto = mapper.map(c1, CustomerDTO.class);
 
         System.out.println(dto);
+
+        System.out.println(dto.getUser_credentials());
 
 
     }

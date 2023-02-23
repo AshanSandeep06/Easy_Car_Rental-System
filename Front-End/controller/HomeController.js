@@ -66,20 +66,13 @@ $("#btnCancel_registerForm").on('click', function () {
 // Customer Registration
 $("#btnRegister_registerForm").on('click', function () {
     let cusObject = {
-        carId: $("#txtCarID").val(),
-        registerNum: $("#txtRegNo").val(),
-        brand: $("#txtCarBrand").val(),
-        type: $("#txtCarType").val(),
-        priceRate: {dailyRate: dailyRate, monthlyRate: monthlyRate},
-        freeMileage: {dailyMileage: dailyMileage, monthlyMileage: monthlyMileage},
-        color: $("#txtCarColor").val(),
-        transmissionType: $("#txtTransmissionType").val(),
-        numOfPassengers: $("#txtNoOfPassengers").val(),
-        fuelType: $("#txtFuelType").val(),
-        pricePerExtraKM: $("#txtPricePerExtraKm").val(),
-        lossDamageWaiver: $("#txtLDWPayment").val(),
-        lastServiceMileage: $("#txtLastServiceMileage").val(),
-        availabilityType: $("#txtAvailabilityType").val(),
+        customerId: "C00-001",
+        nic: $("#txtCustomerNic").val(),
+        name: $("#txtCustomerName").val(),
+        email: $("#txtCustomerEmail").val(),
+        address: $("#txtCustomerAddress").val(),
+        contactNumber: $("#txtCustomerContact").val(),
+        licenseNo: $("#txtCustomerLicenseNo").val()
     };
 
     if ($('#frontCarImageUploader')[0].files[0] != null && $('#backCarImageUploader')[0].files[0] != null && $('#sideCarImageUploader')[0].files[0] != null && $('#interiorCarImageUploader')[0].files[0] != null) {
