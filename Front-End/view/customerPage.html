@@ -692,6 +692,220 @@
     </section>
 </main>
 
+<!--All Content Container-->
+<main id="carBookingMain" class="row container-fluid">
+    <section class="col-8">
+        <section class="row col-12">
+            <aside id="carImagesAside" class="col-7">
+                <div id="carImagesCarousel" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-indicators">
+                        <button type="button" data-bs-target="#carImagesCarousel" data-bs-slide-to="0" class="active"
+                                aria-current="true" aria-label="Slide 1"></button>
+                        <button type="button" data-bs-target="#carImagesCarousel" data-bs-slide-to="1"
+                                aria-label="Slide 2"></button>
+                        <button type="button" data-bs-target="#carImagesCarousel" data-bs-slide-to="2"
+                                aria-label="Slide 3"></button>
+                        <button type="button" data-bs-target="#carImagesCarousel" data-bs-slide-to="3"
+                                aria-label="Slide 4"></button>
+                    </div>
+
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="/assets/img/alto_K10-front.png" class="d-block w-100" alt="...">
+                            <div class="carousel-caption d-none d-md-block">
+                            </div>
+                        </div>
+
+                        <div class="carousel-item">
+                            <img src="/assets/img/alto_K10-side.png" class="d-block w-100" alt="...">
+                            <div class="carousel-caption d-none d-md-block">
+                            </div>
+                        </div>
+
+                        <div class="carousel-item">
+                            <img src="/assets/img/alto_K10-interior.jpg" class="d-block w-100" alt="...">
+                            <div class="carousel-caption d-none d-md-block">
+                            </div>
+                        </div>
+
+                        <div class="carousel-item">
+                            <img src="/assets/img/alto_K10-back.png" class="d-block w-100" alt="...">
+                            <div class="carousel-caption d-none d-md-block">
+                            </div>
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carImagesCarousel"
+                            data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carImagesCarousel"
+                            data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+            </aside>
+
+            <aside id="carDetailsAside" class="row col-4 bg-white shadow-lg">
+                <h1 id="car_brand"><span>Suzuki Alto - Premium</span></h1>
+                <h2>Daily Rate : <span>Rs 2500</span></h2>
+                <h2>Monthly Rate : <span>Rs 64,350</span></h2>
+                <h2>Driver Charge Per Day : <span>Rs 1000</span></h2>
+                <h2>Loss Damage Waiver : <span>Rs 10,000</span></h2>
+
+            </aside>
+        </section>
+
+        <section class="col-12">
+            <!--Car Details Table-->
+            <section class="d-flex flex-column h-50 col-10 col-xl-11 bg-white shadow-lg align-items-center
+        pt-3 mt-4 table-bordered table-hover table-responsive">
+                <h3 class="text-center bg-primary p-2 text-light rounded-3 col-12 fs-4">Chosen Car Details</h3>
+                <div class="row overflow-auto h-60 col-12 col-lg-12 rounded-2 justify-content-around table-responsive">
+                    <table id="tblCarDetails" class="table table-striped table-hover rounded-5 mb-4">
+                        <thead class="text-white green-hd" style="background: #17377f;">
+                        <tr>
+                            <th>Car ID</th>
+                            <th>Reg No</th>
+                            <th>Brand</th>
+                            <th>Color</th>
+                            <th>No Of Passengers</th>
+                            <th>Fuel Type</th>
+                            <th>Transmission Type</th>
+                            <th>Free KM Per Day</th>
+                            <th>Free KM Per Month</th>
+                            <th>Price Per Extra KM (LKR)</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>C001</td>
+                            <td id="regNo">AAB-4569</td>
+                            <td>Suzuki</td>
+                            <td>Red</td>
+                            <td>4</td>
+                            <td>Diesel</td>
+                            <td>Manual</td>
+                            <td>100</td>
+                            <td>2400</td>
+                            <td>30.00</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+        </section>
+    </section>
+
+    <section class="col-4 bg-white shadow-lg">
+        <!-- invoice content -->
+        <section id="customerDetailsSection" class="col-10 col-md-5 col-lg-10 p-3 bg-white shadow-lg">
+            <h3 id="customerDetailsHeader" class="text-center bg-primary p-2 text-light rounded-3 fs-4">Booking Now</h3>
+            <div class="row mt-1">
+                <div class="col-12 col-md-6 col-lg-6">
+                    <label for="customerID" class="form-label">Customer ID :</label>
+                    <input class="form-control" id="customerID" type="text">
+                </div>
+
+                <div class="col-12 col-md-6 col-lg-6">
+                    <label for="customerNic" class="form-label">Customer NIC :</label>
+                    <input class="form-control" id="customerNic" type="text">
+                </div>
+            </div>
+
+            <div class="row mt-2">
+                <div class="col-12 col-md-12 col-lg-12">
+                    <label for="customerName" class="form-label">Name :</label>
+                    <input class="form-control" id="customerName" type="text">
+                </div>
+            </div>
+
+            <div class="row mt-1">
+                <div class="col-12 col-md-6 col-lg-6">
+                    <label for="rentalID" class="form-label">Rental ID :</label>
+                    <input class="form-control" id="rentalID" disabled type="text">
+                </div>
+
+                <div class="col-12 col-md-6 col-lg-6">
+                    <label for="location" class="form-label">Location :</label>
+                    <input class="form-control" id="location" type="text">
+                </div>
+            </div>
+
+            <div class="row mt-2">
+                <div class="col-12 col-md-6 col-lg-6">
+                    <label for="pickUpTime" class="form-label">Pick Up Time :</label>
+                    <input class="form-control" id="pickUpTime" type="text">
+                </div>
+
+                <div class="col-12 col-md-6 col-lg-6">
+                    <label for="pickUpDate" class="form-label">Pick Up Date :</label>
+                    <input class="form-control" id="pickUpDate" type="text">
+                </div>
+            </div>
+
+            <div class="row mt-2">
+                <div class="col-12 col-md-6 col-lg-6">
+                    <label for="returnTime" class="form-label">Return Time :</label>
+                    <input class="form-control" id="returnTime" type="text">
+                </div>
+
+                <div class="col-12 col-md-6 col-lg-6">
+                    <label for="returnDate" class="form-label">Return Date :</label>
+                    <input class="form-control" id="returnDate" type="text">
+                </div>
+            </div>
+
+            <div class="row mt-2">
+                <div class="col-12 col-md-6 col-lg-6">
+                    <label for="carFee" class="form-label">Car Fee :</label>
+                    <input class="form-control" id="carFee" disabled type="text">
+                </div>
+
+                <div class="col-12 col-md-6 col-lg-6">
+                    <label for="ldw" class="form-label">LDW Fee:</label>
+                    <input class="form-control" id="ldw" disabled type="text">
+                </div>
+            </div>
+
+            <div class="row mt-2">
+                <!--Radio button-->
+                <div class="col-12 col-md-6 col-lg-6" style="padding-top: 20px;">
+                    <input class="form-check-input" type="checkbox" id="driverAcceptanceField">
+                    <label class="form-check-label" for="driverAcceptanceField">With Driver</label>
+                </div>
+
+                <div class="col-12 col-md-6 col-lg-6">
+                    <label for="driverFee" class="form-label">Driver Fee :</label>
+                    <input class="form-control" id="driverFee" disabled type="text">
+                </div>
+            </div>
+
+            <div class="row mt-2">
+                <div class="col-12 col-md-6 col-lg-6">
+                    <label for="totalFee" class="form-label">Total Fee :</label>
+                    <input class="form-control" id="totalFee" disabled type="text">
+                </div>
+            </div>
+
+            <div class="row mt-2">
+                <div class="mb-3">
+                    <label for="uploadSlip" class="form-label">Upload Your Bank Slip of LDW Payment :</label>
+                    <input class="form-control" type="file" id="uploadSlip">
+                </div>
+            </div>
+
+            <div style="column-gap: 19px; padding-right: 16px;" class="row mt-2 justify-content-end">
+                <button id="btnSubmitRent" class="btn btn-success" type="button">Confirm Booking</button>
+
+                <button id="btnCancelRent" class="btn btn-danger" type="button">Cancel</button>
+            </div>
+        </section>
+    </section>
+</main>
+
 <!--My Bookings Section-->
 <main id="customerPage_bookings">
     <section class="row justify-content-center">

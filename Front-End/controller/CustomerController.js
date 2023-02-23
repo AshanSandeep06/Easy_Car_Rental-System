@@ -5,6 +5,7 @@ $(function () {
     $('#customerPage_bookings').css("display", "none");
     $('#customerPage_rentStatus').css("display", "none");
     $('#customerPage_myProfile').css("display", "none");
+    $('#carBookingMain').css("display", "none");
     loadAllCarsDetails();
 });
 
@@ -13,6 +14,8 @@ $("#btnHome").on('click', function () {
     $('#customerPage_bookings').css("display", "none");
     $('#customerPage_rentStatus').css("display", "none");
     $('#customerPage_myProfile').css("display", "none");
+    $('#carBookingMain').css("display", "none");
+    loadAllCarsDetails();
 });
 
 $("#btnMyBookings").on('click', function () {
@@ -34,13 +37,6 @@ $("#btnCustomerProfile").on('click', function () {
     $('#customerPage_bookings').css("display", "none");
     $('#customerPage_rentStatus').css("display", "none");
     $('#customerPage_myProfile').css("display", "block");
-});
-
-$(".cars_btn").on('click', function () {
-    $(".cars_btn > a").attr({
-        "target": "_self",
-        "href": "carBooking.html"
-    });
 });
 
 /*----------------------------- Load All Vehicles data -----------------------------------*/
@@ -187,6 +183,18 @@ $("#cmbSelectCarType").on('change', function () {
             }
         }
     });
+});
+
+$(".cars_btn").on('click', function () {
+   /* $(".cars_btn > a").attr({
+        "target": "_self",
+        "href": "carBooking.html"
+    });*/
+
+    $('#customerPage_home').css("display", "none");
+    $('#carBookingMain').css("display", "flex");
+    var carBrand = $(this).parent().parent().children(":eq(2)").children(":eq(0)").text();
+    console.log(carBrand);
 });
 
 
