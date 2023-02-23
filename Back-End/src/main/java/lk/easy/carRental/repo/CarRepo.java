@@ -30,5 +30,5 @@ public interface CarRepo extends JpaRepository<Car,String> {
 
     @Query(nativeQuery = true, value = "SELECT * FROM Car WHERE type=:type GROUP BY brand")
     ArrayList<Car> getAllCarsFromCarType(@Param("type") String carType);
-
+    Long countCarByBrandAndAvailabilityType(String brand, String availabilityType);
 }

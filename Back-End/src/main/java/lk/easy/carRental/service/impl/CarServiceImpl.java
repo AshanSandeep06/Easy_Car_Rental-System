@@ -112,4 +112,9 @@ public class CarServiceImpl implements CarService {
             throw new RuntimeException("This Car has no images yet..!");
         }
     }
+
+    @Override
+    public Long getCarCountByCarBrandAndAvailabilityType(String carBrand, String availabilityType) {
+        return carRepo.countCarByBrandAndAvailabilityType(carBrand, availabilityType);
+    }
 }

@@ -44,7 +44,12 @@ public class CarController {
 
     @GetMapping(path = "/{carType}", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseUtil getAllCarsFromType(@PathVariable String carType) {
-        return new ResponseUtil("OK", "Successfully Loaded All "+carType+" Cars", carService.getAllCarsFromCarType(carType));
+        return new ResponseUtil("OK", "Successfully Loaded All " + carType + " Cars", carService.getAllCarsFromCarType(carType));
+    }
+
+    @GetMapping(path = "/{carType}/{availabilityType}")
+    public ResponseUtil getCarCountByCarBrandAndAvailabilityType(@PathVariable String carType, @PathVariable String availabilityType) {
+        return new ResponseUtil("OK", "Successfully Loaded Car Count", carService.getCarCountByCarBrandAndAvailabilityType(carType, availabilityType));
     }
 
     @ResponseStatus(HttpStatus.CREATED)
@@ -114,7 +119,7 @@ public class CarController {
 
             ImageDTO imageDTO = carService.getCarImages(carId);
 
-            Path frontImageLocation = Paths.get(pathDirectory + "/"  + imageDTO.getFront());
+            Path frontImageLocation = Paths.get(pathDirectory + "/" + imageDTO.getFront());
             Path backImageLocation = Paths.get(pathDirectory + "/" + imageDTO.getBack());
             Path sideImageLocation = Paths.get(pathDirectory + "/" + imageDTO.getSide());
             Path interiorImageLocation = Paths.get(pathDirectory + "/" + imageDTO.getInterior());

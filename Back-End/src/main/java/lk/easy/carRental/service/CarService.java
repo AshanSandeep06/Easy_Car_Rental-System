@@ -14,4 +14,5 @@ public interface CarService {
     ArrayList<CarDTO> getAllCarsFromCarType(String carType);
     void uploadCarImages(String carId, String frontImage, String backImage, String sideImage, String interiorImage);
     ImageDTO getCarImages(String carId);
+    Long getCarCountByCarBrandAndAvailabilityType(String carBrand, String availabilityType);
 }
