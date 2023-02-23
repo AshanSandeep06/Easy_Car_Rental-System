@@ -299,11 +299,10 @@ header > nav {
     padding-left: 22px;
 }
 
-#searchCarBtnDiv {
+#searchCarBtnDiv, #clearCarBtnDiv {
     position: relative;
     display: flex;
     align-items: center;
-    justify-content: start !important;
     padding-top: 7px;
 }
 
@@ -311,7 +310,7 @@ header > nav {
     font-size: 14px;
 }
 
-#lblPickUpDate, #lblReturnDate {
+#lblPickUpDate, #lblReturnDate, #lblCarType {
     font-size: 14.5px;
     margin-bottom: 3px;
 }
