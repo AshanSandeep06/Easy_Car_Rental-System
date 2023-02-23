@@ -66,7 +66,16 @@ function loadAllCarsDetails() {
             if (resp.data != null) {
                 for (let i = 0; i < resp.data.length; i++) {
                     console.log(resp.data[i]);
-                    console.log(resp.data[i].brand);
+
+                    $.ajax({
+                        url: baseUrl + "car/" + resp.data[i].carId,
+                        method: "get",
+                        dataType: "json",
+                        success: function (resp) {
+                            $("#carsCollection > section:first-child").children(`:eq(${i})`).children(":eq(1)").children(":eq(0)").attr('src', "../assets/img/uploads/carImages/" + resp.data.front);
+                        }
+                    });
+
                     $("#carsCollection > section:first-child").children(`:eq(${i})`).children(":eq(0)").children(":eq(1)").text(resp.data[i].brand);
                     $("#carsCollection > section:first-child").children(`:eq(${i})`).children(":eq(0)").children(":eq(2)").text("Color - " + resp.data[i].color);
                     $("#carsCollection > section:first-child").children(`:eq(${i})`).children(":eq(0)").children(":eq(3)").text("Free Km for Day - " + resp.data[i].freeMileage.dailyMileage + " Km");
