@@ -68,7 +68,7 @@ function loadAllCarsDetails() {
                     console.log(resp.data[i]);
 
                     $.ajax({
-                        url: baseUrl + "car/" + resp.data[i].carId,
+                        url: baseUrl + "car/getCarImages/" + resp.data[i].carId,
                         method: "get",
                         dataType: "json",
                         success: function (resp) {
@@ -116,10 +116,11 @@ $("#cmbSelectCarType").on('change', function () {
         method: "get",
         dataType: "json",
         success: function (resp) {
-            $("#carFront_image").attr('src', "../assets/img/uploads/carImages/" + resp.data.front);
-            $("#carBack_image").attr('src', "../assets/img/uploads/carImages/" + resp.data.back);
-            $("#carSide_image").attr('src', "../assets/img/uploads/carImages/" + resp.data.side);
-            $("#carInterior_image").attr('src', "../assets/img/uploads/carImages/" + resp.data.interior);
+            if (resp.data != null) {
+                for (let c1 of resp.data) {
+                    console.log(c1)
+                }
+            }
         }
     });
 });

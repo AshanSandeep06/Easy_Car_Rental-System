@@ -66,7 +66,7 @@ function bindRowClickEventsOfTblManageVehicle() {
         $('#txtAvailabilityType').val(availabilityType);
 
         $.ajax({
-            url: baseUrl + "car/" + carId,
+            url: baseUrl + "car/getCarImages/" + carId,
             method: "get",
             dataType: "json",
             success: function (resp) {

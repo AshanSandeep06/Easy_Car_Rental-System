@@ -37,7 +37,7 @@ public class CarController {
         return new ResponseUtil("OK", "Successfully Loaded All Cars", carService.getAllCarsSortFromBrand());
     }
 
-    @GetMapping(path = "/{carId}")
+    @GetMapping(path = "/getCarImages/{carId}")
     public ResponseUtil getCarImages(@PathVariable String carId) {
         return new ResponseUtil("OK", "Successfully Loaded Images of " + carId, carService.getCarImages(carId));
     }
