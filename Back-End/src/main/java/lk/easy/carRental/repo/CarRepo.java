@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 
-public interface CarRepo extends JpaRepository<Car, String> {
+public interface CarRepo extends JpaRepository<Car,String> {
     @Modifying
     @Transactional
     @Query(value = "UPDATE Car SET front=:front,back=:back,side=:side,interior=:interior WHERE carId=:carId", nativeQuery = true)
