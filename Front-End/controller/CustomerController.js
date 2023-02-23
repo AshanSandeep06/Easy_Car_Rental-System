@@ -109,7 +109,19 @@ function loadAllCarsDetails() {
 }
 
 $("#cmbSelectCarType").on('change', function () {
+    let carType = $("#cmbSelectCarType").val();
 
+    $.ajax({
+        url: baseUrl + "car/" + carType,
+        method: "get",
+        dataType: "json",
+        success: function (resp) {
+            $("#carFront_image").attr('src', "../assets/img/uploads/carImages/" + resp.data.front);
+            $("#carBack_image").attr('src', "../assets/img/uploads/carImages/" + resp.data.back);
+            $("#carSide_image").attr('src', "../assets/img/uploads/carImages/" + resp.data.side);
+            $("#carInterior_image").attr('src', "../assets/img/uploads/carImages/" + resp.data.interior);
+        }
+    });
 });
 
 

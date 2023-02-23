@@ -37,9 +37,14 @@ public class CarController {
         return new ResponseUtil("OK", "Successfully Loaded All Cars", carService.getAllCarsSortFromBrand());
     }
 
-    @GetMapping("/{carId}")
+    @GetMapping(path = "/{carId}")
     public ResponseUtil getCarImages(@PathVariable String carId) {
         return new ResponseUtil("OK", "Successfully Loaded Images of " + carId, carService.getCarImages(carId));
+    }
+
+    @GetMapping(path = "/{carType}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseUtil getAllCarsFromType(@PathVariable String carType) {
+        return new ResponseUtil("OK", "Successfully Loaded All "+carType+" Cars", carService.getAllCarsFromCarType(carType));
     }
 
     @ResponseStatus(HttpStatus.CREATED)

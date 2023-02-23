@@ -11,6 +11,7 @@ public interface CarService {
     void deleteCar(String carId);
     ArrayList<CarDTO> getAllCars();
     ArrayList<CarDTO> getAllCarsSortFromBrand();
+    ArrayList<CarDTO> getAllCarsFromCarType(String carType);
     void uploadCarImages(String carId, String frontImage, String backImage, String sideImage, String interiorImage);
     ImageDTO getCarImages(String carId);
 }
