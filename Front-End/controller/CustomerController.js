@@ -48,6 +48,7 @@ function clearHomePageFields() {
     $("#cmbSelectCarType").val("Select Car Type");
     $("#txtPickUpDate").val("");
     $("#txtReturnDate").val("");
+    loadAllCarsDetails();
 }
 
 $("#btnClear").on('click', function () {
@@ -74,10 +75,15 @@ function loadAllCarsDetails() {
 
                     $("#carsCollection > section:first-child").children(`:eq(${i})`).children(":eq(2)").children(":eq(0)").text(resp.data[i].brand);
 
+                    $("#carsCollection > section:first-child").children(`:eq(${i})`).children(":eq(3)").children(":eq(0)").empty();
                     $("#carsCollection > section:first-child").children(`:eq(${i})`).children(":eq(3)").children(":eq(0)").append('<i class="fa-solid fa-gas-pump"></i>');
                     $("#carsCollection > section:first-child").children(`:eq(${i})`).children(":eq(3)").children(":eq(0)").append(resp.data[i].fuelType);
+
+                    $("#carsCollection > section:first-child").children(`:eq(${i})`).children(":eq(3)").children(":eq(1)").empty();
                     $("#carsCollection > section:first-child").children(`:eq(${i})`).children(":eq(3)").children(":eq(1)").append('<i class="fa-solid fa-users"></i>');
                     $("#carsCollection > section:first-child").children(`:eq(${i})`).children(":eq(3)").children(":eq(1)").append(resp.data[i].numOfPassengers);
+
+                    $("#carsCollection > section:first-child").children(`:eq(${i})`).children(":eq(3)").children(":eq(2)").empty();
                     $("#carsCollection > section:first-child").children(`:eq(${i})`).children(":eq(3)").children(":eq(2)").append('<i class="fa-solid fa-gear"></i>');
                     $("#carsCollection > section:first-child").children(`:eq(${i})`).children(":eq(3)").children(":eq(2)").append(resp.data[i].transmissionType);
 
@@ -89,10 +95,13 @@ function loadAllCarsDetails() {
                     $("#carsCollection > section:first-child").children(`:eq(${i})`).css('display', 'none');
                 }
             }
-            clearHomePageFields();
         }
     });
 }
+
+$("#cmbSelectCarType").on('change', function () {
+
+});
 
 
 
