@@ -197,14 +197,27 @@ $("#btnUserLogin").on('click', function () {
             method: "get",
             dataType: "json",
             success: function (res) {
-                if(res.data.role == "Admin"){
+                if (res.data.role == "Admin") {
+                    // $("#btnUserLogin > a").attr('href', "view/adminPage.html");
 
+                    $.ajax({
+                        url: "view/adminPage.html"
+                    });
 
-                }else if(res.data.role == "Driver"){
-
-                }if(res.data.role == "Customer"){
-
+                } else if (res.data.role == "Driver") {
+                    // $("#btnUserLogin > a").attr('href', "view/driverPage.html");
                 }
+                if (res.data.role == "Customer") {
+                    // $("#btnUserLogin > a").attr('href', "view/customerPage.html");
+
+                    $("#btnUserLogin>a").attr({
+                        "target": "_self",
+                        "href": "view/customerPage.html"
+                    });
+                }
+
+                $("#txtUserName").val("");
+                $("#txtUserPassword").val("");
 
                 Swal.fire({
                     position: 'center',
@@ -216,6 +229,9 @@ $("#btnUserLogin").on('click', function () {
             },
 
             error: function (error) {
+                $("#txtUserName").val("");
+                $("#txtUserPassword").val("");
+
                 Swal.fire({
                     icon: 'error',
                     title: 'Login Failed',
@@ -223,7 +239,10 @@ $("#btnUserLogin").on('click', function () {
                 })
             }
         })
-    }else{
+    } else {
+        $("#txtUserName").val("");
+        $("#txtUserPassword").val("");
+
         Swal.fire({
             icon: 'error',
             title: 'Login Fields Are Empty..!',
