@@ -270,7 +270,7 @@ $("#btnResetPassword").on('click', function () {
             contentType: "application/json",
             dataType: "json",
             success: function (res) {
-                $("#txtUserName").val("");
+                $("#txtResetUsername").val();
                 $("#txtResetNewPassword").val("");
                 $("#txtResetConfirmPassword").val("");
 
@@ -284,7 +284,7 @@ $("#btnResetPassword").on('click', function () {
             },
 
             error: function (error) {
-                $("#txtUserName").val("");
+                $("#txtResetUsername").val();
                 $("#txtResetNewPassword").val("");
                 $("#txtResetConfirmPassword").val("");
 
@@ -296,13 +296,13 @@ $("#btnResetPassword").on('click', function () {
             }
         });
     }else{
-        $("#txtUserName").val("");
+        $("#txtResetUsername").val();
         $("#txtResetNewPassword").val("");
         $("#txtResetConfirmPassword").val("");
 
         Swal.fire({
             icon: 'error',
-            title: 'Login Fields Are Empty..!',
+            title: 'Reset Password Fields Are Empty..!',
             text: 'Please Be Aware to Fill all the Fields'
         })
     }
