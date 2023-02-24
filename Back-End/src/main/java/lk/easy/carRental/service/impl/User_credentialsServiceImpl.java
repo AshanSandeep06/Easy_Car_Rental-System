@@ -38,4 +38,15 @@ public class User_credentialsServiceImpl implements User_credentialsService {
             throw new RuntimeException("You Given Incorrect Username Or Password..!, Please Try again");
         }
     }
+
+    @Override
+    public void resetUserPassword(User_credentialsDTO userDTO) {
+        if (userRepo.existsByUsername(userDTO.getUsername())) {
+            if (userRepo.updatePasswordByUsername(userDTO.getUsername()) <= 0) {
+                throw new RuntimeException("Password Reset Process Failed..!");
+            }
+        } else {
+            throw new RuntimeException("This User is not exists, Therefore Can't reset password..!");
+        }
+    }
 }

@@ -19,6 +19,10 @@ $("#btnCancelResetPassword").click(function () {
     $("#loginFormHeader").text("Login Form");
     $("#loginFormBody").css('display', 'flex');
     $("#resetPasswordForm").css('display', 'none');
+
+    $("#txtResetUsername").val("");
+    $("#txtResetNewPassword").val("");
+    $("#txtResetConfirmPassword").val("");
 });
 
 // Set Nic Image
@@ -249,5 +253,47 @@ $("#btnUserLogin").on('click', function () {
             text: 'Please Be Aware to Enter Username and Password'
         })
     }
+});
 
+// Reset Password Function
+$("#btnResetPassword").on('click', function () {
+    if ($("#txtResetUsername").val() != '' && $("#txtResetNewPassword").val() != '' && $("#txtResetConfirmPassword").val() != '') {
+        let resetUserObject = {
+            username: $("#txtResetUsername").val(),
+            password: $("#txtResetConfirmPassword").val()
+        };
+
+        $.ajax({
+            url: baseUrl + "user_credentials/resetPassword",
+            method: "put",
+            data: JSON.stringify(resetUserObject),
+            contentType: "application/json",
+            dataType: "json",
+            success: function (res) {
+                $("#txtUserName").val("");
+                $("#txtResetNewPassword").val("");
+                $("#txtResetConfirmPassword").val("");
+
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: res.message,
+                    showConfirmButton: false,
+                    timer: 1500
+                })
+            },
+
+            error: function (error) {
+                $("#txtUserName").val("");
+                $("#txtResetNewPassword").val("");
+                $("#txtResetConfirmPassword").val("");
+
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Password Reset Failed',
+                    text: JSON.parse(error.responseText).message
+                })
+            }
+        });
+    }
 });
