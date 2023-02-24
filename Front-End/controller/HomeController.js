@@ -295,5 +295,15 @@ $("#btnResetPassword").on('click', function () {
                 })
             }
         });
+    }else{
+        $("#txtUserName").val("");
+        $("#txtResetNewPassword").val("");
+        $("#txtResetConfirmPassword").val("");
+
+        Swal.fire({
+            icon: 'error',
+            title: 'Login Fields Are Empty..!',
+            text: 'Please Be Aware to Fill all the Fields'
+        })
     }
 });
