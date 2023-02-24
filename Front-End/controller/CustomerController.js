@@ -26,6 +26,7 @@ $("#btnMyBookings").on('click', function () {
     $('#customerPage_bookings').css("display", "block");
     $('#customerPage_rentStatus').css("display", "none");
     $('#customerPage_myProfile').css("display", "none");
+    $('#carBookingMain').css("display", "none");
 });
 
 $("#btnBookingsStatus").on('click', function () {
@@ -33,6 +34,7 @@ $("#btnBookingsStatus").on('click', function () {
     $('#customerPage_bookings').css("display", "none");
     $('#customerPage_rentStatus').css("display", "block");
     $('#customerPage_myProfile').css("display", "none");
+    $('#carBookingMain').css("display", "none");
 });
 
 $("#btnCustomerProfile").on('click', function () {
@@ -40,6 +42,7 @@ $("#btnCustomerProfile").on('click', function () {
     $('#customerPage_bookings').css("display", "none");
     $('#customerPage_rentStatus').css("display", "none");
     $('#customerPage_myProfile').css("display", "block");
+    $('#carBookingMain').css("display", "none");
 });
 
 /*----------------------------- Load All Vehicles data -----------------------------------*/
@@ -188,16 +191,30 @@ $("#cmbSelectCarType").on('change', function () {
     });
 });
 
-$(".cars_btn").on('click', function () {
-   /* $(".cars_btn > a").attr({
-        "target": "_self",
-        "href": "carBooking.html"
-    });*/
+function loadAllCarsFromBrand(carBrand) {
+    $("#cmbSelectCarId").empty();
+    $("#cmbSelectCarId").append(`<option selected disabled>Select Car</option>`);
 
+    $.ajax({
+        url: baseUrl + "car",
+        method: "get",
+        success: function (resp) {
+            for (let c1 of resp.data) {
+                console.log("Awla : " + resp.data)
+                if (c1.brand == carBrand && c1.availabilityType == "Available") {
+                    $("#cmbSelectCarId").append(`<option>${c1.carId}</option>`);
+                }
+            }
+        }
+    });
+}
+
+$(".cars_btn").on('click', function () {
     $('#customerPage_home').css("display", "none");
     $('#carBookingMain').css("display", "flex");
     var carBrand = $(this).parent().parent().children(":eq(2)").children(":eq(0)").text();
     console.log(carBrand);
+    loadAllCarsFromBrand(carBrand);
 });
 
 
