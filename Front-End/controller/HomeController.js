@@ -197,6 +197,8 @@ $("#btnUserLogin").on('click', function () {
             method: "get",
             dataType: "json",
             success: function (res) {
+                console.log(res)
+
                 Swal.fire({
                     position: 'center',
                     icon: 'success',

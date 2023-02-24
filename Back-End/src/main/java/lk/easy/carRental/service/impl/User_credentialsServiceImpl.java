@@ -31,6 +31,11 @@ public class User_credentialsServiceImpl implements User_credentialsService {
 
     @Override
     public User_credentialsDTO getUserCredentials(String username, String password) {
-        return mapper.map(userRepo.findByUsernameAndPassword(username, password), User_credentialsDTO.class);
+        User_credentials userEntity = userRepo.findByUsernameAndPassword(username, password);
+        if (userEntity != null) {
+            return mapper.map(userEntity, User_credentialsDTO.class);
+        } else {
+            throw new RuntimeException("You Given Incorrect Username Or Password..!, Please Try again");
+        }
     }
 }

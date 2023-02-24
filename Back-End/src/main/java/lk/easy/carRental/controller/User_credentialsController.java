@@ -16,7 +16,7 @@ public class User_credentialsController {
 
     @GetMapping(path = "/verifyLogin", params = {"username", "password"})
     public ResponseUtil verifyUserCredentials(@RequestParam String username, @RequestParam String password) {
-        return new ResponseUtil("OK", "User Credentials has been Saved Successfully..!", userService.getUserCredentials(username, password));
+        return new ResponseUtil("OK", "Login Successfully..!", userService.getUserCredentials(username, password));
     }
 
     @ResponseStatus(HttpStatus.CREATED)
