@@ -69,21 +69,21 @@ function clearCustomerRegistrationFields() {
 }
 
 function generateNewCustomerID() {
-    let customerId;
+    let customerId = null;
     $.ajax({
         url: baseUrl + "customer/generateNewCustomerID",
         method: "get",
         dataType: "json",
+        async: false,
         success: function (res) {
             customerId = res.data;
-            return customerId;
         },
 
         error: function (error) {
             alert(JSON.parse(error.responseText).message);
-            return null;
         }
     });
+    return customerId;
 }
 
 // Customer Registration
