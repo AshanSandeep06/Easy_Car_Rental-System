@@ -46,9 +46,15 @@ public class Test {
         ModelMapper mapper = new ModelMapper();
         CustomerDTO dto = mapper.map(c1, CustomerDTO.class);
 
-        System.out.println(dto);
+//        System.out.println(dto);
 
-        System.out.println(dto.getUser_credentials());
+//        System.out.println(dto.getUser_credentials());
+
+        Customer c2 = new Customer();
+        c2.setUser_credentials(new User_credentials("kamal0234", "1234", "Customer"));
+
+        CustomerDTO dto1 = mapper.map(c2, CustomerDTO.class);
+        System.out.println(dto1.getUser_credentials());
 
 
     }

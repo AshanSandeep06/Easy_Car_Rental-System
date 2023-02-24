@@ -1,3 +1,4 @@
+let baseUrl = "http://localhost:8080/Back-End/";
 $(function () {
     $("#resetPasswordForm").css('display', 'none');
 });
@@ -45,6 +46,10 @@ $("#uploadLicenseImage").on('change', function (e) {
 });
 
 $("#btnCancel_registerForm").on('click', function () {
+    clearCustomerRegistrationFields();
+});
+
+function clearCustomerRegistrationFields() {
     $("#txtCustomerName").val("");
     $("#txtCusUsername").val("");
     $("#txtCusPassword").val("");
@@ -61,10 +66,15 @@ $("#btnCancel_registerForm").on('click', function () {
     // Clear images
     $("#customerNicImage").attr('src', "");
     $("#customerLicenseImage").attr('src', "");
-});
+}
 
 // Customer Registration
 $("#btnRegister_registerForm").on('click', function () {
+    // Username, password, nic image, license image --->
+    let username = $("#txtCusUsername").val();
+    let password = $("#txtCusPassword").val();
+    let role = "Customer";
+
     let cusObject = {
         customerId: "C00-001",
         nic: $("#txtCustomerNic").val(),
@@ -72,36 +82,91 @@ $("#btnRegister_registerForm").on('click', function () {
         email: $("#txtCustomerEmail").val(),
         address: $("#txtCustomerAddress").val(),
         contactNumber: $("#txtCustomerContact").val(),
-        licenseNo: $("#txtCustomerLicenseNo").val()
+        licenseNo: $("#txtCustomerLicenseNo").val(),
+        user_credentials: username
     };
 
-    if ($('#frontCarImageUploader')[0].files[0] != null && $('#backCarImageUploader')[0].files[0] != null && $('#sideCarImageUploader')[0].files[0] != null && $('#interiorCarImageUploader')[0].files[0] != null) {
-        $.ajax({
-            url: baseUrl + "car",
-            method: "post",
-            data: JSON.stringify(carObject),
-            contentType: "application/json",
-            success: function (res) {
-                Swal.fire({
-                    position: 'top-end',
-                    icon: 'success',
-                    title: 'Car has been Successfully Saved',
-                    showConfirmButton: false,
-                    timer: 1500
-                })
+    let userObject = {username: username, password: password, role: role};
 
-                uploadCarImages($("#txtCarID").val());
-                loadAllCars();
+    if ($('#uploadNicImage')[0].files[0] != null && $('#uploadLicenseImage')[0].files[0] != null) {
+        $.ajax({
+            url: baseUrl + "user_credentials",
+            method: "post",
+            data: JSON.stringify(userObject),
+            contentType: "application/json",
+            dataType: "json",
+            success: function (res) {
+                $.ajax({
+                    url: baseUrl + "customer",
+                    method: "post",
+                    data: JSON.stringify(cusObject),
+                    contentType: "application/json",
+
+                    success: function (res) {
+                        uploadCustomerNicAndLicenseImages(cusObject.customerId);
+                        clearCustomerRegistrationFields();
+
+                        Swal.fire({
+                            position: 'top-end',
+                            icon: 'success',
+                            title: 'Customer has been Successfully Registered', // res.message
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
+                    },
+                    error: function (error) {
+                        // alert(JSON.parse(error.responseText).message);
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: 'Customer Registration was failed..!'
+                        })
+                    }
+                });
             },
             error: function (error) {
-                alert(JSON.parse(error.responseText).message);
+                // alert(JSON.parse(error.responseText).message);
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Customer Registration was failed..!'
+                })
             }
         });
     } else {
         Swal.fire({
             icon: 'error',
             title: 'Oops...',
-            text: 'You Should Provide Car Images, Therefore, Can\'t be Save the Car'
+            text: 'You Should Provide your NIC and License Images Therefore, Customer Registration was failed..!'
         })
     }
 });
+
+function uploadCustomerNicAndLicenseImages(customerId) {
+    var nicImage = $('#uploadNicImage')[0].files[0];
+    var nicImageName = customerId + "_NIC-image." + $('#uploadNicImage')[0].files[0].name.split(".")[1];
+
+    var licenseImage = $('#uploadLicenseImage')[0].files[0];
+    var licenseImageName = customerId + "_License-image." + $('#uploadLicenseImage')[0].files[0].name.split(".")[1];
+
+    console.log(nicImageName + " " + licenseImageName);
+
+    let formData = new FormData();
+    formData.append("nicImage", nicImage, nicImageName);
+    formData.append("licenseImage", licenseImage, licenseImageName);
+
+    $.ajax({
+        url: baseUrl + "customer/uploadCustomerImages/" + customerId,
+        method: "PUT",
+        contentType: false,
+        processData: false,
+        data: formData,
+
+        success: function (res) {
+            alert("Customer Images Uploaded Successfully..!"); // res.message
+        },
+        error: function (error) {
+            alert(JSON.parse(error.responseText).message);
+        }
+    })
+}
