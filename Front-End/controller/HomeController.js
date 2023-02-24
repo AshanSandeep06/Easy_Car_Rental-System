@@ -315,3 +315,11 @@ $("#btnResetPassword").on('click', function () {
         })
     }
 });
+
+$(".cars_btn").on('click', function () {
+    Swal.fire(
+        'Want to Book a Car Now ?',
+        'You Must Register or Login First',
+        'question'
+    )
+});
