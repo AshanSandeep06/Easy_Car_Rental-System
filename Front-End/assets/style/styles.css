@@ -620,7 +620,7 @@ header > nav {
 }
 
 #carImagesAside {
-    background-color: black;
+    /*background-color: black;*/
 }
 
 #car_brand {
@@ -638,12 +638,12 @@ header > nav {
 }
 
 #carDetailsAside {
-    padding: 6px 0 28px 0;
+    /*padding: 6px 0 28px 0;*/
     border-radius: 16px;
 }
 
 #carBookingMain > section:first-child > section:nth-child(2) > section:first-child {
-    height: 300px !important;
+    height: 260px !important;
     border-radius: 20px;
 }
 
@@ -681,6 +681,7 @@ tbody {
 }
 
 #carBookingMain > section:first-child {
+    margin-top: 20px;
     padding-top: 16px;
     gap: 15px;
 }
@@ -744,6 +745,7 @@ tbody {
 }
 
 #carBookingMain > section:nth-child(2) {
+    margin-top: 20px;
     padding-bottom: 30px;
     border-radius: 15px;
 }
