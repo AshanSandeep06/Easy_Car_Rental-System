@@ -24,7 +24,7 @@ public class Test {
         t1.call();
     }
 
-    public void call(){
+    public void call() {
 
         /*try {
             String pathDirectory = new File("F:\\Ijse\\GDSE 60\\Easy_Car_Rental-System\\Front-End\\assets\\img\\uploads\\carImages\\").getAbsolutePath();
@@ -39,7 +39,7 @@ public class Test {
         }*/
 
 
-        User_credentials user = new User_credentials();
+        /*User_credentials user = new User_credentials();
         user.setUsername("Nima03333");
         Customer c1 = new Customer("C001", "2001", "Nimal Perera", "nimal@gmail.com", "Galle", "0779851784", "B4567034", new CustomerImage("nic.png", "license.png"),user);
 
@@ -54,7 +54,15 @@ public class Test {
         c2.setUser_credentials(new User_credentials("kamal0234", "1234", "Customer"));
 
         CustomerDTO dto1 = mapper.map(c2, CustomerDTO.class);
-        System.out.println(dto1.getUser_credentials());
+        System.out.println(dto1.getUser_credentials());*/
+
+        /*ModelMapper mapper = new ModelMapper();
+        CustomerDTO c1 = new CustomerDTO("C001", "2001", "Nimal Perera", "nimal@gmail.com", "Galle", "0445454545", "B2323434", "nimal033");
+
+        Customer entity = mapper.map(c1, Customer.class);
+        entity.setUser_credentials(new User_credentials(c1.getUser_credentials()));
+        System.out.println(entity);*/
+
 
 
     }

@@ -4,8 +4,10 @@ import lk.easy.carRental.dto.CarDTO;
 import lk.easy.carRental.dto.CustomerDTO;
 import lk.easy.carRental.entity.Car;
 import lk.easy.carRental.entity.Customer;
+import lk.easy.carRental.entity.User_credentials;
 import lk.easy.carRental.repo.CarRepo;
 import lk.easy.carRental.repo.CustomerRepo;
+import lk.easy.carRental.repo.User_credentialsRepo;
 import lk.easy.carRental.service.CustomerService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,12 +20,19 @@ public class CustomerServiceImpl implements CustomerService {
     @Autowired
     private CustomerRepo customerRepo;
     @Autowired
+    private User_credentialsRepo userRepo;
+    @Autowired
     private ModelMapper mapper;
 
     @Override
     public void registerCustomer(CustomerDTO customerDTO) {
         if (!customerRepo.existsById(customerDTO.getCustomerId())) {
-            customerRepo.save(mapper.map(customerDTO, Customer.class));
+            Customer entity = mapper.map(customerDTO, Customer.class);
+
+            User_credentials user = userRepo.findUser_credentialsByUsername(customerDTO.getUser_credentials());
+            entity.setUser_credentials(user);
+
+            customerRepo.save(entity);
         } else {
             throw new RuntimeException("This Customer is Already Exists, Therefore Can't be Register..!");
         }

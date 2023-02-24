@@ -10,6 +10,6 @@ import org.springframework.transaction.annotation.Transactional;
 public interface CustomerRepo extends JpaRepository<Customer, String> {
     @Modifying
     @Transactional
-    @Query(value = "UPDATE Customer SET nicImage=:nicImage, licenseImage=:licenseImage WHERE carId=:customerId", nativeQuery = true)
+    @Query(value = "UPDATE Customer SET nicImage=:nicImage, licenseImage=:licenseImage WHERE customerId=:customerId", nativeQuery = true)
     void uploadCustomerImages(@Param("customerId") String customerId, @Param("nicImage") String nicImage, @Param("licenseImage") String licenseImage);
 }
