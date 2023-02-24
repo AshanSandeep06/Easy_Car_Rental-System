@@ -42,7 +42,7 @@ public class User_credentialsServiceImpl implements User_credentialsService {
     @Override
     public void resetUserPassword(User_credentialsDTO userDTO) {
         if (userRepo.existsByUsername(userDTO.getUsername())) {
-            if (userRepo.updatePasswordByUsername(userDTO.getUsername()) <= 0) {
+            if (userRepo.updatePasswordByUsername(userDTO.getUsername(), userDTO.getPassword()) <= 0) {
                 throw new RuntimeException("Password Reset Process Failed..!");
             }
         } else {

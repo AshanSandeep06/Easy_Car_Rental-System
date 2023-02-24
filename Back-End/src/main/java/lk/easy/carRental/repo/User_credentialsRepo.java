@@ -5,6 +5,7 @@ import lk.easy.carRental.entity.User_credentials;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
 public interface User_credentialsRepo extends JpaRepository<User_credentials, String> {
@@ -15,6 +16,6 @@ public interface User_credentialsRepo extends JpaRepository<User_credentials, St
     @Modifying
     @Transactional
     @Query(nativeQuery = true, value = "UPDATE User_credentials SET password=:password WHERE username=:username")
-    Long updatePasswordByUsername(String username);
+    int updatePasswordByUsername(@Param("username") String username, @Param("password") String password);
 
 }
