@@ -208,6 +208,7 @@ $("#btnUserLogin").on('click', function () {
                     icon: 'success',
                     title: res.message,
                     showConfirmButton: false,
+                    async: false,
                     timer: 1500
                 })
             },
