@@ -233,19 +233,19 @@ $("#btnUserLogin").on('click', function () {
             if (user.role == "Admin") {
                 sessionStorage.setItem("userData", user);
 
-                $("#btnUserLogin > a").attr("target", "_self");
+                $("#btnUserLogin > a").attr("target", "_blank");
                 $("#btnUserLogin > a").attr("href", "view/adminPage.html?" + user.username);
 
             } else if (user.role == "Driver") {
                 sessionStorage.setItem("userData", user);
 
-                $("#btnUserLogin > a").attr("target", "_self");
+                $("#btnUserLogin > a").attr("target", "_blank");
                 $("#btnUserLogin > a").attr("href", "view/driverPage.html?" + user.username);
             }
             if (user.role == "Customer") {
                 sessionStorage.setItem("userData", user);
 
-                $("#btnUserLogin > a").attr("target", "_self");
+                $("#btnUserLogin > a").attr("target", "_blank");
                 $("#btnUserLogin > a").attr("href", "view/customerPage.html?" + user.username);
             }
         }
