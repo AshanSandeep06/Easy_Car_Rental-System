@@ -1,5 +1,8 @@
 let baseUrl = "http://localhost:8080/Back-End/";
 
+var username = location.search.substring(1);
+console.log(username);
+
 $(function () {
     $('#customerPage_home').css("display", "block");
     $('#customerPage_bookings').css("display", "none");
