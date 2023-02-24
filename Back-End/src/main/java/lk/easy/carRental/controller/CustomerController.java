@@ -24,6 +24,11 @@ public class CustomerController {
     @Autowired
     private CustomerService customerService;
 
+    @GetMapping(path = "/generateNewCustomerID")
+    public ResponseUtil generateNewCustomerID(){
+        return new ResponseUtil("OK", "A New Customer ID has been Generated Successfully..!", customerService.generateNewCustomerID());
+    }
+
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseUtil registerCustomer(@RequestBody CustomerDTO customerDTO) {

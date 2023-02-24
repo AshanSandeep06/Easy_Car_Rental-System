@@ -68,15 +68,32 @@ function clearCustomerRegistrationFields() {
     $("#customerLicenseImage").attr('src', "");
 }
 
+function generateNewCustomerID() {
+    let customerId;
+    $.ajax({
+        url: baseUrl + "customer/generateNewCustomerID",
+        method: "get",
+        dataType: "json",
+        success: function (res) {
+            customerId = res.data;
+            return customerId;
+        },
+
+        error: function (error) {
+            alert(JSON.parse(error.responseText).message);
+            return null;
+        }
+    });
+}
+
 // Customer Registration
 $("#btnRegister_registerForm").on('click', function () {
-    // Username, password, nic image, license image --->
     let username = $("#txtCusUsername").val();
     let password = $("#txtCusPassword").val();
     let role = "Customer";
 
     let cusObject = {
-        customerId: "C00-001",
+        customerId: generateNewCustomerID(),
         nic: $("#txtCustomerNic").val(),
         name: $("#txtCustomerName").val(),
         email: $("#txtCustomerEmail").val(),
