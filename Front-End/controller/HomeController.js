@@ -270,7 +270,7 @@ $("#btnResetPassword").on('click', function () {
             contentType: "application/json",
             dataType: "json",
             success: function (res) {
-                $("#txtResetUsername").val();
+                $("#txtResetUsername").val("");
                 $("#txtResetNewPassword").val("");
                 $("#txtResetConfirmPassword").val("");
 
@@ -284,7 +284,7 @@ $("#btnResetPassword").on('click', function () {
             },
 
             error: function (error) {
-                $("#txtResetUsername").val();
+                $("#txtResetUsername").val("");
                 $("#txtResetNewPassword").val("");
                 $("#txtResetConfirmPassword").val("");
 
@@ -296,7 +296,7 @@ $("#btnResetPassword").on('click', function () {
             }
         });
     }else{
-        $("#txtResetUsername").val();
+        $("#txtResetUsername").val("");
         $("#txtResetNewPassword").val("");
         $("#txtResetConfirmPassword").val("");
 
