@@ -258,44 +258,52 @@ $("#btnUserLogin").on('click', function () {
 // Reset Password Function
 $("#btnResetPassword").on('click', function () {
     if ($("#txtResetUsername").val() != '' && $("#txtResetNewPassword").val() != '' && $("#txtResetConfirmPassword").val() != '') {
-        let resetUserObject = {
-            username: $("#txtResetUsername").val(),
-            password: $("#txtResetConfirmPassword").val()
-        };
+        if ($("#txtResetNewPassword").val() === $("#txtResetConfirmPassword").val()) {
+            let resetUserObject = {
+                username: $("#txtResetUsername").val(),
+                password: $("#txtResetConfirmPassword").val()
+            };
 
-        $.ajax({
-            url: baseUrl + "user_credentials/resetPassword",
-            method: "put",
-            data: JSON.stringify(resetUserObject),
-            contentType: "application/json",
-            dataType: "json",
-            success: function (res) {
-                $("#txtResetUsername").val("");
-                $("#txtResetNewPassword").val("");
-                $("#txtResetConfirmPassword").val("");
+            $.ajax({
+                url: baseUrl + "user_credentials/resetPassword",
+                method: "put",
+                data: JSON.stringify(resetUserObject),
+                contentType: "application/json",
+                dataType: "json",
+                success: function (res) {
+                    $("#txtResetUsername").val("");
+                    $("#txtResetNewPassword").val("");
+                    $("#txtResetConfirmPassword").val("");
 
-                Swal.fire({
-                    position: 'top-end',
-                    icon: 'success',
-                    title: res.message,
-                    showConfirmButton: false,
-                    timer: 1500
-                })
-            },
+                    Swal.fire({
+                        position: 'top-end',
+                        icon: 'success',
+                        title: res.message,
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
+                },
 
-            error: function (error) {
-                $("#txtResetUsername").val("");
-                $("#txtResetNewPassword").val("");
-                $("#txtResetConfirmPassword").val("");
+                error: function (error) {
+                    $("#txtResetUsername").val("");
+                    $("#txtResetNewPassword").val("");
+                    $("#txtResetConfirmPassword").val("");
 
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Password Reset Failed',
-                    text: JSON.parse(error.responseText).message
-                })
-            }
-        });
-    }else{
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Password Reset Failed',
+                        text: JSON.parse(error.responseText).message
+                    })
+                }
+            });
+        } else {
+            Swal.fire({
+                icon: 'error',
+                title: 'Invalid Execution',
+                text: 'Password Fields doesn\'t Match, Please enter Password Correctly..!'
+            })
+        }
+    } else {
         $("#txtResetUsername").val("");
         $("#txtResetNewPassword").val("");
         $("#txtResetConfirmPassword").val("");
