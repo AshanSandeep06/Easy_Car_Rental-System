@@ -69,13 +69,14 @@ function clearCustomerRegistrationFields() {
 }
 
 function generateNewCustomerID() {
-    let customerId = null;
+    let customerId;
     $.ajax({
         url: baseUrl + "customer/generateNewCustomerID",
         method: "get",
         dataType: "json",
         async: false,
         success: function (res) {
+            console.log(res.data)
             customerId = res.data;
         },
 

@@ -52,7 +52,7 @@ public class CustomerServiceImpl implements CustomerService {
         String lastCustomerID = customerRepo.getLastCustomerId();
         if (lastCustomerID != null) {
             int tempId = Integer.parseInt(lastCustomerID.split("-")[1]);
-            tempId = tempId++;
+            tempId++;
             if (tempId <= 9) {
                 return "C00-00" + tempId;
             } else if (tempId <= 99) {
