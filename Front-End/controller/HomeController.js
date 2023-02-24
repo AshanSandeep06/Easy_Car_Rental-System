@@ -300,7 +300,7 @@ $("#btnResetPassword").on('click', function () {
             Swal.fire({
                 icon: 'error',
                 title: 'Invalid Execution',
-                text: 'Password Fields doesn\'t Match, Please enter Password Correctly..!'
+                text: 'Password Fields doesn\'t Match, Please enter the Password Correctly..!'
             })
         }
     } else {
