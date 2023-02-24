@@ -12,10 +12,10 @@ import java.io.IOException;
 @RestControllerAdvice
 @CrossOrigin
 public class AppWideExceptionHandler {
-    /*@ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     @ExceptionHandler({RuntimeException.class})
     public ResponseUtil handleRuntimeExceptions(RuntimeException e) {
         System.out.println(e.getMessage());
         return new ResponseUtil("Error", e.getMessage(), null);
-    }*/
+    }
 }

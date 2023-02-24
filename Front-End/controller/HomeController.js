@@ -197,7 +197,14 @@ $("#btnUserLogin").on('click', function () {
             method: "get",
             dataType: "json",
             success: function (res) {
-                console.log(res)
+                if(res.data.role == "Admin"){
+
+
+                }else if(res.data.role == "Driver"){
+
+                }if(res.data.role == "Customer"){
+
+                }
 
                 Swal.fire({
                     position: 'center',
@@ -212,9 +219,15 @@ $("#btnUserLogin").on('click', function () {
                 Swal.fire({
                     icon: 'error',
                     title: 'Login Failed',
-                    text: 'Invalid Username or Password, Please Try again..!'
+                    text: JSON.parse(error.responseText).message
                 })
             }
+        })
+    }else{
+        Swal.fire({
+            icon: 'error',
+            title: 'Login Fields Are Empty..!',
+            text: 'Please Be Aware to Enter Username and Password'
         })
     }
 
