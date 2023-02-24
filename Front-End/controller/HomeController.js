@@ -191,31 +191,15 @@ function uploadCustomerNicAndLicenseImages(customerId) {
 
 // User Login
 $("#btnUserLogin").on('click', function () {
+    let user = null;
     if ($("#txtUserName").val() != '' && $("#txtUserPassword").val() != '') {
         $.ajax({
             url: baseUrl + "user_credentials/verifyLogin?username=" + $("#txtUserName").val() + "&password=" + $("#txtUserPassword").val(),
             method: "get",
             dataType: "json",
+            async: false,
             success: function (res) {
-                if (res.data.role == "Admin") {
-                    // $("#btnUserLogin > a").attr('href', "view/adminPage.html");
-
-                    $.ajax({
-                        url: "view/adminPage.html"
-                    });
-
-                } else if (res.data.role == "Driver") {
-                    // $("#btnUserLogin > a").attr('href', "view/driverPage.html");
-                }
-                if (res.data.role == "Customer") {
-                    // $("#btnUserLogin > a").attr('href', "view/customerPage.html");
-
-                    $("#btnUserLogin>a").attr({
-                        "target": "_self",
-                        "href": "view/customerPage.html"
-                    });
-                }
-
+                user = res.data;
                 $("#txtUserName").val("");
                 $("#txtUserPassword").val("");
 
@@ -238,7 +222,22 @@ $("#btnUserLogin").on('click', function () {
                     text: JSON.parse(error.responseText).message
                 })
             }
-        })
+        });
+
+        if (user != null) {
+            if (user.role == "Admin") {
+                $("#btnUserLogin > a").attr("target", "_blank");
+                $("#btnUserLogin > a").attr("href", "view/adminPage.html");
+
+            } else if (user.role == "Driver") {
+                $("#btnUserLogin > a").attr("target", "_blank");
+                $("#btnUserLogin > a").attr("href", "view/driverPage.html");
+            }
+            if (user.role == "Customer") {
+                $("#btnUserLogin > a").attr("target", "_blank");
+                $("#btnUserLogin > a").attr("href", "view/customerPage.html");
+            }
+        }
     } else {
         $("#txtUserName").val("");
         $("#txtUserPassword").val("");
