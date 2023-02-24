@@ -10,7 +10,7 @@ $("#viewDriverSchedule_section").css('display', 'none');
 $("#viewCarSchedule_section").css('display', 'none');
 $("#adminProfile_section").css('display', 'none');
 // $("#manageRentDetails_section").css('display', 'none');
-$("#managePayment_section").css('display', 'none');
+// $("#managePayment_section").css('display', 'none');
 
 $(".btnDeny").on('click', function () {
     const {value: email} = Swal.fire({
