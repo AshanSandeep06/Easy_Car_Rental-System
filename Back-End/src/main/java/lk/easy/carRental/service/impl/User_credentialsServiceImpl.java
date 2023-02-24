@@ -28,4 +28,9 @@ public class User_credentialsServiceImpl implements User_credentialsService {
             throw new RuntimeException("This User is Already Exists, Therefore Can't be Saved..!");
         }
     }
+
+    @Override
+    public User_credentialsDTO getUserCredentials(String username, String password) {
+        return mapper.map(userRepo.findByUsernameAndPassword(username, password), User_credentialsDTO.class);
+    }
 }

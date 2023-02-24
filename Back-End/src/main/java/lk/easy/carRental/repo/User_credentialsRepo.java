@@ -6,6 +6,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface User_credentialsRepo extends JpaRepository<User_credentials, String> {
     Boolean existsByUsername(String username);
-
     User_credentials findUser_credentialsByUsername(String username);
+    User_credentials findByUsernameAndPassword(String username, String password);
 }

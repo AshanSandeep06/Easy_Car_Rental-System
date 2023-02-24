@@ -188,3 +188,32 @@ function uploadCustomerNicAndLicenseImages(customerId) {
         }
     })
 }
+
+// User Login
+$("#btnUserLogin").on('click', function () {
+    if ($("#txtUserName").val() != '' && $("#txtUserPassword").val() != '') {
+        $.ajax({
+            url: baseUrl + "user_credentials/verifyLogin?username=" + $("#txtUserName").val() + "&password=" + $("#txtUserPassword").val(),
+            method: "get",
+            dataType: "json",
+            success: function (res) {
+                Swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: res.message,
+                    showConfirmButton: false,
+                    timer: 1500
+                })
+            },
+
+            error: function (error) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Login Failed',
+                    text: 'Invalid Username or Password, Please Try again..!'
+                })
+            }
+        })
+    }
+
+});

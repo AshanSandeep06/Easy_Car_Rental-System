@@ -14,6 +14,11 @@ public class User_credentialsController {
     @Autowired
     private User_credentialsService userService;
 
+    @GetMapping(path = "/verifyLogin", params = {"username", "password"})
+    public ResponseUtil verifyUserCredentials(@RequestParam String username, @RequestParam String password) {
+        return new ResponseUtil("OK", "User Credentials has been Saved Successfully..!", userService.getUserCredentials(username, password));
+    }
+
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
     public ResponseUtil saveUserCredentials(@RequestBody User_credentialsDTO userDTO) {
