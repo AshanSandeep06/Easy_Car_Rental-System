@@ -587,7 +587,7 @@ header > nav {
 }
 
 #carImagesCarousel .carousel-inner img {
-    height: 310px;
+    /*height: 310px;*/
 }
 
 #carImagesCarousel .carousel-inner .carousel-item {
@@ -599,7 +599,7 @@ header > nav {
 }
 
 #carImagesCarousel .carousel-inner > .carousel-item:nth-child(2) > img {
-    height: 210px;
+    /*height: 210px;*/
     width: 380px !important;
 }
 
@@ -609,7 +609,6 @@ header > nav {
 }
 
 #carImagesCarousel .carousel-inner > .carousel-item:nth-child(3) > img {
-    height: 238px;
     width: 370px !important;
     object-fit: cover;
 }

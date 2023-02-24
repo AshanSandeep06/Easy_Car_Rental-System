@@ -191,20 +191,38 @@ $("#cmbSelectCarType").on('change', function () {
     });
 });
 
+//propertyIsEnumerable()
+
 function loadAllCarsFromBrand(carBrand) {
     $("#cmbSelectCarId").empty();
     $("#cmbSelectCarId").append(`<option selected disabled>Select Car</option>`);
+
+    var dailyRate;
+    var monthlyRate;
+    var driverCostPerDay;
+    var lossDamageWaiver;
 
     $.ajax({
         url: baseUrl + "car",
         method: "get",
         success: function (resp) {
             for (let c1 of resp.data) {
-                console.log("Awla : " + resp.data)
                 if (c1.brand == carBrand && c1.availabilityType == "Available") {
                     $("#cmbSelectCarId").append(`<option>${c1.carId}</option>`);
+
+                    dailyRate = c1.priceRate.dailyRate;
+                    monthlyRate = c1.priceRate.monthlyRate;
+                    driverCostPerDay = "1000";
+                    lossDamageWaiver = c1.lossDamageWaiver;
                 }
             }
+
+            $("#carDetailsAside > h1:first-child > span").text(carBrand);
+            $("#carDetailsAside > h2:nth-child(3) > span").text(dailyRate + " LKR");
+            $("#carDetailsAside > h2:nth-child(4) > span").text(monthlyRate + " LKR");
+            $("#carDetailsAside > h2:nth-child(5) > span").text(driverCostPerDay + " LKR");
+            $("#carDetailsAside > h2:nth-child(6) > span").text(lossDamageWaiver + " LKR");
+
         }
     });
 }
@@ -215,6 +233,33 @@ $(".cars_btn").on('click', function () {
     var carBrand = $(this).parent().parent().children(":eq(2)").children(":eq(0)").text();
     console.log(carBrand);
     loadAllCarsFromBrand(carBrand);
+});
+
+$("#cmbSelectCarId").change(function () {
+    $("#tblCarDetails>tbody").empty();
+    let carId = $(this).val();
+
+    $.ajax({
+        url: baseUrl + "car?carId=" + carId,
+        method: "get",
+        success: function (resp) {
+            if (resp.data != null) {
+                $("#tblCarDetails>tbody").append(`<tr><td>${resp.data.carId}</td><td>${resp.data.registerNum}</td><td>${resp.data.brand}</td><td>${resp.data.color}</td><td>${resp.data.numOfPassengers}</td><td>${resp.data.fuelType}</td><td>${resp.data.transmissionType}</td><td>${resp.data.freeMileage.dailyMileage}</td><td>${resp.data.freeMileage.monthlyMileage}</td><td>${resp.data.pricePerExtraKM}</td></tr>`);
+            }
+
+            $.ajax({
+                url: baseUrl + "car/getCarImages/" + carId,
+                method: "get",
+                success: function (resp) {
+                    $("#carFront_image").attr('src', "../assets/img/uploads/carImages/" + resp.data.front);
+                    $("#carBack_image").attr('src', "../assets/img/uploads/carImages/" + resp.data.back);
+                    $("#carSide_image").attr('src', "../assets/img/uploads/carImages/" + resp.data.side);
+                    $("#carInterior_image").attr('src', "../assets/img/uploads/carImages/" + resp.data.interior);
+                }
+            });
+        }
+    });
+
 });
 
 

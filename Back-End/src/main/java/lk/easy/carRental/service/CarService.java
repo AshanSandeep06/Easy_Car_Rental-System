@@ -15,4 +15,5 @@ public interface CarService {
     void uploadCarImages(String carId, String frontImage, String backImage, String sideImage, String interiorImage);
     ImageDTO getCarImages(String carId);
     Long getCarCountByCarBrandAndAvailabilityType(String carBrand, String availabilityType);
+    CarDTO getCarFromCarID(String carID);
 }

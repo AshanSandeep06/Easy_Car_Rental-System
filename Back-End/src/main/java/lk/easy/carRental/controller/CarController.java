@@ -32,6 +32,11 @@ public class CarController {
         return new ResponseUtil("OK", "Successfully Loaded All Cars", carService.getAllCars());
     }
 
+    @GetMapping(params = {"carId"})
+    public ResponseUtil getCarFromCarID(String carId) {
+        return new ResponseUtil("OK", "Successfully Loaded "+carId+" Car", carService.getCarFromCarID(carId));
+    }
+
     @GetMapping(path = "/sortFromCarBrand")
     public ResponseUtil getAllCarsFromBrand() {
         return new ResponseUtil("OK", "Successfully Loaded All Cars", carService.getAllCarsSortFromBrand());

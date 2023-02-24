@@ -711,25 +711,25 @@
 
                     <div class="carousel-inner">
                         <div class="carousel-item active">
-                            <img src="../assets/img/alto_K10-front.png" class="d-block w-100" alt="...">
+                            <img id="carFront_image" class="d-block w-100">
                             <div class="carousel-caption d-none d-md-block">
                             </div>
                         </div>
 
                         <div class="carousel-item">
-                            <img src="../assets/img/alto_K10-side.png" class="d-block w-100" alt="...">
+                            <img id="carBack_image" class="d-block w-100">
                             <div class="carousel-caption d-none d-md-block">
                             </div>
                         </div>
 
                         <div class="carousel-item">
-                            <img src="../assets/img/alto_K10-interior.jpg" class="d-block w-100" alt="...">
+                            <img id="carSide_image" class="d-block w-100">
                             <div class="carousel-caption d-none d-md-block">
                             </div>
                         </div>
 
                         <div class="carousel-item">
-                            <img src="../assets/img/alto_K10-back.png" class="d-block w-100" alt="...">
+                            <img id="carInterior_image" class="d-block w-100">
                             <div class="carousel-caption d-none d-md-block">
                             </div>
                         </div>
@@ -749,7 +749,8 @@
 
             <aside id="carDetailsAside" class="row col-4 bg-white shadow-lg justify-content-center">
                 <h1 id="car_brand"><span>Suzuki Alto - Premium</span></h1>
-                <select id="cmbSelectCarId" style="width: 80%;line-height: 1;margin-bottom: 17px;" class="form-select col-8"
+                <select id="cmbSelectCarId" style="width: 80%;line-height: 1;margin-bottom: 17px;"
+                        class="form-select col-8"
                         aria-label="Default select example">
                     <option selected disabled>Select Car</option>
                 </select>

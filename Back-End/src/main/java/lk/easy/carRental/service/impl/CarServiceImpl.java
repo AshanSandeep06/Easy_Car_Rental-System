@@ -117,4 +117,9 @@ public class CarServiceImpl implements CarService {
     public Long getCarCountByCarBrandAndAvailabilityType(String carBrand, String availabilityType) {
         return carRepo.countCarByBrandAndAvailabilityType(carBrand, availabilityType);
     }
+
+    @Override
+    public CarDTO getCarFromCarID(String carID) {
+        return mapper.map(carRepo.findCarByCarId(carID), CarDTO.class);
+    }
 }
