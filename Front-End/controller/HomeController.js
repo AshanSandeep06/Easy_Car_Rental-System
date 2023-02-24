@@ -226,15 +226,15 @@ $("#btnUserLogin").on('click', function () {
 
         if (user != null) {
             if (user.role == "Admin") {
-                $("#btnUserLogin > a").attr("target", "_blank");
+                $("#btnUserLogin > a").attr("target", "-_self");
                 $("#btnUserLogin > a").attr("href", "view/adminPage.html");
 
             } else if (user.role == "Driver") {
-                $("#btnUserLogin > a").attr("target", "_blank");
+                $("#btnUserLogin > a").attr("target", "-_self");
                 $("#btnUserLogin > a").attr("href", "view/driverPage.html");
             }
             if (user.role == "Customer") {
-                $("#btnUserLogin > a").attr("target", "_blank");
+                $("#btnUserLogin > a").attr("target", "-_self");
                 $("#btnUserLogin > a").attr("href", "view/customerPage.html");
             }
         }
