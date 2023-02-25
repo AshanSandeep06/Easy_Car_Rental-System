@@ -369,6 +369,79 @@ $("#btnCancelRent").on('click', function () {
 $('#btnSubmitRent').on('click', function () {
     if ($('#cmbSelectCarId').val() != null && !($('#tblCarDetails>tbody').is(':not-empty')) && $('#location').val() != '' && $('#pickUpTime').val() != '' && $('#pickUpDate').val() != '' && $('#returnTime').val() != '' && $('#returnDate').val() != '' && $('#uploadSlip').val() != '') {
         // DO THE TASK
+        let username = $("#txtCusUsername").val();
+        let password = $("#txtCusPassword").val();
+        let role = "Customer";
+
+        let cusObject = {
+            rentId: generateNewCustomerID(),
+            pickUpTime: $("#txtCustomerNic").val(),
+            pickUpDate: $("#txtCustomerName").val(),
+            returnTime: $("#txtCustomerEmail").val(),
+            returnDate: $("#txtCustomerAddress").val(),
+            requestTypeOfDriver: $("#txtCustomerContact").val(),
+            location: $("#txtCustomerLicenseNo").val(),
+            rentStatus: $("#txtCustomerLicenseNo").val(),
+            deniedReason: username,
+            customer: username,
+            rentDetail: rentDetail
+        };
+
+        let userObject = {username: username, password: password, role: role};
+
+        if ($('#uploadNicImage')[0].files[0] != null && $('#uploadLicenseImage')[0].files[0] != null) {
+            $.ajax({
+                url: baseUrl + "user_credentials",
+                method: "post",
+                data: JSON.stringify(userObject),
+                contentType: "application/json",
+                dataType: "json",
+                success: function (res) {
+                    $.ajax({
+                        url: baseUrl + "customer",
+                        method: "post",
+                        data: JSON.stringify(cusObject),
+                        contentType: "application/json",
+
+                        success: function (res) {
+                            uploadCustomerNicAndLicenseImages(cusObject.customerId);
+                            clearCustomerRegistrationFields();
+
+                            Swal.fire({
+                                position: 'top-end',
+                                icon: 'success',
+                                title: 'Customer has been Successfully Registered', // res.message
+                                showConfirmButton: false,
+                                timer: 1500
+                            })
+                        },
+                        error: function (error) {
+                            // alert(JSON.parse(error.responseText).message);
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Oops...',
+                                text: 'Customer Registration was failed..!'
+                            })
+                        }
+                    });
+                },
+                error: function (error) {
+                    // alert(JSON.parse(error.responseText).message);
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Customer Registration was failed..!'
+                    })
+                }
+            });
+        } else {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'You Should Provide your NIC and License Images Therefore, Customer Registration was failed..!'
+            })
+        }
+
 
     } else {
         Swal.fire({
