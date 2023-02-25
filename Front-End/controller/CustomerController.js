@@ -352,10 +352,6 @@ $("#btnCancelRent").on('click', function () {
     generateNewRentalID();
     $('#tblCarDetails>tbody').empty();
     $('#cmbSelectCarId').val('Select Car');
-    $('#carFront_image').attr('src', '');
-    $('#carBack_image').attr('src', '');
-    $('#carSide_image').attr('src', '');
-    $('#carInterior_image').attr('src', '');
     $('#location').val('');
     $('#pickUpTime').val('');
     $('#pickUpDate').val('');
