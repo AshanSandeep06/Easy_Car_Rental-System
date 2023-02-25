@@ -59,11 +59,14 @@ $("#btnClear").on('click', function () {
 
 function loadAllCarsDetails() {
     // $("#tblManageVehicle>tbody").empty();
+    var availableCount = 0;
 
     $.ajax({
         url: baseUrl + "car/sortFromCarBrand",
         method: "get",
         dataType: "json",
+        // Edited 2023-02-25
+        async: false,
         success: function (resp) {
             if (resp.data != null) {
                 for (let i = 0; i < resp.data.length; i++) {
@@ -72,6 +75,8 @@ function loadAllCarsDetails() {
                     $.ajax({
                         url: baseUrl + "car/getCarImages/" + resp.data[i].carId,
                         method: "get",
+                        // Edited 2023-02-25
+                        async: false,
                         dataType: "json",
                         success: function (resp) {
                             $("#carsCollection > section:first-child").children(`:eq(${i})`).children(":eq(1)").children(":eq(0)").attr('src', "../assets/img/uploads/carImages/" + resp.data.front);
@@ -87,8 +92,15 @@ function loadAllCarsDetails() {
                         url: baseUrl + "car/" + resp.data[i].brand + "/Available",
                         method: "get",
                         dataType: "json",
+                        // Edited 2023-02-25
+                        async: false,
                         success: function (resp) {
                             $("#carsCollection > section:first-child").children(`:eq(${i})`).children(":eq(0)").children(":eq(5)").text("Available Car Qty - " + resp.data);
+
+                            // Edited 2023-02-25
+                            if (resp.data > 0) {
+                                availableCount = resp.data;
+                            }
                         }
                     });
 
@@ -114,7 +126,8 @@ function loadAllCarsDetails() {
                     $("#carsCollection > section:first-child").children(`:eq(${i})`).css('display', 'flex');
                 }
 
-                for (let i = resp.data.length; i < $("#carsCollection > section:first-child").children().length; i++) {
+                // Edited 2023-02-25 ((Meka thibune kalin --> resp.data.length) insteadof availableCount)
+                for (let i = availableCount; i < $("#carsCollection > section:first-child").children().length; i++) {
                     $("#carsCollection > section:first-child").children(`:eq(${i})`).css('display', 'none');
                 }
             }
@@ -334,36 +347,48 @@ function generateNewPaymentID() {
 $("#pickUpTime, #pickUpDate, #returnTime, #returnDate").on('change', function () {
     if ($('#pickUpTime').val() != '' && $('#pickUpDate').val() != '' && $('#returnTime').val() != '' && $('#returnDate').val() != '') {
         if (new Date($('#pickUpDate').val()) > new Date() && new Date($('#returnDate').val()) > new Date()) {
-            var start_time = $('#pickUpTime').val();
-            var end_time = $('#returnTime').val();
+            if (new Date($('#pickUpDate').val()) <= new Date($('#returnDate').val())) {
+                var start_time = $('#pickUpTime').val();
+                var end_time = $('#returnTime').val();
 
-            var totalHourCount = (new Date($("#returnDate").val() + " " + $('#returnTime').val()) - new Date($("#pickUpDate").val() + " " + $('#pickUpTime').val())) / 1000 / 60 / 60;
-            var rentDaysCount = totalHourCount / 24;
-            var rentHoursCount = totalHourCount % 24;
+                var totalHourCount = (new Date($("#returnDate").val() + " " + $('#returnTime').val()) - new Date($("#pickUpDate").val() + " " + $('#pickUpTime').val())) / 1000 / 60 / 60;
+                var rentDaysCount = totalHourCount / 24;
+                var rentHoursCount = totalHourCount % 24;
 
-            console.log(totalHourCount);
-            console.log(rentDaysCount);
-            console.log(rentHoursCount);
+                console.log(totalHourCount);
+                console.log(rentDaysCount);
+                console.log(rentHoursCount);
 
-            var exactRentDayCount = parseInt(totalHourCount / 24);
+                var exactRentDayCount = parseInt(totalHourCount / 24);
 
-            if (rentHoursCount > 0) {
-                exactRentDayCount = exactRentDayCount + 1;
-            }
+                if (rentHoursCount > 0) {
+                    exactRentDayCount = exactRentDayCount + 1;
+                }
 
-            console.log("exactRentDayCount : " + exactRentDayCount);
+                console.log("exactRentDayCount : " + exactRentDayCount);
 
-            $('#driverFee').val(parseFloat($("#carDetailsAside > h2:nth-child(5) > span").text().split(" LKR")[0]) * exactRentDayCount);
-            $('#ldw').val(parseFloat($("#carDetailsAside > h2:nth-child(6) > span").text().split(" LKR")[0]));
-            if (exactRentDayCount == 30) {
-                $('#carFee').val(parseInt($("#carDetailsAside > h2:nth-child(4) > span").text().split(" LKR")[0]));
-            } else if (exactRentDayCount > 30 && exactRentDayCount < 60) {
-                $('#carFee').val(parseInt($("#carDetailsAside > h2:nth-child(4) > span").text().split(" LKR")[0]) + parseInt($("#carDetailsAside > h2:nth-child(3) > span").text().split(" LKR")[0]) * exactRentDayCount);
+                $('#driverFee').val(parseFloat($("#carDetailsAside > h2:nth-child(5) > span").text().split(" LKR")[0]) * exactRentDayCount);
+                $('#ldw').val(parseFloat($("#carDetailsAside > h2:nth-child(6) > span").text().split(" LKR")[0]));
+                if (exactRentDayCount == 30) {
+                    $('#carFee').val(parseInt($("#carDetailsAside > h2:nth-child(4) > span").text().split(" LKR")[0]));
+                } else if (exactRentDayCount > 30 && exactRentDayCount < 60) {
+                    $('#carFee').val(parseInt($("#carDetailsAside > h2:nth-child(4) > span").text().split(" LKR")[0]) + parseInt($("#carDetailsAside > h2:nth-child(3) > span").text().split(" LKR")[0]) * exactRentDayCount);
+                } else {
+                    $('#carFee').val(parseInt($("#carDetailsAside > h2:nth-child(3) > span").text().split(" LKR")[0]) * exactRentDayCount);
+                }
+
+                $('#totalFee').val(parseFloat($('#driverFee').val()) + parseFloat($('#ldw').val()) + parseFloat($('#carFee').val()));
             } else {
-                $('#carFee').val(parseInt($("#carDetailsAside > h2:nth-child(3) > span").text().split(" LKR")[0]) * exactRentDayCount);
+                $('#driverFee').val('');
+                $('#ldw').val('');
+                $('#carFee').val('');
+                $('#totalFee').val('');
             }
-
-            $('#totalFee').val(parseFloat($('#driverFee').val()) + parseFloat($('#ldw').val()) + parseFloat($('#carFee').val()));
+        } else {
+            $('#driverFee').val('');
+            $('#ldw').val('');
+            $('#carFee').val('');
+            $('#totalFee').val('');
         }
     }
 });
@@ -397,7 +422,6 @@ $('#btnSubmitRent').on('click', function () {
             carCost: parseFloat($('#carFee').val()).toFixed(2),
             driverCost: parseFloat($('#driverFee').val()).toFixed(2),
             damageFee: 0.00,
-            driver: null
         });
 
         let rentObject = {
@@ -452,6 +476,8 @@ $('#btnSubmitRent').on('click', function () {
                             showConfirmButton: false,
                             timer: 1500
                         })
+
+                        loadAllCarsDetails();
                     },
                     error: function (error) {
                         // alert(JSON.parse(error.responseText).message);
