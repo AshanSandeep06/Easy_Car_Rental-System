@@ -64,4 +64,13 @@ public class CustomerServiceImpl implements CustomerService {
             return "C00-001";
         }
     }
+
+    @Override
+    public CustomerDTO getCustomerDetails(String username) {
+        if (userRepo.existsByUsername(username)) {
+            return mapper.map(customerRepo.findCustomerByUsername(username), CustomerDTO.class);
+        } else {
+            throw new RuntimeException("There is No Such a User by this Username");
+        }
+    }
 }

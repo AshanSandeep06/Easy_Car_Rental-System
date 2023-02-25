@@ -233,6 +233,8 @@ $(".cars_btn").on('click', function () {
     var carBrand = $(this).parent().parent().children(":eq(2)").children(":eq(0)").text();
     console.log(carBrand);
     loadAllCarsFromBrand(carBrand);
+    loadCustomerDetails();
+    generateNewRentalID();
 });
 
 $("#cmbSelectCarId").change(function () {
@@ -261,6 +263,37 @@ $("#cmbSelectCarId").change(function () {
     });
 
 });
+
+function loadCustomerDetails() {
+    $.ajax({
+        url: baseUrl + "/customer?username=" + username,
+        method: "get",
+        dataType: "json",
+        success: function (resp) {
+            if (resp.data != null) {
+                $("#customerID").val(resp.data.customerId);
+                $("#customerNic").val(resp.data.nic);
+                $("#customerName").val(resp.data.name);
+            }
+        }
+    });
+}
+
+function generateNewRentalID() {
+    $.ajax({
+        url: baseUrl + "rent/generateNewRentID",
+        method: "get",
+        dataType: "json",
+        async: false,
+        success: function (res) {
+            $("#rentalID").val(res.data);
+        },
+
+        error: function (error) {
+            alert(JSON.parse(error.responseText).message);
+        }
+    });
+}
 
 
 

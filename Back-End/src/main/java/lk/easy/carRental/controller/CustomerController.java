@@ -24,8 +24,13 @@ public class CustomerController {
     @Autowired
     private CustomerService customerService;
 
+    @GetMapping(params = {"username"})
+    public ResponseUtil getCustomerDetails(@RequestParam("username") String customerUsername) {
+        return new ResponseUtil("OK", "Customer Details has been loaded Successfully..!", customerService.getCustomerDetails(customerUsername));
+    }
+
     @GetMapping(path = "/generateNewCustomerID")
-    public ResponseUtil generateNewCustomerID(){
+    public ResponseUtil generateNewCustomerID() {
         return new ResponseUtil("OK", "A New Customer ID has been Generated Successfully..!", customerService.generateNewCustomerID());
     }
 
