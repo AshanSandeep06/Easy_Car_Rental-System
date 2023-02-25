@@ -295,9 +295,58 @@ function generateNewRentalID() {
     });
 }
 
+/*function calculateRentDaysCount() {
+    var start_time = $('#pickUpTime').val();
+    var end_time = $('#returnTime').val();
 
+    var totalHourCount = (new Date($("#returnDate").val() + " " + $('#returnTime').val()) - new Date($("#pickUpDate").val() + " " + $('#pickUpTime').val())) / 1000 / 60 / 60;
+    var rentDaysCount = totalHourCount / 24;
+    var rentHoursCount = totalHourCount % 24;
 
+    console.log(totalHourCount);
+    console.log(rentDaysCount);
+    console.log(rentHoursCount);
 
+    var exactRentDayCount = parseInt(totalHourCount / 24) + 1;
+    console.log("exactRentDayCount : " + exactRentDayCount)
+}*/
+
+$("#pickUpTime, #pickUpDate, #returnTime, #returnDate").on('change', function () {
+    if ($('#pickUpTime').val() != '' && $('#pickUpDate').val() != '' && $('#returnTime').val() != '' && $('#returnDate').val() != '') {
+        if (new Date($('#pickUpDate').val()) > new Date() && new Date($('#returnDate').val()) > new Date()) {
+            var start_time = $('#pickUpTime').val();
+            var end_time = $('#returnTime').val();
+
+            var totalHourCount = (new Date($("#returnDate").val() + " " + $('#returnTime').val()) - new Date($("#pickUpDate").val() + " " + $('#pickUpTime').val())) / 1000 / 60 / 60;
+            var rentDaysCount = totalHourCount / 24;
+            var rentHoursCount = totalHourCount % 24;
+
+            console.log(totalHourCount);
+            console.log(rentDaysCount);
+            console.log(rentHoursCount);
+
+            var exactRentDayCount = parseInt(totalHourCount / 24);
+
+            if (rentHoursCount > 0) {
+                exactRentDayCount = exactRentDayCount + 1;
+            }
+
+            console.log("exactRentDayCount : " + exactRentDayCount);
+
+            $('#driverFee').val(parseFloat($("#carDetailsAside > h2:nth-child(5) > span").text().split(" LKR")[0]) * exactRentDayCount);
+            $('#ldw').val(parseFloat($("#carDetailsAside > h2:nth-child(6) > span").text().split(" LKR")[0]));
+            if (exactRentDayCount == 30) {
+                $('#carFee').val(parseInt($("#carDetailsAside > h2:nth-child(4) > span").text().split(" LKR")[0]));
+            } else if (exactRentDayCount > 30 && exactRentDayCount < 60) {
+                $('#carFee').val(parseInt($("#carDetailsAside > h2:nth-child(4) > span").text().split(" LKR")[0]) + parseInt($("#carDetailsAside > h2:nth-child(3) > span").text().split(" LKR")[0]) * exactRentDayCount);
+            } else {
+                $('#carFee').val(parseInt($("#carDetailsAside > h2:nth-child(3) > span").text().split(" LKR")[0]) * exactRentDayCount);
+            }
+
+            $('#totalFee').val(parseFloat($('#driverFee').val()) + parseFloat($('#ldw').val()) + parseFloat($('#carFee').val()));
+        }
+    }
+});
 
 
 
