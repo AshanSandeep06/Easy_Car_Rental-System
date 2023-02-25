@@ -99,7 +99,7 @@ function loadAllCarsDetails() {
 
                             // Edited 2023-02-25
                             if (resp.data > 0) {
-                                availableCount = resp.data;
+                                availableCount += resp.data;
                             }
                         }
                     });
@@ -127,7 +127,7 @@ function loadAllCarsDetails() {
                 }
 
                 // Edited 2023-02-25 ((Meka thibune kalin --> resp.data.length) insteadof availableCount)
-                for (let i = availableCount; i < $("#carsCollection > section:first-child").children().length; i++) {
+                for (let i = resp.data.length; i < $("#carsCollection > section:first-child").children().length; i++) {
                     $("#carsCollection > section:first-child").children(`:eq(${i})`).css('display', 'none');
                 }
             }
@@ -441,6 +441,9 @@ $('#btnSubmitRent').on('click', function () {
         var fullDate = new Date();
         var currentDate = fullDate.getFullYear() + "-0" + (fullDate.getMonth() + 1) + "-" + fullDate.getDate();
         var currentTime = fullDate.getHours() + ":" + fullDate.getMinutes();
+        if (fullDate.getMinutes() < 10) {
+            currentTime = fullDate.getHours() + ":0" + fullDate.getMinutes();
+        }
 
         $.ajax({
             url: baseUrl + "rent",

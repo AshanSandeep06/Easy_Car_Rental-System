@@ -5,9 +5,11 @@ import lk.easy.carRental.dto.RentDTO;
 import lk.easy.carRental.entity.Car;
 import lk.easy.carRental.entity.Driver;
 import lk.easy.carRental.entity.Rent;
+import lk.easy.carRental.entity.Rent_detail;
 import lk.easy.carRental.repo.CarRepo;
 import lk.easy.carRental.repo.DriverRepo;
 import lk.easy.carRental.repo.RentRepo;
+import lk.easy.carRental.repo.Rent_detailRepo;
 import lk.easy.carRental.service.RentService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +34,8 @@ public class RentServiceImpl implements RentService {
     private CarRepo carRepo;
 
     @Autowired
+    private Rent_detailRepo rentDetailRepo;
+    @Autowired
     private ModelMapper mapper;
 
     @Override
@@ -55,11 +59,13 @@ public class RentServiceImpl implements RentService {
     @Override
     public void placeRent(RentDTO rentDTO) {
         Random random = new Random();
+        Rent rent = mapper.map(rentDTO, Rent.class);
+
         if (rentDTO.getRequestTypeOfDriver().equals("Yes")) {
             ArrayList<Driver> allAvailableDrivers = driverRepo.findDriverByAvailabilityType("Available");
             if (allAvailableDrivers.size() > 0) {
                 Driver assignableDriver = allAvailableDrivers.get(random.nextInt(allAvailableDrivers.size()));
-                rentDTO.getRentDetail().get(0).setDriver(mapper.map(assignableDriver, DriverDTO.class));
+                rent.getRentDetail().get(0).setDriver(assignableDriver);
                 System.out.println(assignableDriver);
                 assignableDriver.setAvailabilityType("Unavailable");
                 driverRepo.save(assignableDriver);
@@ -68,7 +74,6 @@ public class RentServiceImpl implements RentService {
             }
         }
 
-        Rent rent = mapper.map(rentDTO, Rent.class);
         if (rentRepo.existsById(rent.getRentId())) {
             throw new RuntimeException("Can't Place this Rent Request, This is Already Added..!");
         }
@@ -77,5 +82,6 @@ public class RentServiceImpl implements RentService {
         Car car = carRepo.findById(rentDTO.getRentDetail().get(0).getCarId()).get();
         car.setAvailabilityType("Unavailable");
         carRepo.save(car);
+
     }
 }
