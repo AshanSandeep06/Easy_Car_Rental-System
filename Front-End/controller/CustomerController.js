@@ -536,7 +536,14 @@ function viewMyActiveBookings() {
         success: function (resp) {
             if (resp.data != null) {
                 for (let rent of resp.data) {
-                    $('#tblBookingDetails>tbody').append(`<tr><td></td></tr>`);
+                    var xr = rent.pickUpDate;
+                    var startDate = xr[0] + "-" + xr[1] + "-" + xr[2];
+
+                    var yr = rent.returnDate;
+                    var endDate = yr[0] + "-" + yr[1] + "-" + yr[2];
+
+                    $('#tblBookingDetails>tbody').append(`<tr><td>${rent.rentId}</td><td>${rent.customer.customerId}</td><td>${rent.customer.name}</td><td>${rent.customer.nic}</td><td>${startDate}</td><td>${endDate}</td><td>${rent.location}</td><td>${rent.requestTypeOfDriver}</td><td>${rent.rentDetail[0].driver.driverId}</td><td>${rent.rentDetail[0].driver.name}</td><td>${rent.rentDetail[0].driver.contactNumber}</td><td>${rent.rentDetail[0].carId}</td><td>${rent.rentDetail[0].carCost}</td><td>${rent.rentDetail[0].driverCost}</td><td><button type="button" class="btn btn-danger btnOptionCancelRent">Cancel Request
+                            </button></td></tr>`);
                 }
             }
         }

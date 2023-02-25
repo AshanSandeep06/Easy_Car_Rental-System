@@ -11,6 +11,6 @@ public interface RentRepo extends JpaRepository<Rent, String> {
     @Query(value = "SELECT rentId FROM Rent ORDER BY rentId DESC LIMIT 1", nativeQuery = true)
     String getLastRentId();
 
-    @Query(nativeQuery = true, value = "SELECT * FROM Rent WHERE customerId=:customerId")
+    @Query(nativeQuery = true, value = "SELECT * FROM Rent WHERE customerId=:customerId AND rentStatus='Pending' OR rentStatus='Accepted'")
     ArrayList<Rent> getAllActiveBookingsByCustomerId(@Param("customerId") String customerId);
 }

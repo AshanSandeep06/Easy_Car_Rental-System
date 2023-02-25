@@ -815,7 +815,7 @@ tbody {
     font-size: 14px;
 }
 
-#btnOptionCancelRent {
+.btnOptionCancelRent {
     padding: 4px 6px;
     font-size: 14px;
 }
