@@ -295,6 +295,26 @@ function generateNewRentalID() {
     });
 }
 
+function generateNewPaymentID() {
+    let paymentID = null;
+
+    $.ajax({
+        url: baseUrl + "payment/generateNewPaymentID",
+        method: "get",
+        dataType: "json",
+        async: false,
+        success: function (res) {
+            paymentID = res.data;
+        },
+
+        error: function (error) {
+            alert(JSON.parse(error.responseText).message);
+        }
+    });
+
+    return paymentID;
+}
+
 /*function calculateRentDaysCount() {
     var start_time = $('#pickUpTime').val();
     var end_time = $('#returnTime').val();
@@ -393,27 +413,42 @@ $('#btnSubmitRent').on('click', function () {
             customer: $('#customerID').val(),
             rentDetail: rentDetailsArray
         };
+
+        var fullDate = new Date();
+        var currentDate = fullDate.getFullYear() + "-0" + (fullDate.getMonth() + 1) + "-" + fullDate.getDate();
+        var currentTime = fullDate.getHours() + ":" + fullDate.getMinutes();
+
         $.ajax({
-            url: baseUrl + "user_credentials",
+            url: baseUrl + "rent",
             method: "post",
-            data: JSON.stringify(userObject),
+            data: JSON.stringify(rentObject),
             contentType: "application/json",
             dataType: "json",
             success: function (res) {
-                $.ajax({
-                    url: baseUrl + "customer",
-                    method: "post",
-                    data: JSON.stringify(cusObject),
-                    contentType: "application/json",
+                let paymentObject = {
+                    paymentId: generateNewPaymentID(),
+                    paymentType: "Loss Damage Waiver",
+                    paymentDate: currentDate,
+                    paymentTime: currentTime,
+                    amount: parseFloat($('#ldw').val()),
+                    cash: $('#ldw').val(),
+                    balance: 0.00,
+                    rent: rentObject,
+                };
 
+                $.ajax({
+                    url: baseUrl + "payment",
+                    method: "post",
+                    data: JSON.stringify(paymentObject),
+                    contentType: "application/json",
                     success: function (res) {
-                        uploadCustomerNicAndLicenseImages(cusObject.customerId);
-                        clearCustomerRegistrationFields();
+                        $('#customerPage_home').css("display", "block");
+                        $('#carBookingMain').css("display", "none");
 
                         Swal.fire({
                             position: 'top-end',
                             icon: 'success',
-                            title: 'Customer has been Successfully Registered', // res.message
+                            title: res.message,
                             showConfirmButton: false,
                             timer: 1500
                         })
@@ -423,7 +458,7 @@ $('#btnSubmitRent').on('click', function () {
                         Swal.fire({
                             icon: 'error',
                             title: 'Oops...',
-                            text: 'Customer Registration was failed..!'
+                            text: JSON.parse(error.responseText).message
                         })
                     }
                 });
@@ -433,7 +468,7 @@ $('#btnSubmitRent').on('click', function () {
                 Swal.fire({
                     icon: 'error',
                     title: 'Oops...',
-                    text: 'Customer Registration was failed..!'
+                    text: JSON.parse(error.responseText).message
                 })
             }
         });

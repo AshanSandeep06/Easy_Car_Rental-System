@@ -23,5 +23,5 @@ public class Rent_detailDTO {
     private double carCost;
     private double driverCost;
     private double damageFee;
-    private String driver;
+    private DriverDTO driver;
 }

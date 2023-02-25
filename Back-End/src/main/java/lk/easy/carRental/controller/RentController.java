@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @CrossOrigin
-@RequestMapping("rent")
+@RequestMapping("/rent")
 public class RentController {
     @Autowired
     private RentService rentService;

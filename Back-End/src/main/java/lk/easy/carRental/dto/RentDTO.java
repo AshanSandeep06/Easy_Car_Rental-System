@@ -38,7 +38,7 @@ public class RentDTO {
 
     private String deniedReason;
 
-    private String customer;
+    private CustomerDTO customer;
 
     private List<Rent_detailDTO> rentDetail;
 }
