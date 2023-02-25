@@ -350,7 +350,7 @@ $("#pickUpTime, #pickUpDate, #returnTime, #returnDate").on('change', function ()
 
 $("#btnCancelRent").on('click', function () {
     generateNewRentalID();
-    $('#tblCarDetails').empty();
+    $('#tblCarDetails>tbody').empty();
     $('#cmbSelectCarId').val('Select Car');
     $('#carFront_image').attr('src', '');
     $('#carBack_image').attr('src', '');
