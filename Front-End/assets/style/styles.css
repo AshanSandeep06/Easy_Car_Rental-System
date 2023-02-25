@@ -691,7 +691,7 @@ tbody {
 }
 
 #carBookingMain > section:first-child > section:first-child {
-    gap: 45px;
+    gap: 2px;
 }
 
 #customerDetailsHeader, #rentDetailsHeader {
