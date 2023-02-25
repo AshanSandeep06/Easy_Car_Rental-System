@@ -17,6 +17,9 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 public class Test {
     public static void main(String[] args) {
@@ -63,6 +66,16 @@ public class Test {
         entity.setUser_credentials(new User_credentials(c1.getUser_credentials()));
         System.out.println(entity);*/
 
+
+        List<String> list = new ArrayList<>();
+        list.add("Amal");
+        list.add("Bimal");
+        list.add("Nimal");
+
+        Random random = new Random();
+        // Generates random integers 0 to 2
+        int x = random.nextInt(list.size()); //3
+        System.out.println(x);
 
 
     }

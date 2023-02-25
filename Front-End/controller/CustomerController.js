@@ -387,7 +387,7 @@ $("#btnCancelRent").on('click', function () {
 });
 
 $('#btnSubmitRent').on('click', function () {
-    if ($('#cmbSelectCarId').val() != null && !($('#tblCarDetails>tbody').is(':not-empty')) && $('#location').val() != '' && $('#pickUpTime').val() != '' && $('#pickUpDate').val() != '' && $('#returnTime').val() != '' && $('#returnDate').val() != '' && $('#uploadSlip').val() != '') {
+    if ($('#cmbSelectCarId').val() != null && !($('#tblCarDetails>tbody').is(':empty')) && $('#location').val() != '' && $('#pickUpTime').val() != '' && $('#pickUpDate').val() != '' && $('#returnTime').val() != '' && $('#returnDate').val() != '' && $('#uploadSlip').val() != '') {
         // DO THE TASK
         var rentDetailsArray = [];
         rentDetailsArray.push({
@@ -410,7 +410,7 @@ $('#btnSubmitRent').on('click', function () {
             location: $("#location").val(),
             rentStatus: "Pending",
             deniedReason: "N/A",
-            customer: $('#customerID').val(),
+            customer: {customerId: $('#customerID').val()},
             rentDetail: rentDetailsArray
         };
 
