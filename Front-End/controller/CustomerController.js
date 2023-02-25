@@ -10,6 +10,7 @@ $(function () {
     $('#customerPage_myProfile').css("display", "none");
     $('#carBookingMain').css("display", "none");
     loadAllCarsDetails();
+    viewMyActiveBookings();
 });
 
 $("#btnHome").on('click', function () {
@@ -27,6 +28,7 @@ $("#btnMyBookings").on('click', function () {
     $('#customerPage_rentStatus').css("display", "none");
     $('#customerPage_myProfile').css("display", "none");
     $('#carBookingMain').css("display", "none");
+    viewMyActiveBookings();
 });
 
 $("#btnBookingsStatus").on('click', function () {
@@ -511,7 +513,35 @@ $('#btnSubmitRent').on('click', function () {
 });
 
 /*----------- My Active Bookings -----------*/
+function viewMyActiveBookings() {
+    $('#tblBookingDetails>tbody').empty();
+    let customerId;
 
+    $.ajax({
+        url: baseUrl + "/customer?username=" + username,
+        method: "get",
+        async: false,
+        dataType: "json",
+        success: function (resp) {
+            if (resp.data != null) {
+                customerId = resp.data.customerId;
+            }
+        }
+    });
+
+    $.ajax({
+        url: baseUrl + "rent/getActiveBookings?customerId=" + customerId,
+        method: "get",
+        dataType: "json",
+        success: function (resp) {
+            if (resp.data != null) {
+                for (let rent of resp.data) {
+                    $('#tblBookingDetails>tbody').append(`<tr><td></td></tr>`);
+                }
+            }
+        }
+    });
+}
 
 
 

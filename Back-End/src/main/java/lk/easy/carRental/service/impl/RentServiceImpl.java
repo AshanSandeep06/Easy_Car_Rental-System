@@ -1,5 +1,6 @@
 package lk.easy.carRental.service.impl;
 
+import lk.easy.carRental.dto.CarDTO;
 import lk.easy.carRental.dto.DriverDTO;
 import lk.easy.carRental.dto.RentDTO;
 import lk.easy.carRental.entity.Car;
@@ -12,6 +13,7 @@ import lk.easy.carRental.repo.RentRepo;
 import lk.easy.carRental.repo.Rent_detailRepo;
 import lk.easy.carRental.service.RentService;
 import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -83,5 +85,15 @@ public class RentServiceImpl implements RentService {
         car.setAvailabilityType("Unavailable");
         carRepo.save(car);
 
+    }
+
+    @Override
+    public ArrayList<RentDTO> getAllActiveBookings(String customerId) {
+        ArrayList<Rent> bookingsList = rentRepo.getAllActiveBookingsByCustomerId(customerId);
+        if (!bookingsList.isEmpty()) {
+            return mapper.map(bookingsList, new TypeToken<ArrayList<RentDTO>>() {
+            }.getType());
+        }
+        return null;
     }
 }

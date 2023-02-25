@@ -18,8 +18,13 @@ public class RentController {
         return new ResponseUtil("OK", "A New Rent ID has been Generated Successfully..!", rentService.generateNewRentID());
     }
 
+    @GetMapping(params = {"customerId"}, path = "/getActiveBookings")
+    public ResponseUtil getActiveBookings(String customerId) {
+        return new ResponseUtil("OK", "Active Bookings of " + customerId + " has been Loaded..!", rentService.getAllActiveBookings(customerId));
+    }
+
     @PostMapping
-    public ResponseUtil placeRent(@RequestBody RentDTO rentDTO){
+    public ResponseUtil placeRent(@RequestBody RentDTO rentDTO) {
         System.out.println(rentDTO);
         rentService.placeRent(rentDTO);
         return new ResponseUtil("OK", "Rental Request Placement Successfully..!", null);
