@@ -366,6 +366,19 @@ $("#btnCancelRent").on('click', function () {
     // $("#driverAcceptanceField").is(":checked");
 });
 
+$('#btnSubmitRent').on('click', function () {
+    if ($('#cmbSelectCarId').val() != null && !($('#tblCarDetails>tbody').is(':not-empty')) && $('#location').val() != '' && $('#pickUpTime').val() != '' && $('#pickUpDate').val() != '' && $('#returnTime').val() != '' && $('#returnDate').val() != '' && $('#uploadSlip').val() != '') {
+        // DO THE TASK
+
+    } else {
+        Swal.fire({
+            icon: 'error',
+            title: 'Booking Fields are Empty..!',
+            text: 'All Fields are Shouldn\'t Be Empty'
+        })
+    }
+});
+
 
 
 

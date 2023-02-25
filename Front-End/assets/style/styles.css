@@ -660,7 +660,7 @@ header > nav {
 
 #tblCarDetails > thead > tr:first-child > th {
     text-align: center;
-    padding: 0 0 16px;
+    /*padding: 0 0 16px;*/
 }
 
 #tblCarDetails > thead > tr:first-child > th:nth-child(5), #tblCarDetails > thead > tr:first-child > th:nth-child(6), #tblCarDetails > thead > tr:first-child > th:nth-child(7), #tblCarDetails > thead > tr:first-child > th:nth-child(8), #tblCarDetails > thead > tr:first-child > th:nth-child(9), #tblCarDetails > thead > tr:first-child > th:nth-child(10) {
