@@ -40,6 +40,16 @@ public class User_credentialsServiceImpl implements User_credentialsService {
     }
 
     @Override
+    public User_credentialsDTO getUserCredentials(String username) {
+        User_credentials entity = userRepo.findById(username).get();
+        if (entity != null) {
+            return mapper.map(entity, User_credentialsDTO.class);
+        } else {
+            throw new RuntimeException("You Given Incorrect Username..!, Invalid Username");
+        }
+    }
+
+    @Override
     public void resetUserPassword(User_credentialsDTO userDTO) {
         if (userRepo.existsByUsername(userDTO.getUsername())) {
             if (userRepo.updatePasswordByUsername(userDTO.getUsername(), userDTO.getPassword()) <= 0) {

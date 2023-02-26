@@ -10,6 +10,7 @@ $(function () {
     $('#customerPage_myProfile').css("display", "none");
     $('#carBookingMain').css("display", "none");
     loadAllCarsDetails();
+    setCustomerProfileData();
     // viewMyActiveBookings();
 });
 
@@ -46,6 +47,7 @@ $("#btnCustomerProfile").on('click', function () {
     $('#customerPage_rentStatus').css("display", "none");
     $('#customerPage_myProfile').css("display", "block");
     $('#carBookingMain').css("display", "none");
+    setCustomerProfileData();
 });
 
 /*----------------------------- Load All Vehicles data -----------------------------------*/
@@ -663,7 +665,36 @@ function viewBookingsRentStatus() {
 }
 
 /*--------------- Customer Profile ---------------*/
+function setCustomerProfileData() {
+    $.ajax({
+        url: baseUrl + "/customer?username=" + username,
+        method: "get",
+        dataType: "json",
+        success: function (resp) {
+            if (resp.data != null) {
+                let customer = resp.data;
+                $.ajax({
+                    url: baseUrl + "/user_credentials?username=" + username,
+                    method: "get",
+                    dataType: "json",
+                    success: function (resp){
+                        let user = resp.data;
+                        $('#txtCustomerID').val(customer.customerId);
+                        $('#txtCusUsername').val(user.username);
+                        $('#txtCusPassword').val(user.password);
+                        $('#txtCustomerName').val(customer.name);
 
+                        $('#txtCustomerAddress').val(customer.address);
+                        $('#txtCustomerContact').val(customer.contactNumber);
+                        $('#txtCustomerEmail').val(customer.email);
+                        $('#txtCustomerNic').val(customer.nic);
+                        $('#txtCustomerLicenseNo').val(customer.licenseNo);
+                    }
+                });
+            }
+        }
+    });
+}
 
 
 

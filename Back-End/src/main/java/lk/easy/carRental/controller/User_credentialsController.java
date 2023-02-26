@@ -14,6 +14,11 @@ public class User_credentialsController {
     @Autowired
     private User_credentialsService userService;
 
+    @GetMapping(params = {"username"})
+    public ResponseUtil getUserCredentials(@RequestParam String username){
+        return new ResponseUtil("OK", "User Credentials Loaded Successfully..!", userService.getUserCredentials(username));
+    }
+
     @GetMapping(path = "/verifyLogin", params = {"username", "password"})
     public ResponseUtil verifyUserCredentials(@RequestParam String username, @RequestParam String password) {
         return new ResponseUtil("OK", "Login Successfully..!", userService.getUserCredentials(username, password));
