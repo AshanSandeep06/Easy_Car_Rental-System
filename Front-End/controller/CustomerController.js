@@ -705,6 +705,101 @@ function setCustomerProfileData() {
     });
 }
 
+$('#btnUpdateProfile').on('click', function () {
+    updateCustomerProfile();
+});
+
+function updateCustomerProfile() {
+    if ($('#txtCustomerID').val() != '' && $('#txtCusUsername').val() != '' && $('#txtCusPassword').val() != '' && $('#txtCustomerName').val() != '' && $('#txtCustomerAddress').val() != '' && $('#txtCustomerContact').val() != '' && $('#txtCustomerEmail').val() != '' && $('#txtCustomerNic').val() != '' && $('#txtCustomerLicenseNo').val() != '') {
+        let cusObject = {
+            customerId: $('#txtCustomerID').val(),
+            nic: $("#txtCustomerNic").val(),
+            name: $("#txtCustomerName").val(),
+            email: $("#txtCustomerEmail").val(),
+            address: $("#txtCustomerAddress").val(),
+            contactNumber: $("#txtCustomerContact").val(),
+            licenseNo: $("#txtCustomerLicenseNo").val(),
+        };
+
+        let userObject = {
+            username: $('#txtCusUsername').val(),
+            password: $('#txtCusPassword').val(),
+            role: "Customer"
+        };
+
+        $.ajax({
+            url: baseUrl + "user_credentials",
+            method: "put",
+            data: JSON.stringify(userObject),
+            contentType: "application/json",
+            dataType: "json",
+            success: function (res) {
+                alert(res.message);
+
+                $.ajax({
+                    url: baseUrl + "customer",
+                    method: "put",
+                    data: JSON.stringify(cusObject),
+                    contentType: "application/json",
+                    dataType: "json",
+                    success: function (res) {
+                        alert(res.message);
+                        updateCustomerNicAndLicenseImages(cusObject.customerId);
+                        setCustomerProfileData();
+                    },
+
+                    error: function (error) {
+                        alert(JSON.parse(error.responseText).message);
+                    }
+                });
+
+            },
+
+            error: function (error) {
+                alert(JSON.parse(error.responseText).message);
+            }
+        });
+
+    } else {
+        // error
+    }
+}
+
+function updateCustomerNicAndLicenseImages(customerId) {
+    var nicImage = $('#uploadNicImage')[0].files[0];
+    var nicImageName = customerId + "_NIC-image." + $('#uploadNicImage')[0].files[0].name.split(".")[1];
+
+    var licenseImage = $('#uploadLicenseImage')[0].files[0];
+    var licenseImageName = customerId + "_License-image." + $('#uploadLicenseImage')[0].files[0].name.split(".")[1];
+
+    console.log(nicImageName + " " + licenseImageName);
+
+    let formData = new FormData();
+    formData.append("nicImage", nicImage, nicImageName);
+    formData.append("licenseImage", licenseImage, licenseImageName);
+
+    $.ajax({
+        url: baseUrl + "customer/uploadCustomerImages/" + customerId,
+        method: "PUT",
+        contentType: false,
+        processData: false,
+        data: formData,
+
+        success: function (res) {
+            alert(res.message);
+        },
+        error: function (error) {
+            alert(JSON.parse(error.responseText).message);
+        }
+    })
+}
+
+
+$('#uploadNicImage, #uploadLicenseImage').change(function () {
+    if ($('#uploadNicImage').val() != '' && $('#uploadLicenseImage').val() != '') {
+        console.log("heyyyyy");
+    }
+});
 
 
 

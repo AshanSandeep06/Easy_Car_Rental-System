@@ -30,6 +30,12 @@ public class User_credentialsController {
         return new ResponseUtil("OK", "Password Reset was Successfully..!", null);
     }
 
+    @PutMapping
+    public ResponseUtil updateUsernameAndPassword(@RequestBody User_credentialsDTO userDTO){
+        userService.updateUserCredentials(userDTO);
+        return new ResponseUtil("OK", "Update Username And Password Successfully..!", null);
+    }
+
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
     public ResponseUtil saveUserCredentials(@RequestBody User_credentialsDTO userDTO) {
