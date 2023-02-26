@@ -10,4 +10,6 @@ public interface RentService {
     void placeRent(RentDTO rentDTO);
 
     ArrayList<RentDTO> getAllActiveBookings(String customerId);
+
+    void cancelRentRequest(String rentId);
 }

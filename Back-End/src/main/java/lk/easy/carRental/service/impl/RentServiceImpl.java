@@ -96,4 +96,13 @@ public class RentServiceImpl implements RentService {
         }
         return null;
     }
+
+    @Override
+    public void cancelRentRequest(String rentId) {
+        if(rentRepo.existsById(rentId)){
+            rentRepo.cancelRentRequest(rentId);
+        }else{
+            throw new RuntimeException("This Rental Request isn't exists, to Cancel..!");
+        }
+    }
 }

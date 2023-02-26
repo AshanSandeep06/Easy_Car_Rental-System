@@ -562,6 +562,7 @@ function viewMyActiveBookings() {
 function bindRowClickEventsForViewActiveBookingsSection() {
     $(".btnOptionCancelRent").on('click', function () {
         console.log($(this).parent().parent().children(':eq(0)').text());
+        let rentID = $(this).parent().parent().children(':eq(0)').text();
 
         // allowOutsideClick(Backdrop)
 
@@ -576,12 +577,27 @@ function bindRowClickEventsForViewActiveBookingsSection() {
             cancelButtonText: 'No'
         }).then((result) => {
             if (result.isConfirmed) {
-                Swal.fire(
-                    'Cancelled!',
-                    'Your Rental Request was Cancelled.',
-                    'success'
-                )
-            }else if (
+                $.ajax({
+                    url: baseUrl + "rent?rentId=" + rentID,
+                    method: "put",
+                    dataType: "json",
+                    success: function (res) {
+                        console.log(res.data);
+                        Swal.fire(
+                            'Cancelled!',
+                            res.message,
+                            'success'
+                        )
+                        viewMyActiveBookings();
+                    },
+
+                    error: function (error) {
+                        viewMyActiveBookings();
+                        console.log(JSON.parse(error.responseText).message)
+                    }
+                });
+
+            } else if (
                 /* Read more about handling dismissals below */
                 result.dismiss === Swal.DismissReason.cancel
             ) {
@@ -592,8 +608,6 @@ function bindRowClickEventsForViewActiveBookingsSection() {
                 )
             }
         })
-
-
 
 
     });

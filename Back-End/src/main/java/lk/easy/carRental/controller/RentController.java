@@ -30,4 +30,10 @@ public class RentController {
         return new ResponseUtil("OK", "Rental Request Placement Successfully..!", null);
     }
 
+    @PutMapping(params = {"rentId"})
+    public ResponseUtil cancelRentRequest(@RequestParam String rentId){
+        rentService.cancelRentRequest(rentId);
+        return new ResponseUtil("OK", "Successfully Cancelled Your Rental Request..!", null);
+    }
+
 }
