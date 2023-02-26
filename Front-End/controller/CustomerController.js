@@ -662,6 +662,9 @@ function viewBookingsRentStatus() {
     });
 }
 
+/*--------------- Customer Profile ---------------*/
+
+
 
 
 
