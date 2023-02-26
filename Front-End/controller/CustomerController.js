@@ -548,10 +548,10 @@ function viewMyActiveBookings() {
                             </button></td></tr>`);
 
                     if (rent.rentDetail.length > 1) {
-                        let i = 1;
-                        $('#tblBookingDetails>tbody').append(`<tr><td>${rent.rentId}</td><td>${rent.customer.customerId}</td><td>${rent.customer.name}</td><td>${rent.customer.nic}</td><td>${startDate}</td><td>${endDate}</td><td>${rent.location}</td><td>${rent.requestTypeOfDriver}</td><td>${rent.rentDetail[i].driver.driverId}</td><td>${rent.rentDetail[i].driver.name}</td><td>${rent.rentDetail[i].driver.contactNumber}</td><td>${rent.rentDetail[i].carId}</td><td>${rent.rentDetail[i].carCost}</td><td>${rent.rentDetail[i].driverCost}</td><td><button type="button" class="btn btn-danger btnOptionCancelRent">Cancel Request
+                        for (let j = 1; j < resp.rentDetail.length; j++) {
+                            $('#tblBookingDetails>tbody').append(`<tr><td>${rent.rentId}</td><td>${rent.customer.customerId}</td><td>${rent.customer.name}</td><td>${rent.customer.nic}</td><td>${startDate}</td><td>${endDate}</td><td>${rent.location}</td><td>${rent.requestTypeOfDriver}</td><td>${rent.rentDetail[j].driver.driverId}</td><td>${rent.rentDetail[j].driver.name}</td><td>${rent.rentDetail[j].driver.contactNumber}</td><td>${rent.rentDetail[j].carId}</td><td>${rent.rentDetail[j].carCost}</td><td>${rent.rentDetail[j].driverCost}</td><td><button type="button" class="btn btn-danger btnOptionCancelRent">Cancel Request
                             </button></td></tr>`);
-                        i++;
+                        }
                     }
                 }
                 bindRowClickEventsForViewActiveBookingsSection();
@@ -637,12 +637,24 @@ function viewBookingsRentStatus() {
             if (resp.data != null) {
                 for (let rent of resp.data) {
                     console.log(rent)
-                    $('#tblRentDetailsStatus>tbody').append(`<tr><td>${rent.rentId}</td><td>${rent.customer.customerId}</td><td>${rent.customer.name}</td><td>${rent.customer.nic}</td><td>${rent.rentDetail[0].carId}</td><td>${rent.rentStatus}</td><td>${rent.deniedReason}</td></tr>`);
+                    var tag;
+
+                    // <button type="button" class="btn btn-danger btnOptionCancelRent">Cancel Request</button>
+
+                    if (rent.rentStatus == "Pending") {
+                        tag = '<span className="badge text-bg-primary">Pending</span>';
+                    } else if (rent.rentStatus == "Accepted") {
+                        tag = '<span className="badge text-bg-success">Accepted</span>';
+                    } else {
+                        tag = '<span className="badge text-bg-danger">Denied</span>';
+                    }
+
+                    $('#tblRentDetailsStatus>tbody').append(`<tr><td>${rent.rentId}</td><td>${rent.customer.customerId}</td><td>${rent.customer.name}</td><td>${rent.customer.nic}</td><td>${rent.rentDetail[0].carId}</td><td>${tag}</td><td>${rent.deniedReason}</td></tr>`);
 
                     if (rent.rentDetail.length > 1) {
-                        let i = 1;
-                        $('#tblRentDetailsStatus>tbody').append(`<tr><td>${rent.rentId}</td><td>${rent.customer.customerId}</td><td>${rent.customer.name}</td><td>${rent.customer.nic}</td><td>${rent.rentDetail[i].carId}</td><td>${rent.rentStatus}</td><td>${rent.deniedReason}</td></tr>`);
-                        i++;
+                        for (let j = 1; j < resp.rentDetail.length; j++) {
+                            $('#tblRentDetailsStatus>tbody').append(`<tr><td>${rent.rentId}</td><td>${rent.customer.customerId}</td><td>${rent.customer.name}</td><td>${rent.customer.nic}</td><td>${rent.rentDetail[j].carId}</td><td>${tag}</td><td>${rent.deniedReason}</td></tr>`);
+                        }
                     }
                 }
             }
