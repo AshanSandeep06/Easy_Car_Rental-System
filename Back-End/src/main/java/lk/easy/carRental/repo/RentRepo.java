@@ -16,6 +16,9 @@ public interface RentRepo extends JpaRepository<Rent, String> {
     @Query(nativeQuery = true, value = "SELECT * FROM Rent WHERE customerId=:customerId AND rentStatus='Pending' OR rentStatus='Accepted'")
     ArrayList<Rent> getAllActiveBookingsByCustomerId(@Param("customerId") String customerId);
 
+    @Query(nativeQuery = true, value = "SELECT * FROM Rent WHERE customerId=:customerId AND rentStatus='Pending' OR rentStatus='Accepted' OR rentStatus='Denied'")
+    ArrayList<Rent> getBookingsRentStatusByCustomerId(@Param("customerId") String customerId);
+
     @Modifying
     @Transactional
     @Query(nativeQuery = true, value = "UPDATE Rent SET rentStatus='Cancelled' WHERE rentId=:rentId")

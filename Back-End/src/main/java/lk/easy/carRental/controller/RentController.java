@@ -20,7 +20,12 @@ public class RentController {
 
     @GetMapping(params = {"customerId"}, path = "/getActiveBookings")
     public ResponseUtil getActiveBookings(String customerId) {
-        return new ResponseUtil("OK", "Active Bookings of " + customerId + " has been Loaded..!", rentService.getAllActiveBookings(customerId));
+        return new ResponseUtil("OK", "Active Rental Requests of " + customerId + " has been Loaded..!", rentService.getAllActiveBookings(customerId));
+    }
+
+    @GetMapping(path = "/getBookingsRentStatus/{customerId}")
+    public ResponseUtil getBookingsRentStatus(@PathVariable String customerId) {
+        return new ResponseUtil("OK", "Rental Requests of " + customerId + " has been Loaded..!", rentService.getBookingsRentStatus(customerId));
     }
 
     @PostMapping

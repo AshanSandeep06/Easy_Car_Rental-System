@@ -11,5 +11,7 @@ public interface RentService {
 
     ArrayList<RentDTO> getAllActiveBookings(String customerId);
 
+    ArrayList<RentDTO> getBookingsRentStatus(String customerId);
+
     void cancelRentRequest(String rentId);
 }
