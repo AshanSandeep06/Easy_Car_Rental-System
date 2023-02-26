@@ -783,6 +783,7 @@ function updateCustomerNicAndLicenseImages(customerId) {
             data: formData,
 
             success: function (res) {
+                setCustomerProfileData();
                 alert(res.message);
             },
             error: function (error) {
@@ -805,6 +806,7 @@ function updateCustomerNicAndLicenseImages(customerId) {
             data: formData,
 
             success: function (res) {
+                setCustomerProfileData();
                 alert(res.message);
             },
             error: function (error) {
