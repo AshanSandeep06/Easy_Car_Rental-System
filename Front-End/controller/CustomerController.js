@@ -642,11 +642,11 @@ function viewBookingsRentStatus() {
                     // <button type="button" class="btn btn-danger btnOptionCancelRent">Cancel Request</button>
 
                     if (rent.rentStatus == "Pending") {
-                        tag = '<span className="badge text-bg-primary">Pending</span>';
+                        tag = '<span class="badge text-bg-primary" style="font-size: 13px;">Pending</span>';
                     } else if (rent.rentStatus == "Accepted") {
-                        tag = '<span className="badge text-bg-success">Accepted</span>';
+                        tag = '<span class="badge text-bg-success" style="font-size: 13px;">Accepted</span>';
                     } else {
-                        tag = '<span className="badge text-bg-danger">Denied</span>';
+                        tag = '<span class="badge text-bg-danger" style="font-size: 13px;">Denied</span>';
                     }
 
                     $('#tblRentDetailsStatus>tbody').append(`<tr><td>${rent.rentId}</td><td>${rent.customer.customerId}</td><td>${rent.customer.name}</td><td>${rent.customer.nic}</td><td>${rent.rentDetail[0].carId}</td><td>${tag}</td><td>${rent.deniedReason}</td></tr>`);
