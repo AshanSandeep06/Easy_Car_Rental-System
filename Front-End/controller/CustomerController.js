@@ -552,7 +552,6 @@ function viewMyActiveBookings() {
                             </button></td></tr>`);
                         i++;
                     }
-
                 }
             }
         }
