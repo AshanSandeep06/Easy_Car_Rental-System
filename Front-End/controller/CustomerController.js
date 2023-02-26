@@ -611,6 +611,8 @@ function bindRowClickEventsForViewActiveBookingsSection() {
     });
 }
 
+/*--------------- View Booking Status ---------------*/
+
 
 
 
