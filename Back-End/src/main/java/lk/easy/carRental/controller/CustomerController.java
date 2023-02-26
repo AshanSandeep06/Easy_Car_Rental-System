@@ -34,6 +34,11 @@ public class CustomerController {
         return new ResponseUtil("OK", "A New Customer ID has been Generated Successfully..!", customerService.generateNewCustomerID());
     }
 
+    @GetMapping(path = "/getCustomerImages/{customerId}")
+    public ResponseUtil getCustomerImages(@PathVariable String customerId) {
+        return new ResponseUtil("OK", "Successfully Loaded Customer Images of " + customerId, customerService.getCustomerImages(customerId));
+    }
+
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseUtil registerCustomer(@RequestBody CustomerDTO customerDTO) {

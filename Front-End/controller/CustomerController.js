@@ -677,7 +677,7 @@ function setCustomerProfileData() {
                     url: baseUrl + "/user_credentials?username=" + username,
                     method: "get",
                     dataType: "json",
-                    success: function (resp){
+                    success: function (resp) {
                         let user = resp.data;
                         $('#txtCustomerID').val(customer.customerId);
                         $('#txtCusUsername').val(user.username);
@@ -688,6 +688,16 @@ function setCustomerProfileData() {
                         $('#txtCustomerEmail').val(customer.email);
                         $('#txtCustomerNic').val(customer.nic);
                         $('#txtCustomerLicenseNo').val(customer.licenseNo);
+
+                        $.ajax({
+                            url: baseUrl + "customer/getCustomerImages/" + customer.customerId,
+                            method: "get",
+                            dataType: "json",
+                            success: function (resp) {
+                                $("#customerNicImage").attr('src', "../assets/img/uploads/customerImages/" + resp.data.nicImage);
+                                $("#customerLicenseImage").attr('src', "../assets/img/uploads/customerImages/" + resp.data.licenseImage);
+                            }
+                        });
                     }
                 });
             }

@@ -2,6 +2,10 @@ package lk.easy.carRental.service.impl;
 
 import lk.easy.carRental.dto.CarDTO;
 import lk.easy.carRental.dto.CustomerDTO;
+import lk.easy.carRental.dto.ImageDTO;
+import lk.easy.carRental.dto.NicAndLicenseImageDTO;
+import lk.easy.carRental.embedded.CustomerImage;
+import lk.easy.carRental.embedded.VehicleImage;
 import lk.easy.carRental.entity.Car;
 import lk.easy.carRental.entity.Customer;
 import lk.easy.carRental.entity.User_credentials;
@@ -71,6 +75,17 @@ public class CustomerServiceImpl implements CustomerService {
             return mapper.map(customerRepo.findCustomerByUsername(username), CustomerDTO.class);
         } else {
             throw new RuntimeException("There is No Such a User by this Username");
+        }
+    }
+
+    @Override
+    public NicAndLicenseImageDTO getCustomerImages(String customerId) {
+        Customer entity = customerRepo.findById(customerId).get();
+        CustomerImage images = entity.getUploadedImages();
+        if (images != null) {
+            return new NicAndLicenseImageDTO(images.getNicImage(), images.getLicenseImage());
+        } else {
+            throw new RuntimeException("This Customer has no images yet..!");
         }
     }
 }

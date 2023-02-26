@@ -44,7 +44,7 @@ public class CarController {
 
     @GetMapping(path = "/getCarImages/{carId}")
     public ResponseUtil getCarImages(@PathVariable String carId) {
-        return new ResponseUtil("OK", "Successfully Loaded Images of " + carId, carService.getCarImages(carId));
+        return new ResponseUtil("OK", "Successfully Loaded Car Images of " + carId, carService.getCarImages(carId));
     }
 
     @GetMapping(path = "/{carType}", produces = MediaType.APPLICATION_JSON_VALUE)
