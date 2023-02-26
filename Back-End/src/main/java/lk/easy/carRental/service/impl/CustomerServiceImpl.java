@@ -88,4 +88,20 @@ public class CustomerServiceImpl implements CustomerService {
             throw new RuntimeException("This Customer has no images yet..!");
         }
     }
+
+    @Override
+    public void updateCustomer(CustomerDTO customerDTO) {
+        Customer customer = customerRepo.findById(customerDTO.getCustomerId()).get();
+        if (customer != null) {
+            customer.setName(customer.getName());
+            customer.setAddress(customer.getAddress());
+            customer.setContactNumber(customer.getContactNumber());
+            customer.setEmail(customer.getEmail());
+            customer.setLicenseNo(customer.getLicenseNo());
+            customer.setNic(customer.getNic());
+            customerRepo.save(customer);
+        } else {
+            throw new RuntimeException("This Customer is not exists..!");
+        }
+    }
 }

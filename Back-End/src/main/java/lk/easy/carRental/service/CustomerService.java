@@ -10,4 +10,5 @@ public interface CustomerService {
     String generateNewCustomerID();
     CustomerDTO getCustomerDetails(String username);
     NicAndLicenseImageDTO getCustomerImages(String customerId);
+    void updateCustomer(CustomerDTO customerDTO);
 }

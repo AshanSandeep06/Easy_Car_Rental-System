@@ -744,7 +744,10 @@ function updateCustomerProfile() {
                     dataType: "json",
                     success: function (res) {
                         alert(res.message);
-                        updateCustomerNicAndLicenseImages(cusObject.customerId);
+
+                        if ($('#uploadNicImage')[0].files[0] != null && $('#uploadLicenseImage')[0].files[0] != null) {
+                            updateCustomerNicAndLicenseImages(cusObject.customerId);
+                        }
                         setCustomerProfileData();
                     },
 

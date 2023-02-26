@@ -50,6 +50,14 @@ public class CustomerController {
         }
     }
 
+    @PutMapping
+    public ResponseUtil updateCustomer(@RequestBody CustomerDTO customerDTO){
+        customerService.updateCustomer(customerDTO);
+        return new ResponseUtil("OK", "Customer Profile Updated Successfully..!", customerService.generateNewCustomerID());
+    }
+
+
+
     @PutMapping(path = "/uploadCustomerImages/{customerId}")
     public ResponseUtil uploadCustomerNicAndLicenseImages(@ModelAttribute CustomerImageDTO imageDTO, @PathVariable String customerId) {
         try {

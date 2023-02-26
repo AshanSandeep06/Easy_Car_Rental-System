@@ -3,8 +3,10 @@ package lk.easy.carRental.service.impl;
 import lk.easy.carRental.dto.CarDTO;
 import lk.easy.carRental.dto.User_credentialsDTO;
 import lk.easy.carRental.entity.Car;
+import lk.easy.carRental.entity.Customer;
 import lk.easy.carRental.entity.User_credentials;
 import lk.easy.carRental.repo.CarRepo;
+import lk.easy.carRental.repo.CustomerRepo;
 import lk.easy.carRental.repo.User_credentialsRepo;
 import lk.easy.carRental.service.User_credentialsService;
 import org.modelmapper.ModelMapper;
@@ -17,6 +19,8 @@ import org.springframework.transaction.annotation.Transactional;
 public class User_credentialsServiceImpl implements User_credentialsService {
     @Autowired
     private User_credentialsRepo userRepo;
+    @Autowired
+    private CustomerRepo customerRepo;
     @Autowired
     private ModelMapper mapper;
 
@@ -67,6 +71,10 @@ public class User_credentialsServiceImpl implements User_credentialsService {
             user.setUsername(userDTO.getUsername());
             user.setPassword(userDTO.getPassword());
             user.setRole(userDTO.getRole());
+
+            Customer customer = customerRepo.findCustomerByUsername(userDTO.getUsername());
+            customer.setUser_credentials(user);
+            customerRepo.save(customer);
             userRepo.save(user);
         } else {
             throw new RuntimeException("This User is not exists, Therefore Can't Update User..!");
