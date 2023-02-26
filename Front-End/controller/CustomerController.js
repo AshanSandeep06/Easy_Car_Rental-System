@@ -683,7 +683,6 @@ function setCustomerProfileData() {
                         $('#txtCusUsername').val(user.username);
                         $('#txtCusPassword').val(user.password);
                         $('#txtCustomerName').val(customer.name);
-
                         $('#txtCustomerAddress').val(customer.address);
                         $('#txtCustomerContact').val(customer.contactNumber);
                         $('#txtCustomerEmail').val(customer.email);
