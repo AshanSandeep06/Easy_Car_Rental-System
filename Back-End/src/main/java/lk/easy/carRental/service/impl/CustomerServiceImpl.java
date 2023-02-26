@@ -122,4 +122,15 @@ public class CustomerServiceImpl implements CustomerService {
             throw new RuntimeException("This Customer is not exists..!");
         }
     }
+
+    @Override
+    public void updateCustomerContactNumber(String customerId, String contactNumber) {
+        if (customerRepo.existsById(customerId)) {
+            Customer customer = customerRepo.findById(customerId).get();
+            customer.setContactNumber(contactNumber);
+            customerRepo.save(customer);
+        } else {
+            throw new RuntimeException("There is No Such a Customer to Update");
+        }
+    }
 }

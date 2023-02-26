@@ -712,6 +712,50 @@ $('#btnUpdateProfile').on('click', function () {
 });
 
 function updateCustomerProfile() {
+    let array = [];
+    array.push($("#txtCustomerNic")[0]);
+    array.push($("#txtCustomerName")[0]);
+    array.push($("#txtCustomerEmail")[0]);
+    array.push($("#txtCustomerAddress")[0]);
+    array.push($("#txtCustomerLicenseNo")[0]);
+    array.push($("#txtCusPassword")[0]);
+    array.push($("#uploadNicImage")[0]);
+    array.push($("#uploadLicenseImage")[0]); //8
+
+    var count = 0;
+
+    for (let element of array) {
+        if (element.hasAttribute('disabled')) {
+            count++;
+        }
+    }
+
+    if (count === 8) {
+        if ($('#txtCustomerContact').val() == '') {
+            alert("Failed to Update Customer Profile, Please Try again..!");
+            return;
+        } else {
+            $.ajax({
+                url: baseUrl + "customer/" + $('#txtCustomerID').val() + "/" + $('#txtCustomerContact').val(),
+                method: "put",
+                async: false,
+                dataType: "json",
+                success: function (resp) {
+                    alert(resp.message);
+                },
+                error: function (error) {
+                    alert(JSON.parse(error.responseText).message);
+                }
+            });
+            return;
+        }
+    } else {
+        if ($('#txtCustomerContact').val() == '') {
+            alert("Failed to Update Customer Profile, Please Try again..!");
+            return;
+        }
+    }
+
     if ($('#txtCustomerID').val() != '' && $('#txtCusUsername').val() != '' && $('#txtCusPassword').val() != '' && $('#txtCustomerName').val() != '' && $('#txtCustomerAddress').val() != '' && $('#txtCustomerContact').val() != '' && $('#txtCustomerEmail').val() != '' && $('#txtCustomerNic').val() != '' && $('#txtCustomerLicenseNo').val() != '') {
         let cusObject = {
             customerId: $('#txtCustomerID').val(),
@@ -766,7 +810,11 @@ function updateCustomerProfile() {
         });
 
     } else {
-        // error
+        Swal.fire({
+            icon: 'error',
+            title: 'Your Profile Fields are Empty..!',
+            text: 'All Fields are Shouldn\'t Be Empty'
+        })
     }
 }
 
@@ -833,7 +881,7 @@ function checkWhenInOngoingRental(username) {
                     method: "get",
                     dataType: "json",
                     success: function (resp) {
-                        if (1 <= 0) {
+                        if (resp.data <= 0) {
                             $("#txtCustomerNic").attr('disabled', false);
                             $("#txtCustomerName").attr('disabled', false);
                             $("#txtCustomerEmail").attr('disabled', false);
