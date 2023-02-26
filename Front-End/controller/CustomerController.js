@@ -820,13 +820,6 @@ function updateCustomerNicAndLicenseImages(customerId) {
 }
 
 
-$('#uploadNicImage, #uploadLicenseImage').change(function () {
-    if ($('#uploadNicImage').val() != '' && $('#uploadLicenseImage').val() != '') {
-        console.log("heyyyyy");
-    }
-});
-
-
 
 
 
