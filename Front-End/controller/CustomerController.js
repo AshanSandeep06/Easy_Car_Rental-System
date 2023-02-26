@@ -10,7 +10,7 @@ $(function () {
     $('#customerPage_myProfile').css("display", "none");
     $('#carBookingMain').css("display", "none");
     loadAllCarsDetails();
-    viewMyActiveBookings();
+    // viewMyActiveBookings();
 });
 
 $("#btnHome").on('click', function () {
@@ -553,14 +553,51 @@ function viewMyActiveBookings() {
                         i++;
                     }
                 }
+                bindRowClickEventsForViewActiveBookingsSection();
             }
         }
     });
 }
 
-$('.btnOptionCancelRent').on('click', function () {
-    console.log($(this).parent().parent().children(':eq(0)').text());
-})
+function bindRowClickEventsForViewActiveBookingsSection() {
+    $(".btnOptionCancelRent").on('click', function () {
+        console.log($(this).parent().parent().children(':eq(0)').text());
+
+        // allowOutsideClick(Backdrop)
+
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "Do You want to Cancel Your Rental Request..?",
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Yes, cancel it!',
+            cancelButtonText: 'No'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire(
+                    'Cancelled!',
+                    'Your Rental Request was Cancelled.',
+                    'success'
+                )
+            }else if (
+                /* Read more about handling dismissals below */
+                result.dismiss === Swal.DismissReason.cancel
+            ) {
+                swal.fire(
+                    'Dismissed',
+                    'Your Rental Request Couldn\'t Cancelled',
+                    'warning'
+                )
+            }
+        })
+
+
+
+
+    });
+}
 
 
 
