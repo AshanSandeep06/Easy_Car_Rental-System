@@ -608,8 +608,6 @@ function bindRowClickEventsForViewActiveBookingsSection() {
                 )
             }
         })
-
-
     });
 }
 
