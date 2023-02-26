@@ -281,7 +281,6 @@ $("#cmbSelectCarId").change(function () {
             });
         }
     });
-
 });
 
 function loadCustomerDetails() {
@@ -642,9 +641,6 @@ function viewBookingsRentStatus() {
                 for (let rent of resp.data) {
                     console.log(rent)
                     var tag;
-
-                    // <button type="button" class="btn btn-danger btnOptionCancelRent">Cancel Request</button>
-
                     if (rent.rentStatus == "Pending") {
                         tag = '<span class="badge text-bg-primary" style="font-size: 13px;">Pending</span>';
                     } else if (rent.rentStatus == "Accepted") {
