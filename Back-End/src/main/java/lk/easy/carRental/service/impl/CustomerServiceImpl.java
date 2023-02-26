@@ -93,12 +93,12 @@ public class CustomerServiceImpl implements CustomerService {
     public void updateCustomer(CustomerDTO customerDTO) {
         Customer customer = customerRepo.findById(customerDTO.getCustomerId()).get();
         if (customer != null) {
-            customer.setName(customer.getName());
-            customer.setAddress(customer.getAddress());
-            customer.setContactNumber(customer.getContactNumber());
-            customer.setEmail(customer.getEmail());
-            customer.setLicenseNo(customer.getLicenseNo());
-            customer.setNic(customer.getNic());
+            customer.setName(customerDTO.getName());
+            customer.setAddress(customerDTO.getAddress());
+            customer.setContactNumber(customerDTO.getContactNumber());
+            customer.setEmail(customerDTO.getEmail());
+            customer.setLicenseNo(customerDTO.getLicenseNo());
+            customer.setNic(customerDTO.getNic());
             customerRepo.save(customer);
         } else {
             throw new RuntimeException("This Customer is not exists..!");

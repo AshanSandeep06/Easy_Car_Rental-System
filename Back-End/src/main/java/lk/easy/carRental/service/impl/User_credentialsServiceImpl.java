@@ -68,13 +68,8 @@ public class User_credentialsServiceImpl implements User_credentialsService {
     public void updateUserCredentials(User_credentialsDTO userDTO) {
         if (userRepo.existsByUsername(userDTO.getUsername())) {
             User_credentials user = userRepo.findById(userDTO.getUsername()).get();
-            user.setUsername(userDTO.getUsername());
             user.setPassword(userDTO.getPassword());
             user.setRole(userDTO.getRole());
-
-            Customer customer = customerRepo.findCustomerByUsername(userDTO.getUsername());
-            customer.setUser_credentials(user);
-            customerRepo.save(customer);
             userRepo.save(user);
         } else {
             throw new RuntimeException("This User is not exists, Therefore Can't Update User..!");
