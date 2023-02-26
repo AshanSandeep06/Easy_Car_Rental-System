@@ -745,7 +745,7 @@ function updateCustomerProfile() {
                     success: function (res) {
                         alert(res.message);
 
-                        if ($('#uploadNicImage')[0].files[0] != null && $('#uploadLicenseImage')[0].files[0] != null) {
+                        if ($('#uploadNicImage')[0].files[0] != null || $('#uploadLicenseImage')[0].files[0] != null) {
                             updateCustomerNicAndLicenseImages(cusObject.customerId);
                         }
                         setCustomerProfileData();
@@ -769,32 +769,52 @@ function updateCustomerProfile() {
 }
 
 function updateCustomerNicAndLicenseImages(customerId) {
-    var nicImage = $('#uploadNicImage')[0].files[0];
-    var nicImageName = customerId + "_NIC-image." + $('#uploadNicImage')[0].files[0].name.split(".")[1];
+    if ($('#uploadNicImage')[0].files[0] != null) {
+        let formData = new FormData();
+        var nicImage = $('#uploadNicImage')[0].files[0];
+        var nicImageName = customerId + "_NIC-image." + $('#uploadNicImage')[0].files[0].name.split(".")[1];
+        formData.append("nicImage", nicImage, nicImageName);
 
-    var licenseImage = $('#uploadLicenseImage')[0].files[0];
-    var licenseImageName = customerId + "_License-image." + $('#uploadLicenseImage')[0].files[0].name.split(".")[1];
+        $.ajax({
+            url: baseUrl + "customer/uploadCustomerImages/uploadNICImage/" + customerId,
+            method: "PUT",
+            contentType: false,
+            processData: false,
+            data: formData,
 
-    console.log(nicImageName + " " + licenseImageName);
+            success: function (res) {
+                alert(res.message);
+            },
+            error: function (error) {
+                alert(JSON.parse(error.responseText).message);
+            }
+        });
+    }
 
-    let formData = new FormData();
-    formData.append("nicImage", nicImage, nicImageName);
-    formData.append("licenseImage", licenseImage, licenseImageName);
+    if ($('#uploadLicenseImage')[0].files[0] != null) {
+        let formData = new FormData();
+        var licenseImage = $('#uploadLicenseImage')[0].files[0];
+        var licenseImageName = customerId + "_License-image." + $('#uploadLicenseImage')[0].files[0].name.split(".")[1];
+        formData.append("licenseImage", licenseImage, licenseImageName);
 
-    $.ajax({
-        url: baseUrl + "customer/uploadCustomerImages/" + customerId,
-        method: "PUT",
-        contentType: false,
-        processData: false,
-        data: formData,
+        $.ajax({
+            url: baseUrl + "customer/uploadCustomerImages/uploadLicenseImage?customerId=" + customerId,
+            method: "PUT",
+            contentType: false,
+            processData: false,
+            data: formData,
 
-        success: function (res) {
-            alert(res.message);
-        },
-        error: function (error) {
-            alert(JSON.parse(error.responseText).message);
-        }
-    })
+            success: function (res) {
+                alert(res.message);
+            },
+            error: function (error) {
+                alert(JSON.parse(error.responseText).message);
+            }
+        });
+    }
+
+    $('#uploadNicImage').val('');
+    $('#uploadLicenseImage').val('');
 }
 
 

@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
@@ -51,12 +52,10 @@ public class CustomerController {
     }
 
     @PutMapping
-    public ResponseUtil updateCustomer(@RequestBody CustomerDTO customerDTO){
+    public ResponseUtil updateCustomer(@RequestBody CustomerDTO customerDTO) {
         customerService.updateCustomer(customerDTO);
         return new ResponseUtil("OK", "Customer Profile Updated Successfully..!", customerService.generateNewCustomerID());
     }
-
-
 
     @PutMapping(path = "/uploadCustomerImages/{customerId}")
     public ResponseUtil uploadCustomerNicAndLicenseImages(@ModelAttribute CustomerImageDTO imageDTO, @PathVariable String customerId) {
@@ -77,6 +76,46 @@ public class CustomerController {
 
             customerService.uploadNICAndLicenseImages(customerId, imageDTO.getNicImage().getOriginalFilename(), imageDTO.getLicenseImage().getOriginalFilename());
             return new ResponseUtil("OK", "Successfully Uploaded Customer NIC and License Images", null);
+        } catch (IOException e) {
+            return new ResponseUtil("Error", e.getMessage(), null);
+        }
+    }
+
+    @PutMapping(path = "/uploadCustomerImages/uploadNICImage/{customerId}")
+    public ResponseUtil uploadCustomerNICImage(@RequestPart MultipartFile nicImage, @PathVariable String customerId) {
+        try {
+            String pathDirectory = new File("F:\\Ijse\\GDSE 60\\Easy_Car_Rental-System\\Front-End\\assets\\img\\uploads\\customerImages\\").getAbsolutePath();
+
+            Path nicImageLocation = Paths.get(pathDirectory + "/" + nicImage.getOriginalFilename());
+
+            byte[] nicImageBytes = nicImage.getBytes();
+
+            Files.write(nicImageLocation, nicImageBytes);
+
+            nicImage.transferTo(nicImageLocation);
+
+            customerService.uploadCustomerNICImage(customerId, nicImage.getOriginalFilename());
+            return new ResponseUtil("OK", "Successfully Uploaded Customer NIC Image", null);
+        } catch (IOException e) {
+            return new ResponseUtil("Error", e.getMessage(), null);
+        }
+    }
+
+    @PutMapping(path = "/uploadCustomerImages/uploadLicenseImage", params = {"customerId"})
+    public ResponseUtil uploadCustomerLicenseImage(@RequestPart MultipartFile licenseImage, @RequestParam String customerId) {
+        try {
+            String pathDirectory = new File("F:\\Ijse\\GDSE 60\\Easy_Car_Rental-System\\Front-End\\assets\\img\\uploads\\customerImages\\").getAbsolutePath();
+
+            Path licenseImageLocation = Paths.get(pathDirectory + "/" + licenseImage.getOriginalFilename());
+
+            byte[] licenseImageBytes = licenseImage.getBytes();
+
+            Files.write(licenseImageLocation, licenseImageBytes);
+
+            licenseImage.transferTo(licenseImageLocation);
+
+            customerService.uploadCustomerNICImage(customerId, licenseImage.getOriginalFilename());
+            return new ResponseUtil("OK", "Successfully Uploaded Customer License Image", null);
         } catch (IOException e) {
             return new ResponseUtil("Error", e.getMessage(), null);
         }

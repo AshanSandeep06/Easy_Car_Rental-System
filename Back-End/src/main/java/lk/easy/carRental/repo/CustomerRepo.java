@@ -13,6 +13,16 @@ public interface CustomerRepo extends JpaRepository<Customer, String> {
     @Query(value = "UPDATE Customer SET nicImage=:nicImage, licenseImage=:licenseImage WHERE customerId=:customerId", nativeQuery = true)
     void uploadCustomerImages(@Param("customerId") String customerId, @Param("nicImage") String nicImage, @Param("licenseImage") String licenseImage);
 
+    @Modifying
+    @Transactional
+    @Query(value = "UPDATE Customer SET nicImage=:nicImage WHERE customerId=:customerId", nativeQuery = true)
+    void uploadCustomerNICImage(@Param("customerId") String customerId, @Param("nicImage") String nicImage);
+
+    @Modifying
+    @Transactional
+    @Query(value = "UPDATE Customer SET licenseImage=:licenseImage WHERE customerId=:customerId", nativeQuery = true)
+    void uploadCustomerLicenseImage(@Param("customerId") String customerId, @Param("licenseImage") String licenseImage);
+
     @Query(value = "SELECT customerId FROM Customer ORDER BY customerId DESC LIMIT 1", nativeQuery = true)
     String getLastCustomerId();
 

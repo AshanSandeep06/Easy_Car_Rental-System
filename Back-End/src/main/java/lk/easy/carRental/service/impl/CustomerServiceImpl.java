@@ -52,6 +52,24 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
+    public void uploadCustomerNICImage(String customerId, String nicImage) {
+        if (customerRepo.existsById(customerId)) {
+            customerRepo.uploadCustomerNICImage(customerId, nicImage);
+        } else {
+            throw new RuntimeException("There is No Such a Customer to Upload NIC Image");
+        }
+    }
+
+    @Override
+    public void uploadCustomerLicenseImage(String customerId, String licenseImage) {
+        if (customerRepo.existsById(customerId)) {
+            customerRepo.uploadCustomerLicenseImage(customerId, licenseImage);
+        } else {
+            throw new RuntimeException("There is No Such a Customer to Upload License Image");
+        }
+    }
+
+    @Override
     public String generateNewCustomerID() {
         String lastCustomerID = customerRepo.getLastCustomerId();
         if (lastCustomerID != null) {
