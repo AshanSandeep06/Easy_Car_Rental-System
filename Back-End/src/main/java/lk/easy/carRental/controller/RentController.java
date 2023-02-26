@@ -13,6 +13,11 @@ public class RentController {
     @Autowired
     private RentService rentService;
 
+    @GetMapping(path = "/checkOngoingRentals/OngoingRentalsCount", params = {"customerId"})
+    public ResponseUtil getOngoingRentalsCount(String customerId) {
+        return new ResponseUtil("OK", "Ongoing Rentals Count of "+customerId+" has been generated..!", rentService.getOngoingRentalsCount(customerId));
+    }
+
     @GetMapping(path = "/generateNewRentID")
     public ResponseUtil generateNewRentID() {
         return new ResponseUtil("OK", "A New Rent ID has been Generated Successfully..!", rentService.generateNewRentID());

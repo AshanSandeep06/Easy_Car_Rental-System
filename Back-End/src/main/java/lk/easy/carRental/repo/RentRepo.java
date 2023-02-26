@@ -24,4 +24,6 @@ public interface RentRepo extends JpaRepository<Rent, String> {
     @Query(nativeQuery = true, value = "UPDATE Rent SET rentStatus='Cancelled' WHERE rentId=:rentId")
     void cancelRentRequest(@Param("rentId") String rentId);
 
+    @Query(nativeQuery = true, value = "SELECT COUNT(rentId) FROM Rent WHERE customerId=:customerId AND rentStatus='Ongoing'")
+    int getOngoingRentalsCount(@Param("customerId") String customerId);
 }

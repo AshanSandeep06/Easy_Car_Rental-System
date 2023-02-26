@@ -14,4 +14,5 @@ public interface RentService {
     ArrayList<RentDTO> getBookingsRentStatus(String customerId);
 
     void cancelRentRequest(String rentId);
+    int getOngoingRentalsCount(String customerId);
 }

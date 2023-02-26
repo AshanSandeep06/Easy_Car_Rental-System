@@ -11,6 +11,7 @@ $(function () {
     $('#carBookingMain').css("display", "none");
     loadAllCarsDetails();
     setCustomerProfileData();
+    checkWhenInOngoingRental(username);
     // viewMyActiveBookings();
 });
 
@@ -48,6 +49,7 @@ $("#btnCustomerProfile").on('click', function () {
     $('#customerPage_myProfile').css("display", "block");
     $('#carBookingMain').css("display", "none");
     setCustomerProfileData();
+    checkWhenInOngoingRental(username);
 });
 
 /*----------------------------- Load All Vehicles data -----------------------------------*/
@@ -814,9 +816,49 @@ function updateCustomerNicAndLicenseImages(customerId) {
             }
         });
     }
-
     $('#uploadNicImage').val('');
     $('#uploadLicenseImage').val('');
+}
+
+function checkWhenInOngoingRental(username) {
+    $.ajax({
+        url: baseUrl + "customer?username=" + username,
+        method: "get",
+        dataType: "json",
+        success: function (resp) {
+            if (resp.data != null) {
+                let customer = resp.data;
+                $.ajax({
+                    url: baseUrl + "rent/checkOngoingRentals/OngoingRentalsCount?customerId=" + customer.customerId,
+                    method: "get",
+                    dataType: "json",
+                    success: function (resp) {
+                        if (1 <= 0) {
+                            $("#txtCustomerNic").attr('disabled', false);
+                            $("#txtCustomerName").attr('disabled', false);
+                            $("#txtCustomerEmail").attr('disabled', false);
+                            $("#txtCustomerAddress").attr('disabled', false);
+                            $("#txtCustomerContact").attr('disabled', false);
+                            $("#txtCustomerLicenseNo").attr('disabled', false);
+                            $('#txtCusPassword').attr('disabled', false);
+                            $('#uploadNicImage').attr('disabled', false);
+                            $('#uploadLicenseImage').attr('disabled', false);
+
+                        } else {
+                            $("#txtCustomerNic").attr('disabled', true);
+                            $("#txtCustomerName").attr('disabled', true);
+                            $("#txtCustomerEmail").attr('disabled', true);
+                            $("#txtCustomerAddress").attr('disabled', true);
+                            $("#txtCustomerLicenseNo").attr('disabled', true);
+                            $('#txtCusPassword').attr('disabled', true);
+                            $('#uploadNicImage').attr('disabled', true);
+                            $('#uploadLicenseImage').attr('disabled', true);
+                        }
+                    }
+                });
+            }
+        }
+    });
 }
 
 
