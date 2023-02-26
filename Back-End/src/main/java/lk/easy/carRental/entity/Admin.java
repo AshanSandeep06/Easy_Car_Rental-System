@@ -26,5 +26,5 @@ public class Admin {
     private String email;
 
     @OneToOne(cascade = CascadeType.ALL)
-    private User_credentials userCredentials; // cascade eka dagena na sir
+    private User_credentials user_credentials;
 }
