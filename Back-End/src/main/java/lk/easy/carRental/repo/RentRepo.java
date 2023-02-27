@@ -26,4 +26,5 @@ public interface RentRepo extends JpaRepository<Rent, String> {
 
     @Query(nativeQuery = true, value = "SELECT COUNT(rentId) FROM Rent WHERE customerId=:customerId AND rentStatus='Ongoing'")
     int getOngoingRentalsCount(@Param("customerId") String customerId);
+    ArrayList<Rent> findAllByRequestTypeOfDriver(String requestTypeOfDriver);
 }

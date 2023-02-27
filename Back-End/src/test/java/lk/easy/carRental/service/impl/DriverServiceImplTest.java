@@ -30,10 +30,10 @@ class DriverServiceImplTest {
 
     @Test
     public void saveDriverLogin(){
-        User_credentialsDTO dto = new User_credentialsDTO("D-Bimal099", "bimal1978456", "Driver");
+        User_credentialsDTO dto = new User_credentialsDTO("D-Kumara099", "kumara9000", "Driver");
         userRepo.save(mapper.map(dto, User_credentials.class));
 
-        DriverDTO driverDTO = new DriverDTO("D001", "Bimal Surendra", "Galle", "0726742674", "19785637465V", "B4567837", null, "Available", dto);
+        DriverDTO driverDTO = new DriverDTO("D002", "Kumara Bandusena", "Galle", "0764582894", "19956784395V", "B8794563", null, "Available", dto);
         Driver driver = mapper.map(driverDTO, Driver.class);
         System.out.println(driverDTO);
         System.out.println(driver);

@@ -108,6 +108,12 @@ public class RentServiceImpl implements RentService {
     }
 
     @Override
+    public ArrayList<RentDTO> getAllRentsByDriverRequestingType(String driverRequestingType) {
+        return mapper.map(rentRepo.findAllByRequestTypeOfDriver(driverRequestingType), new TypeToken<ArrayList<RentDTO>>() {
+        }.getType());
+    }
+
+    @Override
     public void cancelRentRequest(String rentId) {
         if (rentRepo.existsById(rentId)) {
             rentRepo.cancelRentRequest(rentId);
