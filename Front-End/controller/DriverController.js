@@ -181,7 +181,7 @@ $('#btnSearchDriverSchedule').on('click', function () {
     }
 });
 
-$('#txtSearchDriverSchedule').on("keydown", function () {
+$('#txtSearchDriverSchedule').on("keyup", function () {
     if ($('#txtSearchDriverSchedule').val() == '') {
         loadAllDriversSchedule();
     }
