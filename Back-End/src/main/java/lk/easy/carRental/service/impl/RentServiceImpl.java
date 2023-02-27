@@ -137,6 +137,16 @@ public class RentServiceImpl implements RentService {
                 rentRepo.save(rent);
             } else if (rentStatus.equals("Denied")) {
                 Rent rent = rentRepo.findById(rentId).get();
+
+                for (int i = 0; i < rent.getRentDetail().size(); i++) {
+                    Driver driver = rent.getRentDetail().get(i).getDriver();
+                    driver.setAvailabilityType("Available");
+                    driverRepo.save(driver);
+
+                    Car car = rent.getRentDetail().get(i).getCar();
+                    car.setAvailabilityType("Available");
+                    carRepo.save(car);
+                }
                 rent.setRentStatus(rentStatus);
                 rent.setDeniedReason(deniedReason);
                 rentRepo.save(rent);

@@ -735,7 +735,6 @@ function bindRowClickEventsForManageRentalRequestsSection() {
     });
 }
 
-
 /* const { value: file } = await Swal.fire({
   title: 'Select image',
   input: 'file',
