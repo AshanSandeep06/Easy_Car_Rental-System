@@ -533,7 +533,6 @@ $("#btnUpdateCar").on('click', function () {
 // Delete Car
 $("#btnDeleteCar").on('click', function () {
     let carId = $("#txtCarID").val();
-    deleteCarImages(carId);
     $.ajax({
         url: baseUrl + "car?carId=" + carId,
         method: "delete",
@@ -547,6 +546,7 @@ $("#btnDeleteCar").on('click', function () {
                 timer: 1500
             })
             loadAllCars();
+            // deleteCarImages(carId);
         },
         error: function (error) {
             alert(JSON.parse(error.responseText).message);

@@ -69,12 +69,17 @@ public class CarServiceImpl implements CarService {
     @Override
     public void deleteCar(String carId) {
         if (carRepo.existsById(carId)) {
-            Rent_detail rentDetail = rentDetailRepo.findRent_detailByCarId(carId);
+            /*Rent_detail rentDetail = rentDetailRepo.findRent_detailByCarId(carId);
             Driver driver = driverRepo.findById(rentDetail.getDriver().getDriverId()).get();
             driver.setAvailabilityType("Available");
             driverRepo.save(driver);
-            rentDetailRepo.delete(rentDetail);
-            carRepo.deleteById(carId);
+            rentDetailRepo.delete(rentDetail);*/
+            ArrayList<Rent_detail> rentDetail = rentDetailRepo.findRent_detailByCarId(carId);
+            if (rentDetail.size() > 0) {
+                throw new RuntimeException("This Car have Ongoing or Finished Rentals, Therefore, Can't Delete..!");
+            } else {
+                carRepo.deleteById(carId);
+            }
         } else {
             throw new RuntimeException("There is No Such a Car, Therefore Can't be Deleted..!");
         }
