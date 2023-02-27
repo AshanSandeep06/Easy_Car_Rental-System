@@ -57,7 +57,7 @@ public class RentController {
     }
 
     @PutMapping(params = {"rentId", "rentStatus"})
-    public ResponseUtil updateRentStatus(String rentId, String rentStatus) {
+    public ResponseUtil updateRentStatus(@RequestParam String rentId, @RequestParam String rentStatus) {
         rentService.updateRentStatus(rentId, rentStatus);
         return new ResponseUtil("OK", "Successfully Updated the Status of "+rentId+" Rental Request..!", null);
     }
