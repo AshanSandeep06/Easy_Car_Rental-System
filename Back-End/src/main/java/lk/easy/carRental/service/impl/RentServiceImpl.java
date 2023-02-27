@@ -3,6 +3,7 @@ package lk.easy.carRental.service.impl;
 import lk.easy.carRental.dto.CarDTO;
 import lk.easy.carRental.dto.DriverDTO;
 import lk.easy.carRental.dto.RentDTO;
+import lk.easy.carRental.dto.Rent_detailDTO;
 import lk.easy.carRental.entity.Car;
 import lk.easy.carRental.entity.Driver;
 import lk.easy.carRental.entity.Rent;
@@ -172,6 +173,42 @@ public class RentServiceImpl implements RentService {
         if (rentRepo.existsById(rentId)) {
             Rent rent = rentRepo.findById(rentId).get();
             return mapper.map(rent, RentDTO.class);
+        } else {
+            throw new RuntimeException("This Rent is not exists");
+        }
+    }
+
+    @Override
+    public void updateBookings(RentDTO rentDTO) {
+        if (rentRepo.existsById(rentDTO.getRentId())) {
+            Rent rent = rentRepo.findById(rentDTO.getRentId()).get();
+            rent.setRequestTypeOfDriver(rentDTO.getRequestTypeOfDriver());
+            rent.setPickUpTime(rentDTO.getPickUpTime());
+            rent.setPickUpDate(rentDTO.getPickUpDate());
+            rent.setReturnTime(rentDTO.getReturnTime());
+            rent.setReturnDate(rentDTO.getReturnDate());
+            rent.setRentStatus(rentDTO.getRentStatus());
+            rent.setLocation(rentDTO.getLocation());
+
+            for (int i = 0; i < rentDTO.getRentDetail().size(); i++) {
+                Rent_detailDTO rentDetailDTO = rentDTO.getRentDetail().get(i);
+                Rent_detail rentDetail = rent.getRentDetail().get(i);
+
+                rentDetail.setCarId(rentDetailDTO.getCarId());
+                Driver preDriver = rentDetail.getDriver();
+                preDriver.setAvailabilityType("Available");
+                driverRepo.save(preDriver);
+
+                rentDetail.setDriver(mapper.map(rentDetailDTO.getDriver(), Driver.class));
+                rentDetailRepo.save(rentDetail);
+
+                Driver driver = driverRepo.findById(rentDetailDTO.getDriver().getDriverId()).get();
+                driver.setAvailabilityType(rentDetailDTO.getDriver().getAvailabilityType());
+                driverRepo.save(driver);
+            }
+
+            rentRepo.save(rent);
+
         } else {
             throw new RuntimeException("This Rent is not exists");
         }

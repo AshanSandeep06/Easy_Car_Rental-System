@@ -1100,7 +1100,37 @@ function setTextFieldValues(rentID, carID, driverReqType, driverID, driverName, 
 
 $('#btnUpdateBookings').on('click', function () {
     if ($('#txtRentID').val() != '' && $('#txtRentCarID').val() != null && $('#txtRentDriverReqType').val() != null && $('#txtRentDriverId').val() != null && $('#txtRentDriverName').val() != '' && $('#txtRentPickUpTime').val() != '' && $('#txtRentPickUpDate').val() != '' && $('#txtRentReturnTime').val() != '' && $('#txtRentReturnDate').val() != '' && $('#txtRentStatus').val() != '' && $('#txtRentLocation').val() != '') {
-        let rentObject = {};
+        let driverObject = {
+            driverId: $('#txtRentDriverId').val(),
+            name: $('#txtRentDriverName').val(),
+            availabilityType: "Unavailable"
+        }
+
+        let rentDetail = [];
+        rentDetail.push({rentId: $('#txtRentID').val(), carId: $("#txtRentCarID").val(), driver: driverObject});
+
+        let rentObject = {
+            rentId: $('#txtRentID').val(),
+            pickUpTime: $('#txtRentPickUpTime').val(),
+            pickUpDate: $('#txtRentPickUpDate').val(),
+            returnTime: $('#txtRentReturnTime').val(),
+            returnDate: $('#txtRentReturnDate').val(),
+            requestTypeOfDriver: $('#txtRentDriverReqType').val(),
+            location: $('#txtRentLocation').val(),
+            rentStatus: $('#txtRentStatus').val(),
+            rentDetail: rentDetail
+        };
+
+        $.ajax({
+            url: baseUrl + "rent/manageBookings",
+            method: "put",
+            data: JSON.stringify(rentObject),
+            contentType: "application/json",
+            dataType: "json",
+            success: function (resp) {
+                console.log(resp.data);
+            }
+        });
 
     } else {
         swal.fire(

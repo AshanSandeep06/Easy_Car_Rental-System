@@ -71,4 +71,10 @@ public class RentController {
         rentService.updateRentStatus(rentId, rentStatus, deniedReason);
         return new ResponseUtil("OK", "Successfully Updated the Status of "+rentId+" Rental Request..!", null);
     }
+
+    @PutMapping(path = "/manageBookings")
+    public ResponseUtil updateBookings(@RequestBody RentDTO rentDTO) {
+        rentService.updateBookings(rentDTO);
+        return new ResponseUtil("OK", "Successfully Updated This Booking "+rentDTO.getRentId()+"..!", null);
+    }
 }
