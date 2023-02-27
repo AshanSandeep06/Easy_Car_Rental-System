@@ -54,6 +54,7 @@ $('#btnManageVehicle').on('click', function () {
     $("#adminProfile_section").css('display', 'none');
     $("#manageRentDetails_section").css('display', 'none');
     $("#managePayment_section").css('display', 'none');
+    loadAllCars();
 });
 
 $('#btnManageBookings').on('click', function () {
