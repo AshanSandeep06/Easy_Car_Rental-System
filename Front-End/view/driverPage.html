@@ -7,6 +7,7 @@
     <meta content="width=device-width initial-scale=1" name="viewport">
     <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="../assets/fonts/css/all.min.css">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css" id="theme-styles">
     <link rel="stylesheet" href="../assets/style/styles.css">
 </head>
 <body class="container-fluid">
@@ -54,18 +55,22 @@
 
     <section class="row justify-content-center">
         <div class="form-group col-xl-2 col-lg-3 col-md-6 col-9 mb-3">
-            <select style="font-size: 15px;" class="form-select" aria-label="Default select example">
-                <option selected value="1">Driver ID</option>
-                <option value="2">Driver NIC</option>
+            <select id="cmbSelectDriver" style="font-size: 15px;" class="form-select" aria-label="Default select example">
+                <option selected>Driver ID</option>
+                <option>Driver NIC</option>
             </select>
         </div>
 
         <div class="form-group col-xl-3 col-lg-3 col-md-6 col-9 mb-3">
-            <input class="form-control" id="txtSearchDriverSchedule" type="search">
+            <input class="form-control" id="txtSearchDriverSchedule" type="text">
+        </div>
+
+        <div class="col-xl-2 col-lg-3 mb-3 col-md-3 col-8 text-center text-sm-center text-md-center text-lg-start text-xl-start justify-content-center">
+            <button id="btnSearchDriverSchedule" type="button" class="btn btn-primary">Search Schedule</button>
         </div>
 
         <div class="col-xl-2 col-lg-3 col-md-3 col-8 text-center text-sm-center text-md-center text-lg-start text-xl-start justify-content-center">
-            <button id="btnSearchDriverSchedule" type="button" class="btn btn-primary">Search Schedule</button>
+            <button id="btnSearchDriverClear" type="button" class="btn btn-secondary">Clear</button>
         </div>
     </section>
 
@@ -194,6 +199,7 @@
 
 <script src="../assets/jquery/jquery-3.6.1.min.js"></script>
 <script src="../assets/bootstrap/js/bootstrap.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
 <script src="../controller/DriverController.js"></script>
 </body>
 </html>
