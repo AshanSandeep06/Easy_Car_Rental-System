@@ -1100,6 +1100,7 @@ function setTextFieldValues(rentID, carID, driverReqType, driverID, driverName, 
 
 $('#btnUpdateBookings').on('click', function () {
     if ($('#txtRentID').val() != '' && $('#txtRentCarID').val() != null && $('#txtRentDriverReqType').val() != null && $('#txtRentDriverId').val() != null && $('#txtRentDriverName').val() != '' && $('#txtRentPickUpTime').val() != '' && $('#txtRentPickUpDate').val() != '' && $('#txtRentReturnTime').val() != '' && $('#txtRentReturnDate').val() != '' && $('#txtRentStatus').val() != '' && $('#txtRentLocation').val() != '') {
+        let rentObject = {};
 
     }else{
         swal.fire(
