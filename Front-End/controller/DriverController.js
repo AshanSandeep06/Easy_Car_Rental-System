@@ -1,9 +1,13 @@
 let baseUrl = "http://localhost:8080/Back-End/";
 
+var driverUsername = location.search.substring(1);
+console.log(driverUsername);
+
 $(function () {
     $("#driverInformation_section").css("display", 'none');
     $("#driverSchedule_section").css("display", 'block');
     loadAllDriversSchedule();
+    setDriverProfileData();
 });
 
 $('#btnDriverSchedule').on('click', function () {
@@ -15,6 +19,7 @@ $('#btnDriverSchedule').on('click', function () {
 $('#btnDriverInformation').on('click', function () {
     $("#driverInformation_section").css("display", 'block');
     $("#driverSchedule_section").css("display", 'none');
+    setDriverProfileData();
 });
 
 function loadAllDriversSchedule() {
@@ -194,3 +199,46 @@ $('#btnSearchDriverClear').on('click', function () {
 });
 
 /*----------------------- Driver Profile -----------------------*/
+function setDriverProfileData() {
+    $.ajax({
+        url: baseUrl + "/driver?driverUsername=" + driverUsername,
+        method: "get",
+        dataType: "json",
+        success: function (resp) {
+            if (resp.data != null) {
+                let driver = resp.data;
+                $.ajax({
+                    url: baseUrl + "/user_credentials?username=" + driverUsername,
+                    method: "get",
+                    dataType: "json",
+                    success: function (resp) {
+                        let user = resp.data;
+                        $('#txtDriverId').val(driver.driverId);
+                        $('#txtDriverUsername').val(user.username);
+                        $('#txtDriverPassword').val(user.password);
+                        $('#txtDriverName').val(driver.name);
+                        $('#txtDriverAddress').val(driver.address);
+                        $('#txtDriverContact').val(driver.contactNumber);
+                        $('#txtDriverNic').val(driver.nic);
+                        $('#txtDriverLicenseNo').val(driver.licenseNo);
+
+                        $.ajax({
+                            url: baseUrl + "driver/getDriverImages/" + driver.driverId,
+                            method: "get",
+                            dataType: "json",
+                            success: function (resp) {
+                                $("#driverLicenseImage").attr('src', "../assets/img/uploads/driverImages/" + resp.data.licenseImage);
+                            }
+                        });
+                    }
+                });
+            }
+        }
+    });
+}
+
+
+
+
+
+
