@@ -904,8 +904,3 @@ function checkWhenInOngoingRental(username) {
         }
     });
 }
-
-
-
-
-
