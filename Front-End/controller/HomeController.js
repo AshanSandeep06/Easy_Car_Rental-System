@@ -1,4 +1,4 @@
-let baseUrl = "http://localhost:8080/Back-End/";
+let baseUrl = "http://localhost:8085/Back_End_war/";
 $(function () {
     $("#resetPasswordForm").css('display', 'none');
 });
