@@ -38,6 +38,11 @@ public class RentController {
         return new ResponseUtil("OK", "Rental Requests of " + customerId + " has been Loaded..!", rentService.getBookingsRentStatus(customerId));
     }
 
+    @GetMapping(path = "/ManageRentalRequests/Pending")
+    public ResponseUtil loadAllPendingRentalRequests() {
+        return new ResponseUtil("OK", "Successfully Loaded All Pending Rental Requests..!", rentService.loadAllPendingRentalRequests("Pending"));
+    }
+
     @PostMapping
     public ResponseUtil placeRent(@RequestBody RentDTO rentDTO) {
         System.out.println(rentDTO);

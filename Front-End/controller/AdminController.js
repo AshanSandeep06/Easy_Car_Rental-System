@@ -11,6 +11,7 @@ $(function () {
     $("#adminProfile_section").css('display', 'none');
     $("#manageRentDetails_section").css('display', 'none');
     $("#managePayment_section").css('display', 'none');
+    loadAllRentalRequests();
 });
 
 $('#btnAdminDashBoard').on('click', function () {
@@ -39,6 +40,7 @@ $('#btnRentalRequests').on('click', function () {
     $("#adminProfile_section").css('display', 'none');
     $("#manageRentDetails_section").css('display', 'none');
     $("#managePayment_section").css('display', 'none');
+    loadAllRentalRequests();
 });
 
 $('#btnManageVehicle').on('click', function () {
@@ -566,3 +568,87 @@ function deleteCarImages(carId) {
         }
     })
 }
+
+/*------------------- Manage Rental Requests -------------------*/
+function loadAllRentalRequests() {
+    $("#tblManageRentalRequests>tbody").empty();
+
+    $.ajax({
+        url: baseUrl + "rent/ManageRentalRequests/Pending",
+        method: "get",
+        success: function (resp) {
+            if (resp.data != null) {
+                for (let rent of resp.data) {
+                    console.log(rent)
+                    var xr = rent.pickUpDate;
+                    var startDate = xr[0] + "-" + xr[1] + "-" + xr[2];
+
+                    var xr1 = rent.pickUpTime;
+                    var startTime;
+                    if (xr1[1] < 10) {
+                        startTime = xr1[0] + ":0" + xr1[1];
+                    }
+
+                    if (xr1[0] >= 12) {
+                        startTime += " PM";
+                    } else {
+                        startTime += " AM";
+                    }
+
+                    //---------------------------------
+
+                    var yr = rent.returnDate;
+                    var endDate = yr[0] + "-" + yr[1] + "-" + yr[2];
+
+                    var yr1 = rent.returnTime;
+                    var returnTime;
+                    if (yr1[1] < 10) {
+                        returnTime = yr1[0] + ":0" + yr1[1];
+                    }
+
+                    if (yr1[0] >= 12) {
+                        returnTime += " PM";
+                    } else {
+                        returnTime += " AM";
+                    }
+
+                    for (let i = 0; i < rent.rentDetail.length; i++) {
+                        var tag = '<span class="badge rounded-5 text-bg-primary statusBadge" style="font-size: 13px;">Pending</span>';
+
+                        var btnGroupDiv = '<div class="btn-group btnGroups" role="group" aria-label="Basic mixed styles example">' +
+                            '<button type="button" class="btn btn-success btnAccept">Accept</button>'+
+                            '<button type="button" class="btn btn-danger btnDeny">Deny</button>'+
+                        '</div>';
+
+                        $("#tblManageRentalRequests>tbody").append(`<tr><td>${rent.rentId}</td><td>${rent.rentDetail[i].carId}</td><td>${startDate}</td><td>${startTime}</td><td>${endDate}</td><td>${returnTime}</td><td>${rent.location}</td><td>${"Paid"}</td><td>${rent.customer.customerId}</td><td>${rent.customer.name}</td><td>${rent.rentDetail[i].driver.driverId}</td><td>${tag}</td><td>${btnGroupDiv}</td></tr>`);
+                    }
+                }
+            }
+        }
+    });
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

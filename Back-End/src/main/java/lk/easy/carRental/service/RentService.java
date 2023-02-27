@@ -10,6 +10,7 @@ public interface RentService {
     ArrayList<RentDTO> getAllActiveBookings(String customerId);
     ArrayList<RentDTO> getBookingsRentStatus(String customerId);
     ArrayList<RentDTO> getAllRentsByDriverRequestingType(String driverRequestingType);
+    ArrayList<RentDTO> loadAllPendingRentalRequests(String rentStatus);
     void cancelRentRequest(String rentId);
     int getOngoingRentalsCount(String customerId);
 }

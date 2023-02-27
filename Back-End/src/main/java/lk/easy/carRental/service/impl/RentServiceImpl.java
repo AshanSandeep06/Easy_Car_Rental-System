@@ -114,6 +114,12 @@ public class RentServiceImpl implements RentService {
     }
 
     @Override
+    public ArrayList<RentDTO> loadAllPendingRentalRequests(String rentStatus) {
+        return mapper.map(rentRepo.findAllByRentStatus(rentStatus), new TypeToken<ArrayList<RentDTO>>() {
+        }.getType());
+    }
+
+    @Override
     public void cancelRentRequest(String rentId) {
         if (rentRepo.existsById(rentId)) {
             rentRepo.cancelRentRequest(rentId);
