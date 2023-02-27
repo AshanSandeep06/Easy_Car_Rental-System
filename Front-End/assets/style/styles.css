@@ -1763,3 +1763,9 @@ footer > div {
         top: 175px !important;
     }
 }
+
+@media (min-width: 975px){
+    #header {
+        left: 0!important;
+    }
+}

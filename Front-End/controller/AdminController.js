@@ -1,16 +1,28 @@
 let baseUrl = "http://localhost:8080/Back-End/";
+/*
 
 $("#adminDashboard").css('display', 'none');
 $("#manageRentalRequests_section").css('display', 'none');
-// $("#manageVehicle_section").css('display', 'none');
+$("#manageVehicle_section").css('display', 'none');
 $("#manageBookings_section").css('display', 'none');
 $("#manageCustomer_section").css('display', 'none');
 $("#manageDriver_section").css('display', 'none');
 $("#viewDriverSchedule_section").css('display', 'none');
 $("#viewCarSchedule_section").css('display', 'none');
 $("#adminProfile_section").css('display', 'none');
-// $("#manageRentDetails_section").css('display', 'none');
-// $("#managePayment_section").css('display', 'none');
+$("#manageRentDetails_section").css('display', 'none');
+$("#managePayment_section").css('display', 'none');
+
+*/
+
+$('#option').on('click', function () {
+    if ($('#header').css('left') == '-300px') {
+        $('#header').css('left', 0);
+    } else {
+        $('#header').css('left', '-300px');
+    }
+});
+
 
 $(".btnDeny").on('click', function () {
     const {value: email} = Swal.fire({
