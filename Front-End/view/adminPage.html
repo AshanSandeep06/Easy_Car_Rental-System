@@ -70,7 +70,8 @@
                     <span>Manage Payments</span></a>
                 </li>
 
-                <li id="btnIncome"><a href="#" class="nav-link scrollto"><i class="bx bx-envelope"></i> <span>Income</span></a>
+                <li id="btnIncome"><a href="#" class="nav-link scrollto"><i class="bx bx-envelope"></i>
+                    <span>Income</span></a>
                 </li>
 
                 <li id="btnAdminProfile"><a href="#" class="nav-link scrollto"><i class="bx bx-envelope"></i>
@@ -137,7 +138,8 @@
 <main id="manageRentalRequests_section" class="admin-sections">
     <section class="row justify-content-start">
         <div class="col-xl-7 col-lg-9 col-md-11 col-12 justify-content-center">
-            <h1 style="font-size: 23px;" id="myProfileHeader">Manage Rental Requests <i class="fa-solid fa-list-check"></i></h1>
+            <h1 style="font-size: 23px;" id="myProfileHeader">Manage Rental Requests <i
+                    class="fa-solid fa-list-check"></i></h1>
         </div>
     </section>
 
@@ -227,9 +229,11 @@
         </form>-->
         <section class="col-xl-7 justify-content-center">
             <form id="manageCarForm" class="row g-3">
-                <div id="manageVehicleCarousel" class="carousel slide col-12 justify-content-center" data-bs-ride="false">
+                <div id="manageVehicleCarousel" class="carousel slide col-12 justify-content-center"
+                     data-bs-ride="false">
                     <div class="carousel-indicators">
-                        <button type="button" data-bs-target="#manageVehicleCarousel" data-bs-slide-to="0" class="active"
+                        <button type="button" data-bs-target="#manageVehicleCarousel" data-bs-slide-to="0"
+                                class="active"
                                 aria-current="true" aria-label="Slide 1"></button>
                         <button type="button" data-bs-target="#manageVehicleCarousel" data-bs-slide-to="1"
                                 aria-label="Slide 2"></button>
@@ -483,7 +487,7 @@
             <form id="manageBookingsForm" class="row g-3 justify-content-sm-end justify-content-center">
                 <div class="col-md-4 col-lg-4 col-xl-3">
                     <label for="txtRentID" class="form-label">Rent ID</label>
-                    <input type="text" class="form-control" id="txtRentID">
+                    <input type="text" class="form-control" id="txtRentID" placeholder="Search From Pressing Enter">
                 </div>
 
                 <div class="col-md-4 col-lg-4 col-xl-3">
@@ -493,19 +497,24 @@
                     </select>
                 </div>
 
-                <div class="col-md-4 col-lg-4 col-xl-3">
+                <!--<div class="col-md-4 col-lg-4 col-xl-3">
                     <label for="txtRentCarType" class="form-label">Car Type</label>
                     <select id="txtRentCarType" class="form-select" aria-label="Default select example">
                         <option selected disabled>Select Car Type</option>
-                        <option value="1">General</option>
-                        <option value="2">Premium</option>
-                        <option value="3">Luxury</option>
+                        <option>General</option>
+                        <option>Premium</option>
+                        <option>Luxury</option>
                     </select>
-                </div>
+                </div>-->
 
                 <div class="col-md-4 col-lg-4 col-xl-3">
                     <label for="txtRentDriverReqType" class="form-label">Driver Requesting Type</label>
-                    <input type="text" class="form-control" id="txtRentDriverReqType">
+                    <select id="txtRentDriverReqType" class="form-select" aria-label="Default select example">
+                        <option selected disabled>Select Type</option>
+                        <option>Yes</option>
+                        <option>No</option>
+                    </select>
+
                 </div>
 
                 <!--======================================-->
@@ -519,7 +528,7 @@
 
                 <div class="col-md-4 col-lg-4 col-xl-3">
                     <label for="txtRentDriverName" class="form-label">Driver Name</label>
-                    <input type="text" class="form-control" id="txtRentDriverName">
+                    <input type="text" disabled class="form-control" id="txtRentDriverName">
                 </div>
 
                 <div class="col-md-4 col-lg-4 col-xl-3">
@@ -539,27 +548,28 @@
                     <input type="time" class="form-control" id="txtRentReturnTime">
                 </div>
 
-                <div class="col-md-4 col-lg-4 col-xl-3">
+                <div class="col-md-4 col-lg-4 col-xl-4">
                     <label for="txtRentReturnDate" class="form-label">Return Date</label>
                     <input type="date" class="form-control" id="txtRentReturnDate">
                 </div>
 
-                <div class="col-md-4 col-lg-4 col-xl-3">
+                <div class="col-md-4 col-lg-4 col-xl-4">
                     <label for="txtRentStatus" class="form-label">Rent Status</label>
                     <input type="text" class="form-control" id="txtRentStatus">
                 </div>
 
-                <div class="col-md-4 col-lg-4 col-xl-3">
+                <div class="col-md-4 col-lg-4 col-xl-4">
                     <label for="txtRentLocation" class="form-label">Location</label>
                     <input type="text" class="form-control" id="txtRentLocation">
                 </div>
 
                 <!--==============================================-->
 
-                <div id="btnGroupManageBookings" class="btn-group col-xl-4 col-md-6 col-12 btnGroup" role="group"
+                <div id="btnGroupManageBookings"
+                     class="btn-group col-xl-3 col-md-5 col-10 btnGroup justify-content-sm-center" role="group"
                      aria-label="Basic mixed styles example">
                     <button type="button" class="btn btn-primary">Update</button>
-                    <button type="button" class="btn btn-danger">Delete</button>
+                    <!-- <button type="button" class="btn btn-danger">Delete</button>-->
                     <button type="button" class="btn btn-secondary">Clear</button>
                 </div>
             </form>
@@ -577,7 +587,6 @@
                     <tr>
                         <th>Rent ID</th>
                         <th>Car ID</th>
-                        <th>Car Type</th>
                         <th>Driver Req Type</th>
                         <th>Driver ID</th>
                         <th>Driver Name</th>
@@ -589,37 +598,7 @@
                         <th>Location</th>
                     </tr>
                     </thead>
-                    <tbody>
-                    <tr>
-                        <td>R00-001</td>
-                        <td>V001</td>
-                        <td>General</td>
-                        <td>Yes</td>
-                        <td>D001</td>
-                        <td>Nimal Perera</td>
-                        <td>10:30 AM</td>
-                        <td>2022-02-25</td>
-                        <td>10:30 AM</td>
-                        <td>2022-02-28</td>
-                        <td>Pending</td>
-                        <td>Galle Town</td>
-                    </tr>
-
-                    <tr>
-                        <td>R00-002</td>
-                        <td>V003</td>
-                        <td>General</td>
-                        <td>Yes</td>
-                        <td>D001</td>
-                        <td>Sugath Bandara</td>
-                        <td>10:30 AM</td>
-                        <td>2022-02-25</td>
-                        <td>10:30 AM</td>
-                        <td>2022-02-28</td>
-                        <td>Accepted</td>
-                        <td>Dadalla, Galle</td>
-                    </tr>
-                    </tbody>
+                    <tbody></tbody>
                 </table>
             </div>
         </section>

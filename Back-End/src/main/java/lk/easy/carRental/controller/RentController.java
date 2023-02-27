@@ -13,6 +13,11 @@ public class RentController {
     @Autowired
     private RentService rentService;
 
+    @GetMapping
+    public ResponseUtil getAllRents(){
+        return new ResponseUtil("OK", "Loaded All Bookings Successfully..!", rentService.getAllRents());
+    }
+
     @GetMapping(params = {"driverRequestingType"})
     public ResponseUtil getAllRentsByDriverRequestingType(@RequestParam String driverRequestingType) {
         return new ResponseUtil("OK", "Load All Drivers' Work Schedule..!", rentService.getAllRentsByDriverRequestingType(driverRequestingType));
