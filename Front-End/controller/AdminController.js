@@ -465,15 +465,14 @@ $("#btnUpdateCar").on('click', function () {
         availabilityType: $("#txtAvailabilityType").val(),
     };
 
-
     Swal.fire({
         title: 'Are you sure?',
-        text: "You won't be able to revert this!",
+        text: "Do You Want to Update Car with Images.?",
         icon: 'question',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, delete it!'
+        confirmButtonText: 'Yes, Update it!'
     }).then((result) => {
         if (!result.isConfirmed) {
             $.ajax({
