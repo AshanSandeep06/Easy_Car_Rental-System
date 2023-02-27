@@ -4,7 +4,11 @@ import lk.easy.carRental.dto.CarDTO;
 import lk.easy.carRental.dto.ImageDTO;
 import lk.easy.carRental.embedded.VehicleImage;
 import lk.easy.carRental.entity.Car;
+import lk.easy.carRental.entity.Driver;
+import lk.easy.carRental.entity.Rent_detail;
 import lk.easy.carRental.repo.CarRepo;
+import lk.easy.carRental.repo.DriverRepo;
+import lk.easy.carRental.repo.Rent_detailRepo;
 import lk.easy.carRental.service.CarService;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
@@ -19,6 +23,10 @@ import java.util.ArrayList;
 public class CarServiceImpl implements CarService {
     @Autowired
     private CarRepo carRepo;
+    @Autowired
+    private Rent_detailRepo rentDetailRepo;
+    @Autowired
+    private DriverRepo driverRepo;
     @Autowired
     private ModelMapper mapper;
 
@@ -61,6 +69,11 @@ public class CarServiceImpl implements CarService {
     @Override
     public void deleteCar(String carId) {
         if (carRepo.existsById(carId)) {
+            Rent_detail rentDetail = rentDetailRepo.findRent_detailByCarId(carId);
+            Driver driver = driverRepo.findById(rentDetail.getDriver().getDriverId()).get();
+            driver.setAvailabilityType("Available");
+            driverRepo.save(driver);
+            rentDetailRepo.delete(rentDetail);
             carRepo.deleteById(carId);
         } else {
             throw new RuntimeException("There is No Such a Car, Therefore Can't be Deleted..!");

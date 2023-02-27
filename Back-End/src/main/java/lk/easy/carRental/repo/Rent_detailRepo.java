@@ -7,4 +7,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface Rent_detailRepo extends JpaRepository<Rent_detail, String> {
     Rent_detail findRent_detailByCarIdAndRentId(String carId, String rentId);
+    Rent_detail findRent_detailByCarId(String carId);
 }
