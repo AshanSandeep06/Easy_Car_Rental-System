@@ -11,7 +11,6 @@ $(function () {
     $("#adminProfile_section").css('display', 'none');
     $("#manageRentDetails_section").css('display', 'none');
     $("#managePayment_section").css('display', 'none');
-    loadAllRentalRequests();
 });
 
 $('#btnAdminDashBoard').on('click', function () {
@@ -616,21 +615,137 @@ function loadAllRentalRequests() {
                         var tag = '<span class="badge rounded-5 text-bg-primary statusBadge" style="font-size: 13px;">Pending</span>';
 
                         var btnGroupDiv = '<div class="btn-group btnGroups" role="group" aria-label="Basic mixed styles example">' +
-                            '<button type="button" class="btn btn-success btnAccept">Accept</button>'+
-                            '<button type="button" class="btn btn-danger btnDeny">Deny</button>'+
-                        '</div>';
+                            '<button type="button" class="btn btn-success btnAccept">Accept</button>' +
+                            '<button type="button" class="btn btn-danger btnDeny">Deny</button>' +
+                            '</div>';
 
                         $("#tblManageRentalRequests>tbody").append(`<tr><td>${rent.rentId}</td><td>${rent.rentDetail[i].carId}</td><td>${startDate}</td><td>${startTime}</td><td>${endDate}</td><td>${returnTime}</td><td>${rent.location}</td><td>${"Paid"}</td><td>${rent.customer.customerId}</td><td>${rent.customer.name}</td><td>${rent.rentDetail[i].driver.driverId}</td><td>${tag}</td><td>${btnGroupDiv}</td></tr>`);
                     }
                 }
+                bindRowClickEventsForManageRentalRequestsSection();
             }
         }
     });
 }
 
+function bindRowClickEventsForManageRentalRequestsSection() {
+    $(".btnAccept").on('click', function () {
+        console.log($(this).parent().parent().parent().children(":eq(0)").text()); //rent ID
+        let rentID = $(this).parent().parent().parent().children(":eq(0)").text();
+
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "Do You want to Accept This Rental Request..?",
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonColor: '#198754',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, Accept it!',
+            cancelButtonText: 'No'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    url: baseUrl + "rent?rentId=" + rentID + "&" + "rentStatus=Accepted",
+                    method: "put",
+                    dataType: "json",
+                    success: function (res) {
+                        Swal.fire('Successfully Accepted!', '', 'success');
+                        loadAllRentalRequests();
+                    },
+
+                    error: function (error) {
+                        loadAllRentalRequests();
+                        console.log(JSON.parse(error.responseText).message);
+                    }
+                });
+            }
+        })
+    });
+
+    $(".btnDeny").on('click', function () {
+        console.log($(this).parent().parent().parent().children(":eq(0)").text()); //rent ID
+        let rentID = $(this).parent().parent().parent().children(":eq(0)").text();
+
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "Do You want to Deny this Rental Request..?",
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Yes, Deny it!',
+            cancelButtonText: 'No'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                const {value: email} = Swal.fire({
+                    title: 'Enter Your Denied Reason',
+                    input: 'textarea',
+                    inputLabel: 'Your Message',
+                    inputPlaceholder: 'Enter your message here',
+                    showCancelButton: true,
+                    confirmButtonText: "Send Message",
+                    allowOutsideClick: false,
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        Swal.fire('Saved!', '', 'success')
+                        $.ajax({
+                            url: baseUrl + "rent?rentId=" + rentID + "&" + "rentStatus=Denied",
+                            method: "put",
+                            dataType: "json",
+                            success: function (res) {
+                                Swal.fire('Successfully Denied!', '', 'success');
+                                loadAllRentalRequests();
+                            },
+
+                            error: function (error) {
+                                loadAllRentalRequests();
+                                console.log(JSON.parse(error.responseText).message);
+                            }
+                        });
 
 
+                    } else if (result.dismiss === Swal.DismissReason.cancel) {
+                        swal.fire(
+                            'Dismissed',
+                            'Rental Request Denial has been Cancelled..!',
+                            'warning'
+                        )
+                    }
+                });
 
+            } else if (result.dismiss === Swal.DismissReason.cancel) {
+                swal.fire(
+                    'Dismissed',
+                    'Rental Request Denial has been Cancelled..!',
+                    'warning'
+                )
+            }
+        });
+    });
+}
+
+
+/* const { value: file } = await Swal.fire({
+  title: 'Select image',
+  input: 'file',
+  inputAttributes: {
+    'accept': 'image/*',
+    'aria-label': 'Upload your profile picture'
+  }
+})
+
+if (file) {
+  const reader = new FileReader()
+  reader.onload = (e) => {
+    Swal.fire({
+      title: 'Your uploaded picture',
+      imageUrl: e.target.result,
+      imageAlt: 'The uploaded picture'
+    })
+  }
+  reader.readAsDataURL(file)
+}
+*/
 
 
 

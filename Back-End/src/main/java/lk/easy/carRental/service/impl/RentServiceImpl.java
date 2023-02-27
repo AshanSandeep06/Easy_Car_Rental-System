@@ -129,6 +129,17 @@ public class RentServiceImpl implements RentService {
     }
 
     @Override
+    public void updateRentStatus(String rentId, String rentStatus) {
+        if (rentRepo.existsById(rentId)) {
+            Rent rent = rentRepo.findById(rentId).get();
+            rent.setRentStatus(rentStatus);
+            rentRepo.save(rent);
+        } else {
+            throw new RuntimeException("This Rental Request isn't exists, to Cancel..!");
+        }
+    }
+
+    @Override
     public int getOngoingRentalsCount(String customerId) {
         return rentRepo.getOngoingRentalsCount(customerId);
     }

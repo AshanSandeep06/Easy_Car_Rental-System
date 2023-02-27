@@ -12,5 +12,6 @@ public interface RentService {
     ArrayList<RentDTO> getAllRentsByDriverRequestingType(String driverRequestingType);
     ArrayList<RentDTO> loadAllPendingRentalRequests(String rentStatus);
     void cancelRentRequest(String rentId);
+    void updateRentStatus(String rentId, String rentStatus);
     int getOngoingRentalsCount(String customerId);
 }

@@ -14,13 +14,13 @@ public class RentController {
     private RentService rentService;
 
     @GetMapping(params = {"driverRequestingType"})
-    public ResponseUtil getAllRentsByDriverRequestingType(@RequestParam String driverRequestingType){
+    public ResponseUtil getAllRentsByDriverRequestingType(@RequestParam String driverRequestingType) {
         return new ResponseUtil("OK", "Load All Drivers' Work Schedule..!", rentService.getAllRentsByDriverRequestingType(driverRequestingType));
     }
 
     @GetMapping(path = "/checkOngoingRentals/OngoingRentalsCount", params = {"customerId"})
     public ResponseUtil getOngoingRentalsCount(String customerId) {
-        return new ResponseUtil("OK", "Ongoing Rentals Count of "+customerId+" has been generated..!", rentService.getOngoingRentalsCount(customerId));
+        return new ResponseUtil("OK", "Ongoing Rentals Count of " + customerId + " has been generated..!", rentService.getOngoingRentalsCount(customerId));
     }
 
     @GetMapping(path = "/generateNewRentID")
@@ -51,9 +51,15 @@ public class RentController {
     }
 
     @PutMapping(params = {"rentId"})
-    public ResponseUtil cancelRentRequest(@RequestParam String rentId){
+    public ResponseUtil cancelRentRequest(@RequestParam String rentId) {
         rentService.cancelRentRequest(rentId);
         return new ResponseUtil("OK", "Successfully Cancelled Your Rental Request..!", null);
+    }
+
+    @PutMapping(params = {"rentId", "rentStatus"})
+    public ResponseUtil updateRentStatus(String rentId, String rentStatus) {
+        rentService.updateRentStatus(rentId, rentStatus);
+        return new ResponseUtil("OK", "Successfully Updated the Status of "+rentId+" Rental Request..!", null);
     }
 
 }
