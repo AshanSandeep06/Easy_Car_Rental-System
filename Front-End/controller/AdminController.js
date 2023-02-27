@@ -1,6 +1,6 @@
 let baseUrl = "http://localhost:8080/Back-End/";
 $(function () {
-    $('#adminDashboard').css("display", "block");
+    $('#adminDashboard').css("display", "flex");
     $("#manageRentalRequests_section").css('display', 'none');
     $("#manageVehicle_section").css('display', 'none');
     $("#manageBookings_section").css('display', 'none');
@@ -14,7 +14,7 @@ $(function () {
 });
 
 $('#btnAdminDashBoard').on('click', function () {
-    $('#adminDashboard').css("display", "block");
+    $('#adminDashboard').css("display", "flex");
     $("#manageRentalRequests_section").css('display', 'none');
     $("#manageVehicle_section").css('display', 'none');
     $("#manageBookings_section").css('display', 'none');
