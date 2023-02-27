@@ -760,6 +760,8 @@ if (file) {
 
 function loadAllBookings() {
     $("#tblManageBookings>tbody").empty();
+    loadAllDriverIds();
+    loadAllCarIds();
 
     $.ajax({
         url: baseUrl + "rent",
@@ -811,6 +813,7 @@ function loadAllBookings() {
     });
 }
 
+// Search From Rent ID ------------>
 /*if ($('#txtSearchDriverSchedule').val() != '') {
     if ($('#cmbSelectDriver').val() == "Driver ID") {
         $.ajax({
@@ -921,7 +924,66 @@ function loadAllBookings() {
     })
 }*/
 
+//Load All Car IDs
+function loadAllCarIds() {
+    $("#txtRentCarID").empty();
+    $("#txtRentCarID").append(`<option selected disabled>Select Car</option>`);
 
+    $.ajax({
+        url: baseUrl + "car",
+        method: "get",
+        success: function (resp) {
+            for (let c1 of resp.data) {
+                $("#txtRentCarID").append(`<option>${c1.carId}</option>`);
+            }
+        }
+    });
+}
+
+//Load All Driver IDs
+function loadAllDriverIds() {
+    $("#txtRentDriverId").empty();
+    $("#txtRentDriverId").append(`<option selected disabled>Select Driver</option>`);
+
+    $.ajax({
+        url: baseUrl + "driver",
+        method: "get",
+        success: function (resp) {
+            for (let c1 of resp.data) {
+                $("#txtRentDriverId").append(`<option>${c1.driverId}</option>`);
+            }
+        }
+    });
+}
+
+$("#txtRentDriverId").change(function () {
+    let driverId = $(this).val();
+
+    $.ajax({
+        url: baseUrl + "driver/getDriverName?driverId=" + driverId,
+        method: "get",
+        success: function (resp) {
+            if (resp.data != null) {
+                $('#txtRentDriverName').val(resp.data);
+            }
+        }
+    });
+});
+
+$('#btnClear_ManageBookingsSection').on('click', function () {
+    loadAllBookings();
+    $('#txtRentID').val('');
+    $('#txtRentCarID').val('Select Car');
+    $('#txtRentDriverReqType').val('');
+    $('#txtRentDriverId').val('Select Driver');
+    $('#txtRentDriverName').val('');
+    $('#txtRentPickUpTime').val('');
+    $('#txtRentPickUpDate').val('');
+    $('#txtRentReturnTime').val('');
+    $('#txtRentReturnDate').val('');
+    $('#txtRentStatus').val('');
+    $('#txtRentLocation').val('');
+});
 
 
 

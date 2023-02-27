@@ -1,9 +1,6 @@
 package lk.easy.carRental.service.impl;
 
-import lk.easy.carRental.dto.CustomerDTO;
-import lk.easy.carRental.dto.DriverDTO;
-import lk.easy.carRental.dto.DriverLicenseImageDTO;
-import lk.easy.carRental.dto.NicAndLicenseImageDTO;
+import lk.easy.carRental.dto.*;
 import lk.easy.carRental.embedded.CustomerImage;
 import lk.easy.carRental.entity.Customer;
 import lk.easy.carRental.entity.Driver;
@@ -11,9 +8,12 @@ import lk.easy.carRental.repo.DriverRepo;
 import lk.easy.carRental.repo.User_credentialsRepo;
 import lk.easy.carRental.service.DriverService;
 import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.ArrayList;
 
 @Service
 @Transactional
@@ -66,6 +66,22 @@ public class DriverServiceImpl implements DriverService {
             driverRepo.uploadCustomerLicenseImage(driverId, licenseImage);
         } else {
             throw new RuntimeException("There is No Such a Driver to Upload License Image");
+        }
+    }
+
+    @Override
+    public ArrayList<DriverDTO> getAllDrivers() {
+        return mapper.map(driverRepo.findAll(), new TypeToken<ArrayList<DriverDTO>>() {
+        }.getType());
+    }
+
+    @Override
+    public String getDriverName(String driverId) {
+        if (driverRepo.existsById(driverId)) {
+            Driver driver = driverRepo.findById(driverId).get();
+            return driver.getName();
+        } else {
+            throw new RuntimeException("This Driver is not exists..!");
         }
     }
 }

@@ -21,9 +21,19 @@ public class DriverController {
     @Autowired
     private DriverService driverService;
 
+    @GetMapping
+    public ResponseUtil getAllDrivers(){
+        return new ResponseUtil("OK", "Loaded All Drivers Successfully..!", driverService.getAllDrivers());
+    }
+
     @GetMapping(params = {"driverUsername"})
     public ResponseUtil getDriverDetails(@RequestParam("driverUsername") String driverUsername) {
         return new ResponseUtil("OK", "Driver Details has been loaded Successfully..!", driverService.getDriverDetails(driverUsername));
+    }
+
+    @GetMapping(path = "/getDriverName", params = {"driverId"})
+    public ResponseUtil getDriverName(@RequestParam String driverId) {
+        return new ResponseUtil("OK", driverId+" driver name has been loaded Successfully..!", driverService.getDriverName(driverId));
     }
 
     @GetMapping(path = "/getDriverImages/{driverId}")
