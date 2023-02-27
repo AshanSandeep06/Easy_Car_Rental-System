@@ -75,4 +75,15 @@ public class User_credentialsServiceImpl implements User_credentialsService {
             throw new RuntimeException("This User is not exists, Therefore Can't Update User..!");
         }
     }
+
+    @Override
+    public User_credentialsDTO getCustomerUserCredentials(String jobRole, String customerId) {
+        Customer customer = customerRepo.findById(customerId).get();
+        User_credentials userCredentials = customer.getUser_credentials();
+        if (customer != null) {
+            return mapper.map(userCredentials, User_credentialsDTO.class);
+        } else {
+            throw new RuntimeException("This Customer doesn't exists");
+        }
+    }
 }

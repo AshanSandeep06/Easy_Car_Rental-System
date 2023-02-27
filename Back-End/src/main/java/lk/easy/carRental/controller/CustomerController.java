@@ -25,6 +25,11 @@ public class CustomerController {
     @Autowired
     private CustomerService customerService;
 
+    @GetMapping
+    public ResponseUtil getAllCustomers() {
+        return new ResponseUtil("OK", "Loaded All Customers Successfully..!", customerService.getAllCustomers());
+    }
+
     @GetMapping(params = {"username"})
     public ResponseUtil getCustomerDetails(@RequestParam("username") String customerUsername) {
         return new ResponseUtil("OK", "Customer Details has been loaded Successfully..!", customerService.getCustomerDetails(customerUsername));

@@ -14,8 +14,13 @@ public class User_credentialsController {
     @Autowired
     private User_credentialsService userService;
 
+    @GetMapping(path = "/getCustomerUserCredentials/{jobRole}/{customerId}")
+    public ResponseUtil getCustomerUserCredentials(@PathVariable String jobRole, @PathVariable String customerId) {
+        return new ResponseUtil("OK", "User Credentials of " + customerId + " Loaded Successfully..!", userService.getCustomerUserCredentials(jobRole, customerId));
+    }
+
     @GetMapping(params = {"username"})
-    public ResponseUtil getUserCredentials(@RequestParam String username){
+    public ResponseUtil getUserCredentials(@RequestParam String username) {
         return new ResponseUtil("OK", "User Credentials Loaded Successfully..!", userService.getUserCredentials(username));
     }
 
@@ -31,7 +36,7 @@ public class User_credentialsController {
     }
 
     @PutMapping
-    public ResponseUtil updateUsernameAndPassword(@RequestBody User_credentialsDTO userDTO){
+    public ResponseUtil updateUsernameAndPassword(@RequestBody User_credentialsDTO userDTO) {
         userService.updateUserCredentials(userDTO);
         return new ResponseUtil("OK", "Update Username And Password Successfully..!", null);
     }

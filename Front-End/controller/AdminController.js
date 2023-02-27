@@ -84,6 +84,7 @@ $('#btnManageCustomer').on('click', function () {
     $("#adminProfile_section").css('display', 'none');
     $("#manageRentDetails_section").css('display', 'none');
     $("#managePayment_section").css('display', 'none');
+    loadAllCustomers();
 });
 
 $('#btnManageDriver').on('click', function () {
@@ -1140,6 +1141,85 @@ $('#btnUpdateBookings').on('click', function () {
         )
     }
 });
+
+// Load All Customers
+function loadAllCustomers() {
+    $("#tblManageCustomer>tbody").empty();
+    $.ajax({
+        url: baseUrl + "customer",
+        method: "get",
+        dataType: "json",
+        success: function (resp) {
+            if (resp.data != null) {
+                for (let c1 of resp.data) {
+                    console.log(c1)
+
+                    $.ajax({
+                        url: baseUrl + "user_credentials/getCustomerUserCredentials/Customer/" + c1.customerId,
+                        method: "get",
+                        async: false,
+                        success: function (resp) {
+                            var row = "<tr><td>" + c1.customerId + "</td><td>" + resp.data.username + "</td><td>" + resp.data.password + "</td><td>" + c1.name + "</td><td>" + c1.address + "</td><td>" + c1.contactNumber + "</td><td>" + c1.email + "</td><td>" + c1.nic + "</td><td>" + c1.licenseNo + "</td></tr>";
+                            $("#tblManageCustomer>tbody").append(row);
+                        }
+                    });
+                }
+            }
+            bindRowClickEventsManageCustomerTable();
+            clearManageCustomerSectionTextFields();
+        }
+    });
+}
+
+function bindRowClickEventsManageCustomerTable() {
+    $("#tblManageCustomer>tbody>tr").on('click', function () {
+        let customerID = $(this).children(":eq(0)").text();
+        let username = $(this).children(":eq(1)").text();
+        let password = $(this).children(":eq(2)").text();
+        let cusName = $(this).children(":eq(3)").text();
+        let cusAddress = $(this).children(":eq(4)").text();
+        let cusContactNumber = $(this).children(":eq(5)").text();
+        let cusEmail = $(this).children(":eq(6)").text();
+        let cusNic = $(this).children(":eq(7)").text();
+        let cusLicenseNo = $(this).children(":eq(8)").text();
+
+        $('#txtCustomerID').val(customerID);
+        $('#txtCusUsername').val(username);
+        $('#txtCusPassword').val(password);
+        $('#txtCustomerName').val(cusName);
+        $('#txtCustomerAddress').val(cusAddress);
+        $('#txtCustomerContact').val(cusContactNumber);
+        $('#txtCustomerEmail').val(cusEmail);
+        $('#txtCustomerNic').val(cusNic);
+        $('#txtCustomerLicenseNo').val(cusLicenseNo);
+
+        $.ajax({
+            url: baseUrl + "customer/getCustomerImages/" + customerID,
+            method: "get",
+            dataType: "json",
+            success: function (resp) {
+                $("#customerNicImage").attr('src', "../assets/img/uploads/customerImages/" + resp.data.nicImage);
+                $("#customerLicenseImage").attr('src', "../assets/img/uploads/customerImages/" + resp.data.licenseImage);
+            }
+        });
+    });
+}
+
+function clearManageCustomerSectionTextFields() {
+    $('#txtCustomerID').val("");
+    $('#txtCusUsername').val("");
+    $('#txtCusPassword').val("");
+    $('#txtCustomerName').val("");
+    $('#txtCustomerAddress').val("");
+    $('#txtCustomerContact').val("");
+    $('#txtCustomerEmail').val("");
+    $('#txtCustomerNic').val("");
+    $('#txtCustomerLicenseNo').val("");
+
+    // Clear images
+    $("#customerNicImage").attr('src', "");
+    $("#customerLicenseImage").attr('src', "");
+}
 
 
 

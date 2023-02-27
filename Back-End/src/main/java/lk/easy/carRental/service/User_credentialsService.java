@@ -8,4 +8,5 @@ public interface User_credentialsService {
     User_credentialsDTO getUserCredentials(String username);
     void resetUserPassword(User_credentialsDTO userDTO);
     void updateUserCredentials(User_credentialsDTO userDTO);
+    User_credentialsDTO getCustomerUserCredentials(String jobRole, String customerId);
 }

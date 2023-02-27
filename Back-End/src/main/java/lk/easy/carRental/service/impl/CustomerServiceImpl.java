@@ -14,9 +14,12 @@ import lk.easy.carRental.repo.CustomerRepo;
 import lk.easy.carRental.repo.User_credentialsRepo;
 import lk.easy.carRental.service.CustomerService;
 import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.ArrayList;
 
 @Service
 @Transactional
@@ -132,5 +135,11 @@ public class CustomerServiceImpl implements CustomerService {
         } else {
             throw new RuntimeException("There is No Such a Customer to Update");
         }
+    }
+
+    @Override
+    public ArrayList<CustomerDTO> getAllCustomers() {
+        return mapper.map(customerRepo.findAll(), new TypeToken<ArrayList<CustomerDTO>>() {
+        }.getType());
     }
 }
