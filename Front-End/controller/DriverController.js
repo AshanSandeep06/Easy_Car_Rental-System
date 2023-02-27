@@ -192,3 +192,5 @@ $('#btnSearchDriverClear').on('click', function () {
     $('#cmbSelectDriver').val('Driver ID');
     loadAllDriversSchedule();
 });
+
+/*----------------------- Driver Profile -----------------------*/
