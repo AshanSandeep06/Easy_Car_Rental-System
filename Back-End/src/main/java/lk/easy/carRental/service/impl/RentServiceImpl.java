@@ -166,4 +166,14 @@ public class RentServiceImpl implements RentService {
     public int getOngoingRentalsCount(String customerId) {
         return rentRepo.getOngoingRentalsCount(customerId);
     }
+
+    @Override
+    public RentDTO getRentByRentID(String rentId) {
+        if (rentRepo.existsById(rentId)) {
+            Rent rent = rentRepo.findById(rentId).get();
+            return mapper.map(rent, RentDTO.class);
+        } else {
+            throw new RuntimeException("This Rent is not exists");
+        }
+    }
 }

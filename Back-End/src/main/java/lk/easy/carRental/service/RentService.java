@@ -15,4 +15,5 @@ public interface RentService {
     void cancelRentRequest(String rentId);
     void updateRentStatus(String rentId, String rentStatus, String deniedReason);
     int getOngoingRentalsCount(String customerId);
+    RentDTO getRentByRentID(String rentId);
 }

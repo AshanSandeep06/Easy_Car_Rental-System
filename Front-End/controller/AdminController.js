@@ -808,6 +808,7 @@ function loadAllBookings() {
                         $("#tblManageBookings>tbody").append(`<tr><td>${rent.rentId}</td><td>${rent.rentDetail[i].carId}</td><td>${rent.requestTypeOfDriver}</td><td>${rent.rentDetail[i].driver.driverId}</td><td>${rent.rentDetail[i].driver.name}</td><td>${startTime}</td><td>${startDate}</td><td>${returnTime}</td><td>${endDate}</td><td>${rent.rentStatus}</td><td>${rent.location}</td></tr>`);
                     }
                 }
+                bindRowClickEventsManageBookingsTable();
             }
         }
     });
@@ -984,6 +985,118 @@ $('#btnClear_ManageBookingsSection').on('click', function () {
     $('#txtRentStatus').val('');
     $('#txtRentLocation').val('');
 });
+
+$('#txtRentID').on('keyup', function (e) {
+    if (e.key == "Enter") {
+        if ($('#txtRentID').val() != '') {
+            $.ajax({
+                url: baseUrl + "rent/" + $('#txtRentID').val(),
+                method: "get",
+                success: function (resp) {
+                    if (resp.data != null) {
+                        $("#tblManageBookings>tbody").empty();
+                        let rent = resp.data;
+                        var xr = rent.pickUpDate;
+                        var startDate = xr[0] + "-" + xr[1] + "-" + xr[2];
+
+                        var xr1 = rent.pickUpTime;
+                        var startTime;
+                        if (xr1[1] < 10) {
+                            startTime = xr1[0] + ":0" + xr1[1];
+                        }
+
+                        if (xr1[0] >= 12) {
+                            startTime += " PM";
+                        } else {
+                            startTime += " AM";
+                        }
+
+                        //---------------------------------
+
+                        var yr = rent.returnDate;
+                        var endDate = yr[0] + "-" + yr[1] + "-" + yr[2];
+
+                        var yr1 = rent.returnTime;
+                        var returnTime;
+                        if (yr1[1] < 10) {
+                            returnTime = yr1[0] + ":0" + yr1[1];
+                        }
+
+                        if (yr1[0] >= 12) {
+                            returnTime += " PM";
+                        } else {
+                            returnTime += " AM";
+                        }
+
+                        for (let i = 0; i < rent.rentDetail.length; i++) {
+                            $("#tblManageBookings>tbody").append(`<tr><td>${rent.rentId}</td><td>${rent.rentDetail[i].carId}</td><td>${rent.requestTypeOfDriver}</td><td>${rent.rentDetail[i].driver.driverId}</td><td>${rent.rentDetail[i].driver.name}</td><td>${startTime}</td><td>${startDate}</td><td>${returnTime}</td><td>${endDate}</td><td>${rent.rentStatus}</td><td>${rent.location}</td></tr>`);
+                        }
+
+                        bindRowClickEventsManageBookingsTable();
+                        alert("Successfully Loaded Rent Data of " + $('#txtRentID').val());
+                    }
+                },
+
+                error: function (error) {
+                    alert(JSON.parse(error.responseText).message);
+                }
+            });
+        }
+    }
+});
+
+function bindRowClickEventsManageBookingsTable() {
+    $("#tblManageBookings>tbody>tr").on('click', function () {
+        let rentID = $(this).children(":eq(0)").text();
+        let carID = $(this).children(":eq(1)").text();
+        let driverReqType = $(this).children(":eq(2)").text();
+        let driverID = $(this).children(":eq(3)").text();
+        let driverName = $(this).children(":eq(4)").text();
+        let pickUpTime = $(this).children(":eq(5)").text();
+        let pickUpDate = $(this).children(":eq(6)").text();
+        let returnTime = $(this).children(":eq(7)").text();
+        let returnDate = $(this).children(":eq(8)").text();
+        let rentStatus = $(this).children(":eq(9)").text();
+        let location = $(this).children(":eq(10)").text();
+
+        setTextFieldValues(rentID, carID, driverReqType, driverID, driverName, pickUpTime, pickUpDate, returnTime, returnDate, rentStatus, location);
+    });
+}
+
+//Set text fields values function
+function setTextFieldValues(rentID, carID, driverReqType, driverID, driverName, pickUpTime, pickUpDate, returnTime, returnDate, rentStatus, location) {
+    $('#txtRentID').val(rentID);
+    $('#txtRentCarID').val(`${carID}`);
+    $('#txtRentDriverReqType').val(`${driverReqType}`);
+    $('#txtRentDriverId').val(`${driverID}`);
+    $('#txtRentDriverName').val(driverName);
+    $('#txtRentPickUpTime').val("0" + pickUpTime.split(" ")[0]);
+
+    if (pickUpDate.split("-")[1] >= 10) {
+        $('#txtRentPickUpDate').val(pickUpDate);
+    }
+    if (parseInt(pickUpDate.split("-")[1]) < 10) {
+        var month = "0" + pickUpDate.split("-")[1];
+        var year = pickUpDate.split("-")[0];
+        var day = pickUpDate.split("-")[2];
+        $('#txtRentPickUpDate').val(year + "-" + month + "-" + day);
+    }
+
+    $('#txtRentReturnTime').val("0" + returnTime.split(" ")[0]);
+    $('#txtRentReturnDate').val(returnDate);
+    if (returnDate.split("-")[1] >= 10) {
+        $('#txtRentReturnDate').val(returnDate);
+    }
+    if (parseInt(returnDate.split("-")[1]) < 10) {
+        var month = "0" + returnDate.split("-")[1];
+        var year = returnDate.split("-")[0];
+        var day = returnDate.split("-")[2];
+        $('#txtRentReturnDate').val(year + "-" + month + "-" + day);
+    }
+
+    $('#txtRentStatus').val(rentStatus);
+    $('#txtRentLocation').val(location);
+}
 
 
 
