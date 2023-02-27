@@ -120,7 +120,7 @@ public class CustomerController {
 
             licenseImage.transferTo(licenseImageLocation);
 
-            customerService.uploadCustomerNICImage(customerId, licenseImage.getOriginalFilename());
+            customerService.uploadCustomerLicenseImage(customerId, licenseImage.getOriginalFilename());
             return new ResponseUtil("OK", "Successfully Uploaded Customer License Image", null);
         } catch (IOException e) {
             return new ResponseUtil("Error", e.getMessage(), null);

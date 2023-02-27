@@ -44,4 +44,28 @@ public class DriverServiceImpl implements DriverService {
             throw new RuntimeException("This Driver has no images yet..!");
         }
     }
+
+    @Override
+    public void updateDriver(DriverDTO driverDTO) {
+        Driver driver = driverRepo.findById(driverDTO.getDriverId()).get();
+        if (driver != null) {
+            driver.setName(driverDTO.getName());
+            driver.setAddress(driverDTO.getAddress());
+            driver.setContactNumber(driverDTO.getContactNumber());
+            driver.setNic(driverDTO.getNic());
+            driver.setLicenseNo(driverDTO.getLicenseNo());
+            driverRepo.save(driver);
+        } else {
+            throw new RuntimeException("This Driver is not exists..!");
+        }
+    }
+
+    @Override
+    public void uploadDriverLicenseImage(String driverId, String licenseImage) {
+        if (driverRepo.existsById(driverId)) {
+            driverRepo.uploadCustomerLicenseImage(driverId, licenseImage);
+        } else {
+            throw new RuntimeException("There is No Such a Driver to Upload License Image");
+        }
+    }
 }
