@@ -56,10 +56,9 @@ public class RentController {
         return new ResponseUtil("OK", "Successfully Cancelled Your Rental Request..!", null);
     }
 
-    @PutMapping(params = {"rentId", "rentStatus"})
-    public ResponseUtil updateRentStatus(@RequestParam String rentId, @RequestParam String rentStatus) {
-        rentService.updateRentStatus(rentId, rentStatus);
+    @PutMapping(params = {"rentId", "rentStatus", "deniedReason"})
+    public ResponseUtil update(@RequestParam String rentId, @RequestParam String rentStatus, @RequestParam String deniedReason) {
+        rentService.updateRentStatus(rentId, rentStatus, deniedReason);
         return new ResponseUtil("OK", "Successfully Updated the Status of "+rentId+" Rental Request..!", null);
     }
-
 }

@@ -645,11 +645,26 @@ function bindRowClickEventsForManageRentalRequestsSection() {
         }).then((result) => {
             if (result.isConfirmed) {
                 $.ajax({
-                    url: baseUrl + "rent?rentId=" + rentID + "&" + "rentStatus=Accepted",
+                    url: baseUrl + "rent?rentId=" + rentID + "&" + "rentStatus=Accepted&deniedReason=" + '',
                     method: "put",
                     dataType: "json",
                     success: function (res) {
-                        Swal.fire('Successfully Accepted!', '', 'success');
+                        const Toast = Swal.mixin({
+                            toast: true,
+                            position: 'top-end',
+                            showConfirmButton: false,
+                            timer: 3000,
+                            timerProgressBar: true,
+                            didOpen: (toast) => {
+                                toast.addEventListener('mouseenter', Swal.stopTimer)
+                                toast.addEventListener('mouseleave', Swal.resumeTimer)
+                            }
+                        })
+
+                        Toast.fire({
+                            icon: 'success',
+                            title: 'Successfully Accepted'
+                        })
                         loadAllRentalRequests();
                     },
 
@@ -675,43 +690,39 @@ function bindRowClickEventsForManageRentalRequestsSection() {
             cancelButtonColor: '#3085d6',
             confirmButtonText: 'Yes, Deny it!',
             cancelButtonText: 'No'
-        }).then((result) => {
+        }).then(async (result) => {
             if (result.isConfirmed) {
-                const {value: email} = Swal.fire({
+                const { value: deniedReason } = await Swal.fire({
                     title: 'Enter Your Denied Reason',
                     input: 'textarea',
                     inputLabel: 'Your Message',
                     inputPlaceholder: 'Enter your message here',
                     showCancelButton: true,
                     confirmButtonText: "Send Message",
-                    allowOutsideClick: false,
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        Swal.fire('Saved!', '', 'success')
-                        $.ajax({
-                            url: baseUrl + "rent?rentId=" + rentID + "&" + "rentStatus=Denied",
-                            method: "put",
-                            dataType: "json",
-                            success: function (res) {
-                                Swal.fire('Successfully Denied!', '', 'success');
-                                loadAllRentalRequests();
-                            },
+                    allowOutsideClick: false
+                })
+                if (deniedReason) {
+                    $.ajax({
+                        url: baseUrl + "rent?rentId=" + rentID + "&" + "rentStatus=Denied&deniedReason=" + deniedReason,
+                        method: "put",
+                        dataType: "json",
+                        success: function (res) {
+                            Swal.fire('Successfully Denied!', '', 'success');
+                            loadAllRentalRequests();
+                        },
 
-                            error: function (error) {
-                                loadAllRentalRequests();
-                                console.log(JSON.parse(error.responseText).message);
-                            }
-                        });
-
-
-                    } else if (result.dismiss === Swal.DismissReason.cancel) {
-                        swal.fire(
-                            'Dismissed',
-                            'Rental Request Denial has been Cancelled..!',
-                            'warning'
-                        )
-                    }
-                });
+                        error: function (error) {
+                            loadAllRentalRequests();
+                            console.log(JSON.parse(error.responseText).message);
+                        }
+                    });
+                }else{
+                    swal.fire(
+                        'Dismissed',
+                        'Rental Request Denial has been Cancelled..!',
+                        'warning'
+                    )
+                }
 
             } else if (result.dismiss === Swal.DismissReason.cancel) {
                 swal.fire(

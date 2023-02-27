@@ -129,11 +129,18 @@ public class RentServiceImpl implements RentService {
     }
 
     @Override
-    public void updateRentStatus(String rentId, String rentStatus) {
+    public void updateRentStatus(String rentId, String rentStatus, String deniedReason) {
         if (rentRepo.existsById(rentId)) {
-            Rent rent = rentRepo.findById(rentId).get();
-            rent.setRentStatus(rentStatus);
-            rentRepo.save(rent);
+            if (rentStatus.equals("Accepted")) {
+                Rent rent = rentRepo.findById(rentId).get();
+                rent.setRentStatus(rentStatus);
+                rentRepo.save(rent);
+            } else if (rentStatus.equals("Denied")) {
+                Rent rent = rentRepo.findById(rentId).get();
+                rent.setRentStatus(rentStatus);
+                rent.setDeniedReason(deniedReason);
+                rentRepo.save(rent);
+            }
         } else {
             throw new RuntimeException("This Rental Request isn't exists, to Cancel..!");
         }
