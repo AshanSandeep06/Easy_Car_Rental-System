@@ -1102,7 +1102,7 @@ $('#btnUpdateBookings').on('click', function () {
     if ($('#txtRentID').val() != '' && $('#txtRentCarID').val() != null && $('#txtRentDriverReqType').val() != null && $('#txtRentDriverId').val() != null && $('#txtRentDriverName').val() != '' && $('#txtRentPickUpTime').val() != '' && $('#txtRentPickUpDate').val() != '' && $('#txtRentReturnTime').val() != '' && $('#txtRentReturnDate').val() != '' && $('#txtRentStatus').val() != '' && $('#txtRentLocation').val() != '') {
         let rentObject = {};
 
-    }else{
+    } else {
         swal.fire(
             'Booking Update Failed',
             'All Fields Must be filled With Data..',
