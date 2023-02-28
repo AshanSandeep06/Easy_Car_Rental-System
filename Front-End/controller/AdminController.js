@@ -1829,3 +1829,6 @@ $('#btnSearchDriverSchedule').on('click', function () {
 });
 
 /*--------------------- View Car Schedule ---------------------*/
+$('#btnSearchAllCarsSchedule').on('click', function () {
+
+});
