@@ -1424,50 +1424,58 @@ function bindRowClickEventsManageDriverTable() {
 /*=================================================*/
 
 $("#btnAddDriver").on('click', function () {
-    let userObject = {
-        username: $("#txtDriverUsername").val(),
-        password: $("#txtDriverPassword").val(),
-        role: "Driver"
-    };
+    if ($('#txtDriverAvailabilityType').val() != null && $('#txtDriverId').val() != '' && $('#txtDriverUsername').val() != '' && $('#txtDriverPassword').val() != '' && $('#txtDriverName').val() != '' && $('#txtDriverAddress').val() != '' && $('#txtDriverContact').val() != '' && $('#txtDriverNic').val() != '' && $('#txtDriverLicenseNo').val() != '') {
+        let userObject = {
+            username: $("#txtDriverUsername").val(),
+            password: $("#txtDriverPassword").val(),
+            role: "Driver"
+        };
 
-    let driverObject = {
-        driverId: $("#txtDriverId").val(),
-        name: $("#txtDriverName").val(),
-        address: $("#txtDriverAddress").val(),
-        contactNumber: $("#txtDriverContact").val(),
-        nic: $("#txtDriverNic").val(),
-        licenseNo: $("#txtDriverLicenseNo").val(),
-        availabilityType: $("#txtDriverAvailabilityType").val(),
-        user_credentials: userObject
-    };
+        let driverObject = {
+            driverId: $("#txtDriverId").val(),
+            name: $("#txtDriverName").val(),
+            address: $("#txtDriverAddress").val(),
+            contactNumber: $("#txtDriverContact").val(),
+            nic: $("#txtDriverNic").val(),
+            licenseNo: $("#txtDriverLicenseNo").val(),
+            availabilityType: $("#txtDriverAvailabilityType").val(),
+            user_credentials: userObject
+        };
 
-    if ($('#txtDriverLicenseImageUploader')[0].files[0] != null) {
-        $.ajax({
-            url: baseUrl + "driver",
-            method: "post",
-            data: JSON.stringify(driverObject),
-            contentType: "application/json",
-            success: function (res) {
-                Swal.fire({
-                    position: 'top-end',
-                    icon: 'success',
-                    title: 'Driver has been Successfully Saved',
-                    showConfirmButton: false,
-                    timer: 1500
-                })
+        if ($('#txtDriverLicenseImageUploader')[0].files[0] != null) {
+            $.ajax({
+                url: baseUrl + "driver",
+                method: "post",
+                data: JSON.stringify(driverObject),
+                contentType: "application/json",
+                success: function (res) {
+                    Swal.fire({
+                        position: 'top-end',
+                        icon: 'success',
+                        title: 'Driver has been Successfully Saved',
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
 
-                uploadDriverImages($("#txtDriverId").val());
-                loadAllCars();
-            },
-            error: function (error) {
-                alert(JSON.parse(error.responseText).message);
-            }
-        });
+                    uploadDriverImages($("#txtDriverId").val());
+                    loadAllCars();
+                },
+                error: function (error) {
+                    alert(JSON.parse(error.responseText).message);
+                }
+            });
+        } else {
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'You Should Provide Driver License Image, Therefore, Can\'t Save the Driver'
+            })
+        }
     } else {
         Swal.fire({
             icon: 'error',
             title: 'Oops...',
-            text: 'You Should Provide Driver License Image, Therefore, Can\'t Save the Driver'
+            text: 'All Driver Fields Must be filled With data'
         })
     }
 });
