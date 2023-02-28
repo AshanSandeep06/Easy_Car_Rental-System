@@ -474,6 +474,7 @@ $("#btnUpdateCar").on('click', function () {
         text: "Do You Want to Update Car with Images.?",
         icon: 'question',
         showCancelButton: true,
+        cancelButtonText: "No",
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
         confirmButtonText: 'Yes, Update it!'
@@ -1829,6 +1830,57 @@ $('#btnSearchDriverSchedule').on('click', function () {
 });
 
 /*--------------------- View Car Schedule ---------------------*/
-$('#btnSearchAllCarsSchedule').on('click', function () {
+$('#btnSearchCarSchedule').on('click', function () {
+    $("#tblViewAvailableCarSchedule>tbody").empty();
+    $("#tblViewRentedCarSchedule>tbody").empty();
+    let allCars;
 
+    if ($('#txtDate').val() != '') {
+        $.ajax({
+            url: baseUrl + "car",
+            method: "get",
+            async: false,
+            success: function (resp) {
+                allCars = resp.data;
+            }
+        });
+
+        $.ajax({
+            url: baseUrl + "rent",
+            method: "get",
+            dataType: "json",
+            async: false,
+            success: function (resp) {
+                for (let rent of resp.data) {
+                    for (let c1 of allCars) {
+                        if (new Date(rent.pickUpDate).toLocaleDateString() === new Date($('#txtDate').val()).toLocaleDateString()) {
+                            if (rent.rentDetail[0].carId == c1.carId) {
+                                var row = "<tr><td>" + c1.carId + "</td><td>" + c1.registerNum + "</td><td>" + c1.type + "</td><td>" + rent.rentId + "</td><td>" + rent.customer.customerId + "</td><td>" + rent.customer.name + "</td><td>" + rent.rentDetail[0].driver.driverId + "</td><td>" + rent.rentDetail[0].driver.name + "</td><td>" + new Date(rent.pickUpDate).toLocaleDateString() + "</td><td>" + new Date(rent.returnDate).toLocaleDateString() + "</td><td>" + rent.location + "</td></tr>";
+                                $("#tblViewRentedCarSchedule>tbody").append(row);
+                            } else {
+                                var row = "<tr><td>" + c1.carId + "</td><td>" + c1.registerNum + "</td><td>" + c1.brand + "</td><td>" + c1.type + "</td><td>" + c1.numOfPassengers + "</td><td>" + c1.transmissionType + "</td><td>" + c1.fuelType + "</td></tr>";
+                                $("#tblViewAvailableCarSchedule>tbody").append(row);
+                            }
+                        } else {
+                            var row = "<tr><td>" + c1.carId + "</td><td>" + c1.registerNum + "</td><td>" + c1.brand + "</td><td>" + c1.type + "</td><td>" + c1.numOfPassengers + "</td><td>" + c1.transmissionType + "</td><td>" + c1.fuelType + "</td></tr>";
+                            $("#tblViewAvailableCarSchedule>tbody").append(row);
+                        }
+                    }
+                }
+            }
+        });
+
+    } else {
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'You Must Select a Date To Sort the Car Schedule'
+        })
+    }
+});
+
+$('#btnClearDate').on('click', function () {
+    $('#txtDate').val('');
+    $("#tblViewAvailableCarSchedule>tbody").empty();
+    $("#tblViewRentedCarSchedule>tbody").empty();
 });
