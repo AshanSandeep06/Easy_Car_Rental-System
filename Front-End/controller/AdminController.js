@@ -1142,6 +1142,8 @@ $('#btnUpdateBookings').on('click', function () {
     }
 });
 
+/*------------------------ Manage Customer ------------------------*/
+
 // Load All Customers
 function loadAllCustomers() {
     $("#tblManageCustomer>tbody").empty();
@@ -1221,7 +1223,13 @@ function clearManageCustomerSectionTextFields() {
     $("#customerLicenseImage").attr('src', "");
 }
 
+$("#btnViewAllCustomers").on('click', function () {
+    loadAllCustomers();
+});
 
+$("#btnClearCustomerFields").on('click', function () {
+    clearManageCustomerSectionTextFields();
+});
 
 
 
