@@ -1769,3 +1769,7 @@ footer > div {
         left: 0!important;
     }
 }
+
+tbody{
+    cursor: pointer;
+}

@@ -856,7 +856,8 @@
 
     <section class="row justify-content-center mt-4">
         <div class="form-group col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-12 mb-3 align-self-end">
-            <select id="cmbSelectDriver_viewDriverScheduleSection" style="font-size: 15px;" class="form-select" aria-label="Default select example">
+            <select id="cmbSelectDriver_viewDriverScheduleSection" style="font-size: 15px;" class="form-select"
+                    aria-label="Default select example">
                 <option selected disabled>Select Driver</option>
                 <option>All Drivers</option>
             </select>
@@ -874,7 +875,9 @@
 
         <div class="col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-10 text-center text-sm-center text-md-center text-lg-start text-xl-start justify-content-center align-self-center"
              style="margin-top: 14px;">
-            <button id="btnSearchDriverSchedule" type="button" class="btn btn-primary" style="margin-right: 13px;">Search Schedule</button>
+            <button id="btnSearchDriverSchedule" type="button" class="btn btn-primary" style="margin-right: 13px;">
+                Search Schedule
+            </button>
             <button id="btnClearDriverSchedule" type="button" class="btn btn-secondary">Clear</button>
         </div>
     </section>
@@ -1120,8 +1123,8 @@
                 <label for="txtProcess_rentDetails" class="form-label">Process</label>
                 <select id="txtProcess_rentDetails" class="form-select" aria-label="Default select example">
                     <option selected disabled>Select Rent Process Type</option>
-                    <option value="1">Completed</option>
-                    <option value="2">Ongoing</option>
+                    <option>Finished</option>
+                    <option>Ongoing</option>
                 </select>
             </div>
 
@@ -1129,9 +1132,8 @@
 
             <div id="btnGroupManageRentDetails" style="margin-top: 32px; gap: 15px;"
                  class="col-12 d-inline-flex justify-content-md-end justify-content-center">
-                <button type="submit" class="btn btn-primary">Update Details</button>
-                <button type="submit" class="btn btn-danger">Delete</button>
-                <button type="submit" class="btn btn-secondary">Clear</button>
+                <button type="button" class="btn btn-primary">Update Details</button>
+                <button type="button" class="btn btn-secondary">Clear</button>
             </div>
         </form>
     </section>
@@ -1193,7 +1195,7 @@
     <section class="row justify-content-center mt-4">
         <div class="form-group col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-12 mb-3">
             <label for="txtSearchRentDetails" class="form-label">Rent ID</label>
-            <input class="form-control" id="txtSearchRent" type="search">
+            <input class="form-control" id="txtSearchRent" type="text">
         </div>
 
         <div class="col-xxl-3 col-xl-3 col-lg-4 col-md-4 col-10 text-center text-sm-center text-md-center text-lg-start text-xl-start justify-content-center align-self-center"
@@ -1206,7 +1208,7 @@
         <form class="row g-3">
             <div class="col-md-3 col-lg-4 col-xl-3 col-md-4">
                 <label for="txtPaymentID_managePayments" class="form-label">Payment ID</label>
-                <input type="text" class="form-control" id="txtPaymentID_managePayments">
+                <input disabled type="text" class="form-control" id="txtPaymentID_managePayments">
             </div>
 
             <div class="col-md-3 col-lg-4 col-xl-3 col-md-4">
@@ -1250,11 +1252,11 @@
 
             <div id="btnGroupManagePayments" style="margin-top: 32px; gap: 15px;"
                  class="col-12 d-inline-flex justify-content-md-end justify-content-center">
-                <button style="padding-left: 25px;padding-right: 25px;" type="submit" class="btn btn-success">Save
+                <button id="btnSave_ManagePaymentsSection" style="padding-left: 25px;padding-right: 25px;" type="submit"
+                        class="btn btn-success">Save
                 </button>
-                <button type="submit" class="btn btn-primary">Update</button>
-                <button type="submit" class="btn btn-danger">Delete</button>
-                <button type="submit" class="btn btn-secondary">Clear</button>
+                <button id="btnUpdate_ManagePaymentsSection" type="button" class="btn btn-primary">Update</button>
+                <button id="btnClear_ManagePaymentsSection" type="button" class="btn btn-secondary">Clear</button>
             </div>
         </form>
     </section>
@@ -1279,18 +1281,7 @@
                         <th>Balance (LKR)</th>
                     </tr>
                     </thead>
-                    <tbody>
-                    <tr>
-                        <td>P00-001</td>
-                        <td>R00-001</td>
-                        <td>Loss Damage Waiver</td>
-                        <td>2023-02-19</td>
-                        <td>6:30 AM</td>
-                        <td>15,000</td>
-                        <td>15,000</td>
-                        <td>0</td>
-                    </tr>
-                    </tbody>
+                    <tbody></tbody>
                 </table>
             </div>
         </section>

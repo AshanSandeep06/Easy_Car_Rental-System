@@ -117,20 +117,6 @@ $('#btnViewDriverSchedule').on('click', function () {
     loadAllDriversSchedule();
 });
 
-$('#btnViewCarSchedule').on('click', function () {
-    $('#adminDashboard').css("display", "none");
-    $("#manageRentalRequests_section").css('display', 'none');
-    $("#manageVehicle_section").css('display', 'none');
-    $("#manageBookings_section").css('display', 'none');
-    $("#manageCustomer_section").css('display', 'none');
-    $("#manageDriver_section").css('display', 'none');
-    $("#viewDriverSchedule_section").css('display', 'none');
-    $("#viewCarSchedule_section").css('display', 'block');
-    $("#adminProfile_section").css('display', 'none');
-    $("#manageRentDetails_section").css('display', 'none');
-    $("#managePayment_section").css('display', 'none');
-});
-
 $('#btnManagePayments').on('click', function () {
     $('#adminDashboard').css("display", "none");
     $("#manageRentalRequests_section").css('display', 'none');
@@ -143,6 +129,7 @@ $('#btnManagePayments').on('click', function () {
     $("#adminProfile_section").css('display', 'none');
     $("#manageRentDetails_section").css('display', 'none');
     $("#managePayment_section").css('display', 'block');
+    loadAllPayments();
 });
 
 $('#btnManageRentDetails').on('click', function () {
@@ -1894,5 +1881,262 @@ $('#btnClearDate').on('click', function () {
 });
 
 /*--------------------- Manage Payments ---------------------*/
+function loadAllPayments() {
+    $("#tblManagePayments>tbody").empty();
+    $.ajax({
+        url: baseUrl + "payment",
+        method: "get",
+        dataType: "json",
+        success: function (resp) {
+            for (let p1 of resp.data) {
+                console.log(p1)
+                var xr = p1.paymentDate;
+                var paymentDate = xr[0] + "-" + xr[1] + "-" + xr[2];
+                if (xr[1] < 10) {
+                    paymentDate = xr[0] + "-0" + xr[1] + "-" + xr[2];
+                }
+
+                if (xr[2] < 10) {
+                    paymentDate = xr[0] + "-" + xr[1] + "-0" + xr[2];
+                }
+
+                if (xr[1] < 10 && xr[2] < 10) {
+                    paymentDate = xr[0] + "-0" + xr[1] + "-0" + xr[2];
+                }
+
+                var xr1 = p1.paymentTime;
+                var paymentTime;
+                if (xr1[1] < 10) {
+                    paymentTime = xr1[0] + ":0" + xr1[1];
+                } else {
+                    paymentTime = xr1[0] + ":" + xr1[1];
+                }
+
+                if (xr1[0] >= 12) {
+                    paymentTime += " PM";
+                } else {
+                    paymentTime = "0" + paymentTime;
+                    paymentTime += " AM";
+                }
+
+                $("#tblManagePayments>tbody").append(`<tr><td>${p1.paymentId}</td><td>${p1.rent.rentId}</td><td>${p1.paymentType}</td><td>${paymentDate}</td><td>${paymentTime}</td><td>${p1.amount}</td><td>${p1.cash}</td><td>${p1.balance}</td></tr>`);
+            }
+            bindRowClickEventsManagePaymentsTable();
+            clearManagePaymentsTextFields();
+        }
+    });
+}
+
+function generateNewPaymentID() {
+    $.ajax({
+        url: baseUrl + "payment/generateNewPaymentID",
+        method: "get",
+        dataType: "json",
+        async: false,
+        success: function (res) {
+            $("#txtPaymentID_managePayments").val(res.data);
+        },
+
+        error: function (error) {
+            alert(JSON.parse(error.responseText).message);
+        }
+    });
+}
+
+function clearManagePaymentsTextFields() {
+    generateNewPaymentID();
+    $('#txtSearchRent').val('');
+    $('#txtRentID_managePayments').val('');
+    $('#txtPaymentType_rentDetails').val('');
+    $('#txtAmount_rentDetails').val('');
+    $('#txtCash_rentDetails').val('');
+    $('#txtBalance_rentDetails').val('');
+    $('#txtPaymentDate_rentDetails').val('');
+    $('#txtPaymentTime_rentDetails').val('');
+}
+
+$('#btnClear_ManagePaymentsSection').on('click', function () {
+    clearManagePaymentsTextFields();
+    loadAllPayments();
+});
+
+function bindRowClickEventsManagePaymentsTable() {
+    $("#tblManagePayments>tbody>tr").on('click', function () {
+        let paymentID = $(this).children(":eq(0)").text();
+        let rentID = $(this).children(":eq(1)").text();
+        let paymentType = $(this).children(":eq(2)").text();
+        let paymentDate = $(this).children(":eq(3)").text();
+        let paymentTime = $(this).children(":eq(4)").text();
+        let amount = $(this).children(":eq(5)").text();
+        let cash = $(this).children(":eq(6)").text();
+        let balance = $(this).children(":eq(7)").text();
+
+        setManagePaymentTextFieldValues(paymentID, rentID, paymentType, paymentDate, paymentTime, amount, cash, balance);
+    });
+}
+
+function setManagePaymentTextFieldValues(paymentID, rentID, paymentType, paymentDate, paymentTime, amount, cash, balance) {
+    $('#txtPaymentID_managePayments').val(paymentID);
+    $('#txtRentID_managePayments').val(rentID);
+    $('#txtPaymentType_rentDetails').val(paymentType);
+    $('#txtAmount_rentDetails').val(amount);
+    $('#txtCash_rentDetails').val(cash);
+    $('#txtBalance_rentDetails').val(balance);
+    $('#txtPaymentDate_rentDetails').val(paymentDate);
+    $('#txtPaymentTime_rentDetails').val(paymentTime.split(" ")[0]);
+}
+
+$('#btnSearchRent').on('click', function () {
+    if ($('#txtSearchRent').val() != '') {
+        $.ajax({
+            url: baseUrl + "payment?rentID=" + $('#txtSearchRent').val(),
+            method: "get",
+            success: function (resp) {
+                if (resp.data != null) {
+                    $("#tblManagePayments>tbody").empty();
+                    for (let paymentObj of resp.data) {
+                        let payment = paymentObj;
+                        var xr = payment.paymentDate;
+                        var paymentDate = xr[0] + "-" + xr[1] + "-" + xr[2];
+                        if (xr[1] < 10) {
+                            paymentDate = xr[0] + "-0" + xr[1] + "-" + xr[2];
+                        }
+
+                        var xr1 = payment.paymentTime;
+                        var paymentTime;
+                        if (xr1[1] < 10) {
+                            paymentTime = xr1[0] + ":0" + xr1[1];
+                        } else {
+                            paymentTime = xr1[0] + ":" + xr1[1];
+                        }
+
+                        if (xr1[0] >= 12) {
+                            paymentTime += " PM";
+                        } else {
+                            paymentTime += " AM";
+                        }
+
+                        $("#tblManagePayments>tbody").append(`<tr><td>${payment.paymentId}</td><td>${payment.rent.rentId}</td><td>${payment.paymentType}</td><td>${paymentDate}</td><td>${paymentTime}</td><td>${payment.amount}</td><td>${payment.cash}</td><td>${payment.balance}</td></tr>`);
+                    }
+                }
+
+                bindRowClickEventsManagePaymentsTable();
+            },
+
+            error: function (error) {
+                $("#tblManagePayments>tbody").empty();
+                alert(JSON.parse(error.responseText).message);
+            }
+        });
+    } else {
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Search Rent Field should not be Empty'
+        })
+    }
+});
+
+$('#btnSave_ManagePaymentsSection').on('click', function () {
+    if ($('#txtPaymentID_managePayments').val() != '' && $('#txtRentID_managePayments').val() != '' && $('#txtPaymentType_rentDetails').val() != '' && $('#txtAmount_rentDetails').val() != '' && $('#txtCash_rentDetails').val() != '' && $('#txtBalance_rentDetails').val() != '' && $('#txtPaymentDate_rentDetails').val() != '' && $('#txtPaymentTime_rentDetails').val() != '') {
+        let paymentObject = {
+            paymentId: $('#txtPaymentID_managePayments').val(),
+            paymentType: $('#txtPaymentType_rentDetails').val(),
+            paymentDate: $('#txtPaymentDate_rentDetails').val(),
+            paymentTime: $('#txtPaymentTime_rentDetails').val(),
+            amount: $('#txtAmount_rentDetails').val(),
+            cash: $('#txtCash_rentDetails').val(),
+            balance: $('#txtBalance_rentDetails').val(),
+            rent: {rentId: $('#txtRentID_managePayments').val()},
+        };
+
+        $.ajax({
+            url: baseUrl + "payment/savePaymentWithRentID",
+            method: "post",
+            data: JSON.stringify(paymentObject),
+            contentType: "application/json",
+            success: function (res) {
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'Payment has been Done Successfully',
+                    showConfirmButton: false,
+                    timer: 1500
+                })
+                loadAllPayments();
+            },
+            error: function (error) {
+                alert(JSON.parse(error.responseText).message);
+            }
+        });
+    } else {
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'All Fields Should be filled with Data'
+        })
+    }
+});
+
+$('#btnUpdate_ManagePaymentsSection').on('click', function () {
+    if ($('#txtPaymentID_managePayments').val() != '' && $('#txtRentID_managePayments').val() != '' && $('#txtPaymentType_rentDetails').val() != '' && $('#txtAmount_rentDetails').val() != '' && $('#txtCash_rentDetails').val() != '' && $('#txtBalance_rentDetails').val() != '' && $('#txtPaymentDate_rentDetails').val() != '' && $('#txtPaymentTime_rentDetails').val() != '') {
+        let paymentObject = {
+            paymentId: $('#txtPaymentID_managePayments').val(),
+            paymentType: $('#txtPaymentType_rentDetails').val(),
+            paymentDate: $('#txtPaymentDate_rentDetails').val(),
+            paymentTime: $('#txtPaymentTime_rentDetails').val(),
+            amount: $('#txtAmount_rentDetails').val(),
+            cash: $('#txtCash_rentDetails').val(),
+            balance: $('#txtBalance_rentDetails').val(),
+            rent: {rentId: $('#txtRentID_managePayments').val()},
+        };
+
+        $.ajax({
+            url: baseUrl + "payment",
+            method: "put",
+            data: JSON.stringify(paymentObject),
+            contentType: "application/json",
+            success: function (res) {
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'Payment has been Updated Successfully',
+                    showConfirmButton: false,
+                    timer: 1500
+                })
+                loadAllPayments();
+            },
+            error: function (error) {
+                alert(JSON.parse(error.responseText).message);
+            }
+        });
+    } else {
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'All Fields Should be filled with Data'
+        })
+    }
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
