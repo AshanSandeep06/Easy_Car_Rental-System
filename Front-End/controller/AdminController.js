@@ -2119,6 +2119,9 @@ $('#btnUpdate_ManagePaymentsSection').on('click', function () {
     }
 });
 
+/*--------------------- Manage Rent Details ---------------------*/
+
+
 
 
 
