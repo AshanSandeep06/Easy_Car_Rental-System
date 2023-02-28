@@ -1828,14 +1828,4 @@ $('#btnSearchDriverSchedule').on('click', function () {
     }
 });
 
-
-
-
-
-
-
-
-
-
-
-
+/*--------------------- View Car Schedule ---------------------*/
