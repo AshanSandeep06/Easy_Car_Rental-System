@@ -114,6 +114,7 @@ $('#btnViewDriverSchedule').on('click', function () {
     $("#adminProfile_section").css('display', 'none');
     $("#manageRentDetails_section").css('display', 'none');
     $("#managePayment_section").css('display', 'none');
+    loadAllDriversSchedule();
 });
 
 $('#btnViewCarSchedule').on('click', function () {
@@ -1503,6 +1504,7 @@ function generateNewDriverID() {
 
 // ----------------------------------------------------------
 function uploadDriverImages(driverId) {
+    console.log(driverId)
     var driverLicenseImage = $('#txtDriverLicenseImageUploader')[0].files[0];
     var driverLicenseImageName = driverId + "_License-image." + $('#txtDriverLicenseImageUploader')[0].files[0].name.split(".")[1];
 
@@ -1628,7 +1630,6 @@ $("#btnUpdateDriver").on('click', function () {
             text: 'All Driver Fields Must be filled With data'
         })
     }
-    generateNewDriverID();
 });
 
 // Delete Driver
@@ -1671,6 +1672,161 @@ function deleteDriverLicenseImage(driverID) {
 }
 
 /*--------------------- View Driver Schedule ---------------------*/
+function loadAllDriversSchedule() {
+    $("#tblViewDriverSchedule>tbody").empty();
+    loadAllDriverIdsInViewDriverScheduleSection();
+
+    $.ajax({
+        url: baseUrl + "rent?driverRequestingType=Yes",
+        method: "get",
+        success: function (resp) {
+            if (resp.data != null) {
+                for (let rent of resp.data) {
+
+                    console.log(rent)
+
+                    var xr = rent.pickUpDate;
+                    var startDate = xr[0] + "-" + xr[1] + "-" + xr[2];
+
+                    var xr1 = rent.pickUpTime;
+                    var startTime;
+                    if (xr1[1] < 10) {
+                        startTime = xr1[0] + ":0" + xr1[1];
+                    }
+
+                    if (xr1[0] >= 12) {
+                        startTime += " PM";
+                    } else {
+                        startTime += " AM";
+                    }
+
+                    //---------------------------------
+
+                    var yr = rent.returnDate;
+                    var endDate = yr[0] + "-" + yr[1] + "-" + yr[2];
+
+                    var yr1 = rent.returnTime;
+                    var returnTime;
+                    if (yr1[1] < 10) {
+                        returnTime = yr1[0] + ":0" + yr1[1];
+                    }
+
+                    if (yr1[0] >= 12) {
+                        returnTime += " PM";
+                    } else {
+                        returnTime += " AM";
+                    }
+
+                    for (let i = 0; i < rent.rentDetail.length; i++) {
+                        $("#tblViewDriverSchedule>tbody").append(`<tr><td>${rent.rentDetail[i].driver.driverId}</td><td>${rent.rentDetail[i].driver.name}</td><td>${rent.rentDetail[i].driver.nic}</td><td>${rent.rentId}</td><td>${startDate}</td><td>${startTime}</td><td>${endDate}</td><td>${returnTime}</td><td>${rent.location}</td><td>${rent.rentDetail[i].carId}</td></tr>`);
+                    }
+                }
+            }
+        }
+    });
+}
+
+$('#btnClearDriverSchedule').on('click', function () {
+    loadAllDriversSchedule();
+    $('#cmbSelectDriver_viewDriverScheduleSection').val('Select Driver');
+    $('#fromDateTimeDuration').val('');
+    $('#toDateTimeDuration').val('');
+})
+
+function loadAllDriverIdsInViewDriverScheduleSection() {
+    $("#cmbSelectDriver_viewDriverScheduleSection").empty();
+    $("#cmbSelectDriver_viewDriverScheduleSection").append(`<option selected disabled>Select Driver</option>`);
+    $("#cmbSelectDriver_viewDriverScheduleSection").append(`<option>All Drivers</option>`);
+
+    $.ajax({
+        url: baseUrl + "driver",
+        method: "get",
+        success: function (resp) {
+            for (let c1 of resp.data) {
+                $("#cmbSelectDriver_viewDriverScheduleSection").append(`<option>${c1.driverId}</option>`);
+            }
+        }
+    });
+}
+
+$('#btnSearchDriverSchedule').on('click', function () {
+    if ($('#cmbSelectDriver_viewDriverScheduleSection').val() != null && $('#fromDateTimeDuration').val() != '' && $('#toDateTimeDuration').val() != '') {
+        $.ajax({
+            url: baseUrl + "rent",
+            method: "get",
+            success: function (resp) {
+                if (resp.data != null) {
+                    for (let rent of resp.data) {
+                        console.log(new Date(rent.pickUpDate).toLocaleDateString());
+
+                        var startDate = new Date($('#fromDateTimeDuration').val()).toLocaleDateString();
+                        var startTime = new Date($('#fromDateTimeDuration').val()).toLocaleTimeString();
+                        var endDate = new Date($('#toDateTimeDuration').val()).toLocaleDateString();
+                        var endTime = new Date($('#toDateTimeDuration').val()).toLocaleTimeString();
+                        console.log(startTime + " " + startDate + " " + endTime + " " + endDate)
+
+                        var pickUpTime;
+                        var returnTime;
+
+                        var xr1 = rent.pickUpTime;
+                        if (xr1[1] < 10) {
+                            pickUpTime = xr1[0] + ":0" + xr1[1] + ":00";
+                        } else {
+                            pickUpTime = xr1[0] + xr1[1] + ":00";
+                        }
+
+                        if (xr1[0] >= 12) {
+                            pickUpTime += " PM";
+                        } else {
+                            pickUpTime += " AM";
+                        }
+
+                        // -------------------------------
+
+                        var xr2 = rent.returnTime;
+                        if (xr2[1] < 10) {
+                            returnTime = xr2[0] + ":0" + xr2[1] + ":00";
+                        } else {
+                            returnTime = xr2[0] + xr2[1] + ":00";
+                        }
+
+                        if (xr2[0] >= 12) {
+                            returnTime += " PM";
+                        } else {
+                            returnTime += " AM";
+                        }
+
+                        var pickUpDate = new Date(rent.pickUpDate).toLocaleDateString();
+                        var returnDate = new Date(rent.returnDate).toLocaleDateString();
+
+                        if ($('#cmbSelectDriver_viewDriverScheduleSection').val() == "All Drivers" && startDate == pickUpDate && startTime == pickUpTime && endTime == returnTime && endDate == returnDate) {
+                            $("#tblViewDriverSchedule>tbody").empty();
+                            for (let i = 0; i < rent.rentDetail.length; i++) {
+                                $("#tblViewDriverSchedule>tbody").append(`<tr><td>${rent.rentDetail[i].driver.driverId}</td><td>${rent.rentDetail[i].driver.name}</td><td>${rent.rentDetail[i].driver.nic}</td><td>${rent.rentId}</td><td>${pickUpDate}</td><td>${pickUpTime}</td><td>${returnDate}</td><td>${returnTime}</td><td>${rent.location}</td><td>${rent.rentDetail[i].carId}</td></tr>`);
+                            }
+                        } else if ($('#cmbSelectDriver_viewDriverScheduleSection').val() != "All Drivers" && startDate == pickUpDate && startTime == pickUpTime && endTime == returnTime && endDate == returnDate) {
+                            $("#tblViewDriverSchedule>tbody").empty();
+                            for (let i = 0; i < rent.rentDetail.length; i++) {
+                                if ($('#cmbSelectDriver_viewDriverScheduleSection').val() == rent.rentDetail[i].driver.driverId) {
+                                    $("#tblViewDriverSchedule>tbody").append(`<tr><td>${rent.rentDetail[i].driver.driverId}</td><td>${rent.rentDetail[i].driver.name}</td><td>${rent.rentDetail[i].driver.nic}</td><td>${rent.rentId}</td><td>${pickUpDate}</td><td>${pickUpTime}</td><td>${returnDate}</td><td>${returnTime}</td><td>${rent.location}</td><td>${rent.rentDetail[i].carId}</td></tr>`);
+                                }
+                            }
+                        } else {
+                            $("#tblViewDriverSchedule>tbody").empty();
+                        }
+
+                    }
+                }
+            }
+        });
+    } else {
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'You Should Select Drivers, FromDate Duration and ToDate Duration'
+        })
+    }
+});
 
 
 
