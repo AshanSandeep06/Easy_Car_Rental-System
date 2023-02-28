@@ -17,4 +17,6 @@ public interface CustomerService {
     void updateCustomer(CustomerDTO customerDTO);
     void updateCustomerContactNumber(String customerId, String contactNumber);
     ArrayList<CustomerDTO> getAllCustomers();
+    CustomerDTO getCustomerByCustomerID(String customerId);
+    CustomerDTO getCustomerByCustomerNIC(String customerNIC);
 }

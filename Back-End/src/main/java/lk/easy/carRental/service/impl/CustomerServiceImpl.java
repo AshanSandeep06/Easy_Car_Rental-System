@@ -142,4 +142,22 @@ public class CustomerServiceImpl implements CustomerService {
         return mapper.map(customerRepo.findAll(), new TypeToken<ArrayList<CustomerDTO>>() {
         }.getType());
     }
+
+    @Override
+    public CustomerDTO getCustomerByCustomerID(String customerId) {
+        if (customerRepo.existsById(customerId)){
+            return mapper.map(customerRepo.findById(customerId).get(), CustomerDTO.class);
+        } else {
+            throw new RuntimeException("There is No Such a Customer By this "+customerId+" Customer ID");
+        }
+    }
+
+    @Override
+    public CustomerDTO getCustomerByCustomerNIC(String customerNIC) {
+        if (customerRepo.existsCustomerByNic(customerNIC)){
+            return mapper.map(customerRepo.findCustomerByNic(customerNIC), CustomerDTO.class);
+        } else {
+            throw new RuntimeException("There is No Such a Customer By this "+customerNIC+" NIC");
+        }
+    }
 }

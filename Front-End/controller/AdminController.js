@@ -1218,6 +1218,8 @@ function clearManageCustomerSectionTextFields() {
     $('#txtCustomerNic').val("");
     $('#txtCustomerLicenseNo').val("");
 
+    $('#txtSearchCustomer').val("");
+
     // Clear images
     $("#customerNicImage").attr('src', "");
     $("#customerLicenseImage").attr('src', "");
@@ -1231,6 +1233,116 @@ $("#btnClearCustomerFields").on('click', function () {
     clearManageCustomerSectionTextFields();
 });
 
+$('#btnSearchCustomer').on('click', function () {
+    if ($('#txtSearchCustomer').val() != '') {
+        if ($('#cmbSelectCustomer').val() == "Customer ID") {
+            $.ajax({
+                url: baseUrl + "customer/" + $('#txtSearchCustomer').val(),
+                method: "get",
+                success: function (resp) {
+                    if (resp.data != null) {
+                        let c1 = resp.data;
+                        $("#tblManageCustomer>tbody").empty();
+
+                        $.ajax({
+                            url: baseUrl + "user_credentials/getCustomerUserCredentials/Customer/" + c1.customerId,
+                            method: "get",
+                            async: false,
+                            success: function (resp) {
+                                var row = "<tr><td>" + c1.customerId + "</td><td>" + resp.data.username + "</td><td>" + resp.data.password + "</td><td>" + c1.name + "</td><td>" + c1.address + "</td><td>" + c1.contactNumber + "</td><td>" + c1.email + "</td><td>" + c1.nic + "</td><td>" + c1.licenseNo + "</td></tr>";
+                                $("#tblManageCustomer>tbody").append(row);
+
+                                $('#txtCustomerID').val(c1.customerId);
+                                $('#txtCusUsername').val(resp.data.username);
+                                $('#txtCusPassword').val(resp.data.password);
+                                $('#txtCustomerName').val(c1.name);
+                                $('#txtCustomerAddress').val(c1.address);
+                                $('#txtCustomerContact').val(c1.contactNumber);
+                                $('#txtCustomerEmail').val(c1.email);
+                                $('#txtCustomerNic').val(c1.nic);
+                                $('#txtCustomerLicenseNo').val(c1.licenseNo);
+
+                                $.ajax({
+                                    url: baseUrl + "customer/getCustomerImages/" + c1.customerId,
+                                    method: "get",
+                                    async: false,
+                                    dataType: "json",
+                                    success: function (resp) {
+                                        $("#customerNicImage").attr('src', "../assets/img/uploads/customerImages/" + resp.data.nicImage);
+                                        $("#customerLicenseImage").attr('src', "../assets/img/uploads/customerImages/" + resp.data.licenseImage);
+                                    }
+                                });
+                            }
+                        });
+                    }
+                    bindRowClickEventsManageCustomerTable();
+                },
+                error: function (error) {
+                    alert(JSON.parse(error.responseText).message);
+                    clearManageCustomerSectionTextFields();
+                    loadAllCustomers();
+                }
+            });
+
+        } else {
+            $.ajax({
+                url: baseUrl + "customer/getCustomerByNIC?customerNIC=" + $('#txtSearchCustomer').val(),
+                method: "get",
+                success: function (resp) {
+                    if (resp.data != null) {
+                        let c1 = resp.data;
+                        $("#tblManageCustomer>tbody").empty();
+
+                        $.ajax({
+                            url: baseUrl + "user_credentials/getCustomerUserCredentials/Customer/" + c1.customerId,
+                            method: "get",
+                            async: false,
+                            success: function (resp) {
+                                var row = "<tr><td>" + c1.customerId + "</td><td>" + resp.data.username + "</td><td>" + resp.data.password + "</td><td>" + c1.name + "</td><td>" + c1.address + "</td><td>" + c1.contactNumber + "</td><td>" + c1.email + "</td><td>" + c1.nic + "</td><td>" + c1.licenseNo + "</td></tr>";
+                                $("#tblManageCustomer>tbody").append(row);
+
+                                $('#txtCustomerID').val(c1.customerId);
+                                $('#txtCusUsername').val(resp.data.username);
+                                $('#txtCusPassword').val(resp.data.password);
+                                $('#txtCustomerName').val(c1.name);
+                                $('#txtCustomerAddress').val(c1.address);
+                                $('#txtCustomerContact').val(c1.contactNumber);
+                                $('#txtCustomerEmail').val(c1.email);
+                                $('#txtCustomerNic').val(c1.nic);
+                                $('#txtCustomerLicenseNo').val(c1.licenseNo);
+
+                                $.ajax({
+                                    url: baseUrl + "customer/getCustomerImages/" + c1.customerId,
+                                    method: "get",
+                                    dataType: "json",
+                                    async: false,
+                                    success: function (resp) {
+                                        $("#customerNicImage").attr('src', "../assets/img/uploads/customerImages/" + resp.data.nicImage);
+                                        $("#customerLicenseImage").attr('src', "../assets/img/uploads/customerImages/" + resp.data.licenseImage);
+                                    }
+                                });
+                            }
+                        });
+                    }
+                    bindRowClickEventsManageCustomerTable();
+                },
+
+                error: function (error) {
+                    alert(JSON.parse(error.responseText).message);
+                    clearManageCustomerSectionTextFields();
+                    loadAllCustomers();
+                }
+            });
+        }
+
+    } else {
+        Swal.fire({
+            icon: 'error',
+            title: 'Empty Fields ?',
+            text: 'Customer ID or Customer NIC Search Field is Empty..!'
+        })
+    }
+});
 
 
 

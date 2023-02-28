@@ -40,6 +40,16 @@ public class CustomerController {
         return new ResponseUtil("OK", "A New Customer ID has been Generated Successfully..!", customerService.generateNewCustomerID());
     }
 
+    @GetMapping(path = "/{customerId}")
+    public ResponseUtil getCustomerByCustomerID(@PathVariable String customerId){
+        return new ResponseUtil("OK", "Successfully getting "+customerId+" Customer", customerService.getCustomerByCustomerID(customerId));
+    }
+
+    @GetMapping(path = "/getCustomerByNIC", params = {"customerNIC"})
+    public ResponseUtil getCustomerByCustomerNIC(@RequestParam String customerNIC){
+        return new ResponseUtil("OK", "Successfully getting "+customerNIC+" Customer", customerService.getCustomerByCustomerNIC(customerNIC));
+    }
+
     @GetMapping(path = "/getCustomerImages/{customerId}")
     public ResponseUtil getCustomerImages(@PathVariable String customerId) {
         return new ResponseUtil("OK", "Successfully Loaded Customer Images of " + customerId, customerService.getCustomerImages(customerId));
