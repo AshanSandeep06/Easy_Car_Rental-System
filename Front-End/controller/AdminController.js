@@ -1370,8 +1370,8 @@ function loadAllDrivers() {
 }
 
 function clearManageDriverSectionTextFields() {
+    generateNewDriverID();
     $('#txtDriverAvailabilityType').val('Select Availability Type');
-    $('#txtDriverId').val('');
     $('#txtDriverUsername').val('');
     $('#txtDriverPassword').val('');
     $('#txtDriverName').val('');
@@ -1518,6 +1518,10 @@ function uploadDriverImages(driverId) {
         }
     })
 }
+
+$('#btnClearDriverFields').on('click', function () {
+    clearManageDriverSectionTextFields();
+});
 
 /* Get All Cars */
 function loadAllCars() {
