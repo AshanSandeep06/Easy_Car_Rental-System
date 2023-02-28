@@ -1683,43 +1683,44 @@ function loadAllDriversSchedule() {
         success: function (resp) {
             if (resp.data != null) {
                 for (let rent of resp.data) {
+                    if (rent.rentStatus == "Pending" || rent.rentStatus == "Accepted" || rent.rentStatus == "Ongoing") {
+                        console.log(rent)
 
-                    console.log(rent)
+                        var xr = rent.pickUpDate;
+                        var startDate = xr[0] + "-" + xr[1] + "-" + xr[2];
 
-                    var xr = rent.pickUpDate;
-                    var startDate = xr[0] + "-" + xr[1] + "-" + xr[2];
+                        var xr1 = rent.pickUpTime;
+                        var startTime;
+                        if (xr1[1] < 10) {
+                            startTime = xr1[0] + ":0" + xr1[1];
+                        }
 
-                    var xr1 = rent.pickUpTime;
-                    var startTime;
-                    if (xr1[1] < 10) {
-                        startTime = xr1[0] + ":0" + xr1[1];
-                    }
+                        if (xr1[0] >= 12) {
+                            startTime += " PM";
+                        } else {
+                            startTime += " AM";
+                        }
 
-                    if (xr1[0] >= 12) {
-                        startTime += " PM";
-                    } else {
-                        startTime += " AM";
-                    }
+                        //---------------------------------
 
-                    //---------------------------------
+                        var yr = rent.returnDate;
+                        var endDate = yr[0] + "-" + yr[1] + "-" + yr[2];
 
-                    var yr = rent.returnDate;
-                    var endDate = yr[0] + "-" + yr[1] + "-" + yr[2];
+                        var yr1 = rent.returnTime;
+                        var returnTime;
+                        if (yr1[1] < 10) {
+                            returnTime = yr1[0] + ":0" + yr1[1];
+                        }
 
-                    var yr1 = rent.returnTime;
-                    var returnTime;
-                    if (yr1[1] < 10) {
-                        returnTime = yr1[0] + ":0" + yr1[1];
-                    }
+                        if (yr1[0] >= 12) {
+                            returnTime += " PM";
+                        } else {
+                            returnTime += " AM";
+                        }
 
-                    if (yr1[0] >= 12) {
-                        returnTime += " PM";
-                    } else {
-                        returnTime += " AM";
-                    }
-
-                    for (let i = 0; i < rent.rentDetail.length; i++) {
-                        $("#tblViewDriverSchedule>tbody").append(`<tr><td>${rent.rentDetail[i].driver.driverId}</td><td>${rent.rentDetail[i].driver.name}</td><td>${rent.rentDetail[i].driver.nic}</td><td>${rent.rentId}</td><td>${startDate}</td><td>${startTime}</td><td>${endDate}</td><td>${returnTime}</td><td>${rent.location}</td><td>${rent.rentDetail[i].carId}</td></tr>`);
+                        for (let i = 0; i < rent.rentDetail.length; i++) {
+                            $("#tblViewDriverSchedule>tbody").append(`<tr><td>${rent.rentDetail[i].driver.driverId}</td><td>${rent.rentDetail[i].driver.name}</td><td>${rent.rentDetail[i].driver.nic}</td><td>${rent.rentId}</td><td>${startDate}</td><td>${startTime}</td><td>${endDate}</td><td>${returnTime}</td><td>${rent.location}</td><td>${rent.rentDetail[i].carId}</td></tr>`);
+                        }
                     }
                 }
             }
@@ -1758,64 +1759,65 @@ $('#btnSearchDriverSchedule').on('click', function () {
             success: function (resp) {
                 if (resp.data != null) {
                     for (let rent of resp.data) {
-                        console.log(new Date(rent.pickUpDate).toLocaleDateString());
+                        if (rent.rentStatus == "Pending" || rent.rentStatus == "Accepted" || rent.rentStatus == "Ongoing") {
+                            console.log(new Date(rent.pickUpDate).toLocaleDateString());
 
-                        var startDate = new Date($('#fromDateTimeDuration').val()).toLocaleDateString();
-                        var startTime = new Date($('#fromDateTimeDuration').val()).toLocaleTimeString();
-                        var endDate = new Date($('#toDateTimeDuration').val()).toLocaleDateString();
-                        var endTime = new Date($('#toDateTimeDuration').val()).toLocaleTimeString();
-                        console.log(startTime + " " + startDate + " " + endTime + " " + endDate)
+                            var startDate = new Date($('#fromDateTimeDuration').val()).toLocaleDateString();
+                            var startTime = new Date($('#fromDateTimeDuration').val()).toLocaleTimeString();
+                            var endDate = new Date($('#toDateTimeDuration').val()).toLocaleDateString();
+                            var endTime = new Date($('#toDateTimeDuration').val()).toLocaleTimeString();
+                            console.log(startTime + " " + startDate + " " + endTime + " " + endDate)
 
-                        var pickUpTime;
-                        var returnTime;
+                            var pickUpTime;
+                            var returnTime;
 
-                        var xr1 = rent.pickUpTime;
-                        if (xr1[1] < 10) {
-                            pickUpTime = xr1[0] + ":0" + xr1[1] + ":00";
-                        } else {
-                            pickUpTime = xr1[0] + xr1[1] + ":00";
-                        }
-
-                        if (xr1[0] >= 12) {
-                            pickUpTime += " PM";
-                        } else {
-                            pickUpTime += " AM";
-                        }
-
-                        // -------------------------------
-
-                        var xr2 = rent.returnTime;
-                        if (xr2[1] < 10) {
-                            returnTime = xr2[0] + ":0" + xr2[1] + ":00";
-                        } else {
-                            returnTime = xr2[0] + xr2[1] + ":00";
-                        }
-
-                        if (xr2[0] >= 12) {
-                            returnTime += " PM";
-                        } else {
-                            returnTime += " AM";
-                        }
-
-                        var pickUpDate = new Date(rent.pickUpDate).toLocaleDateString();
-                        var returnDate = new Date(rent.returnDate).toLocaleDateString();
-
-                        if ($('#cmbSelectDriver_viewDriverScheduleSection').val() == "All Drivers" && startDate == pickUpDate && startTime == pickUpTime && endTime == returnTime && endDate == returnDate) {
-                            $("#tblViewDriverSchedule>tbody").empty();
-                            for (let i = 0; i < rent.rentDetail.length; i++) {
-                                $("#tblViewDriverSchedule>tbody").append(`<tr><td>${rent.rentDetail[i].driver.driverId}</td><td>${rent.rentDetail[i].driver.name}</td><td>${rent.rentDetail[i].driver.nic}</td><td>${rent.rentId}</td><td>${pickUpDate}</td><td>${pickUpTime}</td><td>${returnDate}</td><td>${returnTime}</td><td>${rent.location}</td><td>${rent.rentDetail[i].carId}</td></tr>`);
+                            var xr1 = rent.pickUpTime;
+                            if (xr1[1] < 10) {
+                                pickUpTime = xr1[0] + ":0" + xr1[1] + ":00";
+                            } else {
+                                pickUpTime = xr1[0] + xr1[1] + ":00";
                             }
-                        } else if ($('#cmbSelectDriver_viewDriverScheduleSection').val() != "All Drivers" && startDate == pickUpDate && startTime == pickUpTime && endTime == returnTime && endDate == returnDate) {
-                            $("#tblViewDriverSchedule>tbody").empty();
-                            for (let i = 0; i < rent.rentDetail.length; i++) {
-                                if ($('#cmbSelectDriver_viewDriverScheduleSection').val() == rent.rentDetail[i].driver.driverId) {
+
+                            if (xr1[0] >= 12) {
+                                pickUpTime += " PM";
+                            } else {
+                                pickUpTime += " AM";
+                            }
+
+                            // -------------------------------
+
+                            var xr2 = rent.returnTime;
+                            if (xr2[1] < 10) {
+                                returnTime = xr2[0] + ":0" + xr2[1] + ":00";
+                            } else {
+                                returnTime = xr2[0] + xr2[1] + ":00";
+                            }
+
+                            if (xr2[0] >= 12) {
+                                returnTime += " PM";
+                            } else {
+                                returnTime += " AM";
+                            }
+
+                            var pickUpDate = new Date(rent.pickUpDate).toLocaleDateString();
+                            var returnDate = new Date(rent.returnDate).toLocaleDateString();
+
+                            if ($('#cmbSelectDriver_viewDriverScheduleSection').val() == "All Drivers" && startDate == pickUpDate && startTime == pickUpTime && endTime == returnTime && endDate == returnDate) {
+                                $("#tblViewDriverSchedule>tbody").empty();
+                                for (let i = 0; i < rent.rentDetail.length; i++) {
                                     $("#tblViewDriverSchedule>tbody").append(`<tr><td>${rent.rentDetail[i].driver.driverId}</td><td>${rent.rentDetail[i].driver.name}</td><td>${rent.rentDetail[i].driver.nic}</td><td>${rent.rentId}</td><td>${pickUpDate}</td><td>${pickUpTime}</td><td>${returnDate}</td><td>${returnTime}</td><td>${rent.location}</td><td>${rent.rentDetail[i].carId}</td></tr>`);
                                 }
+                            } else if ($('#cmbSelectDriver_viewDriverScheduleSection').val() != "All Drivers" && startDate == pickUpDate && startTime == pickUpTime && endTime == returnTime && endDate == returnDate) {
+                                $("#tblViewDriverSchedule>tbody").empty();
+                                for (let i = 0; i < rent.rentDetail.length; i++) {
+                                    if ($('#cmbSelectDriver_viewDriverScheduleSection').val() == rent.rentDetail[i].driver.driverId) {
+                                        $("#tblViewDriverSchedule>tbody").append(`<tr><td>${rent.rentDetail[i].driver.driverId}</td><td>${rent.rentDetail[i].driver.name}</td><td>${rent.rentDetail[i].driver.nic}</td><td>${rent.rentId}</td><td>${pickUpDate}</td><td>${pickUpTime}</td><td>${returnDate}</td><td>${returnTime}</td><td>${rent.location}</td><td>${rent.rentDetail[i].carId}</td></tr>`);
+                                    }
+                                }
+                            } else {
+                                $("#tblViewDriverSchedule>tbody").empty();
                             }
-                        } else {
-                            $("#tblViewDriverSchedule>tbody").empty();
                         }
-
                     }
                 }
             }
@@ -1852,11 +1854,17 @@ $('#btnSearchCarSchedule').on('click', function () {
             async: false,
             success: function (resp) {
                 for (let rent of resp.data) {
+                    console.log(rent.rentStatus)
                     for (let c1 of allCars) {
                         if (new Date(rent.pickUpDate).toLocaleDateString() === new Date($('#txtDate').val()).toLocaleDateString()) {
-                            if (rent.rentDetail[0].carId == c1.carId) {
-                                var row = "<tr><td>" + c1.carId + "</td><td>" + c1.registerNum + "</td><td>" + c1.type + "</td><td>" + rent.rentId + "</td><td>" + rent.customer.customerId + "</td><td>" + rent.customer.name + "</td><td>" + rent.rentDetail[0].driver.driverId + "</td><td>" + rent.rentDetail[0].driver.name + "</td><td>" + new Date(rent.pickUpDate).toLocaleDateString() + "</td><td>" + new Date(rent.returnDate).toLocaleDateString() + "</td><td>" + rent.location + "</td></tr>";
-                                $("#tblViewRentedCarSchedule>tbody").append(row);
+                            if (rent.rentStatus != "Denied" && rent.rentStatus != "Finished") {  // rent.rentDetail[0].carId == c1.carId
+                                if (rent.rentDetail[0].carId == c1.carId) {
+                                    var row = "<tr><td>" + c1.carId + "</td><td>" + c1.registerNum + "</td><td>" + c1.type + "</td><td>" + rent.rentId + "</td><td>" + rent.customer.customerId + "</td><td>" + rent.customer.name + "</td><td>" + rent.rentDetail[0].driver.driverId + "</td><td>" + rent.rentDetail[0].driver.name + "</td><td>" + new Date(rent.pickUpDate).toLocaleDateString() + "</td><td>" + new Date(rent.returnDate).toLocaleDateString() + "</td><td>" + rent.location + "</td></tr>";
+                                    $("#tblViewRentedCarSchedule>tbody").append(row);
+                                } else {
+                                    var row = "<tr><td>" + c1.carId + "</td><td>" + c1.registerNum + "</td><td>" + c1.brand + "</td><td>" + c1.type + "</td><td>" + c1.numOfPassengers + "</td><td>" + c1.transmissionType + "</td><td>" + c1.fuelType + "</td></tr>";
+                                    $("#tblViewAvailableCarSchedule>tbody").append(row);
+                                }
                             } else {
                                 var row = "<tr><td>" + c1.carId + "</td><td>" + c1.registerNum + "</td><td>" + c1.brand + "</td><td>" + c1.type + "</td><td>" + c1.numOfPassengers + "</td><td>" + c1.transmissionType + "</td><td>" + c1.fuelType + "</td></tr>";
                                 $("#tblViewAvailableCarSchedule>tbody").append(row);
