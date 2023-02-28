@@ -4,8 +4,10 @@ import lk.easy.carRental.dto.*;
 import lk.easy.carRental.embedded.CustomerImage;
 import lk.easy.carRental.entity.Customer;
 import lk.easy.carRental.entity.Driver;
+import lk.easy.carRental.entity.Rent_detail;
 import lk.easy.carRental.entity.User_credentials;
 import lk.easy.carRental.repo.DriverRepo;
+import lk.easy.carRental.repo.Rent_detailRepo;
 import lk.easy.carRental.repo.User_credentialsRepo;
 import lk.easy.carRental.service.DriverService;
 import org.modelmapper.ModelMapper;
@@ -23,6 +25,9 @@ public class DriverServiceImpl implements DriverService {
     private DriverRepo driverRepo;
     @Autowired
     private User_credentialsRepo userRepo;
+
+    @Autowired
+    private Rent_detailRepo rentDetailRepo;
     @Autowired
     private ModelMapper mapper;
 
@@ -45,6 +50,20 @@ public class DriverServiceImpl implements DriverService {
     }
 
     @Override
+    public void deleteDriver(String driverID) {
+        if (driverRepo.existsById(driverID)) {
+            ArrayList<Rent_detail> rentDetail = rentDetailRepo.getRentDetailsByDriverId(driverID);
+            if (rentDetail.size() > 0) {
+                throw new RuntimeException("This Driver has Ongoing or Finished Rentals, Therefore, Can't Delete..!");
+            } else {
+                driverRepo.deleteById(driverID);
+            }
+        } else {
+            throw new RuntimeException("There is No Such a Driver, Therefore Can't be Deleted..!");
+        }
+    }
+
+    @Override
     public DriverDTO getDriverDetails(String driverUsername) {
         if (userRepo.existsByUsername(driverUsername)) {
             return mapper.map(driverRepo.findDriverByUsername(driverUsername), DriverDTO.class);
@@ -57,6 +76,7 @@ public class DriverServiceImpl implements DriverService {
     public DriverLicenseImageDTO getDriverImages(String driverId) {
         Driver entity = driverRepo.findById(driverId).get();
         String driverLicenseImage = entity.getLicenseImage();
+        System.out.println(driverLicenseImage);
         if (driverLicenseImage != null) {
             return new DriverLicenseImageDTO(driverLicenseImage);
         } else {
@@ -73,11 +93,11 @@ public class DriverServiceImpl implements DriverService {
             driver.setContactNumber(driverDTO.getContactNumber());
             driver.setNic(driverDTO.getNic());
             driver.setLicenseNo(driverDTO.getLicenseNo());
-            if(driverDTO.getAvailabilityType() != null){
+            if (driverDTO.getAvailabilityType() != null) {
                 driver.setAvailabilityType(driverDTO.getAvailabilityType());
             }
 
-            if(driverDTO.getUser_credentials() != null){
+            if (driverDTO.getUser_credentials() != null) {
                 if (userRepo.existsByUsername(driverDTO.getUser_credentials().getUsername())) {
                     userRepo.save(mapper.map(driverDTO.getUser_credentials(), User_credentials.class));
                 } else {

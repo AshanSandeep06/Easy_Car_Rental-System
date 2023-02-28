@@ -1,8 +1,6 @@
 package lk.easy.carRental.controller;
 
-import lk.easy.carRental.dto.CarDTO;
-import lk.easy.carRental.dto.CustomerDTO;
-import lk.easy.carRental.dto.DriverDTO;
+import lk.easy.carRental.dto.*;
 import lk.easy.carRental.service.DriverService;
 import lk.easy.carRental.util.ResponseUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +23,7 @@ public class DriverController {
     private DriverService driverService;
 
     @GetMapping
-    public ResponseUtil getAllDrivers(){
+    public ResponseUtil getAllDrivers() {
         return new ResponseUtil("OK", "Loaded All Drivers Successfully..!", driverService.getAllDrivers());
     }
 
@@ -36,7 +34,7 @@ public class DriverController {
 
     @GetMapping(path = "/getDriverName", params = {"driverId"})
     public ResponseUtil getDriverName(@RequestParam String driverId) {
-        return new ResponseUtil("OK", driverId+" driver name has been loaded Successfully..!", driverService.getDriverName(driverId));
+        return new ResponseUtil("OK", driverId + " driver name has been loaded Successfully..!", driverService.getDriverName(driverId));
     }
 
     @GetMapping(path = "/getDriverImages/{driverId}")
@@ -81,6 +79,26 @@ public class DriverController {
 
             driverService.uploadDriverLicenseImage(driverId, licenseImage.getOriginalFilename());
             return new ResponseUtil("OK", "Successfully Uploaded Customer License Image", null);
+        } catch (IOException e) {
+            return new ResponseUtil("Error", e.getMessage(), null);
+        }
+    }
+
+    @DeleteMapping(params = {"driverID"})
+    public ResponseUtil deleteCar(@RequestParam String driverID) {
+        driverService.deleteDriver(driverID);
+        return new ResponseUtil("OK", "Successfully Deleted Car..!", null);
+    }
+
+    @DeleteMapping(path = "/deleteDriverLicenseImage/{driverID}")
+    public ResponseUtil deleteCarImages(@PathVariable String driverID) {
+        try {
+            String pathDirectory = new File("F:\\Ijse\\GDSE 60\\Easy_Car_Rental-System\\Front-End\\assets\\img\\uploads\\driverImages\\").getAbsolutePath();
+            DriverLicenseImageDTO licenseImageDTO = driverService.getDriverImages(driverID);
+            Path driverLicenseImageLocation = Paths.get(pathDirectory + "/" + licenseImageDTO.getLicenseImage());
+            Files.delete(driverLicenseImageLocation);
+
+            return new ResponseUtil("OK", "Successfully Deleted " + driverID + " Driver License Image", null);
         } catch (IOException e) {
             return new ResponseUtil("Error", e.getMessage(), null);
         }

@@ -1388,6 +1388,7 @@ function clearManageDriverSectionTextFields() {
 
 function bindRowClickEventsManageDriverTable() {
     $("#tblManageDriver>tbody>tr").on('click', function () {
+        $('#txtDriverUsername').attr('disabled', true);
         let driverID = $(this).children(":eq(0)").text();
         let driverName = $(this).children(":eq(1)").text();
         let username = $(this).children(":eq(2)").text();
@@ -1522,6 +1523,7 @@ function uploadDriverImages(driverId) {
 
 $('#btnClearDriverFields').on('click', function () {
     clearManageDriverSectionTextFields();
+    $('#txtDriverUsername').attr('disabled', false);
 });
 
 $("#txtDriverLicenseImageUploader").on('change', function (e) {
@@ -1629,11 +1631,13 @@ $("#btnUpdateDriver").on('click', function () {
     generateNewDriverID();
 });
 
-// Delete Car
-$("#btnDeleteCar").on('click', function () {
-    let carId = $("#txtCarID").val();
+// Delete Driver
+$("#btnDeleteDriver").on('click', function () {
+    let driverID = $("#txtDriverId").val();
+    deleteDriverLicenseImage(driverID);
+
     $.ajax({
-        url: baseUrl + "car?carId=" + carId,
+        url: baseUrl + "driver?driverID=" + driverID,
         method: "delete",
         dataType: "json",
         success: function (resp) {
@@ -1644,8 +1648,7 @@ $("#btnDeleteCar").on('click', function () {
                 showConfirmButton: false,
                 timer: 1500
             })
-            loadAllCars();
-            // deleteCarImages(carId);
+            loadAllDrivers();
         },
         error: function (error) {
             alert(JSON.parse(error.responseText).message);
@@ -1653,9 +1656,9 @@ $("#btnDeleteCar").on('click', function () {
     });
 });
 
-function deleteCarImages(carId) {
+function deleteDriverLicenseImage(driverID) {
     $.ajax({
-        url: baseUrl + "car/deleteCarImages/" + carId,
+        url: baseUrl + "driver/deleteDriverLicenseImage/" + driverID,
         method: "delete",
         dataType: "json",
         success: function (res) {
