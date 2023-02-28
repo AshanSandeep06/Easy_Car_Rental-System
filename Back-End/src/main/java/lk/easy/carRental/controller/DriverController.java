@@ -44,6 +44,11 @@ public class DriverController {
         return new ResponseUtil("OK", "Successfully Loaded License Image of " + driverId, driverService.getDriverImages(driverId));
     }
 
+    @GetMapping(path = "/generateNewDriverID")
+    public ResponseUtil generateNewDriverID() {
+        return new ResponseUtil("OK", "A New Driver ID has been Generated Successfully..!", driverService.generateNewDriverID());
+    }
+
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseUtil saveDriver(@RequestBody DriverDTO driverDTO) {

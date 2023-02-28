@@ -13,4 +13,5 @@ public interface DriverService {
     void uploadDriverLicenseImage(String driverId, String licenseImage);
     ArrayList<DriverDTO> getAllDrivers();
     String getDriverName(String driverId);
+    String generateNewDriverID();
 }

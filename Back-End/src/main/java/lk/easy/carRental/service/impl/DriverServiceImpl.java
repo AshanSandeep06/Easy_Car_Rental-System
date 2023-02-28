@@ -27,6 +27,24 @@ public class DriverServiceImpl implements DriverService {
     private ModelMapper mapper;
 
     @Override
+    public String generateNewDriverID() {
+        String lastDriverId = driverRepo.getLastDriverId();
+        if (lastDriverId != null) {
+            int tempId = Integer.parseInt(lastDriverId.split("D")[1]);
+            tempId++;
+            if (tempId <= 9) {
+                return "D00" + tempId;
+            } else if (tempId <= 99) {
+                return "D0" + tempId;
+            } else {
+                return "D" + tempId;
+            }
+        } else {
+            return "D001";
+        }
+    }
+
+    @Override
     public DriverDTO getDriverDetails(String driverUsername) {
         if (userRepo.existsByUsername(driverUsername)) {
             return mapper.map(driverRepo.findDriverByUsername(driverUsername), DriverDTO.class);

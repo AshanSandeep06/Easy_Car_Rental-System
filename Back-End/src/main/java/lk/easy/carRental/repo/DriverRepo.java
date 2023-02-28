@@ -20,4 +20,7 @@ public interface DriverRepo extends JpaRepository<Driver, String> {
     @Transactional
     @Query(value = "UPDATE Driver SET licenseImage=:licenseImage WHERE driverId=:driverId", nativeQuery = true)
     void uploadCustomerLicenseImage(@Param("driverId") String driverId, @Param("licenseImage") String licenseImage);
+
+    @Query(value = "SELECT driverId FROM Driver ORDER BY driverId DESC LIMIT 1", nativeQuery = true)
+    String getLastDriverId();
 }

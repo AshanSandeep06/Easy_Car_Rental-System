@@ -1350,6 +1350,7 @@ $('#btnSearchCustomer').on('click', function () {
 // Load All Customers
 function loadAllDrivers() {
     $("#tblManageDriver>tbody").empty();
+    generateNewDriverID();
     $.ajax({
         url: baseUrl + "driver",
         method: "get",
@@ -1478,7 +1479,24 @@ $("#btnAddDriver").on('click', function () {
             text: 'All Driver Fields Must be filled With data'
         })
     }
+    generateNewDriverID();
 });
+
+function generateNewDriverID() {
+    $.ajax({
+        url: baseUrl + "driver/generateNewDriverID",
+        method: "get",
+        dataType: "json",
+        async: false,
+        success: function (res) {
+            $("#txtDriverId").val(res.data);
+        },
+
+        error: function (error) {
+            alert(JSON.parse(error.responseText).message);
+        }
+    });
+}
 
 
 // ----------------------------------------------------------
