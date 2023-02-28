@@ -99,6 +99,7 @@ $('#btnManageDriver').on('click', function () {
     $("#adminProfile_section").css('display', 'none');
     $("#manageRentDetails_section").css('display', 'none');
     $("#managePayment_section").css('display', 'none');
+    loadAllDrivers();
 });
 
 $('#btnViewDriverSchedule').on('click', function () {
@@ -1344,7 +1345,334 @@ $('#btnSearchCustomer').on('click', function () {
     }
 });
 
+/*------------------------ Manage Driver ------------------------*/
 
+// Load All Customers
+function loadAllDrivers() {
+    $("#tblManageDriver>tbody").empty();
+    $.ajax({
+        url: baseUrl + "driver",
+        method: "get",
+        dataType: "json",
+        success: function (resp) {
+            if (resp.data != null) {
+                for (let d1 of resp.data) {
+                    console.log(d1)
+                    var row = "<tr><td>" + d1.driverId + "</td><td>" + d1.name + "</td><td>" + d1.user_credentials.username + "</td><td>" + d1.user_credentials.password + "</td><td>" + d1.address + "</td><td>" + d1.contactNumber + "</td><td>" + d1.nic + "</td><td>" + d1.licenseNo + "</td><td>" + d1.availabilityType + "</td></tr>";
+                    $("#tblManageDriver>tbody").append(row);
+                }
+            }
+            bindRowClickEventsManageDriverTable();
+            clearManageDriverSectionTextFields();
+        }
+    });
+}
+
+function clearManageDriverSectionTextFields() {
+    $('#txtDriverAvailabilityType').val('Select Availability Type');
+    $('#txtDriverId').val('');
+    $('#txtDriverUsername').val('');
+    $('#txtDriverPassword').val('');
+    $('#txtDriverName').val('');
+    $('#txtDriverAddress').val('');
+    $('#txtDriverContact').val('');
+    $('#txtDriverNic').val('');
+    $('#txtDriverLicenseNo').val('');
+
+    $('#txtSearchDriver').val("");
+
+    $("#driverLicenseImage").attr('src', "");
+}
+
+function bindRowClickEventsManageDriverTable() {
+    $("#tblManageDriver>tbody>tr").on('click', function () {
+        let driverID = $(this).children(":eq(0)").text();
+        let driverName = $(this).children(":eq(1)").text();
+        let username = $(this).children(":eq(2)").text();
+        let password = $(this).children(":eq(3)").text();
+        let driverAddress = $(this).children(":eq(4)").text();
+        let driverContactNumber = $(this).children(":eq(5)").text();
+        let driverNIC = $(this).children(":eq(6)").text();
+        let driverLicenseNo = $(this).children(":eq(7)").text();
+        let driverAvailabilityType = $(this).children(":eq(8)").text();
+
+        $('#txtDriverId').val(driverID);
+        $('#txtDriverUsername').val(username);
+        $('#txtDriverPassword').val(password);
+        $('#txtDriverName').val(driverName);
+        $('#txtDriverAddress').val(driverAddress);
+        $('#txtDriverContact').val(driverContactNumber);
+        $('#txtDriverNic').val(driverNIC);
+        $('#txtDriverLicenseNo').val(driverLicenseNo);
+        $('#txtDriverAvailabilityType').val(`${driverAvailabilityType}`);
+
+        $.ajax({
+            url: baseUrl + "driver/getDriverImages/" + driverID,
+            method: "get",
+            dataType: "json",
+            success: function (resp) {
+                $("#driverLicenseImage").attr('src', "../assets/img/uploads/driverImages/" + resp.data.licenseImage);
+            },
+            error: function (error) {
+                $("#driverLicenseImage").attr('src', "");
+                alert(JSON.parse(error.responseText).message);
+            }
+        });
+    });
+}
+
+/*=================================================*/
+
+$("#btnAddDriver").on('click', function () {
+    let userObject = {
+        username: $("#txtDriverUsername").val(),
+        password: $("#txtDriverPassword").val(),
+        role: "Driver"
+    };
+
+    let driverObject = {
+        driverId: $("#txtDriverId").val(),
+        name: $("#txtDriverName").val(),
+        address: $("#txtDriverAddress").val(),
+        contactNumber: $("#txtDriverContact").val(),
+        nic: $("#txtDriverNic").val(),
+        licenseNo: $("#txtDriverLicenseNo").val(),
+        availabilityType: $("#txtDriverAvailabilityType").val(),
+        user_credentials: userObject
+    };
+
+    if ($('#txtDriverLicenseImageUploader')[0].files[0] != null) {
+        $.ajax({
+            url: baseUrl + "driver",
+            method: "post",
+            data: JSON.stringify(driverObject),
+            contentType: "application/json",
+            success: function (res) {
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'Driver has been Successfully Saved',
+                    showConfirmButton: false,
+                    timer: 1500
+                })
+
+                uploadDriverImages($("#txtDriverId").val());
+                loadAllCars();
+            },
+            error: function (error) {
+                alert(JSON.parse(error.responseText).message);
+            }
+        });
+    } else {
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'You Should Provide Driver License Image, Therefore, Can\'t Save the Driver'
+        })
+    }
+});
+
+
+// ----------------------------------------------------------
+function uploadDriverImages(driverId) {
+    var driverLicenseImage = $('#txtDriverLicenseImageUploader')[0].files[0];
+    var driverLicenseImageName = driverId + "_License-image." + $('#txtDriverLicenseImageUploader')[0].files[0].name.split(".")[1];
+
+    var imagesData = new FormData();
+    imagesData.append("licenseImage", driverLicenseImage, driverLicenseImageName);
+
+    $.ajax({
+        url: baseUrl + "driver/uploadDriverImages/uploadLicenseImage?driverId=" + driverId,
+        method: "PUT",
+        contentType: false,
+        processData: false,
+        data: imagesData,
+        success: function (res) {
+            alert("Driver License Image Uploaded..!");
+        }
+    })
+}
+
+/* Get All Cars */
+function loadAllCars() {
+    $("#tblManageVehicle>tbody").empty();
+    $.ajax({
+        url: baseUrl + "car",
+        method: "get",
+        dataType: "json",
+        success: function (resp) {
+            for (let car of resp.data) {
+                var row = "<tr><td>" + car.carId + "</td><td>" + car.registerNum + "</td><td>" + car.brand + "</td><td>" + car.type + "</td><td>" + car.priceRate.dailyRate + "</td><td>" + car.priceRate.monthlyRate + "</td><td>" + car.freeMileage.dailyMileage + "</td><td>" + car.freeMileage.monthlyMileage + "</td><td>" + car.color + "</td><td>" + car.transmissionType + "</td><td>" + car.numOfPassengers + "</td><td>" + car.fuelType + "</td><td>" + car.pricePerExtraKM + "</td><td>" + car.lossDamageWaiver + "</td><td>" + car.lastServiceMileage + "</td><td>" + car.availabilityType + "</td></tr>";
+                $("#tblManageVehicle").append(row);
+            }
+            bindRowClickEventsOfTblManageVehicle();
+            clearManageCarSectionTextFields();
+            $("#txtCarID").focus();
+        }
+    });
+}
+
+function clearManageCarSectionTextFields() {
+    $("#txtCarID").val("");
+    $("#txtRegNo").val("");
+    $("#txtCarBrand").val("");
+    $("#txtCarType").val("Select Vehicle Type");
+    $("#txtDailyRate").val("");
+    $("#txtMonthlyRate").val("");
+    $("#txtDailyMileage").val("");
+    $("#txtMonthlyMileage").val("");
+    $("#txtCarColor").val("");
+    $("#txtTransmissionType").val("Select Transmission Type");
+    $("#txtNoOfPassengers").val("");
+    $("#txtFuelType").val("Select Fuel Type");
+    $("#txtPricePerExtraKm").val("");
+    $("#txtLDWPayment").val("");
+    $("#txtLastServiceMileage").val("");
+    $("#txtAvailabilityType").val("Select Availability Type");
+
+    // Clear file choosers
+    $("#frontCarImageUploader").val("");
+    $("#backCarImageUploader").val("");
+    $("#sideCarImageUploader").val("");
+    $("#interiorCarImageUploader").val("");
+
+    // Clear images
+    $("#carFront_image").attr('src', "");
+    $("#carBack_image").attr('src', "");
+    $("#carSide_image").attr('src', "");
+    $("#carInterior_image").attr('src', "");
+}
+
+$("#btnClearCarData").on('click', function () {
+    clearManageCarSectionTextFields();
+});
+
+// Update Car
+$("#btnUpdateCar").on('click', function () {
+    let dailyRate = $("#txtDailyRate").val();
+    let monthlyRate = $("#txtMonthlyRate").val();
+    let dailyMileage = $("#txtDailyMileage").val();
+    let monthlyMileage = $("#txtMonthlyMileage").val();
+
+    let carObject = {
+        carId: $("#txtCarID").val(),
+        registerNum: $("#txtRegNo").val(),
+        brand: $("#txtCarBrand").val(),
+        type: $("#txtCarType").val(),
+        priceRate: {dailyRate: dailyRate, monthlyRate: monthlyRate},
+        freeMileage: {dailyMileage: dailyMileage, monthlyMileage: monthlyMileage},
+        color: $("#txtCarColor").val(),
+        transmissionType: $("#txtTransmissionType").val(),
+        numOfPassengers: $("#txtNoOfPassengers").val(),
+        fuelType: $("#txtFuelType").val(),
+        pricePerExtraKM: $("#txtPricePerExtraKm").val(),
+        lossDamageWaiver: $("#txtLDWPayment").val(),
+        lastServiceMileage: $("#txtLastServiceMileage").val(),
+        availabilityType: $("#txtAvailabilityType").val(),
+    };
+
+    Swal.fire({
+        title: 'Are you sure?',
+        text: "Do You Want to Update Car with Images.?",
+        icon: 'question',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, Update it!'
+    }).then((result) => {
+        if (!result.isConfirmed) {
+            $.ajax({
+                url: baseUrl + "car",
+                method: "put",
+                data: JSON.stringify(carObject),
+                contentType: "application/json",
+                success: function (res) {
+                    Swal.fire({
+                        position: 'top-end',
+                        icon: 'success',
+                        title: 'Car has been Successfully Updated',
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
+                    loadAllCars();
+                },
+
+                error: function (error) {
+                    alert(JSON.parse(error.responseText).message);
+                }
+            });
+
+        } else {
+            if ($('#frontCarImageUploader')[0].files[0] != null && $('#backCarImageUploader')[0].files[0] != null && $('#sideCarImageUploader')[0].files[0] != null && $('#interiorCarImageUploader')[0].files[0] != null) {
+                $.ajax({
+                    url: baseUrl + "car",
+                    method: "put",
+                    data: JSON.stringify(carObject),
+                    contentType: "application/json",
+                    success: function (res) {
+                        uploadCarImages($("#txtCarID").val());
+                        loadAllCars();
+                        Swal.fire({
+                            position: 'top-end',
+                            icon: 'success',
+                            title: 'Car has been Successfully Updated',
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
+                    },
+
+                    error: function (error) {
+                        alert(JSON.parse(error.responseText).message);
+                    }
+                });
+            } else {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Car hasn\'t been Updated, Something Went Wrong..!',
+                })
+            }
+        }
+    })
+});
+
+// Delete Car
+$("#btnDeleteCar").on('click', function () {
+    let carId = $("#txtCarID").val();
+    $.ajax({
+        url: baseUrl + "car?carId=" + carId,
+        method: "delete",
+        dataType: "json",
+        success: function (resp) {
+            Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: resp.message,
+                showConfirmButton: false,
+                timer: 1500
+            })
+            loadAllCars();
+            // deleteCarImages(carId);
+        },
+        error: function (error) {
+            alert(JSON.parse(error.responseText).message);
+        }
+    });
+});
+
+function deleteCarImages(carId) {
+    $.ajax({
+        url: baseUrl + "car/deleteCarImages/" + carId,
+        method: "delete",
+        dataType: "json",
+        success: function (res) {
+            alert(res.message);
+        },
+        error: function (error) {
+            alert(JSON.parse(error.responseText).message);
+        }
+    })
+}
 
 
 

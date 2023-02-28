@@ -1,10 +1,13 @@
 package lk.easy.carRental.controller;
 
+import lk.easy.carRental.dto.CarDTO;
 import lk.easy.carRental.dto.CustomerDTO;
 import lk.easy.carRental.dto.DriverDTO;
 import lk.easy.carRental.service.DriverService;
 import lk.easy.carRental.util.ResponseUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -39,6 +42,17 @@ public class DriverController {
     @GetMapping(path = "/getDriverImages/{driverId}")
     public ResponseUtil getDriverImages(@PathVariable String driverId) {
         return new ResponseUtil("OK", "Successfully Loaded License Image of " + driverId, driverService.getDriverImages(driverId));
+    }
+
+    @ResponseStatus(HttpStatus.CREATED)
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseUtil saveDriver(@RequestBody DriverDTO driverDTO) {
+        if (driverDTO != null) {
+            driverService.saveDriver(driverDTO);
+            return new ResponseUtil("OK", "Successfully Saved Driver..!", null);
+        } else {
+            throw new RuntimeException("Cant' be Save the Driver, Cause of Received data is Empty");
+        }
     }
 
     @PutMapping

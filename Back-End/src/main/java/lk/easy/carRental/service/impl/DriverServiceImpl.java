@@ -4,6 +4,7 @@ import lk.easy.carRental.dto.*;
 import lk.easy.carRental.embedded.CustomerImage;
 import lk.easy.carRental.entity.Customer;
 import lk.easy.carRental.entity.Driver;
+import lk.easy.carRental.entity.User_credentials;
 import lk.easy.carRental.repo.DriverRepo;
 import lk.easy.carRental.repo.User_credentialsRepo;
 import lk.easy.carRental.service.DriverService;
@@ -57,6 +58,20 @@ public class DriverServiceImpl implements DriverService {
             driverRepo.save(driver);
         } else {
             throw new RuntimeException("This Driver is not exists..!");
+        }
+    }
+
+    @Override
+    public void saveDriver(DriverDTO driverDTO) {
+        if (!driverRepo.existsById(driverDTO.getDriverId())) {
+            if (!userRepo.existsByUsername(driverDTO.getUser_credentials().getUsername())) {
+                userRepo.save(mapper.map(driverDTO.getUser_credentials(), User_credentials.class));
+                driverRepo.save(mapper.map(driverDTO, Driver.class));
+            } else {
+                throw new RuntimeException("This User is already exists..!");
+            }
+        } else {
+            throw new RuntimeException("This Driver is already exists..!");
         }
     }
 

@@ -615,7 +615,8 @@
 
     <section class="row justify-content-center mt-4">
         <div class="form-group col-xxl-3 col-xl-4 col-lg-4 col-md-4 col-12 mb-3">
-            <select id="cmbSelectCustomer" style="font-size: 15px;" class="form-select" aria-label="Default select example">
+            <select id="cmbSelectCustomer" style="font-size: 15px;" class="form-select"
+                    aria-label="Default select example">
                 <option selected>Customer ID</option>
                 <option>Customer NIC</option>
             </select>
@@ -805,23 +806,23 @@
                 <label for="txtDriverAvailabilityType" class="form-label">Availability Type</label>
                 <select id="txtDriverAvailabilityType" class="form-select" aria-label="Default select example">
                     <option selected disabled>Select Availability Type</option>
-                    <option value="1">Available</option>
-                    <option value="2">Unavailable</option>
+                    <option>Available</option>
+                    <option>Unavailable</option>
                 </select>
             </div>
 
             <div class="col-md-6 text-sm-center text-center text-xl-start">
                 <label for="driverLicenseImage" class="form-label d-block">Driver's License Image</label>
-                <img id="driverLicenseImage" src="/assets/img/license_image-02.png" class="img-fluid" alt="...">
+                <img id="driverLicenseImage" class="img-fluid">
                 <input class="form-control mt-3 w-75" type="file" id="txtDriverLicenseImageUploader">
             </div>
 
             <div id="btnGroupManageDriver" style="margin-top: 32px;"
                  class="col-md-6 col-12 d-flex align-items-center justify-content-center justify-content-md-start gap-3">
-                <button type="submit" class="btn btn-success">Add Driver</button>
-                <button type="submit" class="btn btn-primary">Update</button>
-                <button type="submit" class="btn btn-danger">Delete</button>
-                <button type="submit" class="btn btn-secondary">Clear</button>
+                <button id="btnAddDriver" type="button" class="btn btn-success">Add Driver</button>
+                <button id="btnUpdateDriver" type="button" class="btn btn-primary">Update</button>
+                <button id="btnDeleteDriver" type="button" class="btn btn-danger">Delete</button>
+                <button id="btnClearDriverFields" type="button" class="btn btn-secondary">Clear</button>
             </div>
         </form>
     </section>
@@ -846,19 +847,7 @@
                         <th>Availability Type</th>
                     </tr>
                     </thead>
-                    <tbody>
-                    <tr>
-                        <td>D00-001</td>
-                        <td>Kasun Kalhara</td>
-                        <td>kalhara089</td>
-                        <td>kalhara1234</td>
-                        <td>46/D, Dangedara, Galle</td>
-                        <td>0756784236</td>
-                        <td>199657463V</td>
-                        <td>B5678569</td>
-                        <td>Available</td>
-                    </tr>
-                    </tbody>
+                    <tbody></tbody>
                 </table>
             </div>
         </section>
