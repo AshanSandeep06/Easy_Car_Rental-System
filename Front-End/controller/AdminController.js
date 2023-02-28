@@ -1535,147 +1535,98 @@ $("#txtDriverLicenseImageUploader").on('change', function (e) {
     }
 });
 
-/* Get All Cars */
-function loadAllCars() {
-    $("#tblManageVehicle>tbody").empty();
-    $.ajax({
-        url: baseUrl + "car",
-        method: "get",
-        dataType: "json",
-        success: function (resp) {
-            for (let car of resp.data) {
-                var row = "<tr><td>" + car.carId + "</td><td>" + car.registerNum + "</td><td>" + car.brand + "</td><td>" + car.type + "</td><td>" + car.priceRate.dailyRate + "</td><td>" + car.priceRate.monthlyRate + "</td><td>" + car.freeMileage.dailyMileage + "</td><td>" + car.freeMileage.monthlyMileage + "</td><td>" + car.color + "</td><td>" + car.transmissionType + "</td><td>" + car.numOfPassengers + "</td><td>" + car.fuelType + "</td><td>" + car.pricePerExtraKM + "</td><td>" + car.lossDamageWaiver + "</td><td>" + car.lastServiceMileage + "</td><td>" + car.availabilityType + "</td></tr>";
-                $("#tblManageVehicle").append(row);
-            }
-            bindRowClickEventsOfTblManageVehicle();
-            clearManageCarSectionTextFields();
-            $("#txtCarID").focus();
-        }
-    });
-}
+// Update Driver
+$("#btnUpdateDriver").on('click', function () {
+    if ($('#txtDriverAvailabilityType').val() != null && $('#txtDriverId').val() != '' && $('#txtDriverUsername').val() != '' && $('#txtDriverPassword').val() != '' && $('#txtDriverName').val() != '' && $('#txtDriverAddress').val() != '' && $('#txtDriverContact').val() != '' && $('#txtDriverNic').val() != '' && $('#txtDriverLicenseNo').val() != '') {
+        let userObject = {
+            username: $("#txtDriverUsername").val(),
+            password: $("#txtDriverPassword").val(),
+            role: "Driver"
+        };
 
-function clearManageCarSectionTextFields() {
-    $("#txtCarID").val("");
-    $("#txtRegNo").val("");
-    $("#txtCarBrand").val("");
-    $("#txtCarType").val("Select Vehicle Type");
-    $("#txtDailyRate").val("");
-    $("#txtMonthlyRate").val("");
-    $("#txtDailyMileage").val("");
-    $("#txtMonthlyMileage").val("");
-    $("#txtCarColor").val("");
-    $("#txtTransmissionType").val("Select Transmission Type");
-    $("#txtNoOfPassengers").val("");
-    $("#txtFuelType").val("Select Fuel Type");
-    $("#txtPricePerExtraKm").val("");
-    $("#txtLDWPayment").val("");
-    $("#txtLastServiceMileage").val("");
-    $("#txtAvailabilityType").val("Select Availability Type");
+        let driverObject = {
+            driverId: $("#txtDriverId").val(),
+            name: $("#txtDriverName").val(),
+            address: $("#txtDriverAddress").val(),
+            contactNumber: $("#txtDriverContact").val(),
+            nic: $("#txtDriverNic").val(),
+            licenseNo: $("#txtDriverLicenseNo").val(),
+            availabilityType: $("#txtDriverAvailabilityType").val(),
+            user_credentials: userObject
+        };
 
-    // Clear file choosers
-    $("#frontCarImageUploader").val("");
-    $("#backCarImageUploader").val("");
-    $("#sideCarImageUploader").val("");
-    $("#interiorCarImageUploader").val("");
-
-    // Clear images
-    $("#carFront_image").attr('src', "");
-    $("#carBack_image").attr('src', "");
-    $("#carSide_image").attr('src', "");
-    $("#carInterior_image").attr('src', "");
-}
-
-$("#btnClearCarData").on('click', function () {
-    clearManageCarSectionTextFields();
-});
-
-// Update Car
-$("#btnUpdateCar").on('click', function () {
-    let dailyRate = $("#txtDailyRate").val();
-    let monthlyRate = $("#txtMonthlyRate").val();
-    let dailyMileage = $("#txtDailyMileage").val();
-    let monthlyMileage = $("#txtMonthlyMileage").val();
-
-    let carObject = {
-        carId: $("#txtCarID").val(),
-        registerNum: $("#txtRegNo").val(),
-        brand: $("#txtCarBrand").val(),
-        type: $("#txtCarType").val(),
-        priceRate: {dailyRate: dailyRate, monthlyRate: monthlyRate},
-        freeMileage: {dailyMileage: dailyMileage, monthlyMileage: monthlyMileage},
-        color: $("#txtCarColor").val(),
-        transmissionType: $("#txtTransmissionType").val(),
-        numOfPassengers: $("#txtNoOfPassengers").val(),
-        fuelType: $("#txtFuelType").val(),
-        pricePerExtraKM: $("#txtPricePerExtraKm").val(),
-        lossDamageWaiver: $("#txtLDWPayment").val(),
-        lastServiceMileage: $("#txtLastServiceMileage").val(),
-        availabilityType: $("#txtAvailabilityType").val(),
-    };
-
-    Swal.fire({
-        title: 'Are you sure?',
-        text: "Do You Want to Update Car with Images.?",
-        icon: 'question',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, Update it!'
-    }).then((result) => {
-        if (!result.isConfirmed) {
-            $.ajax({
-                url: baseUrl + "car",
-                method: "put",
-                data: JSON.stringify(carObject),
-                contentType: "application/json",
-                success: function (res) {
-                    Swal.fire({
-                        position: 'top-end',
-                        icon: 'success',
-                        title: 'Car has been Successfully Updated',
-                        showConfirmButton: false,
-                        timer: 1500
-                    })
-                    loadAllCars();
-                },
-
-                error: function (error) {
-                    alert(JSON.parse(error.responseText).message);
-                }
-            });
-
-        } else {
-            if ($('#frontCarImageUploader')[0].files[0] != null && $('#backCarImageUploader')[0].files[0] != null && $('#sideCarImageUploader')[0].files[0] != null && $('#interiorCarImageUploader')[0].files[0] != null) {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "Do You Want to Update this Driver with License Image.?",
+            icon: 'question',
+            showCancelButton: true,
+            cancelButtonText: 'No',
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, Update it!'
+        }).then((result) => {
+            if (!result.isConfirmed) {
                 $.ajax({
-                    url: baseUrl + "car",
+                    url: baseUrl + "driver",
                     method: "put",
-                    data: JSON.stringify(carObject),
+                    data: JSON.stringify(driverObject),
                     contentType: "application/json",
                     success: function (res) {
-                        uploadCarImages($("#txtCarID").val());
-                        loadAllCars();
                         Swal.fire({
                             position: 'top-end',
                             icon: 'success',
-                            title: 'Car has been Successfully Updated',
+                            title: 'Driver has been Successfully Updated',
                             showConfirmButton: false,
                             timer: 1500
                         })
+                        loadAllDrivers();
                     },
 
                     error: function (error) {
                         alert(JSON.parse(error.responseText).message);
                     }
                 });
+
             } else {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Oops...',
-                    text: 'Car hasn\'t been Updated, Something Went Wrong..!',
-                })
+                if ($('#txtDriverLicenseImageUploader')[0].files[0] != null) {
+                    $.ajax({
+                        url: baseUrl + "driver",
+                        method: "put",
+                        data: JSON.stringify(driverObject),
+                        contentType: "application/json",
+                        success: function (res) {
+                            uploadDriverImages($("#txtDriverId").val());
+                            loadAllDrivers();
+                            Swal.fire({
+                                position: 'top-end',
+                                icon: 'success',
+                                title: 'Drivers has been Successfully Updated With License Image',
+                                showConfirmButton: false,
+                                timer: 1500
+                            })
+                        },
+
+                        error: function (error) {
+                            alert(JSON.parse(error.responseText).message);
+                        }
+                    });
+                } else {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Oops...',
+                        text: 'Driver hasn\'t been Updated, Something Went Wrong..!',
+                    })
+                }
             }
-        }
-    })
+        })
+    } else {
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'All Driver Fields Must be filled With data'
+        })
+    }
+    generateNewDriverID();
 });
 
 // Delete Car

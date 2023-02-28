@@ -73,6 +73,18 @@ public class DriverServiceImpl implements DriverService {
             driver.setContactNumber(driverDTO.getContactNumber());
             driver.setNic(driverDTO.getNic());
             driver.setLicenseNo(driverDTO.getLicenseNo());
+            if(driverDTO.getAvailabilityType() != null){
+                driver.setAvailabilityType(driverDTO.getAvailabilityType());
+            }
+
+            if(driverDTO.getUser_credentials() != null){
+                if (userRepo.existsByUsername(driverDTO.getUser_credentials().getUsername())) {
+                    userRepo.save(mapper.map(driverDTO.getUser_credentials(), User_credentials.class));
+                } else {
+                    throw new RuntimeException("This User isn't exists..!");
+                }
+            }
+
             driverRepo.save(driver);
         } else {
             throw new RuntimeException("This Driver is not exists..!");
