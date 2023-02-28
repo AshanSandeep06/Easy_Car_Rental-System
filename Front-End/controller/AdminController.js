@@ -1670,6 +1670,8 @@ function deleteDriverLicenseImage(driverID) {
     })
 }
 
+/*--------------------- View Driver Schedule ---------------------*/
+
 
 
 
