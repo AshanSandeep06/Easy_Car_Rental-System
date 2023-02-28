@@ -1372,6 +1372,7 @@ function loadAllDrivers() {
 function clearManageDriverSectionTextFields() {
     generateNewDriverID();
     $('#txtDriverAvailabilityType').val('Select Availability Type');
+    $('#txtDriverLicenseImageUploader').val('');
     $('#txtDriverUsername').val('');
     $('#txtDriverPassword').val('');
     $('#txtDriverName').val('');
@@ -1521,6 +1522,17 @@ function uploadDriverImages(driverId) {
 
 $('#btnClearDriverFields').on('click', function () {
     clearManageDriverSectionTextFields();
+});
+
+$("#txtDriverLicenseImageUploader").on('change', function (e) {
+    let file = e.target.files;
+    if (FileReader && file && file.length) {
+        let reader = new FileReader();
+        reader.onload = function () {
+            $("#driverLicenseImage").attr('src', reader.result);
+        }
+        reader.readAsDataURL(file[0]);
+    }
 });
 
 /* Get All Cars */
