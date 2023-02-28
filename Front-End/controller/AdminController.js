@@ -1884,3 +1884,7 @@ $('#btnClearDate').on('click', function () {
     $("#tblViewAvailableCarSchedule>tbody").empty();
     $("#tblViewRentedCarSchedule>tbody").empty();
 });
+
+/*--------------------- Manage Payments ---------------------*/
+
+
