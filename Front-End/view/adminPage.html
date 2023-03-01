@@ -1088,11 +1088,6 @@
             </div>
 
             <div class="col-md-3 col-lg-4 col-xl-3 col-md-4">
-                <label for="txtLDWPayment_rentDetails" class="form-label">Lost Damage Waiver</label>
-                <input type="text" class="form-control" id="txtLDWPayment_rentDetails">
-            </div>
-
-            <div class="col-md-3 col-lg-4 col-xl-3 col-md-4">
                 <label for="txtCarCost_rentDetails" class="form-label">Car Cost</label>
                 <input type="text" class="form-control" id="txtCarCost_rentDetails">
             </div>
@@ -1123,8 +1118,10 @@
                 <label for="txtProcess_rentDetails" class="form-label">Process</label>
                 <select id="txtProcess_rentDetails" class="form-select" aria-label="Default select example">
                     <option selected disabled>Select Rent Process Type</option>
-                    <option>Finished</option>
+                    <option>Pending</option>
+                    <option>Accepted</option>
                     <option>Ongoing</option>
+                    <option>Finished</option>
                 </select>
             </div>
 
@@ -1132,8 +1129,8 @@
 
             <div id="btnGroupManageRentDetails" style="margin-top: 32px; gap: 15px;"
                  class="col-12 d-inline-flex justify-content-md-end justify-content-center">
-                <button type="button" class="btn btn-primary">Update Details</button>
-                <button type="button" class="btn btn-secondary">Clear</button>
+                <button id="btnUpdate_RentDetailsSection" type="button" class="btn btn-primary">Update Details</button>
+                <button id="btnClear_RentDetailsSection" type="button" class="btn btn-secondary">Clear</button>
             </div>
         </form>
     </section>
@@ -1153,31 +1150,15 @@
                         <th>Driver ID</th>
                         <th>Customer ID</th>
                         <th>Customer Name</th>
-                        <th>Lost Damage Waiver</th>
                         <th>Car Cost</th>
                         <th>Driver Cost</th>
                         <th>Damage Fee</th>
                         <th>Last Service Mileage(Km)</th>
                         <th>Distance Mileage(Km)</th>
-                        <th>Process</th>
+                        <th>Status</th>
                     </tr>
                     </thead>
-                    <tbody>
-                    <tr>
-                        <td>R00-001</td>
-                        <td>V001</td>
-                        <td>D001</td>
-                        <td>C00-001</td>
-                        <td>Nimal Perera</td>
-                        <td>10,000</td>
-                        <td>50,000</td>
-                        <td>5000</td>
-                        <td>350</td>
-                        <td>250</td>
-                        <td>300</td>
-                        <td><span class="badge rounded-pill text-bg-warning">Ongoing</span></td>
-                    </tr>
-                    </tbody>
+                    <tbody></tbody>
                 </table>
             </div>
         </section>

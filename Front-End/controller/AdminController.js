@@ -117,6 +117,20 @@ $('#btnViewDriverSchedule').on('click', function () {
     loadAllDriversSchedule();
 });
 
+$('#btnViewCarSchedule').on('click', function () {
+    $('#adminDashboard').css("display", "none");
+    $("#manageRentalRequests_section").css('display', 'none');
+    $("#manageVehicle_section").css('display', 'none');
+    $("#manageBookings_section").css('display', 'none');
+    $("#manageCustomer_section").css('display', 'none');
+    $("#manageDriver_section").css('display', 'none');
+    $("#viewDriverSchedule_section").css('display', 'none');
+    $("#viewCarSchedule_section").css('display', 'block');
+    $("#adminProfile_section").css('display', 'none');
+    $("#manageRentDetails_section").css('display', 'none');
+    $("#managePayment_section").css('display', 'none');
+});
+
 $('#btnManagePayments').on('click', function () {
     $('#adminDashboard').css("display", "none");
     $("#manageRentalRequests_section").css('display', 'none');
@@ -144,6 +158,7 @@ $('#btnManageRentDetails').on('click', function () {
     $("#adminProfile_section").css('display', 'none');
     $("#manageRentDetails_section").css('display', 'block');
     $("#managePayment_section").css('display', 'none');
+    loadAllRentDetails();
 });
 
 $('#btnAdminProfile').on('click', function () {
@@ -760,9 +775,6 @@ function loadAllBookings() {
         success: function (resp) {
             if (resp.data != null) {
                 for (let rent of resp.data) {
-
-                    console.log(rent);
-
                     var xr = rent.pickUpDate;
                     var startDate = xr[0] + "-" + xr[1] + "-" + xr[2];
 
@@ -799,8 +811,8 @@ function loadAllBookings() {
                         $("#tblManageBookings>tbody").append(`<tr><td>${rent.rentId}</td><td>${rent.rentDetail[i].carId}</td><td>${rent.requestTypeOfDriver}</td><td>${rent.rentDetail[i].driver.driverId}</td><td>${rent.rentDetail[i].driver.name}</td><td>${startTime}</td><td>${startDate}</td><td>${returnTime}</td><td>${endDate}</td><td>${rent.rentStatus}</td><td>${rent.location}</td></tr>`);
                     }
                 }
-                bindRowClickEventsManageBookingsTable();
             }
+            bindRowClickEventsManageBookingsTable();
         }
     });
 }
@@ -1023,9 +1035,9 @@ $('#txtRentID').on('keyup', function (e) {
                             $("#tblManageBookings>tbody").append(`<tr><td>${rent.rentId}</td><td>${rent.rentDetail[i].carId}</td><td>${rent.requestTypeOfDriver}</td><td>${rent.rentDetail[i].driver.driverId}</td><td>${rent.rentDetail[i].driver.name}</td><td>${startTime}</td><td>${startDate}</td><td>${returnTime}</td><td>${endDate}</td><td>${rent.rentStatus}</td><td>${rent.location}</td></tr>`);
                         }
 
-                        bindRowClickEventsManageBookingsTable();
                         alert("Successfully Loaded Rent Data of " + $('#txtRentID').val());
                     }
+                    bindRowClickEventsManageBookingsTable();
                 },
 
                 error: function (error) {
@@ -2120,7 +2132,188 @@ $('#btnUpdate_ManagePaymentsSection').on('click', function () {
 });
 
 /*--------------------- Manage Rent Details ---------------------*/
+function loadAllRentDetails() {
+    $("#tblManageRentDetails>tbody").empty();
+    $.ajax({
+        url: baseUrl + "rent",
+        method: "get",
+        dataType: "json",
+        success: function (resp) {
+            if (resp.data != null) {
+                for (let rent of resp.data) {
+                    if (rent.rentStatus != "Denied" && rent.rentStatus != "Cancelled") {
+                        var tag = '<span class="badge rounded-5 text-bg-warning statusBadge" style="font-size: 13px;">' + rent.rentStatus + '</span>';
+                        for (let i = 0; i < rent.rentDetail.length; i++) {
+                            var lastServiceMileage;
+                            $.ajax({
+                                url: baseUrl + "car",
+                                method: "get",
+                                async: false,
+                                success: function (resp) {
+                                    if (resp.data != null) {
+                                        for (let c1 of resp.data) {
+                                            if (rent.rentDetail[i].carId == c1.carId) {
+                                                lastServiceMileage = c1.lastServiceMileage;
+                                            }
+                                        }
+                                    }
+                                }
+                            });
 
+                            $("#tblManageRentDetails>tbody").append(`<tr><td>${rent.rentId}</td><td>${rent.rentDetail[i].carId}</td><td>${rent.rentDetail[i].driver.driverId}</td><td>${rent.customer.customerId}</td><td>${rent.customer.name}</td><td>${rent.rentDetail[i].carCost}</td><td>${rent.rentDetail[i].driverCost}</td><td>${rent.rentDetail[i].damageFee}</td><td>${lastServiceMileage}</td><td>${rent.rentDetail[i].distanceMileage}</td><td>${tag}</td></tr>`);
+                        }
+                    }
+                }
+            }
+            bindRowClickEventsManageRentDetailsTable();
+            clearManageRentDetailsSectionTextFields();
+        }
+    });
+}
+
+$('#btnSearchRentDetails').on('click', function (e) {
+    if ($('#txtSearchRentDetails').val() != '') {
+        $.ajax({
+            url: baseUrl + "rent/" + $('#txtSearchRentDetails').val(),
+            method: "get",
+            success: function (resp) {
+                if (resp.data != null) {
+                    $("#tblManageRentDetails>tbody").empty();
+                    let rent = resp.data;
+                    if (rent.rentStatus != "Denied" && rent.rentStatus != "Cancelled") {
+                        var tag = '<span class="badge rounded-5 text-bg-warning statusBadge" style="font-size: 13px;">' + rent.rentStatus + '</span>';
+                        for (let i = 0; i < rent.rentDetail.length; i++) {
+                            var lastServiceMileage;
+                            $.ajax({
+                                url: baseUrl + "car",
+                                method: "get",
+                                async: false,
+                                success: function (resp) {
+                                    if (resp.data != null) {
+                                        for (let c1 of resp.data) {
+                                            if (rent.rentDetail[i].carId == c1.carId) {
+                                                lastServiceMileage = c1.lastServiceMileage;
+                                            }
+                                        }
+                                    }
+                                }
+                            });
+
+                            $("#tblManageRentDetails>tbody").append(`<tr><td>${rent.rentId}</td><td>${rent.rentDetail[i].carId}</td><td>${rent.rentDetail[i].driver.driverId}</td><td>${rent.customer.customerId}</td><td>${rent.customer.name}</td><td>${rent.rentDetail[i].carCost}</td><td>${rent.rentDetail[i].driverCost}</td><td>${rent.rentDetail[i].damageFee}</td><td>${lastServiceMileage}</td><td>${rent.rentDetail[i].distanceMileage}</td><td>${tag}</td></tr>`);
+                        }
+
+                        bindRowClickEventsManageRentDetailsTable();
+                    }
+                }
+            },
+
+            error: function (error) {
+                $("#tblManageRentDetails>tbody").empty();
+                alert(JSON.parse(error.responseText).message);
+            }
+        });
+    }
+});
+
+function bindRowClickEventsManageRentDetailsTable() {
+    $("#tblManageRentDetails>tbody>tr").on('click', function () {
+        let rentID = $(this).children(":eq(0)").text();
+        let carID = $(this).children(":eq(1)").text();
+        let driverID = $(this).children(":eq(2)").text();
+        let customerID = $(this).children(":eq(3)").text();
+        let customerName = $(this).children(":eq(4)").text();
+        let carCost = $(this).children(":eq(5)").text();
+        let driverCost = $(this).children(":eq(6)").text();
+        let damageFee = $(this).children(":eq(7)").text();
+        let lastServiceMileage = $(this).children(":eq(8)").text();
+        let travelledDistance = $(this).children(":eq(9)").text();
+        let process = $(this).children(":eq(10)").text();
+
+        setTextFieldValues(rentID, carID, driverID, customerID, customerName, carCost, driverCost, damageFee, lastServiceMileage, travelledDistance, process);
+    });
+}
+
+function setTextFieldValues(rentID, carID, driverID, customerID, customerName, carCost, driverCost, damageFee, lastServiceMileage, travelledDistance, process) {
+    $('#txtRentID_rentDetails').val(rentID);
+    $('#txtCarID_rentDetails').val(carID);
+    $('#txtDriverID_rentDetails').val(driverID);
+    $('#txtCustomerID_rentDetails').val(customerID);
+    $('#txtCustomerName_rentDetails').val(customerName);
+    $('#txtCarCost_rentDetails').val(carCost);
+    $('#txtDriverCost_rentDetails').val(driverCost);
+    $('#txtDamageFee_rentDetails').val(damageFee);
+    $('#txtLastServiceMileage_rentDetails').val(lastServiceMileage);
+    $('#txtDistanceMileage_rentDetails').val(travelledDistance);
+    $('#txtProcess_rentDetails').val(process);
+}
+
+function clearManageRentDetailsSectionTextFields() {
+    $('#txtSearchRentDetails').val('');
+    $('#txtRentID_rentDetails').val('');
+    $('#txtCarID_rentDetails').val('');
+    $('#txtDriverID_rentDetails').val('');
+    $('#txtCustomerID_rentDetails').val('');
+    $('#txtCustomerName_rentDetails').val('');
+    $('#txtCarCost_rentDetails').val('');
+    $('#txtDriverCost_rentDetails').val('');
+    $('#txtDamageFee_rentDetails').val('');
+    $('#txtLastServiceMileage_rentDetails').val('');
+    $('#txtDistanceMileage_rentDetails').val('');
+    $('#txtProcess_rentDetails').val('');
+}
+
+$('#btnClear_RentDetailsSection').on('click', function () {
+    loadAllRentDetails();
+    clearManageRentDetailsSectionTextFields();
+});
+
+$('#btnUpdate_RentDetailsSection').on('click', function () {
+    if ($('#txtRentID_rentDetails').val() != '' && $('#txtCarID_rentDetails').val() != '' && $('#txtDriverID_rentDetails').val() != '' && $('#txtCustomerID_rentDetails').val() != '' && $('#txtCustomerName_rentDetails').val() != '' && $('#txtCarCost_rentDetails').val() != '' && $('#txtDriverCost_rentDetails').val() != '' && $('#txtDamageFee_rentDetails').val() != '' && $('#txtLastServiceMileage_rentDetails').val() != '' && $('#txtDistanceMileage_rentDetails').val() != '' && $('#txtProcess_rentDetails').val() != '') {
+        var driverObject = {
+            driverId: $('#txtDriverID_rentDetails').val()
+        };
+
+        var rentDetailsObject = {
+            rentId: $('#txtRentID_rentDetails').val(),
+            carId: $('#txtCarID_rentDetails').val(),
+            distanceMileage: $('#txtDistanceMileage_rentDetails').val(),
+            carCost: $('#txtCarCost_rentDetails').val(),
+            driverCost: $('#txtDriverCost_rentDetails').val(),
+            damageFee: $('#txtDamageFee_rentDetails').val(),
+            driver: driverObject,
+        };
+
+        $.ajax({
+            url: baseUrl + "rent_detail",
+            method: "put",
+            data: JSON.stringify(rentDetailsObject),
+            contentType: "application/json",
+            dataType: "json",
+
+            success: function (resp) {
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'Rent Details has been Updated Successfully',
+                    showConfirmButton: false,
+                    timer: 1500
+                })
+                loadAllRentDetails();
+            },
+
+            error: function (error) {
+                alert(JSON.parse(error.responseText).message);
+            }
+        });
+
+    } else {
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'All Fields Should be filled with Data'
+        })
+    }
+});
 
 
 
