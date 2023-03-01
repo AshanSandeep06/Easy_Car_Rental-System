@@ -30,6 +30,11 @@ public class CustomerController {
         return new ResponseUtil("OK", "Loaded All Customers Successfully..!", customerService.getAllCustomers());
     }
 
+    @GetMapping(path = "/admin/dashBoard/getAllCustomerCount")
+    public ResponseUtil getCustomerCount() {
+        return new ResponseUtil("OK", "Loaded All Customer Count..!", customerService.getCustomerCount());
+    }
+
     @GetMapping(params = {"username"})
     public ResponseUtil getCustomerDetails(@RequestParam("username") String customerUsername) {
         return new ResponseUtil("OK", "Customer Details has been loaded Successfully..!", customerService.getCustomerDetails(customerUsername));

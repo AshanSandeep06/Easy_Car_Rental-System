@@ -17,4 +17,6 @@ public interface RentService {
     int getOngoingRentalsCount(String customerId);
     RentDTO getRentByRentID(String rentId);
     void updateBookings(RentDTO rentDTO);
+    int getTotalBookingsCount();
+    int getActiveBookingsCount();
 }

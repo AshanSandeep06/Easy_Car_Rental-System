@@ -31,4 +31,7 @@ public interface CustomerRepo extends JpaRepository<Customer, String> {
 
     Customer findCustomerByNic(String nic);
     Boolean existsCustomerByNic(String nic);
+
+    @Query(nativeQuery = true, value = "SELECT COUNT(customerId) FROM Customer")
+    int getCustomerCount();
 }

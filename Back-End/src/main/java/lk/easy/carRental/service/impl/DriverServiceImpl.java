@@ -64,6 +64,16 @@ public class DriverServiceImpl implements DriverService {
     }
 
     @Override
+    public int getOccupiedDriverCount() {
+        return driverRepo.getOccupiedDriverCount();
+    }
+
+    @Override
+    public int getAvailableDriversCount() {
+        return driverRepo.getAvailableDriversCount();
+    }
+
+    @Override
     public DriverDTO getDriverDetails(String driverUsername) {
         if (userRepo.existsByUsername(driverUsername)) {
             return mapper.map(driverRepo.findDriverByUsername(driverUsername), DriverDTO.class);

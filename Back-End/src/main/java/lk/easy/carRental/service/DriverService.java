@@ -15,4 +15,6 @@ public interface DriverService {
     String getDriverName(String driverId);
     String generateNewDriverID();
     void deleteDriver(String driverID);
+    int getOccupiedDriverCount();
+    int getAvailableDriversCount();
 }

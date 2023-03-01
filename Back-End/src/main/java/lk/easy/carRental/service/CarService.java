@@ -16,4 +16,8 @@ public interface CarService {
     ImageDTO getCarImages(String carId);
     Long getCarCountByCarBrandAndAvailabilityType(String carBrand, String availabilityType);
     CarDTO getCarFromCarID(String carID);
+    int getAvailableCarCount();
+    int getReservedCarCount();
+    int getNeedToMaintenanceCarCount();
+    int getUnderMaintenanceCarCount();
 }

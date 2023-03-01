@@ -23,6 +23,16 @@ public class RentController {
         return new ResponseUtil("OK", "Loaded All Bookings Successfully..!", rentService.getRentByRentID(rentID));
     }
 
+    @GetMapping(path = "/admin/dashBoard/totalBookings")
+    public ResponseUtil getTotalBookingsCount(){
+        return new ResponseUtil("OK", "Loaded All Bookings Count Successfully..!", rentService.getTotalBookingsCount());
+    }
+
+    @GetMapping(path = "/admin/dashBoard/allBookings/getActiveBookings")
+    public ResponseUtil getActiveBookingsCount(){
+        return new ResponseUtil("OK", "Loaded All Active Bookings Count Successfully..!", rentService.getActiveBookingsCount());
+    }
+
     @GetMapping(params = {"driverRequestingType"})
     public ResponseUtil getAllRentsByDriverRequestingType(@RequestParam String driverRequestingType) {
         return new ResponseUtil("OK", "Load All Drivers' Work Schedule..!", rentService.getAllRentsByDriverRequestingType(driverRequestingType));

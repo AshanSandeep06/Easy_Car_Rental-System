@@ -29,4 +29,9 @@ public interface RentRepo extends JpaRepository<Rent, String> {
     ArrayList<Rent> findAllByRequestTypeOfDriver(String requestTypeOfDriver);
 
     ArrayList<Rent> findAllByRentStatus(String rentStatus);
+    @Query(nativeQuery = true, value = "SELECT COUNT(rentId) FROM Rent")
+    int getTotalBookingsCount();
+
+    @Query(nativeQuery = true, value = "SELECT COUNT(rentId) FROM Rent WHERE rentStatus='Ongoing'")
+    int getActiveBookingsCount();
 }

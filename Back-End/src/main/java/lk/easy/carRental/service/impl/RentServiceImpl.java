@@ -213,4 +213,14 @@ public class RentServiceImpl implements RentService {
             throw new RuntimeException("This Rent is not exists");
         }
     }
+
+    @Override
+    public int getTotalBookingsCount() {
+        return rentRepo.getTotalBookingsCount();
+    }
+
+    @Override
+    public int getActiveBookingsCount() {
+        return 0;
+    }
 }

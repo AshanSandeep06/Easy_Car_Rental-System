@@ -19,4 +19,5 @@ public interface CustomerService {
     ArrayList<CustomerDTO> getAllCustomers();
     CustomerDTO getCustomerByCustomerID(String customerId);
     CustomerDTO getCustomerByCustomerNIC(String customerNIC);
+    int getCustomerCount();
 }

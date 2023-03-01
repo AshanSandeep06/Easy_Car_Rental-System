@@ -11,7 +11,82 @@ $(function () {
     $("#adminProfile_section").css('display', 'none');
     $("#manageRentDetails_section").css('display', 'none');
     $("#managePayment_section").css('display', 'none');
+    loadDashBoard();
 });
+
+function loadDashBoard() {
+    $.ajax({
+        url: baseUrl + "customer/admin/dashBoard/getAllCustomerCount",
+        method: "get",
+        success: function (resp) {
+            $('#registeredUsersCount').text(resp.data);
+        }
+    });
+
+    $.ajax({
+        url: baseUrl + "rent/admin/dashBoard/totalBookings",
+        method: "get",
+        success: function (resp) {
+            $('#totalBookingsCount').text(resp.data);
+        }
+    });
+
+    $.ajax({
+        url: baseUrl + "rent/admin/dashBoard/allBookings/getActiveBookings",
+        method: "get",
+        success: function (resp) {
+            $('#activeBookingsCount').text(resp.data);
+        }
+    });
+
+    $.ajax({
+        url: baseUrl + "car/admin/dashBoard/availableCars",
+        method: "get",
+        success: function (resp) {
+            $('#availableCarCount').text(resp.data);
+        }
+    });
+
+    $.ajax({
+        url: baseUrl + "car/adminDashBoard/reservedCars",
+        method: "get",
+        success: function (resp) {
+            $('#reservedCarCount').text(resp.data);
+        }
+    });
+
+    $.ajax({
+        url: baseUrl + "driver/adminDashBoard/occupiedDrivers",
+        method: "get",
+        success: function (resp) {
+            $('#occupiedDriversCount').text(resp.data);
+        }
+    });
+
+    $.ajax({
+        url: baseUrl + "driver/admin/dashBoard/availableDrivers",
+        method: "get",
+        success: function (resp) {
+            $('#availableDriversCount').text(resp.data);
+        }
+    });
+
+    $.ajax({
+        url: baseUrl + "car/admin/dashBoard/needToMaintenance/carCount",
+        method: "get",
+        success: function (resp) {
+            $('#needToMaintenanceCount').text(resp.data);
+        }
+    });
+
+    $.ajax({
+        url: baseUrl + "car/admin/dashBoard/maintenance/underMaintenance/carCount",
+        method: "get",
+        success: function (resp) {
+            $('#underMaintenanceCount').text(resp.data);
+        }
+    });
+}
 
 $('#btnAdminDashBoard').on('click', function () {
     $('#adminDashboard').css("display", "flex");
@@ -25,6 +100,7 @@ $('#btnAdminDashBoard').on('click', function () {
     $("#adminProfile_section").css('display', 'none');
     $("#manageRentDetails_section").css('display', 'none');
     $("#managePayment_section").css('display', 'none');
+    loadDashBoard();
 });
 
 $('#btnRentalRequests').on('click', function () {

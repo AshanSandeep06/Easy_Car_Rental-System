@@ -42,6 +42,26 @@ public class CarController {
         return new ResponseUtil("OK", "Successfully Loaded All Cars", carService.getAllCarsSortFromBrand());
     }
 
+    @GetMapping(path = "/admin/dashBoard/availableCars")
+    public ResponseUtil getAvailableCarCount() {
+        return new ResponseUtil("OK", "Successfully Loaded Available Car Count", carService.getAvailableCarCount());
+    }
+
+    @GetMapping(path = "/admin/dashBoard/needToMaintenance/carCount")
+    public ResponseUtil getNeedToMaintenanceCarCount() {
+        return new ResponseUtil("OK", "Successfully Loaded needToMaintenance Car Count", carService.getNeedToMaintenanceCarCount());
+    }
+
+    @GetMapping(path = "/admin/dashBoard/maintenance/underMaintenance/carCount")
+    public ResponseUtil getUnderMaintenanceCarCount() {
+        return new ResponseUtil("OK", "Successfully Loaded underMaintenance Car Count", carService.getUnderMaintenanceCarCount());
+    }
+
+    @GetMapping(path = "/adminDashBoard/reservedCars")
+    public ResponseUtil getReservedCarCount() {
+        return new ResponseUtil("OK", "Successfully Loaded Reserved Car Count", carService.getReservedCarCount());
+    }
+
     @GetMapping(path = "/getCarImages/{carId}")
     public ResponseUtil getCarImages(@PathVariable String carId) {
         return new ResponseUtil("OK", "Successfully Loaded Car Images of " + carId, carService.getCarImages(carId));

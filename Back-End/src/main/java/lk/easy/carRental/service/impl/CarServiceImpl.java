@@ -140,4 +140,24 @@ public class CarServiceImpl implements CarService {
     public CarDTO getCarFromCarID(String carID) {
         return mapper.map(carRepo.findCarByCarId(carID), CarDTO.class);
     }
+
+    @Override
+    public int getAvailableCarCount() {
+        return carRepo.getAvailableCarCount();
+    }
+
+    @Override
+    public int getReservedCarCount() {
+        return carRepo.getReservedCarCount();
+    }
+
+    @Override
+    public int getNeedToMaintenanceCarCount() {
+        return carRepo.getNeedToMaintenanceCarCount();
+    }
+
+    @Override
+    public int getUnderMaintenanceCarCount() {
+        return carRepo.getUnderMaintenanceCarCount();
+    }
 }

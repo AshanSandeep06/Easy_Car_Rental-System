@@ -32,6 +32,16 @@ public class DriverController {
         return new ResponseUtil("OK", "Driver Details has been loaded Successfully..!", driverService.getDriverDetails(driverUsername));
     }
 
+    @GetMapping(path = "/adminDashBoard/occupiedDrivers")
+    public ResponseUtil getOccupiedDriverCount() {
+        return new ResponseUtil("OK", "Occupied Driver Count Returned..!", driverService.getOccupiedDriverCount());
+    }
+
+    @GetMapping(path = "/admin/dashBoard/availableDrivers")
+    public ResponseUtil getAvailableDriversCount() {
+        return new ResponseUtil("OK", "Available Driver Count Returned..!", driverService.getAvailableDriversCount());
+    }
+
     @GetMapping(path = "/getDriverName", params = {"driverId"})
     public ResponseUtil getDriverName(@RequestParam String driverId) {
         return new ResponseUtil("OK", driverId + " driver name has been loaded Successfully..!", driverService.getDriverName(driverId));
