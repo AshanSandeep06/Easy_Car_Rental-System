@@ -67,16 +67,5 @@ public class Test {
         System.out.println(entity);*/
 
 
-        List<String> list = new ArrayList<>();
-        list.add("Amal");
-        list.add("Bimal");
-        list.add("Nimal");
-
-        Random random = new Random();
-        // Generates random integers 0 to 2
-        int x = random.nextInt(list.size()); //3
-        System.out.println(x);
-
-
     }
 }
