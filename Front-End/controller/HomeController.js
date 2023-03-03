@@ -1,6 +1,7 @@
 let baseUrl = "http://localhost:8085/Back_End_war/";
 $(function () {
     $("#resetPasswordForm").css('display', 'none');
+    $('#sortingContainer').children().css('display', 'none');
 });
 
 $("#btnForgotPassword").click(function () {
@@ -328,4 +329,58 @@ $(".cars_btn").on('click', function () {
         'You Must Register or Login First',
         'question'
     )
+});
+
+$('#txtSortingType').on('change', function () {
+    if ($('#txtSortingType') != null) {
+        if ($('#txtSortingType').val() === "Type") {
+            $('#vehicleTypeRow').css('display', 'flex');
+            $('#brandRow').css('display', 'none');
+            $('#fuelTypeRow').css('display', 'none');
+            $('#transmissionTypeRow').css('display', 'none');
+            $('#priceRow').css('display', 'none');
+            $('#NoOfPassengersRow').css('display', 'none');
+
+        } else if ($('#txtSortingType').val() === "Brand") {
+            $('#vehicleTypeRow').css('display', 'none');
+            $('#brandRow').css('display', 'flex');
+            $('#fuelTypeRow').css('display', 'none');
+            $('#transmissionTypeRow').css('display', 'none');
+            $('#priceRow').css('display', 'none');
+            $('#NoOfPassengersRow').css('display', 'none');
+
+        } else if ($('#txtSortingType').val() === "Fuel Type") {
+            $('#vehicleTypeRow').css('display', 'none');
+            $('#brandRow').css('display', 'none');
+            $('#fuelTypeRow').css('display', 'flex');
+            $('#transmissionTypeRow').css('display', 'none');
+            $('#priceRow').css('display', 'none');
+            $('#NoOfPassengersRow').css('display', 'none');
+
+        } else if ($('#txtSortingType').val() === "Transmission Type") {
+            $('#vehicleTypeRow').css('display', 'none');
+            $('#brandRow').css('display', 'none');
+            $('#fuelTypeRow').css('display', 'none');
+            $('#transmissionTypeRow').css('display', 'flex');
+            $('#priceRow').css('display', 'none');
+            $('#NoOfPassengersRow').css('display', 'none');
+
+        } else if ($('#txtSortingType').val() === "Price") {
+            $('#vehicleTypeRow').css('display', 'none');
+            $('#brandRow').css('display', 'none');
+            $('#fuelTypeRow').css('display', 'none');
+            $('#transmissionTypeRow').css('display', 'none');
+            $('#priceRow').css('display', 'flex');
+            $('#NoOfPassengersRow').css('display', 'none');
+
+        } else {
+            $('#vehicleTypeRow').css('display', 'none');
+            $('#brandRow').css('display', 'none');
+            $('#fuelTypeRow').css('display', 'none');
+            $('#transmissionTypeRow').css('display', 'none');
+            $('#priceRow').css('display', 'none');
+            $('#NoOfPassengersRow').css('display', 'flex');
+
+        }
+    }
 });
