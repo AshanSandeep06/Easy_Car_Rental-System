@@ -297,7 +297,7 @@
     <!--Cars collection-->
     <section id="carsCollection" class="row">
         <section class="row justify-content-center">
-            <div class="col-xl-3 col-lg-4 col-md-5 col-12 text-center">
+            <div class="col-xl-3 col-lg-4 col-md-5 col-10 text-center" style="margin-bottom: 20px;">
                 <select id="txtSortingType" class="form-select" aria-label="Default select example" name="type">
                     <option selected disabled>Sort By</option>
                     <option>Type</option>
@@ -309,28 +309,30 @@
                 </select>
             </div>
 
-            <div class="col-xl-3 col-lg-4 col-md-5 col-12 text-center">
-                <button id="btnClearSorting" type="button" class="btn btn-secondary">Clear</button>
+            <div class="col-xl-2 col-lg-3 col-md-4 col-10 text-center" style="margin-bottom: 19px;">
+                <button id="btnClearSorting" type="button" class="btn btn-secondary"
+                        style="padding-left: 24px;padding-right: 24px;">Clear
+                </button>
             </div>
         </section>
 
-        <section id="sortingRow" class="row justify-content-center">
-            <section id="vehicleTypeRow" class="row">
-                <div class="form-check col-md-4">
+        <section id="sortingContainer" class="row justify-content-center">
+            <section id="vehicleTypeRow" class="row col-md-7 justify-content-center">
+                <div class="form-check col-md-4 col-sm-4 col-7 d-flex" style="justify-content: center; gap: 12px;">
                     <input class="form-check-input" name="carType" type="radio" id="general">
                     <label class="form-check-label" for="general">
                         General
                     </label>
                 </div>
 
-                <div class="form-check col-md-4">
+                <div class="form-check col-md-4 col-sm-4 col-7 d-flex" style="justify-content: center; gap: 12px;">
                     <input class="form-check-input" name="carType" type="radio" id="premium">
                     <label class="form-check-label" for="premium">
                         Premium
                     </label>
                 </div>
 
-                <div class="form-check col-md-4">
+                <div class="form-check col-md-4 col-sm-4 col-7 d-flex" style="justify-content: center; gap: 12px;">
                     <input class="form-check-input" name="carType" type="radio" id="luxury">
                     <label class="form-check-label" for="luxury">
                         Luxury
@@ -338,36 +340,36 @@
                 </div>
             </section>
 
-            <section id="brandRow" class="row">
-                <div class="form-check col-md-4">
+            <section id="brandRow" class="row col-md-7 justify-content-center">
+                <div class="form-check col-md-4 col-sm-4 col-7 d-flex" style="justify-content: center; gap: 12px;">
                     <input class="form-check-input" name="carBrand" type="radio" id="suzuki">
                     <label class="form-check-label" for="suzuki">
                         Suzuki
                     </label>
                 </div>
 
-                <div class="form-check col-md-4">
+                <div class="form-check col-md-4 col-sm-4 col-7 d-flex" style="justify-content: center; gap: 12px;">
                     <input class="form-check-input" name="carBrand" type="radio" id="toyota">
                     <label class="form-check-label" for="toyota">
                         Toyota
                     </label>
                 </div>
 
-                <div class="form-check col-md-4">
+                <div class="form-check col-md-4 col-sm-4 col-7 d-flex" style="justify-content: center; gap: 12px;">
                     <input class="form-check-input" name="carBrand" type="radio" id="perodua">
                     <label class="form-check-label" for="perodua">
                         Perodua
                     </label>
                 </div>
 
-                <div class="form-check col-md-4">
+                <div class="form-check col-md-4 col-sm-4 col-7 d-flex" style="justify-content: center; gap: 12px;">
                     <input class="form-check-input" name="carBrand" type="radio" id="mercedes">
                     <label class="form-check-label" for="mercedes">
                         Mercedes
                     </label>
                 </div>
 
-                <div class="form-check col-md-4">
+                <div class="form-check col-md-4 col-sm-4 col-7 d-flex" style="justify-content: center; gap: 12px;">
                     <input class="form-check-input" name="carBrand" type="radio" id="BMW">
                     <label class="form-check-label" for="BMW">
                         BMW
@@ -375,15 +377,15 @@
                 </div>
             </section>
 
-            <section id="fuelTypeRow" class="row">
-                <div class="form-check col-md-4">
+            <section id="fuelTypeRow" class="row col-md-7 justify-content-center">
+                <div class="form-check col-md-4 col-sm-4 col-7 d-flex" style="justify-content: center; gap: 12px;">
                     <input class="form-check-input" name="fuelType" type="radio" id="diesel">
                     <label class="form-check-label" for="diesel">
                         Diesel
                     </label>
                 </div>
 
-                <div class="form-check col-md-4">
+                <div class="form-check col-md-4 col-sm-4 col-7 d-flex" style="justify-content: center; gap: 12px;">
                     <input class="form-check-input" name="fuelType" type="radio" id="petrol">
                     <label class="form-check-label" for="petrol">
                         Petrol
@@ -391,15 +393,15 @@
                 </div>
             </section>
 
-            <section id="transmissionTypeRow" class="row">
-                <div class="form-check col-md-4">
+            <section id="transmissionTypeRow" class="row col-md-7 justify-content-center">
+                <div class="form-check col-md-4 col-sm-4 col-7 d-flex" style="justify-content: center; gap: 12px;">
                     <input class="form-check-input" name="transmissionType" type="radio" id="auto">
                     <label class="form-check-label" for="auto">
                         Auto
                     </label>
                 </div>
 
-                <div class="form-check col-md-4">
+                <div class="form-check col-md-4 col-sm-4 col-7 d-flex" style="justify-content: center; gap: 12px;">
                     <input class="form-check-input" name="transmissionType" type="radio" id="manual">
                     <label class="form-check-label" for="manual">
                         Manual
@@ -407,30 +409,30 @@
                 </div>
             </section>
 
-            <section id="priceRow" class="row">
-                <div class="form-floating mb-3">
+            <section id="priceRow" class="row col-md-7 justify-content-center">
+                <div class="form-check col-md-4 col-sm-4 col-7 d-flex" style="justify-content: center; gap: 12px;">
                     <input style="padding-top: 1.7rem!important;" type="text" class="form-control"
                            id="txtEnterPrice" placeholder="name@example.com">
                     <label style="left: 10px!important; width: 98%;" for="txtEnterPrice">Enter Your Price</label>
                 </div>
             </section>
 
-            <section id="NoOfPassengersRow" class="row">
-                <div class="form-check col-md-4">
+            <section id="NoOfPassengersRow" class="row col-md-7 justify-content-center">
+                <div class="form-check col-md-4 col-sm-4 col-7 d-flex" style="justify-content: center; gap: 12px;">
                     <input class="form-check-input" name="noOfPassengersCount" type="radio" id="four">
                     <label class="form-check-label" for="four">
                         4
                     </label>
                 </div>
 
-                <div class="form-check col-md-4">
+                <div class="form-check col-md-4 col-sm-4 col-7 d-flex" style="justify-content: center; gap: 12px;">
                     <input class="form-check-input" name="noOfPassengersCount" type="radio" id="six">
                     <label class="form-check-label" for="six">
                         6
                     </label>
                 </div>
 
-                <div class="form-check col-md-4">
+                <div class="form-check col-md-4 col-sm-4 col-7 d-flex" style="justify-content: center; gap: 12px;">
                     <input class="form-check-input" name="noOfPassengersCount" type="radio" id="eight">
                     <label class="form-check-label" for="eight">
                         8
