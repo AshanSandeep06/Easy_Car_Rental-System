@@ -90,10 +90,6 @@
             <div class="carousel-item active">
                 <img src="assets/img/car-02.jpg" class="d-block w-100" alt="..."
                      style="height: 100%; object-fit: cover">
-                <!--<div class="carousel-caption d-none d-md-block">
-                    <h5>First slide label</h5>
-                    <p>Some representative placeholder content for the first slide.</p>
-                </div>-->
             </div>
 
             <div class="carousel-item">
@@ -302,8 +298,145 @@
     <section id="carsCollection" class="row">
         <section class="row justify-content-center">
             <div class="col-xl-3 col-lg-4 col-md-5 col-12 text-center">
-                <h2>General Cars</h2>
+                <select id="txtSortingType" class="form-select" aria-label="Default select example" name="type">
+                    <option selected disabled>Sort By</option>
+                    <option>Type</option>
+                    <option>Brand</option>
+                    <option>Fuel Type</option>
+                    <option>Transmission Type</option>
+                    <option>Price</option>
+                    <option>No Of Passengers</option>
+                </select>
             </div>
+
+            <div class="col-xl-3 col-lg-4 col-md-5 col-12 text-center">
+                <button id="btnClearSorting" type="button" class="btn btn-secondary">Clear</button>
+            </div>
+        </section>
+
+        <section id="sortingRow" class="row justify-content-center">
+            <section id="vehicleTypeRow" class="row">
+                <div class="form-check col-md-4">
+                    <input class="form-check-input" name="carType" type="radio" id="general">
+                    <label class="form-check-label" for="general">
+                        General
+                    </label>
+                </div>
+
+                <div class="form-check col-md-4">
+                    <input class="form-check-input" name="carType" type="radio" id="premium">
+                    <label class="form-check-label" for="premium">
+                        Premium
+                    </label>
+                </div>
+
+                <div class="form-check col-md-4">
+                    <input class="form-check-input" name="carType" type="radio" id="luxury">
+                    <label class="form-check-label" for="luxury">
+                        Luxury
+                    </label>
+                </div>
+            </section>
+
+            <section id="brandRow" class="row">
+                <div class="form-check col-md-4">
+                    <input class="form-check-input" name="carBrand" type="radio" id="suzuki">
+                    <label class="form-check-label" for="suzuki">
+                        Suzuki
+                    </label>
+                </div>
+
+                <div class="form-check col-md-4">
+                    <input class="form-check-input" name="carBrand" type="radio" id="toyota">
+                    <label class="form-check-label" for="toyota">
+                        Toyota
+                    </label>
+                </div>
+
+                <div class="form-check col-md-4">
+                    <input class="form-check-input" name="carBrand" type="radio" id="perodua">
+                    <label class="form-check-label" for="perodua">
+                        Perodua
+                    </label>
+                </div>
+
+                <div class="form-check col-md-4">
+                    <input class="form-check-input" name="carBrand" type="radio" id="mercedes">
+                    <label class="form-check-label" for="mercedes">
+                        Mercedes
+                    </label>
+                </div>
+
+                <div class="form-check col-md-4">
+                    <input class="form-check-input" name="carBrand" type="radio" id="BMW">
+                    <label class="form-check-label" for="BMW">
+                        BMW
+                    </label>
+                </div>
+            </section>
+
+            <section id="fuelTypeRow" class="row">
+                <div class="form-check col-md-4">
+                    <input class="form-check-input" name="fuelType" type="radio" id="diesel">
+                    <label class="form-check-label" for="diesel">
+                        Diesel
+                    </label>
+                </div>
+
+                <div class="form-check col-md-4">
+                    <input class="form-check-input" name="fuelType" type="radio" id="petrol">
+                    <label class="form-check-label" for="petrol">
+                        Petrol
+                    </label>
+                </div>
+            </section>
+
+            <section id="transmissionTypeRow" class="row">
+                <div class="form-check col-md-4">
+                    <input class="form-check-input" name="transmissionType" type="radio" id="auto">
+                    <label class="form-check-label" for="auto">
+                        Auto
+                    </label>
+                </div>
+
+                <div class="form-check col-md-4">
+                    <input class="form-check-input" name="transmissionType" type="radio" id="manual">
+                    <label class="form-check-label" for="manual">
+                        Manual
+                    </label>
+                </div>
+            </section>
+
+            <section id="priceRow" class="row">
+                <div class="form-floating mb-3">
+                    <input style="padding-top: 1.7rem!important;" type="text" class="form-control"
+                           id="txtEnterPrice" placeholder="name@example.com">
+                    <label style="left: 10px!important; width: 98%;" for="txtEnterPrice">Enter Your Price</label>
+                </div>
+            </section>
+
+            <section id="NoOfPassengersRow" class="row">
+                <div class="form-check col-md-4">
+                    <input class="form-check-input" name="noOfPassengersCount" type="radio" id="four">
+                    <label class="form-check-label" for="four">
+                        4
+                    </label>
+                </div>
+
+                <div class="form-check col-md-4">
+                    <input class="form-check-input" name="noOfPassengersCount" type="radio" id="six">
+                    <label class="form-check-label" for="six">
+                        6
+                    </label>
+                </div>
+
+                <div class="form-check col-md-4">
+                    <input class="form-check-input" name="noOfPassengersCount" type="radio" id="eight">
+                    <label class="form-check-label" for="eight">
+                        8
+                    </label>
+                </div>
+            </section>
         </section>
 
         <!--General Cars-->
@@ -544,416 +677,6 @@
                     <p class="assignments_p pricePerExtraKm">Price Per Extra Km - 30.00 LKR</p>
 
                     <button id="btnCar-05" class="cars_btn" type="button" data-bs-toggle="offcanvas"
-                            data-bs-target="#loginForm" aria-controls="staticBackdrop">
-                        Book Now
-                        <a></a>
-                    </button>
-                </div>
-
-                <div class="col-12">
-                    <img src="/assets/img/car-06.jpg" alt="Assignment 01">
-                </div>
-
-                <div class="col-12">
-                    <h2>Suzuki Alto - Premium</h2>
-                </div>
-
-                <div class="row col-12">
-                    <h2 class="row col-4">
-                        <i class="fa-solid fa-gas-pump"></i>
-                        Petrol
-                    </h2>
-                    <h2 class="row col-4">
-                        <i class="fa-solid fa-users"></i>
-                        4
-                    </h2>
-                    <h2 class="row col-4">
-                        <i class="fa-solid fa-gear"></i>
-                        Manual
-                    </h2>
-                </div>
-
-                <div class="row col-12">
-                    <h2 class="row col-6">
-                        <span>Rs.2500</span>
-                        <span>Day</span>
-                    </h2>
-
-                    <h2 class="row col-6">
-                        <span>Rs.64,350</span>
-                        <span>Month</span>
-                    </h2>
-                </div>
-
-            </div>
-        </section>
-
-        <section class="row justify-content-center">
-            <div class="col-xl-3 col-lg-4 col-md-5 col-12 text-center">
-                <h2>Premium Cars</h2>
-            </div>
-        </section>
-
-        <!--Premium Cars-->
-        <section class="carDetails_section row col-12 position-relative justify-content-center">
-            <div class="row col-3">
-                <div class="svg-wrapper">
-                    <svg height="100%" width="100%">
-                        <rect class="shape1" height="100%" width="100%"/>
-                        <rect class="shape2" height="100%" width="100%"/>
-                    </svg>
-                    <p class="assignments_p brand">Brand - Suzuki</p>
-                    <p class="assignments_p color">Color - Blue</p>
-                    <p class="assignments_p freeKmForDay">Free Km for Day - 100 Km</p>
-                    <p class="assignments_p freeKmForMonth">Free Km for Month - 2400 Km</p>
-                    <p class="assignments_p pricePerExtraKm">Price Per Extra Km - 30.00 LKR</p>
-
-                    <button id="btnCar-06" class="cars_btn" type="button" data-bs-toggle="offcanvas"
-                            data-bs-target="#loginForm" aria-controls="staticBackdrop">
-                        Book Now
-                        <a></a>
-                    </button>
-                </div>
-
-                <div class="col-12">
-                    <img src="/assets/img/car-06.jpg" alt="Assignment 01">
-                </div>
-
-                <div class="col-12">
-                    <h2>Suzuki Alto - Premium</h2>
-                </div>
-
-                <div class="row col-12">
-                    <h2 class="row col-4">
-                        <i class="fa-solid fa-gas-pump"></i>
-                        Petrol
-                    </h2>
-                    <h2 class="row col-4">
-                        <i class="fa-solid fa-users"></i>
-                        4
-                    </h2>
-                    <h2 class="row col-4">
-                        <i class="fa-solid fa-gear"></i>
-                        Manual
-                    </h2>
-                </div>
-
-                <div class="row col-12">
-                    <h2 class="row col-6">
-                        <span>Rs.2500</span>
-                        <span>Day</span>
-                    </h2>
-
-                    <h2 class="row col-6">
-                        <span>Rs.64,350</span>
-                        <span>Month</span>
-                    </h2>
-                </div>
-
-            </div>
-
-            <div class="row col-3">
-                <div class="svg-wrapper">
-                    <svg height="100%" width="100%">
-                        <rect class="shape1" height="100%" width="100%"/>
-                        <rect class="shape2" height="100%" width="100%"/>
-                    </svg>
-                    <p class="assignments_p brand">Brand - Suzuki</p>
-                    <p class="assignments_p color">Color - Blue</p>
-                    <p class="assignments_p freeKmForDay">Free Km for Day - 100 Km</p>
-                    <p class="assignments_p freeKmForMonth">Free Km for Month - 2400 Km</p>
-                    <p class="assignments_p pricePerExtraKm">Price Per Extra Km - 30.00 LKR</p>
-
-                    <button id="btnCar-07" class="cars_btn" type="button" data-bs-toggle="offcanvas"
-                            data-bs-target="#loginForm" aria-controls="staticBackdrop">
-                        Book Now
-                        <a></a>
-                    </button>
-                </div>
-
-                <div class="col-12">
-                    <img src="/assets/img/car-06.jpg" alt="Assignment 01">
-                </div>
-
-                <div class="col-12">
-                    <h2>Suzuki Alto - Premium</h2>
-                </div>
-
-                <div class="row col-12">
-                    <h2 class="row col-4">
-                        <i class="fa-solid fa-gas-pump"></i>
-                        Petrol
-                    </h2>
-                    <h2 class="row col-4">
-                        <i class="fa-solid fa-users"></i>
-                        4
-                    </h2>
-                    <h2 class="row col-4">
-                        <i class="fa-solid fa-gear"></i>
-                        Manual
-                    </h2>
-                </div>
-
-                <div class="row col-12">
-                    <h2 class="row col-6">
-                        <span>Rs.2500</span>
-                        <span>Day</span>
-                    </h2>
-
-                    <h2 class="row col-6">
-                        <span>Rs.64,350</span>
-                        <span>Month</span>
-                    </h2>
-                </div>
-
-            </div>
-
-            <div class="row col-3">
-                <div class="svg-wrapper">
-                    <svg height="100%" width="100%">
-                        <rect class="shape1" height="100%" width="100%"/>
-                        <rect class="shape2" height="100%" width="100%"/>
-                    </svg>
-                    <p class="assignments_p brand">Brand - Suzuki</p>
-                    <p class="assignments_p color">Color - Blue</p>
-                    <p class="assignments_p freeKmForDay">Free Km for Day - 100 Km</p>
-                    <p class="assignments_p freeKmForMonth">Free Km for Month - 2400 Km</p>
-                    <p class="assignments_p pricePerExtraKm">Price Per Extra Km - 30.00 LKR</p>
-
-                    <button id="btnCar-08" class="cars_btn" type="button" data-bs-toggle="offcanvas"
-                            data-bs-target="#loginForm" aria-controls="staticBackdrop">
-                        Book Now
-                        <a></a>
-                    </button>
-                </div>
-
-                <div class="col-12">
-                    <img src="/assets/img/car-06.jpg" alt="Assignment 01">
-                </div>
-
-                <div class="col-12">
-                    <h2>Suzuki Alto - Premium</h2>
-                </div>
-
-                <div class="row col-12">
-                    <h2 class="row col-4">
-                        <i class="fa-solid fa-gas-pump"></i>
-                        Petrol
-                    </h2>
-                    <h2 class="row col-4">
-                        <i class="fa-solid fa-users"></i>
-                        4
-                    </h2>
-                    <h2 class="row col-4">
-                        <i class="fa-solid fa-gear"></i>
-                        Manual
-                    </h2>
-                </div>
-
-                <div class="row col-12">
-                    <h2 class="row col-6">
-                        <span>Rs.2500</span>
-                        <span>Day</span>
-                    </h2>
-
-                    <h2 class="row col-6">
-                        <span>Rs.64,350</span>
-                        <span>Month</span>
-                    </h2>
-                </div>
-
-            </div>
-
-            <div class="row col-3">
-                <div class="svg-wrapper">
-                    <svg height="100%" width="100%">
-                        <rect class="shape1" height="100%" width="100%"/>
-                        <rect class="shape2" height="100%" width="100%"/>
-                    </svg>
-                    <p class="assignments_p brand">Brand - Suzuki</p>
-                    <p class="assignments_p color">Color - Blue</p>
-                    <p class="assignments_p freeKmForDay">Free Km for Day - 100 Km</p>
-                    <p class="assignments_p freeKmForMonth">Free Km for Month - 2400 Km</p>
-                    <p class="assignments_p pricePerExtraKm">Price Per Extra Km - 30.00 LKR</p>
-
-                    <button id="btnCar-09" class="cars_btn" type="button" data-bs-toggle="offcanvas"
-                            data-bs-target="#loginForm" aria-controls="staticBackdrop">
-                        Book Now
-                        <a></a>
-                    </button>
-                </div>
-
-                <div class="col-12">
-                    <img src="/assets/img/car-06.jpg" alt="Assignment 01">
-                </div>
-
-                <div class="col-12">
-                    <h2>Suzuki Alto - Premium</h2>
-                </div>
-
-                <div class="row col-12">
-                    <h2 class="row col-4">
-                        <i class="fa-solid fa-gas-pump"></i>
-                        Petrol
-                    </h2>
-                    <h2 class="row col-4">
-                        <i class="fa-solid fa-users"></i>
-                        4
-                    </h2>
-                    <h2 class="row col-4">
-                        <i class="fa-solid fa-gear"></i>
-                        Manual
-                    </h2>
-                </div>
-
-                <div class="row col-12">
-                    <h2 class="row col-6">
-                        <span>Rs.2500</span>
-                        <span>Day</span>
-                    </h2>
-
-                    <h2 class="row col-6">
-                        <span>Rs.64,350</span>
-                        <span>Month</span>
-                    </h2>
-                </div>
-
-            </div>
-        </section>
-
-        <section class="row justify-content-center">
-            <div class="col-xl-3 col-lg-4 col-md-5 col-12 text-center">
-                <h2>Luxury Cars</h2>
-            </div>
-        </section>
-
-        <!--Luxury Cars-->
-        <section class="carDetails_section row col-12 position-relative justify-content-center">
-            <div class="row col-3">
-                <div class="svg-wrapper">
-                    <svg height="100%" width="100%">
-                        <rect class="shape1" height="100%" width="100%"/>
-                        <rect class="shape2" height="100%" width="100%"/>
-                    </svg>
-                    <p class="assignments_p brand">Brand - Suzuki</p>
-                    <p class="assignments_p color">Color - Blue</p>
-                    <p class="assignments_p freeKmForDay">Free Km for Day - 100 Km</p>
-                    <p class="assignments_p freeKmForMonth">Free Km for Month - 2400 Km</p>
-                    <p class="assignments_p pricePerExtraKm">Price Per Extra Km - 30.00 LKR</p>
-
-                    <button id="btnCar-10" class="cars_btn" type="button" data-bs-toggle="offcanvas"
-                            data-bs-target="#loginForm" aria-controls="staticBackdrop">
-                        Book Now
-                        <a></a>
-                    </button>
-                </div>
-
-                <div class="col-12">
-                    <img src="/assets/img/car-06.jpg" alt="Assignment 01">
-                </div>
-
-                <div class="col-12">
-                    <h2>Suzuki Alto - Premium</h2>
-                </div>
-
-                <div class="row col-12">
-                    <h2 class="row col-4">
-                        <i class="fa-solid fa-gas-pump"></i>
-                        Petrol
-                    </h2>
-                    <h2 class="row col-4">
-                        <i class="fa-solid fa-users"></i>
-                        4
-                    </h2>
-                    <h2 class="row col-4">
-                        <i class="fa-solid fa-gear"></i>
-                        Manual
-                    </h2>
-                </div>
-
-                <div class="row col-12">
-                    <h2 class="row col-6">
-                        <span>Rs.2500</span>
-                        <span>Day</span>
-                    </h2>
-
-                    <h2 class="row col-6">
-                        <span>Rs.64,350</span>
-                        <span>Month</span>
-                    </h2>
-                </div>
-
-            </div>
-
-            <div class="row col-3">
-                <div class="svg-wrapper">
-                    <svg height="100%" width="100%">
-                        <rect class="shape1" height="100%" width="100%"/>
-                        <rect class="shape2" height="100%" width="100%"/>
-                    </svg>
-                    <p class="assignments_p brand">Brand - Suzuki</p>
-                    <p class="assignments_p color">Color - Blue</p>
-                    <p class="assignments_p freeKmForDay">Free Km for Day - 100 Km</p>
-                    <p class="assignments_p freeKmForMonth">Free Km for Month - 2400 Km</p>
-                    <p class="assignments_p pricePerExtraKm">Price Per Extra Km - 30.00 LKR</p>
-
-                    <button id="btnCar-11" class="cars_btn" type="button" data-bs-toggle="offcanvas"
-                            data-bs-target="#loginForm" aria-controls="staticBackdrop">
-                        Book Now
-                        <a></a>
-                    </button>
-                </div>
-
-                <div class="col-12">
-                    <img src="/assets/img/car-06.jpg" alt="Assignment 01">
-                </div>
-
-                <div class="col-12">
-                    <h2>Suzuki Alto - Premium</h2>
-                </div>
-
-                <div class="row col-12">
-                    <h2 class="row col-4">
-                        <i class="fa-solid fa-gas-pump"></i>
-                        Petrol
-                    </h2>
-                    <h2 class="row col-4">
-                        <i class="fa-solid fa-users"></i>
-                        4
-                    </h2>
-                    <h2 class="row col-4">
-                        <i class="fa-solid fa-gear"></i>
-                        Manual
-                    </h2>
-                </div>
-
-                <div class="row col-12">
-                    <h2 class="row col-6">
-                        <span>Rs.2500</span>
-                        <span>Day</span>
-                    </h2>
-
-                    <h2 class="row col-6">
-                        <span>Rs.64,350</span>
-                        <span>Month</span>
-                    </h2>
-                </div>
-
-            </div>
-
-            <div class="row col-3">
-                <div class="svg-wrapper">
-                    <svg height="100%" width="100%">
-                        <rect class="shape1" height="100%" width="100%"/>
-                        <rect class="shape2" height="100%" width="100%"/>
-                    </svg>
-                    <p class="assignments_p brand">Brand - Suzuki</p>
-                    <p class="assignments_p color">Color - Blue</p>
-                    <p class="assignments_p freeKmForDay">Free Km for Day - 100 Km</p>
-                    <p class="assignments_p freeKmForMonth">Free Km for Month - 2400 Km</p>
-                    <p class="assignments_p pricePerExtraKm">Price Per Extra Km - 30.00 LKR</p>
-
-                    <button id="btnCar-12" class="cars_btn" type="button" data-bs-toggle="offcanvas"
                             data-bs-target="#loginForm" aria-controls="staticBackdrop">
                         Book Now
                         <a></a>
