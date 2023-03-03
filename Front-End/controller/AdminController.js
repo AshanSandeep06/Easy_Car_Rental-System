@@ -1538,7 +1538,7 @@ $("#btnAddDriver").on('click', function () {
                     })
 
                     uploadDriverImages($("#txtDriverId").val());
-                    loadAllCars();
+                    loadAllDrivers();
                 },
                 error: function (error) {
                     alert(JSON.parse(error.responseText).message);

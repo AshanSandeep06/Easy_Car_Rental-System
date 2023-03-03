@@ -44,7 +44,6 @@ class DriverServiceImplTest {
         System.out.println(adminDTO);
         System.out.println(admin);
         adminRepo.save(admin);
-
     }
 
 }
