@@ -393,7 +393,6 @@ function loadAllCarsDetails() {
         url: baseUrl + "car/sortFromCarBrand",
         method: "get",
         dataType: "json",
-        // Edited 2023-02-25
         async: false,
         success: function (resp) {
             if (resp.data != null) {
@@ -403,7 +402,6 @@ function loadAllCarsDetails() {
                     $.ajax({
                         url: baseUrl + "car/getCarImages/" + resp.data[i].carId,
                         method: "get",
-                        // Edited 2023-02-25
                         async: false,
                         dataType: "json",
                         success: function (resp) {
@@ -420,12 +418,10 @@ function loadAllCarsDetails() {
                         url: baseUrl + "car/" + resp.data[i].brand + "/Available",
                         method: "get",
                         dataType: "json",
-                        // Edited 2023-02-25
                         async: false,
                         success: function (resp) {
                             $("#carsCollection > .carDetails_section").children(`:eq(${i})`).children(":eq(0)").children(":eq(5)").text("Available Car Qty - " + resp.data);
 
-                            // Edited 2023-02-25
                             if (resp.data > 0) {
                                 availableCount += resp.data;
                             }
