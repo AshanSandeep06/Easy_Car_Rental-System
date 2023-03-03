@@ -384,3 +384,11 @@ $('#txtSortingType').on('change', function () {
         }
     }
 });
+
+function loadAllCars() {
+
+}
+
+$('#btnClearSorting').on('click', function () {
+    loadAllCars();
+});
