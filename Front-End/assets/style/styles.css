@@ -1764,12 +1764,16 @@ footer > div {
     }
 }
 
-@media (min-width: 975px){
+@media (min-width: 975px) {
     #header {
-        left: 0!important;
+        left: 0 !important;
     }
 }
 
-tbody{
+tbody {
     cursor: pointer;
+}
+
+.svg-wrapper + div {
+    margin-top: 2px;
 }

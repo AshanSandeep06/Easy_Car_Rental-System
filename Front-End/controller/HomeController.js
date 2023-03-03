@@ -2,6 +2,7 @@ let baseUrl = "http://localhost:8085/Back_End_war/";
 $(function () {
     $("#resetPasswordForm").css('display', 'none');
     $('#sortingContainer').children().css('display', 'none');
+    loadAllCarsDetails();
 });
 
 $("#btnForgotPassword").click(function () {
@@ -385,10 +386,82 @@ $('#txtSortingType').on('change', function () {
     }
 });
 
-function loadAllCars() {
+function loadAllCarsDetails() {
+    var availableCount = 0;
 
+    $.ajax({
+        url: baseUrl + "car/sortFromCarBrand",
+        method: "get",
+        dataType: "json",
+        // Edited 2023-02-25
+        async: false,
+        success: function (resp) {
+            if (resp.data != null) {
+                for (let i = 0; i < resp.data.length; i++) {
+                    console.log(resp.data[i]);
+
+                    $.ajax({
+                        url: baseUrl + "car/getCarImages/" + resp.data[i].carId,
+                        method: "get",
+                        // Edited 2023-02-25
+                        async: false,
+                        dataType: "json",
+                        success: function (resp) {
+                            $("#carsCollection > .carDetails_section").children(`:eq(${i})`).children(":eq(1)").children(":eq(0)").attr('src', "../assets/img/uploads/carImages/" + resp.data.front);
+                        }
+                    });
+
+                    $("#carsCollection > .carDetails_section").children(`:eq(${i})`).children(":eq(0)").children(":eq(1)").text(resp.data[i].brand);
+                    $("#carsCollection > .carDetails_section").children(`:eq(${i})`).children(":eq(0)").children(":eq(2)").text("Free Km for Day - " + resp.data[i].freeMileage.dailyMileage + " Km");
+                    $("#carsCollection > .carDetails_section").children(`:eq(${i})`).children(":eq(0)").children(":eq(3)").text("Free Km for Month - " + resp.data[i].freeMileage.monthlyMileage + " Km");
+                    $("#carsCollection > .carDetails_section").children(`:eq(${i})`).children(":eq(0)").children(":eq(4)").text("Price Per Extra Km - " + resp.data[i].pricePerExtraKM + " LKR");
+
+                    $.ajax({
+                        url: baseUrl + "car/" + resp.data[i].brand + "/Available",
+                        method: "get",
+                        dataType: "json",
+                        // Edited 2023-02-25
+                        async: false,
+                        success: function (resp) {
+                            $("#carsCollection > .carDetails_section").children(`:eq(${i})`).children(":eq(0)").children(":eq(5)").text("Available Car Qty - " + resp.data);
+
+                            // Edited 2023-02-25
+                            if (resp.data > 0) {
+                                availableCount += resp.data;
+                            }
+                        }
+                    });
+
+                    $("#carsCollection > .carDetails_section").children(`:eq(${i})`).children(":eq(2)").children(":eq(0)").text(resp.data[i].brand);
+
+                    $("#carsCollection > .carDetails_section").children(`:eq(${i})`).children(":eq(3)").children(":eq(0)").empty();
+                    $("#carsCollection > .carDetails_section").children(`:eq(${i})`).children(":eq(3)").children(":eq(0)").append('<i class="fa-solid fa-gas-pump"></i>');
+                    $("#carsCollection > .carDetails_section").children(`:eq(${i})`).children(":eq(3)").children(":eq(0)").append(resp.data[i].fuelType);
+
+                    $("#carsCollection > .carDetails_section").children(`:eq(${i})`).children(":eq(3)").children(":eq(1)").empty();
+                    $("#carsCollection > .carDetails_section").children(`:eq(${i})`).children(":eq(3)").children(":eq(1)").append('<i class="fa-solid fa-users"></i>');
+                    $("#carsCollection > .carDetails_section").children(`:eq(${i})`).children(":eq(3)").children(":eq(1)").append(resp.data[i].numOfPassengers);
+
+                    $("#carsCollection > .carDetails_section").children(`:eq(${i})`).children(":eq(3)").children(":eq(2)").empty();
+                    $("#carsCollection > .carDetails_section").children(`:eq(${i})`).children(":eq(3)").children(":eq(2)").append('<i class="fa-solid fa-gear"></i>');
+                    $("#carsCollection > .carDetails_section").children(`:eq(${i})`).children(":eq(3)").children(":eq(2)").append(resp.data[i].transmissionType);
+
+                    $("#carsCollection > .carDetails_section").children(`:eq(${i})`).children(":eq(4)").children(":eq(0)").children(":eq(0)").text("Rs." + resp.data[i].priceRate.dailyRate);
+                    $("#carsCollection > .carDetails_section").children(`:eq(${i})`).children(":eq(4)").children(":eq(1)").children(":eq(0)").text("Rs." + resp.data[i].priceRate.monthlyRate);
+                }
+
+                for (let i = 0; i < $("#carsCollection > .carDetails_section").children().length; i++) {
+                    $("#carsCollection > .carDetails_section").children(`:eq(${i})`).css('display', 'flex');
+                }
+
+                for (let i = resp.data.length; i < $("#carsCollection > .carDetails_section").children().length; i++) {
+                    $("#carsCollection > .carDetails_section").children(`:eq(${i})`).css('display', 'none');
+                }
+            }
+        }
+    });
 }
 
 $('#btnClearSorting').on('click', function () {
-    loadAllCars();
+    loadAllCarsDetails();
 });
