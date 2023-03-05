@@ -14,6 +14,10 @@ $(function () {
     checkWhenInOngoingRental(username);
     $('#sortingContainer').children().css('display', 'none');
     // viewMyActiveBookings();
+    $("#carFront_image").attr('src', '');
+    $("#carBack_image").attr('src', '');
+    $("#carSide_image").attr('src', '');
+    $("#carInterior_image").attr('src', '');
 });
 
 $("#btnHome").on('click', function () {
@@ -23,6 +27,10 @@ $("#btnHome").on('click', function () {
     $('#customerPage_myProfile').css("display", "none");
     $('#carBookingMain').css("display", "none");
     loadAllCarsDetails();
+    $("#carFront_image").attr('src', '');
+    $("#carBack_image").attr('src', '');
+    $("#carSide_image").attr('src', '');
+    $("#carInterior_image").attr('src', '');
 });
 
 $("#btnMyBookings").on('click', function () {
@@ -1567,4 +1575,16 @@ $('#txtEnterPrice').on('keyup', function () {
     }
 });
 
+$('#btnSearch').on('click', function () {
+    if($('#txtPickUpDate').val()!='' && $('#txtReturnDate').val()!=''){
+        //
 
+
+    }else{
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: "PickUp Date and Return Date Should be Specified to rent Your Dream Car..!"
+        })
+    }
+});
