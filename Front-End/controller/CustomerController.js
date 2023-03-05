@@ -259,6 +259,7 @@ function loadAllCarsFromBrand(carBrand) {
 $(".cars_btn").on('click', function () {
     $('#customerPage_home').css("display", "none");
     $('#carBookingMain').css("display", "flex");
+    $("#cmbSelectCarId").focus();
     var carBrand = $(this).parent().parent().children(":eq(2)").children(":eq(0)").text();
     console.log(carBrand);
     loadAllCarsFromBrand(carBrand);
@@ -432,6 +433,7 @@ function cancelRent() {
     $("#carBack_image").attr('src', '');
     $("#carSide_image").attr('src', '');
     $("#carInterior_image").attr('src', '');
+    $('#location,#pickUpTime,#pickUpDate,#returnTime, #returnDate').css("border", "1px solid #ced4da");
 }
 
 $('#btnSubmitRent').on('click', function () {
@@ -1700,6 +1702,149 @@ $('#txtEnterPrice').on('keyup', function () {
 
 
 /* ------------------------------------ Validations ------------------------------------ */
+$('.prevent_tab_key_focus').on('keydown', function (event) {
+    if (event.code === "Tab") {
+        event.preventDefault();
+    }
+});
 
+$("#btnSubmitRent").attr('disabled', true);
+
+// Regex Patterns
+const locationPattern = /^[A-z ]{2,20}$/;
+const datePattern = /^[0-9]{4}(-)[0-9]{2}(-)[0-9]{2}$/;
+const timePattern = /^[0-9]{2}(:)[0-9]{2}$/;
+
+let bookingValidationsArray = [];
+
+bookingValidationsArray.push({
+    regEx: locationPattern,
+    textField: $('#location')
+});
+
+bookingValidationsArray.push({
+    regEx: datePattern,
+    textField: $('#pickUpDate')
+});
+
+bookingValidationsArray.push({
+    regEx: datePattern,
+    textField: $('#returnDate')
+});
+
+bookingValidationsArray.push({
+    regEx: timePattern,
+    textField: $('#pickUpTime')
+});
+
+bookingValidationsArray.push({
+    regEx: timePattern,
+    textField: $('#returnTime')
+});
+
+function check(regEx, textField) {
+    return regEx.test(textField.val());
+}
+
+function checkValidation(validationArray, button) {
+    let errorCounts = 0;
+
+    if ($('#uploadSlip')[0].files[0] == null) {
+        errorCounts += 1;
+    }
+
+    for (let validation of validationArray) {
+        if (validation.regEx.test(validation.textField.val())) {
+            removeError(validation.textField, "");
+        } else {
+            addError(validation.textField);
+            errorCounts += 1;
+        }
+    }
+    enableOrDisableBtn(button, errorCounts);
+}
+
+$('#cmbSelectCarId').on('keydown', function (event) {
+    if (event.code === "Enter" && $('#cmbSelectCarId').val() != null) {
+        $('#location').focus();
+    }
+});
+$('#location').on('keydown', function (event) {
+    if (event.code === "Enter" && check(locationPattern, $('#location'))) {
+        $('#pickUpTime').focus();
+    }
+});
+
+$('#pickUpTime').on('keydown', function (event) {
+    if (event.code === "Enter" && check(timePattern, $('#pickUpTime'))) {
+        $('#pickUpDate').focus();
+    }
+});
+
+$('#pickUpDate').on('keydown', function (event) {
+    if (event.code === "Enter" && check(datePattern, $('#pickUpDate'))) {
+        $('#returnTime').focus();
+    }
+});
+
+$('#returnTime').on('keydown', function (event) {
+    if (event.code === "Enter" && check(timePattern, $('#returnTime'))) {
+        $('#returnDate').focus();
+    }
+});
+
+$('#returnDate').on('keydown', function (event) {
+    if (event.code === "Enter" && check(datePattern, $('#returnDate'))) {
+        $('#driverAcceptanceField').focus();
+    }
+});
+
+$('#driverAcceptanceField').on('keydown', function (event) {
+    if (event.code === "Enter") {
+        $('#uploadSlip').focus();
+    }
+});
+
+$('#uploadSlip').on('keydown', function (event) {
+    if (event.code === "Enter" && $('#uploadSlip')[0].files[0] != null) {
+        $('#btnSubmitRent').focus();
+    }
+});
+
+$("#location,#pickUpTime,#pickUpDate,#returnTime, #returnDate, #driverAcceptanceField, #uploadSlip").on('keyup', function () {
+    checkValidation(bookingValidationsArray, $('#btnSubmitRent'));
+});
+
+$("#location,#pickUpTime,#pickUpDate,#returnTime, #returnDate, #driverAcceptanceField, #uploadSlip").on('blur', function () {
+    checkValidation(bookingValidationsArray, $('#btnSubmitRent'));
+});
+
+$('#uploadSlip').on('click', function () {
+    checkValidation(bookingValidationsArray, $('#btnSubmitRent'));
+});
+
+$("#uploadSlip").on('focus', function () {
+    checkValidation(bookingValidationsArray, $('#btnSubmitRent'));
+});
+
+function removeError() {
+    arguments[0].css('border', '2px solid green');
+}
+
+function addError(textField) {
+    if (textField.val().length <= 0) {
+        textField.css("border", "1px solid #ced4da");
+    } else {
+        textField.css('border', '2px solid red');
+    }
+}
+
+function enableOrDisableBtn(button, errorCounts) {
+    if (errorCounts > 0) {
+        button.attr('disabled', true);
+    } else {
+        button.attr('disabled', false);
+    }
+}
 
 
