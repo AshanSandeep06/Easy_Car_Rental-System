@@ -466,5 +466,5 @@ function loadAllCarsDetails() {
 $('#btnClearSorting').on('click', function () {
     loadAllCarsDetails();
 
-    $('#sortingContainer').children().children().children(':eq(0)').prop('checked', false);
+    $('input:radio').prop('checked', false);
 });
