@@ -466,5 +466,21 @@ function loadAllCarsDetails() {
 $('#btnClearSorting').on('click', function () {
     loadAllCarsDetails();
 
+    $("#txtSortingType").empty();
+    $("#txtSortingType").append(`<option selected disabled>Sort By</option>`);
+    $("#txtSortingType").append(`<option>Type</option>`);
+    $("#txtSortingType").append(`<option>Brand</option>`);
+    $("#txtSortingType").append(`<option>Fuel Type</option>`);
+    $("#txtSortingType").append(`<option>Transmission Type</option>`);
+    $("#txtSortingType").append(`<option>Price</option>`);
+    $("#txtSortingType").append(`<option>No Of Passengers</option>`);
+
+    $('#vehicleTypeRow').css('display', 'none');
+    $('#brandRow').css('display', 'none');
+    $('#fuelTypeRow').css('display', 'none');
+    $('#transmissionTypeRow').css('display', 'none');
+    $('#priceRow').css('display', 'none');
+    $('#NoOfPassengersRow').css('display', 'none');
+
     $('input:radio').prop('checked', false);
 });
