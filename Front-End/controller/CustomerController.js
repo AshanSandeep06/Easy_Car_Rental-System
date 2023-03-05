@@ -257,14 +257,23 @@ function loadAllCarsFromBrand(carBrand) {
 }
 
 $(".cars_btn").on('click', function () {
-    $('#customerPage_home').css("display", "none");
-    $('#carBookingMain').css("display", "flex");
-    $("#cmbSelectCarId").focus();
-    var carBrand = $(this).parent().parent().children(":eq(2)").children(":eq(0)").text();
-    console.log(carBrand);
-    loadAllCarsFromBrand(carBrand);
-    loadCustomerDetails();
-    generateNewRentalID();
+    console.log($(this).parent().children(":eq(5)").text())
+    if ($(this).parent().children(":eq(5)").text().split('-')[1].split(' ')[1] > 0) {
+        $('#customerPage_home').css("display", "none");
+        $('#carBookingMain').css("display", "flex");
+        $("#cmbSelectCarId").focus();
+        var carBrand = $(this).parent().parent().children(":eq(2)").children(":eq(0)").text();
+        console.log(carBrand);
+        loadAllCarsFromBrand(carBrand);
+        loadCustomerDetails();
+        generateNewRentalID();
+    } else {
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: "All Cars of Your Selected Car Brand is Sold Out.."
+        })
+    }
 });
 
 $("#cmbSelectCarId").change(function () {
