@@ -1058,10 +1058,10 @@ function loadAllCarsByCarPrice(price) {
 }
 
 $('#txtEnterPrice').on('keyup', function () {
-    if($('#txtEnterPrice').val() != ''){
+    if ($('#txtEnterPrice').val() != '') {
         var carPrice = $('#txtEnterPrice').val();
         loadAllCarsByCarPrice(carPrice);
-    }else{
+    } else {
         for (let i = 0; i < $("#carsCollection > .carDetails_section").children().length; i++) {
             $("#carsCollection > .carDetails_section").children(`:eq(${i})`).css('display', 'none');
         }
