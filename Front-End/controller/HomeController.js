@@ -453,6 +453,11 @@ function loadAllCarsDetails() {
                 for (let i = resp.data.length; i < $("#carsCollection > .carDetails_section").children().length; i++) {
                     $("#carsCollection > .carDetails_section").children(`:eq(${i})`).css('display', 'none');
                 }
+            }else{
+                console.log("Hureee")
+                for (let i = 0; i < $("#carsCollection > .carDetails_section").children().length; i++) {
+                    $("#carsCollection > .carDetails_section").children(`:eq(${i})`).css('display', 'none');
+                }
             }
         }
     });
@@ -460,4 +465,6 @@ function loadAllCarsDetails() {
 
 $('#btnClearSorting').on('click', function () {
     loadAllCarsDetails();
+
+    $('#sortingContainer').children().children().children(':eq(0)').prop('checked', false);
 });
