@@ -2390,3 +2390,8 @@ $('#btnUpdate_RentDetailsSection').on('click', function () {
         })
     }
 });
+
+$('#navbar > ul > li > a').on('click', function () {
+    $('#navbar > ul > li > a').removeClass('active');
+    $(this).addClass('active');
+});

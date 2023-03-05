@@ -993,8 +993,8 @@ tbody {
 
 .nav-menu a i,
 .nav-menu a:focus i {
-    font-size: 24px;
-    padding-right: 8px;
+    font-size: 18px;
+    padding-right: 10px;
     color: #6f7180;
 }
 
