@@ -580,6 +580,7 @@ $('#luxury').on('click', function () {
 function loadAllCarsByCarBrand(brand) {
     var availableCount = 0;
     var carCount = 0;
+    let j=0;
 
     $.ajax({
         url: baseUrl + "car/sortFromCarBrand",
@@ -589,7 +590,7 @@ function loadAllCarsByCarBrand(brand) {
         success: function (resp) {
             if (resp.data != null) {
                 for (let i = 0; i < resp.data.length; i++) {
-                    if(resp.data[i].brand.slice(0, 6) == brand){
+                    if (resp.data[i].brand.slice(0, 6) == brand) {
                         carCount++;
                         console.log(resp.data[i]);
 
@@ -599,14 +600,14 @@ function loadAllCarsByCarBrand(brand) {
                             async: false,
                             dataType: "json",
                             success: function (resp) {
-                                $("#carsCollection > .carDetails_section").children(`:eq(${i})`).children(":eq(1)").children(":eq(0)").attr('src', "../assets/img/uploads/carImages/" + resp.data.front);
+                                $("#carsCollection > .carDetails_section").children(`:eq(${j})`).children(":eq(1)").children(":eq(0)").attr('src', "../assets/img/uploads/carImages/" + resp.data.front);
                             }
                         });
 
-                        $("#carsCollection > .carDetails_section").children(`:eq(${i})`).children(":eq(0)").children(":eq(1)").text(resp.data[i].brand);
-                        $("#carsCollection > .carDetails_section").children(`:eq(${i})`).children(":eq(0)").children(":eq(2)").text("Free Km for Day - " + resp.data[i].freeMileage.dailyMileage + " Km");
-                        $("#carsCollection > .carDetails_section").children(`:eq(${i})`).children(":eq(0)").children(":eq(3)").text("Free Km for Month - " + resp.data[i].freeMileage.monthlyMileage + " Km");
-                        $("#carsCollection > .carDetails_section").children(`:eq(${i})`).children(":eq(0)").children(":eq(4)").text("Price Per Extra Km - " + resp.data[i].pricePerExtraKM + " LKR");
+                        $("#carsCollection > .carDetails_section").children(`:eq(${j})`).children(":eq(0)").children(":eq(1)").text(resp.data[i].brand);
+                        $("#carsCollection > .carDetails_section").children(`:eq(${j})`).children(":eq(0)").children(":eq(2)").text("Free Km for Day - " + resp.data[i].freeMileage.dailyMileage + " Km");
+                        $("#carsCollection > .carDetails_section").children(`:eq(${j})`).children(":eq(0)").children(":eq(3)").text("Free Km for Month - " + resp.data[i].freeMileage.monthlyMileage + " Km");
+                        $("#carsCollection > .carDetails_section").children(`:eq(${j})`).children(":eq(0)").children(":eq(4)").text("Price Per Extra Km - " + resp.data[i].pricePerExtraKM + " LKR");
 
                         $.ajax({
                             url: baseUrl + "car/" + resp.data[i].brand + "/Available",
@@ -614,7 +615,7 @@ function loadAllCarsByCarBrand(brand) {
                             dataType: "json",
                             async: false,
                             success: function (resp) {
-                                $("#carsCollection > .carDetails_section").children(`:eq(${i})`).children(":eq(0)").children(":eq(5)").text("Available Car Qty - " + resp.data);
+                                $("#carsCollection > .carDetails_section").children(`:eq(${j})`).children(":eq(0)").children(":eq(5)").text("Available Car Qty - " + resp.data);
 
                                 if (resp.data > 0) {
                                     availableCount += resp.data;
@@ -622,22 +623,24 @@ function loadAllCarsByCarBrand(brand) {
                             }
                         });
 
-                        $("#carsCollection > .carDetails_section").children(`:eq(${i})`).children(":eq(2)").children(":eq(0)").text(resp.data[i].brand);
+                        $("#carsCollection > .carDetails_section").children(`:eq(${j})`).children(":eq(2)").children(":eq(0)").text(resp.data[i].brand);
 
-                        $("#carsCollection > .carDetails_section").children(`:eq(${i})`).children(":eq(3)").children(":eq(0)").empty();
-                        $("#carsCollection > .carDetails_section").children(`:eq(${i})`).children(":eq(3)").children(":eq(0)").append('<i class="fa-solid fa-gas-pump"></i>');
-                        $("#carsCollection > .carDetails_section").children(`:eq(${i})`).children(":eq(3)").children(":eq(0)").append(resp.data[i].fuelType);
+                        $("#carsCollection > .carDetails_section").children(`:eq(${j})`).children(":eq(3)").children(":eq(0)").empty();
+                        $("#carsCollection > .carDetails_section").children(`:eq(${j})`).children(":eq(3)").children(":eq(0)").append('<i class="fa-solid fa-gas-pump"></i>');
+                        $("#carsCollection > .carDetails_section").children(`:eq(${j})`).children(":eq(3)").children(":eq(0)").append(resp.data[i].fuelType);
 
-                        $("#carsCollection > .carDetails_section").children(`:eq(${i})`).children(":eq(3)").children(":eq(1)").empty();
-                        $("#carsCollection > .carDetails_section").children(`:eq(${i})`).children(":eq(3)").children(":eq(1)").append('<i class="fa-solid fa-users"></i>');
-                        $("#carsCollection > .carDetails_section").children(`:eq(${i})`).children(":eq(3)").children(":eq(1)").append(resp.data[i].numOfPassengers);
+                        $("#carsCollection > .carDetails_section").children(`:eq(${j})`).children(":eq(3)").children(":eq(1)").empty();
+                        $("#carsCollection > .carDetails_section").children(`:eq(${j})`).children(":eq(3)").children(":eq(1)").append('<i class="fa-solid fa-users"></i>');
+                        $("#carsCollection > .carDetails_section").children(`:eq(${j})`).children(":eq(3)").children(":eq(1)").append(resp.data[i].numOfPassengers);
 
-                        $("#carsCollection > .carDetails_section").children(`:eq(${i})`).children(":eq(3)").children(":eq(2)").empty();
-                        $("#carsCollection > .carDetails_section").children(`:eq(${i})`).children(":eq(3)").children(":eq(2)").append('<i class="fa-solid fa-gear"></i>');
-                        $("#carsCollection > .carDetails_section").children(`:eq(${i})`).children(":eq(3)").children(":eq(2)").append(resp.data[i].transmissionType);
+                        $("#carsCollection > .carDetails_section").children(`:eq(${j})`).children(":eq(3)").children(":eq(2)").empty();
+                        $("#carsCollection > .carDetails_section").children(`:eq(${j})`).children(":eq(3)").children(":eq(2)").append('<i class="fa-solid fa-gear"></i>');
+                        $("#carsCollection > .carDetails_section").children(`:eq(${j})`).children(":eq(3)").children(":eq(2)").append(resp.data[i].transmissionType);
 
-                        $("#carsCollection > .carDetails_section").children(`:eq(${i})`).children(":eq(4)").children(":eq(0)").children(":eq(0)").text("Rs." + resp.data[i].priceRate.dailyRate);
-                        $("#carsCollection > .carDetails_section").children(`:eq(${i})`).children(":eq(4)").children(":eq(1)").children(":eq(0)").text("Rs." + resp.data[i].priceRate.monthlyRate);
+                        $("#carsCollection > .carDetails_section").children(`:eq(${j})`).children(":eq(4)").children(":eq(0)").children(":eq(0)").text("Rs." + resp.data[i].priceRate.dailyRate);
+                        $("#carsCollection > .carDetails_section").children(`:eq(${j})`).children(":eq(4)").children(":eq(1)").children(":eq(0)").text("Rs." + resp.data[i].priceRate.monthlyRate);
+
+                        j++;
                     }
                 }
 
@@ -686,6 +689,7 @@ $('#BMW').on('click', function () {
 function loadAllCarsByFuelType(fuelType) {
     var availableCount = 0;
     var carCount = 0;
+    let j=0;
 
     $.ajax({
         url: baseUrl + "car/sortFromCarBrand",
@@ -695,7 +699,7 @@ function loadAllCarsByFuelType(fuelType) {
         success: function (resp) {
             if (resp.data != null) {
                 for (let i = 0; i < resp.data.length; i++) {
-                    if(resp.data[i].fuelType == fuelType){
+                    if (resp.data[i].fuelType == fuelType) {
                         carCount++;
                         console.log(resp.data[i]);
 
@@ -705,14 +709,14 @@ function loadAllCarsByFuelType(fuelType) {
                             async: false,
                             dataType: "json",
                             success: function (resp) {
-                                $("#carsCollection > .carDetails_section").children(`:eq(${i})`).children(":eq(1)").children(":eq(0)").attr('src', "../assets/img/uploads/carImages/" + resp.data.front);
+                                $("#carsCollection > .carDetails_section").children(`:eq(${j})`).children(":eq(1)").children(":eq(0)").attr('src', "../assets/img/uploads/carImages/" + resp.data.front);
                             }
                         });
 
-                        $("#carsCollection > .carDetails_section").children(`:eq(${i})`).children(":eq(0)").children(":eq(1)").text(resp.data[i].brand);
-                        $("#carsCollection > .carDetails_section").children(`:eq(${i})`).children(":eq(0)").children(":eq(2)").text("Free Km for Day - " + resp.data[i].freeMileage.dailyMileage + " Km");
-                        $("#carsCollection > .carDetails_section").children(`:eq(${i})`).children(":eq(0)").children(":eq(3)").text("Free Km for Month - " + resp.data[i].freeMileage.monthlyMileage + " Km");
-                        $("#carsCollection > .carDetails_section").children(`:eq(${i})`).children(":eq(0)").children(":eq(4)").text("Price Per Extra Km - " + resp.data[i].pricePerExtraKM + " LKR");
+                        $("#carsCollection > .carDetails_section").children(`:eq(${j})`).children(":eq(0)").children(":eq(1)").text(resp.data[i].brand);
+                        $("#carsCollection > .carDetails_section").children(`:eq(${j})`).children(":eq(0)").children(":eq(2)").text("Free Km for Day - " + resp.data[i].freeMileage.dailyMileage + " Km");
+                        $("#carsCollection > .carDetails_section").children(`:eq(${j})`).children(":eq(0)").children(":eq(3)").text("Free Km for Month - " + resp.data[i].freeMileage.monthlyMileage + " Km");
+                        $("#carsCollection > .carDetails_section").children(`:eq(${j})`).children(":eq(0)").children(":eq(4)").text("Price Per Extra Km - " + resp.data[i].pricePerExtraKM + " LKR");
 
                         $.ajax({
                             url: baseUrl + "car/" + resp.data[i].brand + "/Available",
@@ -720,7 +724,7 @@ function loadAllCarsByFuelType(fuelType) {
                             dataType: "json",
                             async: false,
                             success: function (resp) {
-                                $("#carsCollection > .carDetails_section").children(`:eq(${i})`).children(":eq(0)").children(":eq(5)").text("Available Car Qty - " + resp.data);
+                                $("#carsCollection > .carDetails_section").children(`:eq(${j})`).children(":eq(0)").children(":eq(5)").text("Available Car Qty - " + resp.data);
 
                                 if (resp.data > 0) {
                                     availableCount += resp.data;
@@ -728,22 +732,24 @@ function loadAllCarsByFuelType(fuelType) {
                             }
                         });
 
-                        $("#carsCollection > .carDetails_section").children(`:eq(${i})`).children(":eq(2)").children(":eq(0)").text(resp.data[i].brand);
+                        $("#carsCollection > .carDetails_section").children(`:eq(${j})`).children(":eq(2)").children(":eq(0)").text(resp.data[i].brand);
 
-                        $("#carsCollection > .carDetails_section").children(`:eq(${i})`).children(":eq(3)").children(":eq(0)").empty();
-                        $("#carsCollection > .carDetails_section").children(`:eq(${i})`).children(":eq(3)").children(":eq(0)").append('<i class="fa-solid fa-gas-pump"></i>');
-                        $("#carsCollection > .carDetails_section").children(`:eq(${i})`).children(":eq(3)").children(":eq(0)").append(resp.data[i].fuelType);
+                        $("#carsCollection > .carDetails_section").children(`:eq(${j})`).children(":eq(3)").children(":eq(0)").empty();
+                        $("#carsCollection > .carDetails_section").children(`:eq(${j})`).children(":eq(3)").children(":eq(0)").append('<i class="fa-solid fa-gas-pump"></i>');
+                        $("#carsCollection > .carDetails_section").children(`:eq(${j})`).children(":eq(3)").children(":eq(0)").append(resp.data[i].fuelType);
 
-                        $("#carsCollection > .carDetails_section").children(`:eq(${i})`).children(":eq(3)").children(":eq(1)").empty();
-                        $("#carsCollection > .carDetails_section").children(`:eq(${i})`).children(":eq(3)").children(":eq(1)").append('<i class="fa-solid fa-users"></i>');
-                        $("#carsCollection > .carDetails_section").children(`:eq(${i})`).children(":eq(3)").children(":eq(1)").append(resp.data[i].numOfPassengers);
+                        $("#carsCollection > .carDetails_section").children(`:eq(${j})`).children(":eq(3)").children(":eq(1)").empty();
+                        $("#carsCollection > .carDetails_section").children(`:eq(${j})`).children(":eq(3)").children(":eq(1)").append('<i class="fa-solid fa-users"></i>');
+                        $("#carsCollection > .carDetails_section").children(`:eq(${j})`).children(":eq(3)").children(":eq(1)").append(resp.data[i].numOfPassengers);
 
-                        $("#carsCollection > .carDetails_section").children(`:eq(${i})`).children(":eq(3)").children(":eq(2)").empty();
-                        $("#carsCollection > .carDetails_section").children(`:eq(${i})`).children(":eq(3)").children(":eq(2)").append('<i class="fa-solid fa-gear"></i>');
-                        $("#carsCollection > .carDetails_section").children(`:eq(${i})`).children(":eq(3)").children(":eq(2)").append(resp.data[i].transmissionType);
+                        $("#carsCollection > .carDetails_section").children(`:eq(${j})`).children(":eq(3)").children(":eq(2)").empty();
+                        $("#carsCollection > .carDetails_section").children(`:eq(${j})`).children(":eq(3)").children(":eq(2)").append('<i class="fa-solid fa-gear"></i>');
+                        $("#carsCollection > .carDetails_section").children(`:eq(${j})`).children(":eq(3)").children(":eq(2)").append(resp.data[i].transmissionType);
 
-                        $("#carsCollection > .carDetails_section").children(`:eq(${i})`).children(":eq(4)").children(":eq(0)").children(":eq(0)").text("Rs." + resp.data[i].priceRate.dailyRate);
-                        $("#carsCollection > .carDetails_section").children(`:eq(${i})`).children(":eq(4)").children(":eq(1)").children(":eq(0)").text("Rs." + resp.data[i].priceRate.monthlyRate);
+                        $("#carsCollection > .carDetails_section").children(`:eq(${j})`).children(":eq(4)").children(":eq(0)").children(":eq(0)").text("Rs." + resp.data[i].priceRate.dailyRate);
+                        $("#carsCollection > .carDetails_section").children(`:eq(${j})`).children(":eq(4)").children(":eq(1)").children(":eq(0)").text("Rs." + resp.data[i].priceRate.monthlyRate);
+
+                        j++;
                     }
                 }
 
@@ -772,4 +778,98 @@ $('#diesel').on('click', function () {
 $('#petrol').on('click', function () {
     var fuelType = "Petrol";
     loadAllCarsByFuelType(fuelType);
+});
+
+function loadAllCarsByTransmissionType(transmissionType) {
+    var availableCount = 0;
+    var carCount = 0;
+    let j=0;
+
+    $.ajax({
+        url: baseUrl + "car/sortFromCarBrand",
+        method: "get",
+        dataType: "json",
+        async: false,
+        success: function (resp) {
+            if (resp.data != null) {
+                for (let i = 0; i < resp.data.length; i++) {
+                    if (resp.data[i].transmissionType == transmissionType) {
+                        carCount++;
+                        console.log(resp.data[i]);
+
+                        $.ajax({
+                            url: baseUrl + "car/getCarImages/" + resp.data[i].carId,
+                            method: "get",
+                            async: false,
+                            dataType: "json",
+                            success: function (resp) {
+                                $("#carsCollection > .carDetails_section").children(`:eq(${j})`).children(":eq(1)").children(":eq(0)").attr('src', "../assets/img/uploads/carImages/" + resp.data.front);
+                            }
+                        });
+
+                        $("#carsCollection > .carDetails_section").children(`:eq(${j})`).children(":eq(0)").children(":eq(1)").text(resp.data[i].brand);
+                        $("#carsCollection > .carDetails_section").children(`:eq(${j})`).children(":eq(0)").children(":eq(2)").text("Free Km for Day - " + resp.data[i].freeMileage.dailyMileage + " Km");
+                        $("#carsCollection > .carDetails_section").children(`:eq(${j})`).children(":eq(0)").children(":eq(3)").text("Free Km for Month - " + resp.data[i].freeMileage.monthlyMileage + " Km");
+                        $("#carsCollection > .carDetails_section").children(`:eq(${j})`).children(":eq(0)").children(":eq(4)").text("Price Per Extra Km - " + resp.data[i].pricePerExtraKM + " LKR");
+
+                        $.ajax({
+                            url: baseUrl + "car/" + resp.data[i].brand + "/Available",
+                            method: "get",
+                            dataType: "json",
+                            async: false,
+                            success: function (resp) {
+                                $("#carsCollection > .carDetails_section").children(`:eq(${j})`).children(":eq(0)").children(":eq(5)").text("Available Car Qty - " + resp.data);
+
+                                if (resp.data > 0) {
+                                    availableCount += resp.data;
+                                }
+                            }
+                        });
+
+                        $("#carsCollection > .carDetails_section").children(`:eq(${j})`).children(":eq(2)").children(":eq(0)").text(resp.data[i].brand);
+
+                        $("#carsCollection > .carDetails_section").children(`:eq(${j})`).children(":eq(3)").children(":eq(0)").empty();
+                        $("#carsCollection > .carDetails_section").children(`:eq(${j})`).children(":eq(3)").children(":eq(0)").append('<i class="fa-solid fa-gas-pump"></i>');
+                        $("#carsCollection > .carDetails_section").children(`:eq(${j})`).children(":eq(3)").children(":eq(0)").append(resp.data[i].fuelType);
+
+                        $("#carsCollection > .carDetails_section").children(`:eq(${j})`).children(":eq(3)").children(":eq(1)").empty();
+                        $("#carsCollection > .carDetails_section").children(`:eq(${j})`).children(":eq(3)").children(":eq(1)").append('<i class="fa-solid fa-users"></i>');
+                        $("#carsCollection > .carDetails_section").children(`:eq(${j})`).children(":eq(3)").children(":eq(1)").append(resp.data[i].numOfPassengers);
+
+                        $("#carsCollection > .carDetails_section").children(`:eq(${j})`).children(":eq(3)").children(":eq(2)").empty();
+                        $("#carsCollection > .carDetails_section").children(`:eq(${j})`).children(":eq(3)").children(":eq(2)").append('<i class="fa-solid fa-gear"></i>');
+                        $("#carsCollection > .carDetails_section").children(`:eq(${j})`).children(":eq(3)").children(":eq(2)").append(resp.data[i].transmissionType);
+
+                        $("#carsCollection > .carDetails_section").children(`:eq(${j})`).children(":eq(4)").children(":eq(0)").children(":eq(0)").text("Rs." + resp.data[i].priceRate.dailyRate);
+                        $("#carsCollection > .carDetails_section").children(`:eq(${j})`).children(":eq(4)").children(":eq(1)").children(":eq(0)").text("Rs." + resp.data[i].priceRate.monthlyRate);
+
+                        j++;
+                    }
+                }
+
+                for (let i = 0; i < $("#carsCollection > .carDetails_section").children().length; i++) {
+                    $("#carsCollection > .carDetails_section").children(`:eq(${i})`).css('display', 'flex');
+                }
+
+                for (let i = carCount; i < $("#carsCollection > .carDetails_section").children().length; i++) {
+                    $("#carsCollection > .carDetails_section").children(`:eq(${i})`).css('display', 'none');
+                }
+            } else {
+                console.log("Hureee")
+                for (let i = 0; i < $("#carsCollection > .carDetails_section").children().length; i++) {
+                    $("#carsCollection > .carDetails_section").children(`:eq(${i})`).css('display', 'none');
+                }
+            }
+        }
+    });
+}
+
+$('#auto').on('click', function () {
+    var transmissionType = "Auto";
+    loadAllCarsByTransmissionType(transmissionType);
+});
+
+$('#manual').on('click', function () {
+    var transmissionType = "Manual";
+    loadAllCarsByTransmissionType(transmissionType);
 });
