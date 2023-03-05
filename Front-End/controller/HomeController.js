@@ -590,7 +590,7 @@ function loadAllCarsByCarBrand(brand) {
         success: function (resp) {
             if (resp.data != null) {
                 for (let i = 0; i < resp.data.length; i++) {
-                    if (resp.data[i].brand.slice(0, 6) == brand) {
+                    if (resp.data[i].brand.slice(0, brand.length) == brand) {
                         carCount++;
                         console.log(resp.data[i]);
 
