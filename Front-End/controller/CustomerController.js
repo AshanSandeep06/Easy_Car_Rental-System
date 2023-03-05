@@ -409,6 +409,11 @@ $("#pickUpTime, #pickUpDate, #returnTime, #returnDate").on('change', function ()
 });
 
 $("#btnCancelRent").on('click', function () {
+    cancelRent();
+    // $("#driverAcceptanceField").is(":checked");
+});
+
+function cancelRent() {
     generateNewRentalID();
     $('#tblCarDetails>tbody').empty();
     $('#cmbSelectCarId').val('Select Car');
@@ -423,8 +428,11 @@ $("#btnCancelRent").on('click', function () {
     $('#totalFee').val('');
     $('#uploadSlip').val('');
     $('#driverAcceptanceField').prop('checked', false);
-    // $("#driverAcceptanceField").is(":checked");
-});
+    $("#carFront_image").attr('src', '');
+    $("#carBack_image").attr('src', '');
+    $("#carSide_image").attr('src', '');
+    $("#carInterior_image").attr('src', '');
+}
 
 $('#btnSubmitRent').on('click', function () {
     if ($('#cmbSelectCarId').val() != null && !($('#tblCarDetails>tbody').is(':empty')) && $('#location').val() != '' && $('#pickUpTime').val() != '' && $('#pickUpDate').val() != '' && $('#returnTime').val() != '' && $('#returnDate').val() != '' && $('#uploadSlip').val() != '') {
