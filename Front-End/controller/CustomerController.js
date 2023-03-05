@@ -932,7 +932,7 @@ function checkWhenInOngoingRental(username) {
 /* ------------ Customer Home Page --------------*/
 $('#txtSortingType').on('change', function () {
     if ($('#txtSortingType') != null) {
-        if ($('#txtSortingType').val() === "Type") {
+        if ($('#txtSortingType').val() === "Car Type") {
             $('#vehicleTypeRow').css('display', 'flex');
             $('#brandRow').css('display', 'none');
             $('#fuelTypeRow').css('display', 'none');
@@ -989,7 +989,7 @@ $('#btnClearSorting').on('click', function () {
 
     $("#txtSortingType").empty();
     $("#txtSortingType").append(`<option selected disabled>Sort By</option>`);
-    $("#txtSortingType").append(`<option>Type</option>`);
+    $("#txtSortingType").append(`<option>Car Type</option>`);
     $("#txtSortingType").append(`<option>Brand</option>`);
     $("#txtSortingType").append(`<option>Fuel Type</option>`);
     $("#txtSortingType").append(`<option>Transmission Type</option>`);
