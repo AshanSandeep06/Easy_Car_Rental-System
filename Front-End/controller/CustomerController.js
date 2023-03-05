@@ -988,7 +988,7 @@ $('#btnClearSorting').on('click', function () {
     loadAllCarsDetails();
 
     $("#txtSortingType").empty();
-    $("#txtSortingType").append(`<option selected disabled>Sort By</option>`);
+    $("#txtSortingType").append(`<option class="badge text-bg-success" selected disabled>Sorted By</option>`);
     $("#txtSortingType").append(`<option>Car Type</option>`);
     $("#txtSortingType").append(`<option>Brand</option>`);
     $("#txtSortingType").append(`<option>Fuel Type</option>`);
