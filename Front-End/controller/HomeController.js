@@ -580,7 +580,7 @@ $('#luxury').on('click', function () {
 function loadAllCarsByCarBrand(brand) {
     var availableCount = 0;
     var carCount = 0;
-    let j=0;
+    let j = 0;
 
     $.ajax({
         url: baseUrl + "car/sortFromCarBrand",
@@ -689,7 +689,7 @@ $('#BMW').on('click', function () {
 function loadAllCarsByFuelType(fuelType) {
     var availableCount = 0;
     var carCount = 0;
-    let j=0;
+    let j = 0;
 
     $.ajax({
         url: baseUrl + "car/sortFromCarBrand",
@@ -783,7 +783,7 @@ $('#petrol').on('click', function () {
 function loadAllCarsByTransmissionType(transmissionType) {
     var availableCount = 0;
     var carCount = 0;
-    let j=0;
+    let j = 0;
 
     $.ajax({
         url: baseUrl + "car/sortFromCarBrand",
@@ -877,7 +877,7 @@ $('#manual').on('click', function () {
 function loadAllCarsByNumOfPassengers(noOfPassengers) {
     var availableCount = 0;
     var carCount = 0;
-    let j=0;
+    let j = 0;
 
     $.ajax({
         url: baseUrl + "car/sortFromCarBrand",
