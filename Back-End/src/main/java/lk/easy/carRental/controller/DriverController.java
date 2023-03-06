@@ -88,7 +88,7 @@ public class DriverController {
             licenseImage.transferTo(licenseImageLocation);
 
             driverService.uploadDriverLicenseImage(driverId, licenseImage.getOriginalFilename());
-            return new ResponseUtil("OK", "Successfully Uploaded Customer License Image", null);
+            return new ResponseUtil("OK", "Successfully Uploaded Driver License Image", null);
         } catch (IOException e) {
             return new ResponseUtil("Error", e.getMessage(), null);
         }
@@ -97,7 +97,7 @@ public class DriverController {
     @DeleteMapping(params = {"driverID"})
     public ResponseUtil deleteCar(@RequestParam String driverID) {
         driverService.deleteDriver(driverID);
-        return new ResponseUtil("OK", "Successfully Deleted Car..!", null);
+        return new ResponseUtil("OK", "Successfully Deleted Driver..!", null);
     }
 
     @DeleteMapping(path = "/deleteDriverLicenseImage/{driverID}")

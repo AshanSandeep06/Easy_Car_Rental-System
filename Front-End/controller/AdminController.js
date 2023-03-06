@@ -848,6 +848,7 @@ function loadAllBookings() {
     $.ajax({
         url: baseUrl + "rent",
         method: "get",
+        async:false,
         success: function (resp) {
             if (resp.data != null) {
                 for (let rent of resp.data) {
@@ -1138,12 +1139,12 @@ function bindRowClickEventsManageBookingsTable() {
         let rentStatus = $(this).children(":eq(9)").text();
         let location = $(this).children(":eq(10)").text();
 
-        setTextFieldValues(rentID, carID, driverReqType, driverID, driverName, pickUpTime, pickUpDate, returnTime, returnDate, rentStatus, location);
+        setManageBookingsTextFieldValues(rentID, carID, driverReqType, driverID, driverName, pickUpTime, pickUpDate, returnTime, returnDate, rentStatus, location);
     });
 }
 
 //Set text fields values function
-function setTextFieldValues(rentID, carID, driverReqType, driverID, driverName, pickUpTime, pickUpDate, returnTime, returnDate, rentStatus, location) {
+function setManageBookingsTextFieldValues(rentID, carID, driverReqType, driverID, driverName, pickUpTime, pickUpDate, returnTime, returnDate, rentStatus, location) {
     $('#txtRentID').val(rentID);
     $('#txtRentCarID').val(`${carID}`);
     $('#txtRentDriverReqType').val(`${driverReqType}`);
@@ -1161,6 +1162,13 @@ function setTextFieldValues(rentID, carID, driverReqType, driverID, driverName, 
         $('#txtRentPickUpDate').val(year + "-" + month + "-" + day);
     }
 
+    if (parseInt(pickUpDate.split("-")[2]) < 10) {
+        var month = "0" + pickUpDate.split("-")[1];
+        var year = pickUpDate.split("-")[0];
+        var day = "0" + pickUpDate.split("-")[2];
+        $('#txtRentPickUpDate').val(year + "-" + month + "-" + day);
+    }
+
     $('#txtRentReturnTime').val("0" + returnTime.split(" ")[0]);
     $('#txtRentReturnDate').val(returnDate);
     if (returnDate.split("-")[1] >= 10) {
@@ -1170,6 +1178,13 @@ function setTextFieldValues(rentID, carID, driverReqType, driverID, driverName, 
         var month = "0" + returnDate.split("-")[1];
         var year = returnDate.split("-")[0];
         var day = returnDate.split("-")[2];
+        $('#txtRentReturnDate').val(year + "-" + month + "-" + day);
+    }
+
+    if (parseInt(returnDate.split("-")[2]) < 10) {
+        var month = "0" + returnDate.split("-")[1];
+        var year = returnDate.split("-")[0];
+        var day = "0" +returnDate.split("-")[2];
         $('#txtRentReturnDate').val(year + "-" + month + "-" + day);
     }
 
@@ -1207,7 +1222,13 @@ $('#btnUpdateBookings').on('click', function () {
             contentType: "application/json",
             dataType: "json",
             success: function (resp) {
-                console.log(resp.data);
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'Bookings has been Successfully Updated..',
+                    showConfirmButton: false,
+                    timer: 1500
+                })
             }
         });
 

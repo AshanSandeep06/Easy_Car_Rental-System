@@ -18,6 +18,9 @@ $(function () {
     $("#carBack_image").attr('src', '');
     $("#carSide_image").attr('src', '');
     $("#carInterior_image").attr('src', '');
+    /*for (let i = 0; i < $("#carsCollection > .carDetails_section").children().length; i++) {
+        $("#carsCollection > .carDetails_section").children(`:eq(${i})`).css('display', 'none');
+    }*/
 });
 
 $("#btnHome").on('click', function () {
@@ -257,7 +260,8 @@ function loadAllCarsFromBrand(carBrand) {
 }
 
 $(".cars_btn").on('click', function () {
-    console.log($(this).parent().children(":eq(5)").text())
+    console.log($(this).parent().children(":eq(5)").text());
+    cancelRent();
     if ($(this).parent().children(":eq(5)").text().split('-')[1].split(' ')[1] > 0) {
         $('#customerPage_home').css("display", "none");
         $('#carBookingMain').css("display", "flex");
