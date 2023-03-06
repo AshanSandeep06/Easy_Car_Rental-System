@@ -77,6 +77,13 @@ public class PaymentServiceImpl implements PaymentService {
                 Rent rent = rentRepo.findById(paymentDTO.getRent().getRentId()).get();
                 Payment payment = mapper.map(paymentDTO, Payment.class);
                 payment.setRent(rent);
+
+                if (paymentDTO.getPaymentType().equals("Damage Fee")) {
+                    Payment lossDamageWaiver = paymentRepo.findPaymentByRentIdAndPaymentType(paymentDTO.getRent().getRentId(), "Loss Damage Waiver");
+                    lossDamageWaiver.setAmount(lossDamageWaiver.getAmount() - paymentDTO.getAmount());
+                    paymentRepo.save(lossDamageWaiver);
+                }
+
                 paymentRepo.save(payment);
             } else {
                 throw new RuntimeException("This Payment is Already Exists, Therefore Can't Make the Payment..!");
@@ -93,6 +100,13 @@ public class PaymentServiceImpl implements PaymentService {
                 Rent rent = rentRepo.findById(paymentDTO.getRent().getRentId()).get();
                 Payment payment = mapper.map(paymentDTO, Payment.class);
                 payment.setRent(rent);
+
+                if (paymentDTO.getPaymentType().equals("Damage Fee")) {
+                    Payment lossDamageWaiver = paymentRepo.findPaymentByRentIdAndPaymentType(paymentDTO.getRent().getRentId(), "Loss Damage Waiver");
+                    lossDamageWaiver.setAmount(lossDamageWaiver.getAmount() - paymentDTO.getAmount());
+                    paymentRepo.save(lossDamageWaiver);
+                }
+
                 paymentRepo.save(payment);
             } else {
                 throw new RuntimeException("This Payment is not Exists, Therefore Can't Update the Payment..!");
