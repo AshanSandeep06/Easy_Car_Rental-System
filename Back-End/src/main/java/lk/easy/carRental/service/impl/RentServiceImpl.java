@@ -157,6 +157,24 @@ public class RentServiceImpl implements RentService {
                 rent.setRentStatus(rentStatus);
                 rent.setDeniedReason(deniedReason);
                 rentRepo.save(rent);
+            }else if(rentStatus.equals("Ongoing")){
+                Rent rent = rentRepo.findById(rentId).get();
+                rent.setRentStatus(rentStatus);
+                rentRepo.save(rent);
+            }else if(rentStatus.equals("Finished")){
+                Rent rent = rentRepo.findById(rentId).get();
+                rent.setRentStatus(rentStatus);
+
+                Driver driver = rent.getRentDetail().get(0).getDriver();
+                driver.setAvailabilityType("Available");
+                driverRepo.save(driver);
+
+                Car car = rent.getRentDetail().get(0).getCar();
+                car.setAvailabilityType("Available");
+                car.setLastServiceMileage(rent.getRentDetail().get(0).getDistanceMileage());
+                carRepo.save(car);
+
+                rentRepo.save(rent);
             }
         } else {
             throw new RuntimeException("This Rental Request isn't exists, to Cancel..!");

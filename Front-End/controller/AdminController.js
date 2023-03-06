@@ -848,7 +848,7 @@ function loadAllBookings() {
     $.ajax({
         url: baseUrl + "rent",
         method: "get",
-        async:false,
+        async: false,
         success: function (resp) {
             if (resp.data != null) {
                 for (let rent of resp.data) {
@@ -1184,7 +1184,7 @@ function setManageBookingsTextFieldValues(rentID, carID, driverReqType, driverID
     if (parseInt(returnDate.split("-")[2]) < 10) {
         var month = "0" + returnDate.split("-")[1];
         var year = returnDate.split("-")[0];
-        var day = "0" +returnDate.split("-")[2];
+        var day = "0" + returnDate.split("-")[2];
         $('#txtRentReturnDate').val(year + "-" + month + "-" + day);
     }
 
@@ -2024,7 +2024,9 @@ function loadAllPayments() {
                 if (xr1[0] >= 12) {
                     paymentTime += " PM";
                 } else {
-                    paymentTime = "0" + paymentTime;
+                    if(xr1[0] < 10){
+                        paymentTime = "0" + paymentTime;
+                    }
                     paymentTime += " AM";
                 }
 
@@ -2388,14 +2390,22 @@ $('#btnUpdate_RentDetailsSection').on('click', function () {
             dataType: "json",
 
             success: function (resp) {
-                Swal.fire({
-                    position: 'top-end',
-                    icon: 'success',
-                    title: 'Rent Details has been Updated Successfully',
-                    showConfirmButton: false,
-                    timer: 1500
-                })
-                loadAllRentDetails();
+                $.ajax({
+                    url: baseUrl + "rent?rentId=" + $('#txtRentID_rentDetails').val() + "&rentStatus=" + $('#txtProcess_rentDetails').val() + "&deniedReason=N/A",
+                    method: "put",
+                    dataType: "json",
+
+                    success: function (resp) {
+                        Swal.fire({
+                            position: 'top-end',
+                            icon: 'success',
+                            title: 'Rent Details has been Updated Successfully',
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
+                        loadAllRentDetails();
+                    }
+                });
             },
 
             error: function (error) {
