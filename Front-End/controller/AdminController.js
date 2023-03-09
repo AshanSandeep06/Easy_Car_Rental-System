@@ -1031,7 +1031,9 @@ function loadAllDriverIds() {
         method: "get",
         success: function (resp) {
             for (let c1 of resp.data) {
-                $("#txtRentDriverId").append(`<option>${c1.driverId}</option>`);
+                if (c1.availabilityType == "Available") {
+                    $("#txtRentDriverId").append(`<option>${c1.driverId}</option>`);
+                }
             }
         }
     });
@@ -1932,6 +1934,7 @@ $('#btnSearchCarSchedule').on('click', function () {
     $("#tblViewAvailableCarSchedule>tbody").empty();
     $("#tblViewRentedCarSchedule>tbody").empty();
     let allCars;
+    var r1 = 0;
 
     if ($('#txtDate').val() != '') {
         $.ajax({
@@ -1950,29 +1953,38 @@ $('#btnSearchCarSchedule').on('click', function () {
             async: false,
             success: function (resp) {
                 for (let rent of resp.data) {
+                    r1++;
                     console.log(rent.rentStatus)
                     for (let c1 of allCars) {
+                        console.log(allCars.length)
                         if (new Date(rent.pickUpDate).toLocaleDateString() === new Date($('#txtDate').val()).toLocaleDateString()) {
-                            if (rent.rentStatus != "Denied" && rent.rentStatus != "Finished") {  // rent.rentDetail[0].carId == c1.carId
+                            if (rent.rentStatus != "Denied" && rent.rentStatus != "Finished" && rent.rentStatus != "Cancelled") {  // rent.rentDetail[0].carId == c1.carId
                                 if (rent.rentDetail[0].carId == c1.carId) {
                                     var row = "<tr><td>" + c1.carId + "</td><td>" + c1.registerNum + "</td><td>" + c1.type + "</td><td>" + rent.rentId + "</td><td>" + rent.customer.customerId + "</td><td>" + rent.customer.name + "</td><td>" + rent.rentDetail[0].driver.driverId + "</td><td>" + rent.rentDetail[0].driver.name + "</td><td>" + new Date(rent.pickUpDate).toLocaleDateString() + "</td><td>" + new Date(rent.returnDate).toLocaleDateString() + "</td><td>" + rent.location + "</td></tr>";
                                     $("#tblViewRentedCarSchedule>tbody").append(row);
-                                } else {
-                                    var row = "<tr><td>" + c1.carId + "</td><td>" + c1.registerNum + "</td><td>" + c1.brand + "</td><td>" + c1.type + "</td><td>" + c1.numOfPassengers + "</td><td>" + c1.transmissionType + "</td><td>" + c1.fuelType + "</td></tr>";
-                                    $("#tblViewAvailableCarSchedule>tbody").append(row);
                                 }
-                            } else {
-                                var row = "<tr><td>" + c1.carId + "</td><td>" + c1.registerNum + "</td><td>" + c1.brand + "</td><td>" + c1.type + "</td><td>" + c1.numOfPassengers + "</td><td>" + c1.transmissionType + "</td><td>" + c1.fuelType + "</td></tr>";
-                                $("#tblViewAvailableCarSchedule>tbody").append(row);
                             }
                         } else {
                             var row = "<tr><td>" + c1.carId + "</td><td>" + c1.registerNum + "</td><td>" + c1.brand + "</td><td>" + c1.type + "</td><td>" + c1.numOfPassengers + "</td><td>" + c1.transmissionType + "</td><td>" + c1.fuelType + "</td></tr>";
                             $("#tblViewAvailableCarSchedule>tbody").append(row);
                         }
                     }
+
+                    if (resp.data.length != r1) {
+                        $("#tblViewAvailableCarSchedule>tbody").empty();
+                    }
                 }
+                r1 = 0;
             }
         });
+
+        for (let i=0; i<$('#tblViewAvailableCarSchedule>tbody>tr').length; i++){
+            for (let j = 0; j < $('#tblViewRentedCarSchedule>tbody>tr').length; j++) {
+                if($($('#tblViewRentedCarSchedule>tbody>tr')[j]).children(":eq(0)").text() == $($('#tblViewAvailableCarSchedule>tbody>tr')[i]).children(":eq(0)").text()){
+                    $($('#tblViewAvailableCarSchedule>tbody>tr')[i]).remove();
+                }
+            }
+        }
 
     } else {
         Swal.fire({
@@ -2024,7 +2036,7 @@ function loadAllPayments() {
                 if (xr1[0] >= 12) {
                     paymentTime += " PM";
                 } else {
-                    if(xr1[0] < 10){
+                    if (xr1[0] < 10) {
                         paymentTime = "0" + paymentTime;
                     }
                     paymentTime += " AM";
