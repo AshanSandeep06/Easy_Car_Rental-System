@@ -485,8 +485,15 @@ $('#btnSubmitRent').on('click', function () {
         //---------------------------------------------
 
         var currentTime = fullDate.getHours() + ":" + fullDate.getMinutes();
+        if (fullDate.getHours() < 10) {
+            currentTime = "0" + fullDate.getHours() + ":" + fullDate.getMinutes();
+        }
         if (fullDate.getMinutes() < 10) {
-            currentTime = fullDate.getHours() + ":0" + fullDate.getMinutes();
+            if (fullDate.getHours() >= 10) {
+                currentTime = fullDate.getHours() + ":0" + fullDate.getMinutes();
+            } else {
+                currentTime = "0" + fullDate.getHours() + ":0" + fullDate.getMinutes();
+            }
         }
 
         $.ajax({
@@ -570,6 +577,8 @@ function viewMyActiveBookings() {
             }
         }
     });
+
+    console.log(customerId)
 
     $.ajax({
         url: baseUrl + "rent/getActiveBookings?customerId=" + customerId,
