@@ -27,11 +27,4 @@ class CarServiceImplTest {
     CarRepo carRepo;
     @Autowired
     ModelMapper mapper;
-
-    @Test
-    void getAllCars() {
-        ArrayList<CarDTO> allCars = mapper.map(carRepo.findAll(), new TypeToken<ArrayList<CarDTO>>(){}.getType());
-        System.out.println(carRepo.findAll());
-        System.out.println(allCars.toString());
-    }
 }
