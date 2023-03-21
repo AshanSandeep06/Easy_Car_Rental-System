@@ -41,27 +41,4 @@ class RentServiceImplTest {
 
     @Autowired
     CustomerRepo customerRepo;
-    List<Rent_detailDTO> rentDetailDTO = new ArrayList<>();
-    RentDTO rentDTO;
-
-    /*@Test
-    void placeRent(RentDTO rentDTO) {
-        rentDTO = new RentDTO("R001", LocalTime.now(), LocalDate.now(), LocalTime.now(), LocalDate.now(), "Yes", "Galle", "Pending", "N/A", mapper.map(customerRepo.findById("C00-001").get(), CustomerDTO.class), rentDetailDTO);
-        Random random = new Random();
-
-        ArrayList<Driver> allAvailableDrivers = driverRepo.findDriverByAvailabilityType("Available");
-        Driver assignableDriver = allAvailableDrivers.get(random.nextInt(allAvailableDrivers.size()));
-
-        rentDetailDTO.get(0).setDriver(mapper.map(assignableDriver, DriverDTO.class));
-
-        rentDTO.getRentDetail().get(0).setDriver(mapper.map(assignableDriver, DriverDTO.class));
-
-        System.out.println(assignableDriver);
-        assignableDriver.setAvailabilityType("Unavailable");
-        driverRepo.save(assignableDriver);
-
-
-        Rent rent = mapper.map(rentDTO, Rent.class);
-        System.out.println(rent);
-    }*/
 }
